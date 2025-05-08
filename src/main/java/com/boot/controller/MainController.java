@@ -44,25 +44,25 @@ public class MainController {
 	public String main(Model model) {
 		log.info("main()");
 		
-		List<ProductPopularity> popularlist= service.getPopularProducts();
+		List<ProductDTO> popularlist= service.getPopularProducts();
 		model.addAttribute("popularlist", popularlist);
-		
-		ArrayList<ProductDTO> list = service.product_list();
-		model.addAttribute("list", list);
-		
-		ArrayList<CategoryDTO> categorylist = service.categorylist();
-		model.addAttribute("categorylist", categorylist);
-		
-		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
-		model.addAttribute("flashlist", flashlist);
+//		
+//		ArrayList<ProductDTO> list = service.product_list();
+//		model.addAttribute("list", list);
+//		
+//		ArrayList<CategoryDTO> categorylist = service.categorylist();
+//		model.addAttribute("categorylist", categorylist);
+//		
+//		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
+//		model.addAttribute("flashlist", flashlist);
 		
 		return ("main");
 	}
 	@RequestMapping("/category")
 	public String category(Model model) {
 		log.info("category()");
-		List<ProductPopularity> popularlist= service.getPopularProducts();
-		model.addAttribute("popularlist", popularlist);
+//		List<ProductPopularity> popularlist= service.getPopularProducts();
+//		model.addAttribute("popularlist", popularlist);
 		
 		ArrayList<ProductDTO> list = service.product_list();
 		model.addAttribute("list", list);

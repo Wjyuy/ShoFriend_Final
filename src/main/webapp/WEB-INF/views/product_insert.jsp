@@ -13,8 +13,8 @@
 <!-- 작성일      작성자   개발내용,수정내용 -->
 <!-- 25/04/10    우주연-->
 <!-- 25/04/14    우주연   css적용단 위에 카테고리적용, 가게적용 수정-->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/product_check.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product_check.js"></script>
 	<script type="text/javascript">
 		function toggleDiscount(checkbox) {
 		    const start = document.getElementById("discount_start");

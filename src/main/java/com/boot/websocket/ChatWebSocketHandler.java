@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.*;
 
 // 25.05.08 권준우
-// 실제 채팅 송수신 처리
+// 실제 채팅 송수신 처리 클래스
 @Slf4j
 @Component
 public class ChatWebSocketHandler extends TextWebSocketHandler {

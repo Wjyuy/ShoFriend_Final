@@ -15,6 +15,7 @@ import com.boot.service.ChatService;
 
 import lombok.extern.slf4j.Slf4j;
 
+//25.05.08 권준우 최초 작성
 @Controller
 @Slf4j
 public class ChatController {

@@ -3511,6 +3511,131 @@ top: 2px;
   }
 }
 
+.single-widget {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.single-widget h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+}
+
+.single-widget .list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.single-widget .list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.single-widget .list a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.single-widget .list a:hover {
+    color: #007bff;
+}
+
+.single-widget .list span {
+    color: #888;
+    font-size: 13px;
+}
+
+.single-widget.range input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.range-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.range-inner label {
+    font-weight: 500;
+    color: #333;
+}
+
+.range-inner input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 5px;
+    width: 80px;
+    font-size: 14px;
+    outline: none;
+}
+
+.single-widget.search {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    max-width: 100%;
+}
+
+.single-widget.search h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+}
+
+.single-widget.search form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.single-widget.search input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.single-widget.search button {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #333;
+}
+
+.single-widget.search button:hover {
+    background-color: #e9ecef;
+}
+/*.single-widget.search {*/
+/*    background-color: #fff;*/
+/*    padding: 1.5rem;*/
+/*    border-radius: 0.5rem;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);*/
+/*}*/
 /*======================================
     Call Action CSS
 ========================================*/

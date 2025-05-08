@@ -16,5 +16,32 @@
 		   OR (sender_id = #{userB} AND receiver_id = #{userA})
 		ORDER BY sent_at ASC
 	</select>
-
+	
+<!--	<select id="getReceivedMessages" parameterType="int" resultType="com.boot.dto.ChatDTO">-->
+<!--		SELECT * FROM chat-->
+<!--		WHERE receiver_id = #{id}-->
+<!--		ORDER BY sent_at ASC-->
+<!--	</select>-->
+	
+	
+	<resultMap id="chatResultMap" type="com.boot.dto.ChatDTO">
+		<id property="id" column="id" />
+		<result property="senderId" column="sender_id" />
+		<result property="receiverId" column="receiver_id" />
+		<result property="message" column="message" />
+		<result property="sentAt" column="sent_at" />
+	</resultMap>
+	
+	<select id="getReceivedMessages" parameterType="int" resultMap="chatResultMap">
+		SELECT * FROM chat
+		WHERE receiver_id = #{id}
+		ORDER BY sent_at ASC
+	</select>	
+	
+	<select id="getConversationByUserId" parameterType="int" resultMap="chatResultMap">
+		SELECT * FROM chat
+		WHERE sender_id = #{id} OR receiver_id = #{id}
+		ORDER BY sent_at ASC
+	</select>
+	
 </mapper>

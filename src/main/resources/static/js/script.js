@@ -140,5 +140,58 @@ function update_pwd() {
     document.pwd_frm.submit();
 }
 
+function checkout_ok() {
+    const e_pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const zipcodeInput = document.getElementById('sample6_postcode');
+    const addressInput = document.getElementById('sample6_address');
+    const detailAddressInput = document.getElementById('sample6_extraAddress');
+
+    if (document.checkout_frm.name.value.trim() === "") {
+        alert("이름을 써주세요.");
+        document.checkout_frm.name.focus();
+        return false;
+    }
+
+    if (document.checkout_frm.email.value.trim() === "") {
+        alert("Email을 써주세요");
+        document.checkout_frm.email.focus();
+        return false;
+    }
+
+    if (false === e_pattern.test(document.checkout_frm.email.value)) {
+        alert("유효한 이메일이 아닙니다.");
+        document.checkout_frm.email.focus();
+        return false;
+    }
+
+    if (document.checkout_frm.phone.value.trim() === "") {
+        alert("연락처를 써주세요.");
+        document.checkout_frm.phone.focus();
+        return false;
+    }
+
+    if (document.checkout_frm.zipcode.value.trim() === "") {
+        alert("우편번호를 써주세요.");
+        document.checkout_frm.zipcode.focus();
+        return false;
+    }
+
+    if (document.checkout_frm.address.value.trim() === "") {
+        alert("주소를 써주세요.");
+        document.checkout_frm.address.focus();
+        return false;
+    }
+
+    if (document.checkout_frm.address1.value.trim() === "") {
+        alert("상세주소를 써주세요.");
+        document.checkout_frm.address1.focus();
+        return false;
+    }
+	alert("true.");
+    return true;
+}
 
 

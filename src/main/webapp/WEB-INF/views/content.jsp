@@ -382,6 +382,7 @@
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
                             <h2 class="title">${product.title}</h2>
+							<strong>가게이름:</strong> ${storeName}<br>
                             <p class="category"><i class="lni lni-tag"></i> 카테고리:<a href="javascript:void(0)">
 								<c:forEach var="cat" items="${categorylist}">
 									    <c:if test="${cat.id == product.category_id}">
@@ -392,7 +393,7 @@
 								<h3 class="price" >${product.price}</h3>
 <!--                            <h3 class="price" >${product.price}<span><fmt:formatNumber value="${product.price}" pattern="#,###" />원</span> ${product.discount_percentage}%</h3>-->
 <!--							<strong><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###" />원</strong>-->
-							<del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>
+<!--							<del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>-->
                             <p class="info-text"> 
 								
 								<strong style="font-size: 20px;">재고:</strong> ${product.stock}개<br>

@@ -9,8 +9,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/register.css ">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.rtl.css "> --%>
-<script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 	<script type="text/javascript"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

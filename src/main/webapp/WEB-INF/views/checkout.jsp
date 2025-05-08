@@ -373,29 +373,33 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
 						<div class="form-group">
-							1번자리
-							<input type="text" class="form-control" id="color">
+							이름
+							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.name}" readonly>
 						</div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
 						<div class="form-group">
-							1번자리
-							<input type="text" class="form-control" id="color">
+							메일주소
+							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.email}" readonly>
 						</div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
 						<div class="form-group">
-							1번자리
-							<input type="text" class="form-control" id="color">
+							전화번호
+							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.phone}">
 						</div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
-						2번자리
-						<input type="text" class="form-control" id="color">
+						주소
+						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.address}">
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
-						3번자리
-						<input type="text" class="form-control" id="color">
+						상세주소
+						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.address1}">
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+						우편번호
+						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.zipcode}">
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">

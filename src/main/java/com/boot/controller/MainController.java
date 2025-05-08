@@ -56,6 +56,10 @@ public class MainController {
 		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
 		model.addAttribute("flashlist", flashlist);
 		
+		ProductDTO TopDiscountProduct = service.findTopDiscountProductNearExpiration();
+		model.addAttribute("TopDiscountProduct", TopDiscountProduct);
+		
+		
 		return ("main");
 	}
 	@RequestMapping("/category")
@@ -150,7 +154,7 @@ public class MainController {
 	    model.addAttribute("product", product);
 
 	    String storeName = storeService.getStoreNameById(product.getStore_id());
-	    model.addAttribute("storeName", storeName); // 추가!
+	    model.addAttribute("storeName", storeName); 
 
 	    ArrayList<CategoryDTO> categorylist = service.categorylist();
 	    model.addAttribute("categorylist", categorylist);

@@ -355,7 +355,7 @@
                             <div class="single-slider"
                                 style="background-image: url(assets/images/hero/slider-bg1.jpg);">
                                 <div class="content">
-                                    <h2><span>No restocking fee ($35 savings)</span>
+                                    <h2><span>친구가 구매한 상품이에요(만들예정)</span>
                                         M75 Sport Watch
                                     </h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -371,14 +371,15 @@
                             <div class="single-slider"
                                 style="background-image: url(assets/images/hero/slider-bg2.jpg);">
                                 <div class="content">
-                                    <h2><span>Big Sale Offer</span>
-                                        Get the Best Deal on CCTV Camera
+                                    <h2><span>최고 할인! 할인임박 상품!</span>
+                                        ${TopDiscountProduct.title}
                                     </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Combo Only:</span> $590.00</h3>
+                                    <p>${TopDiscountProduct.discount_percentage}% 할인된 가격! ${TopDiscountProduct.description}</p>
+									<c:set var="now" value="<%= new java.util.Date() %>" />
+                                    <h3><span>Now Only : </span>
+										<fmt:formatNumber value="${TopDiscountProduct.price - (TopDiscountProduct.price * TopDiscountProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
                                     <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <a href="content?id=${TopDiscountProduct.id}" class="btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -430,8 +431,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2>인기 상품</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form.</p>
+                        <p>가장 많이 팔린 상품이에요</p>
                     </div>
                 </div>
             </div>

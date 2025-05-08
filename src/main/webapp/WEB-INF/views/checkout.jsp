@@ -372,12 +372,30 @@
             <div class="top-area">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
-						1번자리
-						<select class="form-control" id="color">
-	                        <option>5100 mAh</option>
-	                        <option>6200 mAh</option>
-	                        <option>8000 mAh</option>
-	                    </select>
+						<div class="form-group">
+							1번자리
+							<input type="text" class="form-control" id="color">
+						</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+						<div class="form-group">
+							1번자리
+							<input type="text" class="form-control" id="color">
+						</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+						<div class="form-group">
+							1번자리
+							<input type="text" class="form-control" id="color">
+						</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+						2번자리
+						<input type="text" class="form-control" id="color">
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+						3번자리
+						<input type="text" class="form-control" id="color">
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">

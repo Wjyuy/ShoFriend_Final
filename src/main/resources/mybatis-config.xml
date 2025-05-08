@@ -4,6 +4,12 @@
     "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<mappers>
-		<mapper resource="mybatis/mappers/board.xml"/>
+		<mapper resource="mybatis/mappers/friend.xml"/>
+		<mapper resource="mybatis/mappers/info.xml"/>
+		<mapper resource="mybatis/mappers/log.xml"/>
+		<mapper resource="mybatis/mappers/orders.xml"/>
+		<mapper resource="mybatis/mappers/product.xml"/>
+		<mapper resource="mybatis/mappers/regi.xml"/>
+		<mapper resource="mybatis/mappers/store.xml"/>
 	</mappers>
 </configuration>

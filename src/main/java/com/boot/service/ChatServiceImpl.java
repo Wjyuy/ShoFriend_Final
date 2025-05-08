@@ -2,6 +2,7 @@ package com.boot.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.ChatDAO;
@@ -11,6 +12,7 @@ import com.boot.dto.ChatDTO;
 @Service
 public class ChatServiceImpl implements ChatService {
 
+	@Autowired
 	private ChatDAO chatDAO;
 	
 	@Override
@@ -22,6 +24,4 @@ public class ChatServiceImpl implements ChatService {
 	public List<ChatDTO> getMessage(String userA, String userB) {
 		return chatDAO.getMessageBetween(userA, userB);
 	}
-	
-	
 }

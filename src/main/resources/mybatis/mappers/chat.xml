@@ -10,7 +10,7 @@
 		VALUES (#{senderId}, #{receiverId}, #{message})
 	</insert>
 
-	<select id="getMessagesBetween" resultType="com.boot.dto.ChatMessageDTO">
+	<select id="getMessagesBetween" resultType="com.boot.dto.ChatDTO">
 		SELECT * FROM chat
 		WHERE (sender_id = #{userA} AND receiver_id = #{userB})
 		   OR (sender_id = #{userB} AND receiver_id = #{userA})

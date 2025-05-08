@@ -1,5 +1,6 @@
 package com.boot.websocket;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
 
@@ -7,10 +8,13 @@ import org.springframework.web.socket.config.annotation.*;
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 	
+	@Autowired
+	private ChatWebSocketHandler chatWebSocketHandler;	
+	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(new ChatWebSocketHandler(), "/chat")
-		.addInterceptors(new HttpSessionInterceptor())
-		.setAllowedOrigins("*");
+		registry.addHandler(chatWebSocketHandler, "/chat")
+				.addInterceptors(new HttpSessionInterceptor())
+				.setAllowedOrigins("*");
 	}
 }

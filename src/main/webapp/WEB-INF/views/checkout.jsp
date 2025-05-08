@@ -18,7 +18,103 @@
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+		.your-personal-details-container {
+		    padding: 10px;
+		    margin-bottom: 10px;
+		    cursor: pointer;
+		    display: flex; /* 추가 */
+		    justify-content: space-between; /* 추가 */
+		    align-items: center; /* 추가 */
+		}
 
+		.toggle-icon {
+		    font-size: 1.2em; /* 아이콘 크기 조절 (선택 사항) */
+		    /* margin-left: auto; /* 이전 방법: 왼쪽 마진을 auto로 설정 */ */
+		}
+
+		.personal-details-content {
+		    overflow: hidden;
+		    max-height: 0; /* 초기 높이를 0으로 설정하여 숨김 */
+		    margin-top: 0;
+		    padding-top: 0;
+		    padding-bottom: 0;
+		    transition: max-height 0.3s ease-in-out, margin-top 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+		}
+
+		.personal-details-content.open {
+		    max-height: 1000px; /* 충분히 큰 값으로 설정 (실제 내용에 따라 조절) */
+		    margin-top: 15px;
+		    padding-top: 15px;
+		    padding-bottom: 15px;
+		}
+	</style>
+	<!-- ========================= script here ========================= -->
+	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/js/script.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		//토글 스위치
+		document.addEventListener('DOMContentLoaded', function() {
+		        const detailsContainer = document.querySelector('.your-personal-details-container');
+		        const detailsContent = document.querySelector('.personal-details-content');
+
+		        if (detailsContainer && detailsContent) {
+		            detailsContainer.addEventListener('click', function() {
+		                detailsContent.classList.toggle('open');
+		            });
+		        }
+		    });
+			
+	    function sample6_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                 
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	//                     표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	//                     조합된 참고항목을 해당 필드에 넣는다. //address1 사용안해서 주석처리 04.10
+	//                     document.getElementById("sample6_extraAddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("sample6_extraAddress").value = '';
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('sample6_postcode').value = data.zonecode;
+	                document.getElementById("sample6_address").value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("sample6_detailAddress").focus();
+	            }
+	        }).open();
+	    }
+	</script>
 </head>
 
 <body>
@@ -367,133 +463,75 @@
     <!-- End Breadcrumbs -->
 
     <!-- Start Item Details -->
-    <section class="item-details section">
-        <div class="container">
-            <div class="top-area">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6 col-12">
-						<div class="form-group">
-							이름
-							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.name}" readonly>
-						</div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-						<div class="form-group">
-							메일주소
-							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.email}" readonly>
-						</div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-						<div class="form-group">
-							전화번호
-							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.phone}">
-						</div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-						주소
-						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.address}">
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-						상세주소
-						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.address1}">
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-						우편번호
-						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.zipcode}">
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="product-info">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group">
-                                        <label for="color">Battery capacity</label>
-                                        <select class="form-control" id="color">
-                                            <option>5100 mAh</option>
-                                            <option>6200 mAh</option>
-                                            <option>8000 mAh</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group quantity">
-                                        <label for="color">Quantity</label>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="row align-items-end">
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-reload"></i> Compare</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<section class="item-details section">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-md-9"> 
+					<div class="top-area">
+	                    <div class="your-personal-details-container" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+	                        Your Personal Details
+	                        <i class="lni lni-chevron-down toggle-icon"></i>
+	                    </div>
+						<form name="checkout_frm" id="frm" method="post">
+		                    <div class="personal-details-content">
+		                        <div class="row align-items-center">
+		                            <div class="col-lg-6 col-md-6 col-12">
+		                                이름
+		                                <input type="text" name="name" class="form-control" id="color" value="${sessionScope.loginCustomer.name}" readonly>
+		                            </div>
+		                            <div class="col-lg-6 col-md-6 col-12">
+		                                메일주소
+		                                <input type="text" name="email" class="form-control" id="color" value="${sessionScope.loginCustomer.email}" readonly>
+		                            </div>
+		                            <div class="col-lg-12 col-md-12 col-12">
+		                                전화번호
+		                                <input type="text" name="phone" class="form-control" id="color" value="${sessionScope.loginCustomer.phone}">
+		                            </div>
+		                        </div>
+	                            <div class="product-info">
+	                                <div class="row align-items-center">
+	                                    <div class="col-lg-4 col-md-6 col-12">
+	                                        <div class="wish-button">
+	                                            <button class="btn" style="width: 100%;" onclick="sample6_execDaumPostcode()" type="button">주소찾기</button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+								</div>
+								<div class="row">
+		                            <div class="col-lg-4 col-md-4 col-12">
+		                                우편번호
+		                                <input type="text" name="zipcode" class="form-control" id="sample6_postcode" value="${sessionScope.loginCustomer.zipcode}">
+		                            </div>
+		                            <div class="col-lg-12 col-md-12 col-12">
+		                                주소
+		                                <input type="text" name="address" class="form-control" id="sample6_address" value="${sessionScope.loginCustomer.address}">
+		                            </div>
+		                            <div class="col-lg-12 col-md-12 col-12">
+		                                상세주소
+		                                <input type="text" name="address1" class="form-control" id="sample6_extraAddress" value="${sessionScope.loginCustomer.address1}">
+		                                <input type="hidden" name="address2" id="sample6_detailAddress" placeholder="참고">
+			                        </div>
+									<div class="col-lg-4 col-md-4 col-12">
+		                                <div class="button cart-button">
+		                                    <button class="btn" style="width: 100%;" onclick="checkout_ok()" type="button">Next</button>
+		                                </div>
+		                            </div>
+								</div>
+		                    </div>
+						</form>
+	                </div>
+	            </div>
+	        </div>
+			
+			<div class="col-md-9"> 
+				<div class="container">
+					<div class="top-area">
+						Payment Info
+					<div>
+	            </div>
             </div>
-            <div class="product-details-info">
-                <div class="single-block">
-                    <div class="row">
-                        <div class="col-lg-6 col-12">
-                            <div class="info-body custom-responsive-margin">
-                                <h4>Details</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-                                <h4>Features</h4>
-                                <ul class="features">
-                                    <li>Capture 4K30 Video and 12MP Photos</li>
-                                    <li>Game-Style Controller with Touchscreen</li>
-                                    <li>View Live Camera Feed</li>
-                                    <li>Full Control of HERO6 Black</li>
-                                    <li>Use App for Dedicated Camera Operation</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12">
-                            <div class="info-body">
-                                <h4>Specifications</h4>
-                                <ul class="normal-list">
-                                    <li><span>Weight:</span> 35.5oz (1006g)</li>
-                                    <li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
-                                    <li><span>Maximum Distance:</span> Up to 9,840ft (3,000m)</li>
-                                    <li><span>Operating Frequency:</span> 2.4GHz</li>
-                                    <li><span>Manufacturer:</span> GoPro, USA</li>
-                                </ul>
-                                <h4>Shipping Options:</h4>
-                                <ul class="normal-list">
-                                    <li><span>Courier:</span> 2 - 4 days, $22.50</li>
-                                    <li><span>Local Shipping:</span> up to one week, $10.00</li>
-                                    <li><span>UPS Ground Shipping:</span> 4 - 6 days, $18.00</li>
-                                    <li><span>Unishop Global Export:</span> 3 - 4 days, $25.00</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+			
+	    </section>
     <!-- End Item Details -->
 
     <!-- Review Modal -->

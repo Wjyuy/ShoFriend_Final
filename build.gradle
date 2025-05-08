@@ -41,6 +41,9 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	//25.05.08 권준우 websocket 의존성 추가 (채팅 기능에 필요)
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	//25.05.08 주연 카카오페이용 의존성 추가 
+	implementation 'org.apache.httpcomponents:httpclient'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
 }
 
 tasks.named('test') {

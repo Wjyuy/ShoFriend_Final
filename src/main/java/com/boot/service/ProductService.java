@@ -30,6 +30,7 @@ public interface ProductService {
     public void insertOrder(HashMap<String, String> param);
     public int getPriceByProductId(int productId);
     void decreaseStock(int productId, int quantity);
-    public List<ProductPopularity> getPopularProducts();
+    public List<ProductDTO> getPopularProducts();
+    public ProductDTO findTopDiscountProductNearExpiration();
 
 }

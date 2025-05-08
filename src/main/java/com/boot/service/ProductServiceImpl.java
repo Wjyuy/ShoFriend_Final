@@ -174,9 +174,15 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductPopularity> getPopularProducts() {
+	public List<ProductDTO> getPopularProducts() {
 		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
 		return dao.getPopularProducts();
+	}
+
+	@Override
+	public ProductDTO findTopDiscountProductNearExpiration() {
+		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
+		return dao.findTopDiscountProductNearExpiration();
 	}	
 
 }

@@ -5,16 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/product_insert.css ">
 <!-- product 등록 -->
 <!-- 할인 체크박스, 품절 라디오박스 등 선택시 JS 이용해 동적으로 구현완료 -->
 <!-- 작성일      작성자   개발내용,수정내용 -->
 <!-- 25/04/10    우주연-->
 <!-- 25/04/14    우주연   css적용단 위에 카테고리적용, 가게적용 수정-->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/product_check.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product_check.js"></script>
 	<script type="text/javascript">
 		function toggleDiscount(checkbox) {
 		    const start = document.getElementById("discount_start");

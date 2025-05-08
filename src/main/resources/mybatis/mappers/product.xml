@@ -21,6 +21,19 @@
     	SELECT * FROM product WHERE id = #{product_id}
 	</select>
 	
+	<select id="findTopDiscountProductNearExpiration" resultType="com.boot.dto.ProductDTO">
+	    <![CDATA[
+		    SELECT *
+		    FROM product
+		    WHERE discount_end IS NOT NULL
+		      AND discount_start <= NOW()
+		      AND discount_end > NOW()
+		      AND TIMESTAMPDIFF(HOUR, NOW(), discount_end) <= 24
+		    ORDER BY discount_percentage DESC, discount_end ASC
+		    LIMIT 1
+		  ]]>
+	</select>
+	
 	<select id="selectFlashSaleItems" resultType="com.boot.dto.ProductDTO">
       <![CDATA[
 	    SELECT *
@@ -53,12 +66,26 @@
 	    WHERE id = #{product_id}
 	</update>
 	
-    <select id="getPopularProducts" resultType="com.boot.dto.ProductPopularity">
-        SELECT product_id, COUNT(*) AS order_count
-        FROM orders
-        GROUP BY product_id
-        ORDER BY order_count DESC
-        LIMIT 10;
+    <select id="getPopularProducts" resultType="com.boot.dto.ProductDTO">
+	    SELECT
+	        p.id,
+	        p.store_id,
+	        p.category_id,
+	        p.title,
+	        p.description,
+	        p.price,
+	        p.stock,
+	        p.status,
+	        p.picture,
+	        p.recommend,
+	        p.discount_start,
+	        p.discount_end,
+	        p.discount_percentage
+	    FROM product p
+	    JOIN orders o ON p.id = o.product_id
+	    GROUP BY p.id, p.store_id, p.category_id, p.title, p.description, p.price, p.stock, p.status, p.picture, p.recommend, p.discount_start, p.discount_end, p.discount_percentage
+	    ORDER BY COUNT(o.product_id) DESC
+	    LIMIT 8;
     </select>
 	
 	

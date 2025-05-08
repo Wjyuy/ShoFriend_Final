@@ -31,5 +31,7 @@ public interface ProductDAO {
     public void insertOrder(HashMap<String, String> param);
     public int getPriceByProductId(int productId);
     public void decreaseStock(@Param("product_id") int productId, @Param("quantity") int quantity);
-    public List<ProductPopularity> getPopularProducts();
+    public List<ProductDTO> getPopularProducts();
+    public ProductDTO findTopDiscountProductNearExpiration();
+    
 }

@@ -425,7 +425,6 @@
 							    </c:otherwise>
 							</c:choose>
 							<br>
-							<%--
 							<c:choose>
 								<c:when test="${sessionScope.userType == 'seller'}">
 									<input type="button"  class="btn btn-outline-secondary" style="margin-bottom:5px; margin-top: 20px;" value="수정하기" onclick="location.href='product_modify?id=${product.id}'">
@@ -442,13 +441,6 @@
 					            <form id="orderForm" action="product_order" method="post">
 								    <input type="hidden" name="product_id" value="${product.id}">
 							
-			       </c:otherwise>
-			    </c:choose>
-			</c:otherwise>
-		</c:choose>
-		--%>
-<!--		비로그인/고객 일시 구매하기-->
-<!--		seller일때 구매하기+위에 수정 삭제 버튼 -->
 									
 							
 							</p>
@@ -480,12 +472,10 @@
 						
 						    <input type="submit" class="btn btn-primary w-100"   value="구매하기">
 						</form>
-						<%--
-			       </c:otherwise>
-			    </c:choose>
-			</c:otherwise>
-		</c:choose>
-		--%>
+<!--			        </c:otherwise>-->
+<!--			    </c:choose>-->
+<!--			</c:otherwise>-->
+<!--		</c:choose>-->
 		</div>
 		</div>
 		</div>

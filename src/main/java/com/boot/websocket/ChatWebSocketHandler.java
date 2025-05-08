@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
+// 25.05.08 권준우
+// 실제 채팅 송수신 처리
 @Slf4j
 @Component
 public class ChatWebSocketHandler extends TextWebSocketHandler {
@@ -26,9 +28,14 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log.info("@# afterConnectionEstablished() 실행");
 
-		String userId = getUserId(session);
-		userSessions.put(userId, session);
-		System.out.println(userId + " connected");
+		try {
+			String userId = getUserId(session);
+			userSessions.put(userId, session);
+			System.out.println(userId + " connected");
+		} catch (Exception e) {
+			System.out.println("⚠️ afterConnectionEstablished 중 예외 발생:");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -41,7 +48,8 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
 		String receiverId = parts[0];
 		String content = parts[1];
-		String senderId = (String) session.getAttributes().get("loginId");
+//		String senderId = (String) session.getAttributes().get("loginId");
+		String senderId = String.valueOf(session.getAttributes().get("loginId"));
 
 		try {
 			// 👉 DB 저장
@@ -57,15 +65,12 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 			e.printStackTrace();
 		}
 		
-		
 		WebSocketSession receiverSession = userSessions.get(receiverId);
 		if (receiverSession != null && receiverSession.isOpen()) {
 			System.out.println(">> 실시간 전송 시작");
 			receiverSession.sendMessage(new TextMessage(content));
 			System.out.println(">> 실시간 전송 완료");
 		}
-		
-		
 	}
 
 	@Override
@@ -78,9 +83,15 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	}
 
 	private String getUserId(WebSocketSession session) {
-		log.info("@# getUserId() 실행");
-		// HttpSession에서 userId를 가져오는 방식
-		Map<String, Object> attrs = session.getAttributes();
-		return (String) attrs.get("loginId"); // 예: 세션에서 "loginId"라는 이름으로 저장된 값
+		try {
+			Object loginId = session.getAttributes().get("loginId");
+			if (loginId == null) System.out.println("⚠️ loginId가 null입니다!");
+			return String.valueOf(loginId); // ✅ 이게 핵심 수정
+		} catch (Exception e) {
+			System.out.println("⚠️ getUserId() 예외 발생:");
+			e.printStackTrace();
+			return "unknown";
+		}
 	}
+
 }

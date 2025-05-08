@@ -24,4 +24,14 @@ public class ChatServiceImpl implements ChatService {
 	public List<ChatDTO> getMessage(String userA, String userB) {
 		return chatDAO.getMessageBetween(userA, userB);
 	}
+	
+	@Override
+	public List<ChatDTO> getReceivedMessages(int id) {
+		return chatDAO.getReceivedMessages(id);
+	}
+	
+	@Override
+	public List<ChatDTO> getConversationByUserId(int id) {
+		return chatDAO.getConversationByUserId(id);
+	}
 }

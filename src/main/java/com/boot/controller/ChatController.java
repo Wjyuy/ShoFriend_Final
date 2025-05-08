@@ -28,5 +28,12 @@ public class ChatController {
 		
 		return "chat/chat_test_b";
 	}
+	
+	@GetMapping("/chat/customer")
+	public String customerChatPage() {
+		log.info("@# chat_customer()");
+
+		return "chat/chat_customer";
+	}	
 
 }

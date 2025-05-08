@@ -565,51 +565,53 @@
                                     <div class="col-lg-4 col-md-6 col-12">
 										
 										<!-- Start Single Product -->
-<!--													<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">-->
-<!--										             	<div class="col-lg-3 col-md-6 col-12">-->
-<!--										                    <div class="single-product">-->
-<!--										                        <div class="product-image">-->
-<!--										                            <img src="assets/images/products/product-2.jpg" alt="#">-->
-<!--																	<c:set var="now" value="<%= new java.util.Date() %>" />-->
-<!--											                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">-->
-<!--																		<span class="sale-tag">${dto.discount_percentage}%</span>-->
-<!--											                        </c:if>-->
-<!--										                            <div class="button">-->
-<!--										                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>-->
-<!--										                            </div>-->
-<!--										                        </div>-->
-<!--										                        <div class="product-info">-->
-<!--																	<c:forEach var="category" items="${categorylist}" varStatus="catStatus">-->
-<!--																		<c:if test="${dto.category_id == category.id}">-->
-<!--										                            		<span class="category">${category.name}</span>-->
-<!--																		</c:if>-->
-<!--																	</c:forEach>-->
-<!--										                            <h4 class="title">-->
-<!--										                                <a href="content?id=${dto.id}">${dto.title}</a>-->
-<!--										                            </h4>-->
-<!--										                            <ul class="review">-->
-<!--										                                <li><i class="lni lni-star-filled"></i></li>-->
-<!--										                                <li><i class="lni lni-star-filled"></i></li>-->
-<!--										                                <li><i class="lni lni-star-filled"></i></li>-->
-<!--										                                <li><i class="lni lni-star-filled"></i></li>-->
-<!--										                                <li><i class="lni lni-star"></i></li>-->
-<!--										                                <li><span>4.0 Review(s)</span></li>-->
-<!--										                            </ul>-->
-<!--										                            <div class="price">-->
-<!--																		<c:choose>-->
-<!--													                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">-->
-<!--																				<span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>-->
-<!--												                                <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>-->
-<!--													                        </c:when>-->
-<!--													                        <c:otherwise>-->
-<!--													                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>-->
-<!--													                        </c:otherwise>-->
-<!--													                    </c:choose>-->
-<!--										                            </div>-->
-<!--										                        </div>-->
-<!--										                    </div>-->
-<!--										            		 </div>-->
-<!--														</c:forEach>-->
+										<%--
+													<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">
+										             	<div class="col-lg-3 col-md-6 col-12">
+										                    <div class="single-product">
+										                        <div class="product-image">
+										                            <img src="assets/images/products/product-2.jpg" alt="#">
+																	<c:set var="now" value="<%= new java.util.Date() %>" />
+											                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
+																		<span class="sale-tag">${dto.discount_percentage}%</span>
+											                        </c:if>
+										                            <div class="button">
+										                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+										                            </div>
+										                        </div>
+										                        <div class="product-info">
+																	<c:forEach var="category" items="${categorylist}" varStatus="catStatus">
+																		<c:if test="${dto.category_id == category.id}">
+										                            		<span class="category">${category.name}</span>
+																		</c:if>
+																	</c:forEach>
+										                            <h4 class="title">
+										                                <a href="content?id=${dto.id}">${dto.title}</a>
+										                            </h4>
+										                            <ul class="review">
+										                                <li><i class="lni lni-star-filled"></i></li>
+										                                <li><i class="lni lni-star-filled"></i></li>
+										                                <li><i class="lni lni-star-filled"></i></li>
+										                                <li><i class="lni lni-star-filled"></i></li>
+										                                <li><i class="lni lni-star"></i></li>
+										                                <li><span>4.0 Review(s)</span></li>
+										                            </ul>
+										                            <div class="price">
+																		<c:choose>
+													                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
+																				<span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
+												                                <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+													                        </c:when>
+													                        <c:otherwise>
+													                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+													                        </c:otherwise>
+													                    </c:choose>
+										                            </div>
+										                        </div>
+										                    </div>
+										            		 </div>
+														</c:forEach>
+														--%>
 														<!-- End Single Product -->
 										
 <!--                                         Start Single Product -->

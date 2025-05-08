@@ -149,6 +149,8 @@
 		        <c:otherwise>
 		            <form id="orderForm" action="product_order" method="post">
 					    <input type="hidden" name="product_id" value="${product.id}">
+					    <input type="hidden" name="product_title" value="${product.title}">
+					    <input type="hidden" name="price" value="${product.price}">
 					    
 					    
 						    
@@ -157,7 +159,8 @@
 					    <label class="form-label mt-4">수량: </label>
 					    <input type="number" class="form-control" name="quantity" value="1" min="1" max="${product.stock}" required>
 					
-					    <input type="submit" class="btn btn-primary w-100"   value="구매하기">
+					    <input type="submit" class="btn btn-primary"   value="장바구니에 담기" formaction="addToCart">
+					    <input type="submit" class="btn btn-primary"   value="구매하기">
 					</form>
 		        </c:otherwise>
 		    </c:choose>

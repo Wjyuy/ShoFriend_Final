@@ -7,7 +7,6 @@
 <html class="no-js" lang="zxx">
 
 <head>
-
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Shop Grid - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
@@ -21,13 +20,6 @@
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-
-
-<meta charset="UTF-8">
-<title>카테고리별 상품 출력</title>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"> -->
-<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/js/timer.js"></script>
 
 </head>
 

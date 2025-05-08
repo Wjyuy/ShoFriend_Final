@@ -382,6 +382,7 @@
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
                             <h2 class="title">${product.title}</h2>
+							<strong>가게이름:</strong> ${storeName}<br>
                             <p class="category"><i class="lni lni-tag"></i> 카테고리:<a href="javascript:void(0)">
 								<c:forEach var="cat" items="${categorylist}">
 									    <c:if test="${cat.id == product.category_id}">
@@ -392,7 +393,7 @@
 								<h3 class="price" >${product.price}</h3>
 <!--                            <h3 class="price" >${product.price}<span><fmt:formatNumber value="${product.price}" pattern="#,###" />원</span> ${product.discount_percentage}%</h3>-->
 <!--							<strong><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###" />원</strong>-->
-							<del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>
+<!--							<del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>-->
                             <p class="info-text"> 
 								
 								<strong style="font-size: 20px;">재고:</strong> ${product.stock}개<br>
@@ -424,19 +425,30 @@
 							    </c:otherwise>
 							</c:choose>
 							<br>
+							<%--
 							<c:choose>
 								<c:when test="${sessionScope.userType == 'seller'}">
 									<input type="button"  class="btn btn-outline-secondary" style="margin-bottom:5px; margin-top: 20px;" value="수정하기" onclick="location.href='product_modify?id=${product.id}'">
 									<input type="button" class="btn btn-outline-secondary" value="삭제하기" onclick="location.href='product_delete?id=${product.id}'">
 								</c:when>
+						
 							<c:otherwise>
 							    <c:choose>
 							        <c:when test="${product.status == '품절' and sessionScope.userType == 'customer'}">
 							            <input type="button" class="btn btn-secondary w-100" style="margin-top:25px;" value="구매하기" onclick="alert('⚠ 이 제품은 품절입니다!')" style="background-color: lightgray;">
 							        </c:when>
+						
 					        <c:otherwise>
 					            <form id="orderForm" action="product_order" method="post">
 								    <input type="hidden" name="product_id" value="${product.id}">
+							
+			       </c:otherwise>
+			    </c:choose>
+			</c:otherwise>
+		</c:choose>
+		--%>
+<!--		비로그인/고객 일시 구매하기-->
+<!--		seller일때 구매하기+위에 수정 삭제 버튼 -->
 									
 							
 							</p>
@@ -468,10 +480,12 @@
 						
 						    <input type="submit" class="btn btn-primary w-100"   value="구매하기">
 						</form>
-			        </c:otherwise>
+						<%--
+			       </c:otherwise>
 			    </c:choose>
 			</c:otherwise>
 		</c:choose>
+		--%>
 		</div>
 		</div>
 		</div>

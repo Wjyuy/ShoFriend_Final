@@ -9,12 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리별 상품 출력</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css ">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/maincategory.css ">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"> -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/timer.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/js/timer.js"></script>
 </head>
 <!-- TODO: 숨김상태 본인 가게만 출력되게 해야함 -->
 <!-- category_id 받아와서 카테고리 출력-->

@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html class="no-js" lang="zxx">
 
 <head>
@@ -229,18 +229,10 @@
                             <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                             <ul class="sub-category">
                                 <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a href="product-grids.html">Digital Cameras</a></li>
-                                        <li><a href="product-grids.html">Camcorders</a></li>
-                                        <li><a href="product-grids.html">Camera Drones</a></li>
-                                        <li><a href="product-grids.html">Smart Watches</a></li>
-                                        <li><a href="product-grids.html">Headphones</a></li>
-                                        <li><a href="product-grids.html">MP3 Players</a></li>
-                                        <li><a href="product-grids.html">Microphones</a></li>
-                                        <li><a href="product-grids.html">Chargers</a></li>
-                                        <li><a href="product-grids.html">Batteries</a></li>
-                                        <li><a href="product-grids.html">Cables & Adapters</a></li>
-                                    </ul>
+<!--                                    <ul class="inner-sub-category">-->
+<!--                                        <li><a href="product-grids.html">Digital Cameras</a></li>-->
+<!--                                        <li><a href="product-grids.html">Camcorders</a></li>-->
+<!--                                    </ul>-->
                                 </li>
                                 <li><a href="product-grids.html">accessories</a></li>
                                 <li><a href="product-grids.html">Televisions</a></li>
@@ -371,61 +363,88 @@
         <div class="container">
             <div class="top-area">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6 col-12">
-						<div class="form-group">
-							이름
-							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.name}" readonly>
-						</div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-						<div class="form-group">
-							메일주소
-							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.email}" readonly>
-						</div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-						<div class="form-group">
-							전화번호
-							<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.phone}">
-						</div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-						주소
-						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.address}">
-                    </div>
                     <div class="col-lg-6 col-md-12 col-12">
-						상세주소
-						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.address1}">
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-						우편번호
-						<input type="text" class="form-control" id="color" value="${sessionScope.loginCustomer.zipcode}">
+                        <div class="product-images">
+                            <main id="gallery">
+                                <div class="main-img">
+                                    <img src="assets/images/product-details/01.jpg" id="current" alt="#">
+                                </div>
+<!--                                <div class="images">-->
+<!--                                    <img src="assets/images/product-details/01.jpg" class="img" alt="#">-->
+<!--                                    <img src="assets/images/product-details/02.jpg" class="img" alt="#">-->
+<!--                                    <img src="assets/images/product-details/03.jpg" class="img" alt="#">-->
+<!--                                    <img src="assets/images/product-details/04.jpg" class="img" alt="#">-->
+<!--                                    <img src="assets/images/product-details/05.jpg" class="img" alt="#">-->
+<!--                                </div>-->
+                            </main>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
+                            <h2 class="title">${product.title}</h2>
+							<strong>가게이름:</strong> ${storeName}<br>
+                            <p class="category"><i class="lni lni-tag"></i> 카테고리:<a href="javascript:void(0)">
+								<c:forEach var="cat" items="${categorylist}">
+									    <c:if test="${cat.id == product.category_id}">
+									      ${cat.name}
+									    </c:if>
+									  </c:forEach>    
+								</a></p>
+								<h3 class="price" >${product.price}</h3>
+<!--                            <h3 class="price" >${product.price}<span><fmt:formatNumber value="${product.price}" pattern="#,###" />원</span> ${product.discount_percentage}%</h3>-->
+<!--							<strong><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###" />원</strong>-->
+<!--							<del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>-->
+                            <p class="info-text"> 
+								
+								<strong style="font-size: 20px;">재고:</strong> ${product.stock}개<br>
+								<c:choose>
+							    	<c:when test="${product.status == '품절'}">
+							    		<span style="color: red; font-size: 20px;">해당 상품은 품절입니다. </span><br>
+							    	</c:when>
+							    	<c:when test="${product.status == '숨김'}">
+							    		<span style="color: red; font-size: 20px;">해당 상품은 숨김상태입니다. </span><br>
+							    	</c:when>
+							    </c:choose>
+								
+							<c:set var="now" value="<%= new java.util.Date() %>" />
+							<c:choose>
+							    <c:when test="${product.discount_start <= now and now <= product.discount_end}">
+							        <del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>
+							        <strong><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###" />원</strong>
+									<br>
+									
+								    <small class="time-left">
+										data-end-time="<fmt:formatDate value='${product.discount_end}' pattern='yyyy-MM-dd\'T\'HH:mm:ss' />">
+									</small> 
+									<small> 남았습니다! </small>
+							    </c:when>
+							    <c:otherwise>
+							    <div style="font-size: 30px; color:blue; ">
+							        <b><fmt:formatNumber value="${product.price}" pattern="#,###" />원</b>
+							    </div>
+							    </c:otherwise>
+							</c:choose>
+							<br>
+							<c:choose>
+								<c:when test="${sessionScope.userType == 'seller'}">
+									<input type="button"  class="btn btn-outline-secondary" style="margin-bottom:5px; margin-top: 20px;" value="수정하기" onclick="location.href='product_modify?id=${product.id}'">
+									<input type="button" class="btn btn-outline-secondary" value="삭제하기" onclick="location.href='product_delete?id=${product.id}'">
+								</c:when>
+						
+							<c:otherwise>
+							    <c:choose>
+							        <c:when test="${product.status == '품절' and sessionScope.userType == 'customer'}">
+							            <input type="button" class="btn btn-secondary w-100" style="margin-top:25px;" value="구매하기" onclick="alert('⚠ 이 제품은 품절입니다!')" style="background-color: lightgray;">
+							        </c:when>
+						
+					        <c:otherwise>
+					            <form id="orderForm" action="product_order" method="post">
+								    <input type="hidden" name="product_id" value="${product.id}">
+							
+									
+							
+							</p>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group">
-                                        <label for="color">Battery capacity</label>
-                                        <select class="form-control" id="color">
-                                            <option>5100 mAh</option>
-                                            <option>6200 mAh</option>
-                                            <option>8000 mAh</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group quantity">
-                                        <label for="color">Quantity</label>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <div class="bottom-content">
                                 <div class="row align-items-end">
@@ -446,6 +465,28 @@
                                     </div>
                                 </div>
                             </div>
+
+						    <!-- 수량 입력 폼 추가 -->
+						    <label class="form-label mt-4">수량: </label>
+						    <input type="number" class="form-control" name="quantity" value="1" min="1" max="${product.stock}" required>
+						
+						    <input type="submit" class="btn btn-primary w-100"   value="구매하기">
+						</form>
+<!--			        </c:otherwise>-->
+<!--			    </c:choose>-->
+<!--			</c:otherwise>-->
+<!--		</c:choose>-->
+		</div>
+		</div>
+		</div>
+<!--		<hr>-->
+		<div class="product-container">
+		<div class="product-description">
+		<p>${product.description}</p>
+		</div>
+		</div>
+							
+
                         </div>
                     </div>
                 </div>

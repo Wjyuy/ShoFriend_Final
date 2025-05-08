@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>ShopGrids - Bootstrap 5 eCommerce HTML Template.</title>
+    <title>Single Product - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -268,7 +268,7 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a href="index.html" class="active" aria-label="Toggle navigation">Home</a>
+                                        <a href="index.html" aria-label="Toggle navigation">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -284,13 +284,15 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Shop</a>
+                                        <a class="dd-menu active collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">Shop</a>
                                         <ul class="sub-menu collapse" id="submenu-1-3">
                                             <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
                                             <li class="nav-item"><a href="product-list.html">Shop List</a></li>
-                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>
+                                            <li class="nav-item active"><a href="product-details.html">shop Single</a>
+                                            </li>
                                             <li class="nav-item"><a href="cart.html">Cart</a></li>
                                             <li class="nav-item"><a href="checkout.html">Checkout</a></li>
                                         </ul>
@@ -339,260 +341,213 @@
                 </div>
             </div>
         </div>
-        <!-- End Header Bottom -->
+        <!-- Start Header Bottom -->
     </header>
     <!-- End Header Area -->
 
-    <!-- Start Hero Area -->
-    <section class="hero-area">
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-12 custom-padding-right">
-                    <div class="slider-head">
-                        <!-- Start Hero Slider -->
-                        <div class="hero-slider">
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
-                                <div class="content">
-                                    <h2><span>친구가 구매한 상품이에요(만들예정)</span>
-                                        M75 Sport Watch
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg2.jpg);">
-                                <div class="content">
-                                    <h2><span>최고 할인! 할인임박 상품!</span>
-                                        ${TopDiscountProduct.title}
-                                    </h2>
-                                    <p>${TopDiscountProduct.discount_percentage}% 할인된 가격! ${TopDiscountProduct.description}</p>
-									<c:set var="now" value="<%= new java.util.Date() %>" />
-                                    <h3><span>Now Only : </span>
-										<fmt:formatNumber value="${TopDiscountProduct.price - (TopDiscountProduct.price * TopDiscountProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
-                                    <div class="button">
-                                        <a href="content?id=${TopDiscountProduct.id}" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
-                        </div>
-                        <!-- End Hero Slider -->
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Single Product</h1>
                     </div>
                 </div>
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="index.html">Shop</a></li>
+                        <li>Single Product</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Item Details -->
+    <section class="item-details section">
+        <div class="container">
+            <div class="top-area">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+						<div class="form-group">
+							1번자리
+							<input type="text" class="form-control" id="color">
+						</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+						<div class="form-group">
+							1번자리
+							<input type="text" class="form-control" id="color">
+						</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+						<div class="form-group">
+							1번자리
+							<input type="text" class="form-control" id="color">
+						</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+						2번자리
+						<input type="text" class="form-control" id="color">
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+						3번자리
+						<input type="text" class="form-control" id="color">
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <div class="product-info">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label for="color">Battery capacity</label>
+                                        <select class="form-control" id="color">
+                                            <option>5100 mAh</option>
+                                            <option>6200 mAh</option>
+                                            <option>8000 mAh</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-group quantity">
+                                        <label for="color">Quantity</label>
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-content">
+                                <div class="row align-items-end">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="button cart-button">
+                                            <button class="btn" style="width: 100%;">Add to Cart</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="wish-button">
+                                            <button class="btn"><i class="lni lni-reload"></i> Compare</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="wish-button">
+                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-details-info">
+                <div class="single-block">
                     <div class="row">
-                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner"
-                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
-                                <div class="content">
-                                    <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
-                                    </h2>
-                                    <h3>$259.99</h3>
-                                </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="info-body custom-responsive-margin">
+                                <h4>Details</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+                                <h4>Features</h4>
+                                <ul class="features">
+                                    <li>Capture 4K30 Video and 12MP Photos</li>
+                                    <li>Game-Style Controller with Touchscreen</li>
+                                    <li>View Live Camera Feed</li>
+                                    <li>Full Control of HERO6 Black</li>
+                                    <li>Use App for Dedicated Camera Operation</li>
+                                </ul>
                             </div>
-                            <!-- End Small Banner -->
                         </div>
-                        <div class="col-lg-12 col-md-6 col-12">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2">
-                                <div class="content">
-                                    <h2>Weekly Sale!</h2>
-                                    <p>Saving up to 50% off all online store items this week.</p>
-                                    <div class="button">
-                                        <a class="btn" href="product-grids.html">Shop Now</a>
-                                    </div>
-                                </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="info-body">
+                                <h4>Specifications</h4>
+                                <ul class="normal-list">
+                                    <li><span>Weight:</span> 35.5oz (1006g)</li>
+                                    <li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
+                                    <li><span>Maximum Distance:</span> Up to 9,840ft (3,000m)</li>
+                                    <li><span>Operating Frequency:</span> 2.4GHz</li>
+                                    <li><span>Manufacturer:</span> GoPro, USA</li>
+                                </ul>
+                                <h4>Shipping Options:</h4>
+                                <ul class="normal-list">
+                                    <li><span>Courier:</span> 2 - 4 days, $22.50</li>
+                                    <li><span>Local Shipping:</span> up to one week, $10.00</li>
+                                    <li><span>UPS Ground Shipping:</span> 4 - 6 days, $18.00</li>
+                                    <li><span>Unishop Global Export:</span> 3 - 4 days, $25.00</li>
+                                </ul>
                             </div>
-                            <!-- Start Small Banner -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Hero Area -->
+    <!-- End Item Details -->
 
-    <!-- Start Trending Product Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>인기 상품</h2>
-                        <p>가장 많이 팔린 상품이에요</p>
-                    </div>
+    <!-- Review Modal -->
+    <div class="modal fade review-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Leave a Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            <div class="row">
-				
-				
-                    <!-- Start Single Product -->
-				<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">
-                	<div class="col-lg-3 col-md-6 col-12">
-	                    <div class="single-product">
-	                        <div class="product-image">
-	                            <img src="assets/images/products/product-2.jpg" alt="#">
-								<c:set var="now" value="<%= new java.util.Date() %>" />
-		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
-									<span class="sale-tag">${dto.discount_percentage}%</span>
-		                        </c:if>
-	                            <div class="button">
-	                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-	                            </div>
-	                        </div>
-	                        <div class="product-info">
-								<c:forEach var="category" items="${categorylist}" varStatus="catStatus">
-									<c:if test="${dto.category_id == category.id}">
-	                            		<span class="category">${category.name}</span>
-									</c:if>
-								</c:forEach>
-	                            <h4 class="title">
-	                                <a href="content?id=${dto.id}">${dto.title}</a>
-	                            </h4>
-	                            <ul class="review">
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star"></i></li>
-	                                <li><span>4.0 Review(s)</span></li>
-	                            </ul>
-	                            <div class="price">
-									<c:choose>
-				                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
-											<span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
-			                                <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
-				                        </c:when>
-				                        <c:otherwise>
-				                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
-				                        </c:otherwise>
-				                    </c:choose>
-	                            </div>
-	                        </div>
-	                    </div>
-               		 </div>
-					</c:forEach>
-					<!-- End Single Product -->
-            </div>
-        </div>
-    </section>
-    <!-- End Trending Product Area -->
-
-    <!-- Start Call Action Area -->
-    <section class="call-action section">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-8 offset-lg-2 col-12">
-                    <div class="inner">
-                        <div class="content">
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Currently You are using free<br>
-                                Lite version of ShopGrids</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template
-                                to get all pages,<br> features and commercial license.</p>
-                            <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="javascript:void(0)" class="btn">Purchase Now</a>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="review-name">Your Name</label>
+                                <input class="form-control" type="text" id="review-name" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="review-email">Your Email</label>
+                                <input class="form-control" type="email" id="review-email" required>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Call Action Area -->
-
-    <!-- Start Banner Area -->
-    <section class="banner section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
-                        <div class="content">
-                            <h2>Smart Watch 2.0</h2>
-                            <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">View Details</a>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="review-subject">Subject</label>
+                                <input class="form-control" type="text" id="review-subject" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="review-rating">Rating</label>
+                                <select class="form-control" id="review-rating">
+                                    <option>5 Stars</option>
+                                    <option>4 Stars</option>
+                                    <option>3 Stars</option>
+                                    <option>2 Stars</option>
+                                    <option>1 Star</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner custom-responsive-margin"
-                        style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
-                        <div class="content">
-                            <h2>Smart Headphone</h2>
-                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
-                                incididunt ut labore.</p>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">Shop Now</a>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="review-message">Review</label>
+                        <textarea class="form-control" id="review-message" rows="8" required></textarea>
                     </div>
+                </div>
+                <div class="modal-footer button">
+                    <button type="button" class="btn">Submit Review</button>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End Banner Area -->
-
-    <!-- Start Shipping Info -->
-    <section class="shipping-info">
-        <div class="container">
-            <ul>
-                <!-- Free Shipping -->
-                <li>
-                    <div class="media-icon">
-                        <i class="lni lni-delivery"></i>
-                    </div>
-                    <div class="media-body">
-                        <h5>Free Shipping</h5>
-                        <span>On order over $99</span>
-                    </div>
-                </li>
-                <!-- Money Return -->
-                <li>
-                    <div class="media-icon">
-                        <i class="lni lni-support"></i>
-                    </div>
-                    <div class="media-body">
-                        <h5>24/7 Support.</h5>
-                        <span>Live Chat Or Call.</span>
-                    </div>
-                </li>
-                <!-- Support 24/7 -->
-                <li>
-                    <div class="media-icon">
-                        <i class="lni lni-credit-cards"></i>
-                    </div>
-                    <div class="media-body">
-                        <h5>Online Payment.</h5>
-                        <span>Secure Payment Services.</span>
-                    </div>
-                </li>
-                <!-- Safe Payment -->
-                <li>
-                    <div class="media-icon">
-                        <i class="lni lni-reload"></i>
-                    </div>
-                    <div class="media-body">
-                        <h5>Easy Return.</h5>
-                        <span>Hassle Free Shopping.</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <!-- End Shipping Info -->
+    </div>
+    <!-- End Review Modal -->
 
     <!-- Start Footer Area -->
     <footer class="footer">
@@ -752,43 +707,21 @@
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
-        //========= Hero Slider 
-        tns({
-            container: '.hero-slider',
-            slideBy: 'page',
-            autoplay: true,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            gutter: 0,
-            items: 1,
-            nav: false,
-            controls: true,
-            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
-        });
-
-        //======== Brand Slider
-        tns({
-            container: '.brands-logo-carousel',
-            autoplay: true,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            gutter: 15,
-            nav: false,
-            controls: false,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                540: {
-                    items: 3,
-                },
-                768: {
-                    items: 5,
-                },
-                992: {
-                    items: 6,
-                }
-            }
+        const current = document.getElementById("current");
+        const opacity = 0.6;
+        const imgs = document.querySelectorAll(".img");
+        imgs.forEach(img => {
+            img.addEventListener("click", (e) => {
+                //reset opacity
+                imgs.forEach(img => {
+                    img.style.opacity = 1;
+                });
+                current.src = e.target.src;
+                //adding class 
+                //current.classList.add("fade-in");
+                //opacity
+                e.target.style.opacity = opacity;
+            });
         });
     </script>
 </body>

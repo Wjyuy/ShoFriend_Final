@@ -32,4 +32,6 @@ public interface ProductDAO {
     public int getPriceByProductId(int productId);
     public void decreaseStock(@Param("product_id") int productId, @Param("quantity") int quantity);
     public List<ProductDTO> getPopularProducts();
+    public ProductDTO findTopDiscountProductNearExpiration();
+    
 }

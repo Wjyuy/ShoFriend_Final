@@ -31,5 +31,6 @@ public interface ProductService {
     public int getPriceByProductId(int productId);
     void decreaseStock(int productId, int quantity);
     public List<ProductDTO> getPopularProducts();
+    public ProductDTO findTopDiscountProductNearExpiration();
 
 }

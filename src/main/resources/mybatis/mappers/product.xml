@@ -21,6 +21,19 @@
     	SELECT * FROM product WHERE id = #{product_id}
 	</select>
 	
+	<select id="findTopDiscountProductNearExpiration" resultType="com.boot.dto.ProductDTO">
+	    <![CDATA[
+		    SELECT *
+		    FROM product
+		    WHERE discount_end IS NOT NULL
+		      AND discount_start <= NOW()
+		      AND discount_end > NOW()
+		      AND TIMESTAMPDIFF(HOUR, NOW(), discount_end) <= 24
+		    ORDER BY discount_percentage DESC, discount_end ASC
+		    LIMIT 1
+		  ]]>
+	</select>
+	
 	<select id="selectFlashSaleItems" resultType="com.boot.dto.ProductDTO">
       <![CDATA[
 	    SELECT *

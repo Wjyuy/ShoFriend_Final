@@ -50,11 +50,11 @@ public class MainController {
 //		ArrayList<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
 //		
-//		ArrayList<CategoryDTO> categorylist = service.categorylist();
-//		model.addAttribute("categorylist", categorylist);
+		ArrayList<CategoryDTO> categorylist = service.categorylist();
+		model.addAttribute("categorylist", categorylist);
 //		
-//		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
-//		model.addAttribute("flashlist", flashlist);
+		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
+		model.addAttribute("flashlist", flashlist);
 		
 		return ("main");
 	}

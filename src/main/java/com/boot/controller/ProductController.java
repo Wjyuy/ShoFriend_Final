@@ -38,7 +38,7 @@ public class ProductController {
 	    	redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
 	    	return "redirect:log/login";
 	    }
-
+	   
 	    ProductDTO product = service.getProductById(productId);
 
 	    int price = product.getPrice();

@@ -90,8 +90,18 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             <div class="user">
-                                <i class="lni lni-user"></i>
-                                Hello
+								<c:choose>
+									<c:when test="${sessionScope.userType == 'seller'}">
+		                                <i class="lni lni-user"></i>
+	                                	${sessionScope.loginSeller.name}
+									</c:when>
+									<c:when test="${sessionScope.userType == 'customer'}">
+		                                <i class="lni lni-user"></i>
+										${sessionScope.loginCustomer.name}
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>
                             </div>
                             <ul class="user-login">
                                 <li>
@@ -439,7 +449,7 @@
                 	<div class="col-lg-3 col-md-6 col-12">
 	                    <div class="single-product">
 	                        <div class="product-image">
-	                            <img src="assets/images/products/product-2.jpg" alt="#">
+	                            <img src="/${product.picture}" alt="${product.title}">
 								<c:set var="now" value="<%= new java.util.Date() %>" />
 		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
 									<span class="sale-tag">${dto.discount_percentage}%</span>

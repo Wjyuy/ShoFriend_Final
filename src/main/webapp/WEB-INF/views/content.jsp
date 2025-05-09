@@ -525,6 +525,7 @@
                         <div class="product-images">
                             <main id="gallery">
                                 <div class="main-img">
+									<img src="file:///C:/develop/upload/${product.picture}" alt="${product.title}">
                                     <img src="assets/images/product-details/01.jpg" id="current" alt="#">
                                 </div>
 <!--                                <div class="images">-->

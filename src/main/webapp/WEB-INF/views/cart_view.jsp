@@ -99,6 +99,11 @@
 </head>
 <body>
     <h2>장바구니</h2>
+	<c:choose>
+		<c:when test="${empty items}">
+			<p style="text-align: center; font-weight: bold;">장바구니가 비어 있습니다.</p>
+		</c:when>
+		<c:otherwise>
 	<form method="post" action="/cartAction">
     <table width="500" border="1">
 		<tr>
@@ -154,13 +159,16 @@
 		<tr>
 			<td colspan="7" >
 				총합계:<span id="totalAmount">0</span>
-				<button type="submit" name="submitType" value="order">주문하기</button>
-				<button type="submit" name="submitType" value="delete">선택 삭제</button>
+				<button type="submit" onclick="return validateCartSelection()" name="submitType" value="order">주문하기</button>
+				<button type="submit" onclick="return validateCartSelection()" name="submitType" value="delete">선택 삭제</button>
 				<button type="button" onclick="submitDeleteSoldOut()">품절 상품 삭제</button>
 			</td>
 		</tr>
 	</table>
 </form>
+</c:otherwise>
+
+</c:choose>
 </body>
 <script>
 	function submitDeleteSoldOut(){
@@ -169,6 +177,16 @@
 		form.action = "deleteSoldOut";
 		document.body.appendChild(form);
 		form.submit();
+	}
+	function validateCartSelection() {
+		const checkboxes = document.querySelectorAll('.cartCheckbox');
+		for(let cb of checkboxes){
+			if(cb.checked && !cb.disabled){
+			return true;
+		}
+	}
+	alert("선택된 상품이 없습니다.");
+	return false;
 	}
 </script>
 </html>

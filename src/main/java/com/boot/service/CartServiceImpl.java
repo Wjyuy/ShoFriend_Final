@@ -72,4 +72,11 @@ public class CartServiceImpl implements CartService {
 		CartDAO dao = sqlSession.getMapper(CartDAO.class);
 		return dao.getCartItemsWithProduct(user_id);
 	}
+
+	@Override
+	public void deleteSoldOut(int user_id) {
+		CartDAO dao = sqlSession.getMapper(CartDAO.class);
+		dao.deleteSoldOut(user_id);
+		
+	}
 }

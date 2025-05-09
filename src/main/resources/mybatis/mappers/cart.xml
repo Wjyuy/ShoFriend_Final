@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="insertCartItem" parameterType="com.boot.dto.CartDTO">
-		insert into cart(user_id, product_id, product_title, price, quantity) values(#{user_id},#{product_id},#{product_title},#{price},#{quantity})
+		insert into cart(user_id, product_id, product_title, quantity) values(#{user_id},#{product_id},#{product_title},#{quantity})
 	</insert>
 	
 	<update id="updateQuantity" parameterType="com.boot.dto.CartDTO">
@@ -23,7 +23,13 @@
 	</select>
 	
 	<select id="getCartItemsWithProduct" resultType="com.boot.dto.CartDTO">
-		select c.id, c.user_id, c.product_id, p.title As product_title, p.price, p.stock
+		select c.id, c.user_id, c.product_id, c.quantity, p.title As product_title, p.price, p.stock, p.discount_percentage,
+		case when p.discount_percentage is not null
+		and p.discount_start &lt; now()
+		and p.discount_end &gt; now()
+		then floor(p.price * (1-(p.discount_percentage/100)))
+		else p.price
+		end as final_price
 		from cart c
 		join product p on c.product_id =p.id
 		where c.user_id =#{user_id}
@@ -46,6 +52,14 @@
 		<foreach item="id" collection="selectedIds" open="(" separator="," close=")">
 		#{id}
 		</foreach>
+	</delete>
+	
+		<delete id="deleteSoldOut">
+		delete from cart where user_id =#{user_id}
+		and product_id IN(
+			select id from product where stock = 0
+		)
+		
 	</delete>
 
 </mapper>

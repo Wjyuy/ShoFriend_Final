@@ -13,11 +13,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 	<style>
 		.your-personal-details-container {
 		    padding: 10px;
@@ -527,6 +527,9 @@
 				<div class="container">
 					<div class="top-area">
 						Payment Info
+						<form action="/pay/ready" method="post">
+						    <button type="submit">카카오페이 결제하기</button>
+						</form>
 					<div>
 	            </div>
             </div>

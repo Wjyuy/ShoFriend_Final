@@ -83,7 +83,7 @@
 </head>
 <body>
 
-	          <nav class="nav justify-content-end">
+	        <nav class="nav justify-content-end">
 				  <a class="nav-link active" aria-current="page" href="main">ShoFriend</a>
 				  <a class="nav-link" href="my_page">마이페이지</a>
 				  <a class="nav-link" href="friend">친구</a>
@@ -105,6 +105,13 @@
 	<c:forEach var="friend" items="${acceptedFriends}">
 	    <p>
 		    <strong>${friend.name}</strong> (${friend.email})님과 친구입니다.
+			
+		<!--	25.05.09 채팅 버튼 추가		-->
+			<form action="chatWithFriend" method="get" style="display:inline;">
+				<input type="hidden" name="friendId" value="${friend.id}" />
+				<input type="hidden" name="friendName" value="${friend.name}" />
+				<button type="submit">💬 채팅하기</button>
+			</form>
 		    
 		    <form action="deleteFriend" method="post" style="display:inline;">
 		        <input type="hidden" name="friend_id" value="${friend.id}" />

@@ -34,4 +34,10 @@ public class ChatServiceImpl implements ChatService {
 	public List<ChatDTO> getConversationByUserId(int id) {
 		return chatDAO.getConversationByUserId(id);
 	}
+	
+	@Override
+	public List<ChatDTO> getChatWithFriend(int myId, int friendId) {
+		return chatDAO.getChatWithFriend(myId, friendId);
+	}
+
 }

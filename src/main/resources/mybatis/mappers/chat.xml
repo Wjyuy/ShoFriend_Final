@@ -44,4 +44,11 @@
 		ORDER BY sent_at ASC
 	</select>
 	
+	<select id="getChatWithFriend" resultMap="chatResultMap">
+		SELECT * FROM chat
+		WHERE (sender_id = #{myId} AND receiver_id = #{friendId})
+		   OR (sender_id = #{friendId} AND receiver_id = #{myId})
+		ORDER BY sent_at ASC
+	</select>
+	
 </mapper>

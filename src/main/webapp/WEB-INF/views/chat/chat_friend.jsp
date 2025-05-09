@@ -10,6 +10,7 @@
 			border-radius: 12px;
 			margin: 5px 0;
 			display: inline-block;
+			white-space: pre-line; /* 줄바꿈(\n) 또는 <br> 처리 */
 		}
 		.chat-left {
 			background-color: #f1f1f1;
@@ -67,7 +68,11 @@
 			const container = document.getElementById("chatContainer");
 			const div = document.createElement("div");
 			div.className = "chat-bubble " + (isMine ? "chat-right" : "chat-left");
-			div.textContent = msg;
+			
+			// \n을 <br>로 변환하고 HTML로 출력
+			const formattedMsg = msg.trim().replace(/\n/g, "<br>");
+			div.innerHTML = formattedMsg;		
+			
 			container.appendChild(div);
 			container.scrollTop = container.scrollHeight;
 		}
@@ -110,7 +115,7 @@
 		<c:choose>
 			<c:when test="${msg.senderId == myId}">
 				<div class="chat-bubble chat-right">
-					나: ${msg.message}
+					${msg.message}
 				</div>
 			</c:when>
 			<c:otherwise>

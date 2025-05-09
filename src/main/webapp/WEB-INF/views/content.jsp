@@ -996,9 +996,10 @@
 
 			const currentUrl = window.location.href;
 			const senderName = "${loginCustomer.name}"; // JSP에서 전달받은 로그인 고객 이름
+			const productTitle = "${product.title}";
 
 			const composedMessage =
-				senderName + " 님이 상품을 공유하고 싶어합니다.\n" + currentUrl;
+				senderName + " 님이 ["+ productTitle +"] 상품을 공유하고 싶어합니다.\n" + currentUrl;
 
 			if (socket && socket.readyState === WebSocket.OPEN) {
 				socket.send(friendId + ":" + composedMessage);

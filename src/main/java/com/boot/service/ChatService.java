@@ -10,4 +10,6 @@ public interface ChatService {
 	List<ChatDTO> getMessage(String userA, String userB);
 	List<ChatDTO> getReceivedMessages(int id);
 	List<ChatDTO> getConversationByUserId(int id);
+	List<ChatDTO> getChatWithFriend(int myId, int friendId);
+
 }

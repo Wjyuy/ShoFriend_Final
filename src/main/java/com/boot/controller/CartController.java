@@ -116,7 +116,14 @@ public class CartController {
 		}
 		return "redirect:/cart_view";
 	}
-	
+	@PostMapping("/deleteSoldOut")
+	public String deleteSoldOut(HttpSession session) {
+		CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
+		if (customer != null) {
+			service.deleteSoldOut(customer.getId());
+		}
+		return "redirect:/cart_view";
+	}
 	
 
 }

@@ -13,9 +13,10 @@
 		function toggleAll(source){
 			const checkboxes = document.getElementsByClassName('cartCheckbox');
 			for(let i = 0; i <checkboxes.length; i++){
-				checkboxes[i].checked = source.checked;
+				if (!checkboxes[i].disabled) {
+					checkboxes[i].checked = source.checked;
+					}
 		}
-			// checkboxes.forEach(cb => cb.checked = source.checked)
 			calculateTotal();
 			}
 		function setIndividualCheckbox(){
@@ -155,9 +156,19 @@
 				총합계:<span id="totalAmount">0</span>
 				<button type="submit" name="submitType" value="order">주문하기</button>
 				<button type="submit" name="submitType" value="delete">선택 삭제</button>
+				<button type="button" onclick="submitDeleteSoldOut()">품절 상품 삭제</button>
 			</td>
 		</tr>
 	</table>
 </form>
 </body>
+<script>
+	function submitDeleteSoldOut(){
+		const form = document.createElement("form");
+		form.method = "post";
+		form.action = "deleteSoldOut";
+		document.body.appendChild(form);
+		form.submit();
+	}
+</script>
 </html>

@@ -14,4 +14,6 @@ public interface CartDAO {
 	public void insertCartItem(Map<String, Object> param);
 	public void updateQuantity(Map<String, Object> param);
 	public List<CartDTO> getCartItems(HashMap<String, String> param);
+	public List<CartDTO> getCartItemsWithProduct(int user_id);
+	public void deleteSelectedItems(Map<String, Object> param);
 }

@@ -77,7 +77,7 @@
 	</style>
 	<!-- ========================= script here ========================= -->
 	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/js/script.js"></script>
+<!--	<script src="${pageContext.request.contextPath}/js/script.js"></script>-->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		//토글 스위치
@@ -592,9 +592,8 @@
 					        <input type="hidden" name="quantity" value="${quantity}">
 							<input type="hidden" name="productId" value="${product.id}">
                             <div class="button cart-button">
-                                <button class="btn" style="width: 100%;" onclick="checkout_ok()" type="button">카카오페이 결제하기</button>
+				                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
                             </div>
-			                <button type="submit">삭제예정버튼</button>
 			            </form>
 			        <div>
 	            </div>

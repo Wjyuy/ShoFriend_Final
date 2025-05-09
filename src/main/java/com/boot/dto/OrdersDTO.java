@@ -18,7 +18,7 @@ public class OrdersDTO {
     private int totalQuantity;
     private int totalPrice;
     private String deliveryAddress;
-    private int deliveryZipcode;
+    private String deliveryZipcode;
     private String deliveryMemo;
     private String paymentMethod;
     private String paymentStatus;

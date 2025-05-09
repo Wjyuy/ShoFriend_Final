@@ -3,6 +3,7 @@ package com.boot.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -73,78 +74,93 @@ public class CheckOutController {
 	    return "pay/checkout";
 	}
 	
-	@PostMapping("/ready")
-	public String kakaoPay(@RequestParam("totalAmount") int totalAmount,
-	                       @RequestParam("itemName") String itemName,
-	                       @RequestParam(value = "quantity", defaultValue = "1") int quantity,
-	                       @RequestParam("productId") int productId, // 상품 ID 파라미터 추가 (필요한 경우)
-	                       HttpSession session) {
-	    String partnerOrderId = (String) session.getAttribute("partnerOrderId");
-	    if (partnerOrderId == null) {
-	        partnerOrderId = "order_" + System.currentTimeMillis() + "_" + UUID.randomUUID().toString().substring(0, 8);
-	        session.setAttribute("partnerOrderId", partnerOrderId);
-	        CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
-	        if (loginCustomer != null) {
-	            session.setAttribute("partnerUserId", "user_" + loginCustomer.getId());
-	        }
-	    }
-	    session.setAttribute("totalPrice", totalAmount);
-	    session.setAttribute("quantity", quantity);
-	    session.setAttribute("productId", productId); // 상품 ID 세션에 저장 (필요한 경우)
+    @PostMapping("/ready")
+    public String kakaoPay(@RequestParam Map<String, String> params, HttpSession session) {
+    	log.info("Session ID in /ready: {}", session.getId());
+        int totalAmount = Integer.parseInt(params.get("totalAmount"));
+        String itemName = params.get("itemName");
+        int quantity = Integer.parseInt(params.get("quantity"));
+        int productId = Integer.parseInt(params.get("productId"));
+        String zipcode = params.get("zipcode");
+        String address = params.get("address");
+        String address1 = params.get("address1");
+        String deliveryMemo = params.get("delivery_memo");
 
-	    String redirectUrl = kakaoPayService.kakaoPayReady(totalAmount, itemName, quantity);
-	    log.info("redirectUrl=>" + redirectUrl);
-	    log.info("Session after /ready - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, partnerUserId: {}",
-	             session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"), session.getAttribute("partnerUserId"));
-	    return "redirect:" + redirectUrl;
-	}
-	
+        String partnerOrderId = (String) session.getAttribute("partnerOrderId");
+        if (partnerOrderId == null) {
+            partnerOrderId = "order_" + System.currentTimeMillis() + "_" + UUID.randomUUID().toString().substring(0, 8);
+            session.setAttribute("partnerOrderId", partnerOrderId);
+            CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+            if (loginCustomer != null) {
+                session.setAttribute("partnerUserId", "user_" + loginCustomer.getId());
+            }
+        }
+        session.setAttribute("totalPrice", totalAmount);
+        session.setAttribute("quantity", quantity);
+        session.setAttribute("productId", productId);
+        session.setAttribute("deliveryZipcode", zipcode); // 배송 정보 세션에 저장
+        session.setAttribute("deliveryAddress", address + " " + address1);
+        session.setAttribute("deliveryMemo", deliveryMemo);
+
+        String redirectUrl = kakaoPayService.kakaoPayReady(totalAmount, itemName, quantity);
+        log.info("redirectUrl=>" + redirectUrl);
+        log.info("Session after /ready - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, partnerUserId: {}, zipcode: {}, address: {}, deliveryMemo: {}",
+                 session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"), session.getAttribute("partnerUserId"),
+                 session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
+        return "redirect:" + redirectUrl;
+    }
+
     @GetMapping("/success")
-    public String success(@RequestParam("pg_token") String pgToken, Model model,HttpSession session) {
-    	String result = kakaoPayService.kakaoPayApprove(pgToken);
-        model.addAttribute("result", result); // JSP에서 결제 결과 출력 가능
+    public String success(@RequestParam Map<String, String> params, Model model, HttpSession session) {
+        log.info("success()");
+        log.info("Session ID in /success: {}", session.getId());
+        String pgToken = params.get("pg_token");
 
+        String result = kakaoPayService.kakaoPayApprove(pgToken);
+        model.addAttribute("result", result);
+        log.info("Session values after kakaoPayApprove - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, deliveryZipcode: {}, deliveryAddress: {}, deliveryMemo: {}",
+                session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"),
+                session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
+        
         CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
         if (loginCustomer != null) {
-            // 주문 정보 생성
+            log.info("Session values in /success - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, deliveryZipcode: {}, deliveryAddress: {}, deliveryMemo: {}",
+                     session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"),
+                     session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
+
             OrdersDTO orderDTO = new OrdersDTO();
             orderDTO.setCustomerId(loginCustomer.getId());
-            orderDTO.setTotalPrice((Integer) session.getAttribute("totalPrice")); // 결제 준비 시 저장했던 총 가격
-            orderDTO.setTotalQuantity((Integer) session.getAttribute("quantity")); // 결제 준비 시 저장했던 총 수량
-            orderDTO.setPartnerOrderId((String) session.getAttribute("partnerOrderId")); // 결제 준비 시 생성했던 주문 번호
-            // 배송 정보 설정 (세션에서 CustomerDTO를 통해 가져오기)
-            String deliveryAddress = loginCustomer.getAddress() + " " + loginCustomer.getAddress1();
-            int deliveryZipcode = loginCustomer.getZipcode();
-            String deliveryMemo = (String) session.getAttribute("deliveryMemo"); // 세션에서 배송 메시지 가져오기
+            orderDTO.setTotalPrice((Integer) session.getAttribute("totalPrice"));
+            orderDTO.setTotalQuantity((Integer) session.getAttribute("quantity"));
+            orderDTO.setPartnerOrderId((String) session.getAttribute("partnerOrderId"));
+            orderDTO.setDeliveryZipcode((String) session.getAttribute("deliveryZipcode"));
+            orderDTO.setDeliveryAddress((String) session.getAttribute("deliveryAddress"));
+            orderDTO.setDeliveryMemo((String) session.getAttribute("deliveryMemo"));
 
-            orderDTO.setDeliveryAddress(deliveryAddress);
-            orderDTO.setDeliveryZipcode(deliveryZipcode);
-            
-            // 주문 아이템 정보 생성 (예시: 단일 상품 구매)
             OrderItemDTO orderItemDTO = new OrderItemDTO();
-            // 상품 ID는 결제 준비 단계나 checkout 페이지에서 세션에 저장했거나 Model에 담겨왔어야 함
             orderItemDTO.setProductId((Integer) session.getAttribute("productId"));
             orderItemDTO.setQuantity((Integer) session.getAttribute("quantity"));
-            orderItemDTO.setSalePrice((Integer) session.getAttribute("totalPrice") / (Integer) session.getAttribute("quantity")); // 개당 가격 계산 (예시)
+            orderItemDTO.setSalePrice((Integer) session.getAttribute("totalPrice") / (Integer) session.getAttribute("quantity"));
 
             List<OrderItemDTO> orderItems = new ArrayList<>();
             orderItems.add(orderItemDTO);
 
-            // 주문 생성 서비스 호출
             checkoutService.createOrder(orderDTO, orderItems);
 
             session.removeAttribute("partnerOrderId");
             session.removeAttribute("partnerUserId");
             session.removeAttribute("totalPrice");
             session.removeAttribute("quantity");
-            session.removeAttribute("productId"); // 필요에 따라 제거
+            session.removeAttribute("productId");
+            session.removeAttribute("deliveryZipcode");
+            session.removeAttribute("deliveryAddress");
+            session.removeAttribute("deliveryMemo");
+
         } else {
-            // 로그인 정보가 없는 경우 처리 (예: 에러 메시지 전달)
             model.addAttribute("error", "로그인 정보가 없습니다.");
         }
 
         return "pay/success";
-        
     }
     
     @PostMapping("/saveDeliveryMemo")

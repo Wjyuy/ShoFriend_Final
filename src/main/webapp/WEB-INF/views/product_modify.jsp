@@ -100,10 +100,10 @@
 			const stock = document.getElementById("stock");
 
 			if (status.value === "품절") {
-				stock.disabled = true;
+				stock.readOnly = true;
 				stock.value = 0;
 			} else {
-				stock.disabled = false;
+				stock.readOnly = false;
 				stock.value = originalStockValue;
 			}
 		}

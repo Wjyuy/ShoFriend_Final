@@ -106,7 +106,7 @@
 	    <p>
 		    <strong>${friend.name}</strong> (${friend.email})님과 친구입니다.
 			
-		<!--	25.05.09 채팅 버튼 추가		-->
+		<!--	25.05.09 권준우 채팅 버튼 추가		-->
 			<form action="chatWithFriend" method="get" style="display:inline;">
 				<input type="hidden" name="friendId" value="${friend.id}" />
 				<input type="hidden" name="friendName" value="${friend.name}" />

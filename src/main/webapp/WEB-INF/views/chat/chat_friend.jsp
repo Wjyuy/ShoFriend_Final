@@ -82,6 +82,17 @@
 				appendMessage("🚫 WebSocket 연결 안 됨");
 			}
 		}
+		
+		// 엔터키 입력 시 전송
+		document.addEventListener("DOMContentLoaded", function () {
+			const input = document.getElementById("message");
+			input.addEventListener("keydown", function (event) {
+				if (event.key === "Enter") {
+					event.preventDefault(); // 줄바꿈 방지
+					sendMessage(); // 전송 함수 호출
+				}
+			});
+		});
 
 	</script>
 </head>

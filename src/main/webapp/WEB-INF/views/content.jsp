@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
+
 </head>
 
 <body>
@@ -637,6 +638,17 @@
 						
 						    <input type="submit" class="btn btn-primary w-100"   value="구매하기">
 						</form>
+							<!-- 테스트용 임시코드 주연 추가(goToPay 스크립트 이동도 있음) -->
+							<form id="orderForm2" action="product_order" method="post">
+						    	<button type="button" onclick="goToPay()">카카오페이 결제하기</button>
+							</form>
+							<script>
+							    function goToPay() {
+							      const form = document.getElementById('orderForm2');
+							      form.action = '/pay/checkout';
+							      form.submit();
+							    }
+							  </script>
 						<%--
 			       </c:otherwise>
 			    </c:choose>

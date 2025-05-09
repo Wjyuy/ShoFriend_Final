@@ -3603,38 +3603,33 @@ top: 2px;
 }
 
 .single-widget.search form {
-	display: flex;
-	   align-items: center;
-	   border: 1px solid #ddd;
-	   border-radius: 8px;
-	   overflow: hidden;
-	   background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .single-widget.search input[type="text"] {
-	flex: 1;
-	    border: none;
-	    padding: 10px 12px;
-	    font-size: 14px;
-	    outline: none;
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
 }
 
 .single-widget.search button {
-	border: none;
-	  background-color: transparent;
-	  padding: 0 12px;
-	  cursor: pointer;
-	  color: #333;
-	  font-size: 16px;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #333;
 }
 
 .single-widget.search button:hover {
     background-color: #e9ecef;
 }
-
-/*.single-widget.search button i {*/
-/*    display: block;*/
-/*}*/
 /*.single-widget.search {*/
 /*    background-color: #fff;*/
 /*    padding: 1.5rem;*/
@@ -4448,52 +4443,6 @@ top: 2px;
 
 .product-details-info .reviews .single-review .review-info p {
   margin-top: 15px;
-}
-
-.product-grid-topbar {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-}
-
-.product-sorting {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.product-sorting label {
-    margin: 0;
-    font-weight: 500;
-}
-
-.product-sorting select {
-    width: 160px;
-    padding: 5px 10px;
-}
-
-.total-show-product {
-    margin: 0;
-    font-size: 14px;
-    color: #888;
-}
-
-/* 보기 전환 탭 버튼 */
-.nav-tabs .nav-link {
-    border: none;
-    background: transparent;
-    font-size: 18px;
-    color: #333;
-    margin-left: 10px;
-}
-
-.nav-tabs .nav-link.active {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 6px;
-    padding: 6px 10px;
 }
 
 .review-modal .modal-dialog {

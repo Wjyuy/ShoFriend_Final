@@ -48,16 +48,53 @@
 		    padding-top: 15px;
 		    padding-bottom: 15px;
 		}
+		
+		
+		.delivary-container {
+		    padding: 10px;
+		    margin-bottom: 10px;
+		    cursor: pointer;
+		    display: flex; /* 추가 */
+		    justify-content: space-between; /* 추가 */
+		    align-items: center; /* 추가 */
+		}
+
+		.delivary-details-content {
+		    overflow: hidden;
+		    max-height: 0; /* 초기 높이를 0으로 설정하여 숨김 */
+		    margin-top: 0;
+		    padding-top: 0;
+		    padding-bottom: 0;
+		    transition: max-height 0.3s ease-in-out, margin-top 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+		}
+
+		.delivary-details-content.open {
+		    max-height: 1000px; /* 충분히 큰 값으로 설정 (실제 내용에 따라 조절) */
+		    margin-top: 15px;
+		    padding-top: 15px;
+		    padding-bottom: 15px;
+		}
 	</style>
 	<!-- ========================= script here ========================= -->
 	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/js/script.js"></script>
+<!--	<script src="${pageContext.request.contextPath}/js/script.js"></script>-->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		//토글 스위치
 		document.addEventListener('DOMContentLoaded', function() {
 		        const detailsContainer = document.querySelector('.your-personal-details-container');
 		        const detailsContent = document.querySelector('.personal-details-content');
+
+		        if (detailsContainer && detailsContent) {
+		            detailsContainer.addEventListener('click', function() {
+		                detailsContent.classList.toggle('open');
+		            });
+		        }
+		    });
+		//토글 스위치
+		document.addEventListener('DOMContentLoaded', function() {
+		        const detailsContainer = document.querySelector('.delivary-container');
+		        const detailsContent = document.querySelector('.delivary-details-content');
 
 		        if (detailsContainer && detailsContent) {
 		            detailsContainer.addEventListener('click', function() {
@@ -464,30 +501,31 @@
 
     <!-- Start Item Details -->
 	<section class="item-details section">
-        <div class="row">
-        	<div class="col-md-9"> 	
-			    <div class="container">
-					<div class="top-area">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-md-9">
+	                <div class="top-area">
 	                    <div class="your-personal-details-container" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
 	                        Your Personal Details
 	                        <i class="lni lni-chevron-down toggle-icon"></i>
 	                    </div>
-						<form name="checkout_frm" id="frm" method="post">
-		                    <div class="personal-details-content">
-		                        <div class="row align-items-center">
-		                            <div class="col-lg-6 col-md-6 col-12">
-		                                이름
-		                                <input type="text" name="name" class="form-control" id="color" value="${sessionScope.loginCustomer.name}" readonly>
-		                            </div>
-		                            <div class="col-lg-6 col-md-6 col-12">
-		                                메일주소
-		                                <input type="text" name="email" class="form-control" id="color" value="${sessionScope.loginCustomer.email}" readonly>
-		                            </div>
-		                            <div class="col-lg-12 col-md-12 col-12">
-		                                전화번호
-		                                <input type="text" name="phone" class="form-control" id="color" value="${sessionScope.loginCustomer.phone}">
-		                            </div>
-		                        </div>
+<!--	                    <form name="checkout_frm" id="frm" method="post">-->
+						<form action="/pay/ready" name="checkout_frm" id="frm" method="post">
+	                        <div class="personal-details-content">
+	                            <div class="row align-items-center">
+	                                <div class="col-lg-6 col-md-6 col-12">
+	                                    이름
+	                                    <input type="text" name="name" class="form-control" id="color" value="${sessionScope.loginCustomer.name}" readonly>
+	                                </div>
+	                                <div class="col-lg-6 col-md-6 col-12">
+	                                    메일주소
+	                                    <input type="text" name="email" class="form-control" id="color" value="${sessionScope.loginCustomer.email}" readonly>
+	                                </div>
+	                                <div class="col-lg-12 col-md-12 col-12">
+	                                    전화번호
+	                                    <input type="text" name="phone" class="form-control" id="color" value="${sessionScope.loginCustomer.phone}">
+	                                </div>
+	                            </div>
 	                            <div class="product-info">
 	                                <div class="row align-items-center">
 	                                    <div class="col-lg-4 col-md-6 col-12">
@@ -496,58 +534,72 @@
 	                                        </div>
 	                                    </div>
 	                                </div>
-								</div>
-								<div class="row">
-		                            <div class="col-lg-4 col-md-4 col-12">
-		                                우편번호
-		                                <input type="text" name="zipcode" class="form-control" id="sample6_postcode" value="${sessionScope.loginCustomer.zipcode}">
-		                            </div>
-		                            <div class="col-lg-12 col-md-12 col-12">
-		                                주소
-		                                <input type="text" name="address" class="form-control" id="sample6_address" value="${sessionScope.loginCustomer.address}">
-		                            </div>
-		                            <div class="col-lg-12 col-md-12 col-12">
-		                                상세주소
-		                                <input type="text" name="address1" class="form-control" id="sample6_extraAddress" value="${sessionScope.loginCustomer.address1}">
-		                                <input type="hidden" name="address2" id="sample6_detailAddress" placeholder="참고">
-			                        </div>
-									<div class="col-lg-4 col-md-4 col-12">
-		                                <div class="button cart-button">
-		                                    <button class="btn" style="width: 100%;" onclick="checkout_ok()" type="button">Next</button>
-		                                </div>
-		                            </div>
-								</div>
-		                    </div>
-						</form>
+	                            </div>
+	                            <div class="row">
+	                                <div class="col-lg-4 col-md-4 col-12">
+	                                    우편번호
+	                                    <input type="text" name="zipcode" class="form-control" id="sample6_postcode" value="${sessionScope.loginCustomer.zipcode}">
+	                                </div>
+	                                <div class="col-lg-12 col-md-12 col-12">
+	                                    주소
+	                                    <input type="text" name="address" class="form-control" id="sample6_address" value="${sessionScope.loginCustomer.address}">
+	                                </div>
+	                                <div class="col-lg-12 col-md-12 col-12">
+	                                    상세주소
+	                                    <input type="text" name="address1" class="form-control" id="sample6_extraAddress" value="${sessionScope.loginCustomer.address1}">
+	                                    <input type="hidden" name="address2" id="sample6_detailAddress" placeholder="참고">
+	                                </div>
+	                                
+	                            </div>
+	                        </div>
 	                </div>
-					<div class="col-md-3">
-						<div class="container">
-							<div class="top-area">
-						      사이드바
-						      <ul>
-						        <li><a href="#">메뉴 1</a></li>
-						        <li><a href="#">메뉴 2</a></li>
-						        <li><a href="#">메뉴 3</a></li>
-						      </ul>
-						  </div>
-					  </div>
-				    </div>
-					
-					<div class="col-md-9"> 
-						<div class="container">
-							<div class="top-area">
-								Payment Info
-								<form action="/pay/ready" method="post">
-								    <button type="submit">카카오페이 결제하기</button>
-								</form>
-							<div>
-			            </div>
-			        </div>
+	                <div class="top-area">
+	                    <div class="delivary-container" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+	                        배송 정보 입력하기
+	                        <i class="lni lni-chevron-down toggle-icon"></i>
+	                    </div>
+                        <div class="delivary-details-content">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 col-md-6 col-12">
+									<div>
+							            <label for="delivery_memo">배송 메시지:</label>
+							            <input type="text" id="delivery_memo" name="delivery_memo" class="form-control">
+							        </div>
+                                </div>
+                            </div>
+                        </div>
+	                </div>
 	            </div>
-				
-	        </div>
-			
-	    </section>
+	            <div class="col-md-3">
+	                <div class="top-area">
+	                    상품정보
+	                    <ul>
+	                        <li><a href="../content?id=${product.id}">상품명:${product.title}</a></li>
+	                        <li><a href="#">원 상품가격:${product.price}</a></li>
+	                        <li><a href="#">갯수:${quantity}</a></li>
+	                        <li><a href="#">할인적용된 상품가:${finalPrice}</a></li>
+	                    </ul>
+	                </div>
+			        <div class="top-area">
+			            Payment Info
+			            
+							결제금액
+							<ul>
+		                        <li><a href="#">실제 결제금액:${totalPrice}</a></li>
+		                    </ul>
+							<input type="hidden" name="totalAmount" value="${totalPrice}"> 
+					        <input type="hidden" name="itemName" value="${product.title}">   
+					        <input type="hidden" name="quantity" value="${quantity}">
+							<input type="hidden" name="productId" value="${product.id}">
+                            <div class="button cart-button">
+				                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
+                            </div>
+			            </form>
+			        <div>
+	            </div>
+	        </div> 
+	    </div>
+	</section>
     <!-- End Item Details -->
 
     <!-- Review Modal -->

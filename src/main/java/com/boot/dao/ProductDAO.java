@@ -28,7 +28,6 @@ public interface ProductDAO {
 	public void product_delete(int id);
 	public List<ProductDTO> getAllProducts();//목록 불러오는 테스트용 임시 메소드 입니다. 삭제해도됨.-25.04.10 권준우
     public List<ProductDTO> getProductListTop10();//목록 10개 불러오는 테스트용 임시 메소드 입니다. 삭제해도됨.-25.04.11 권준우
-    public void insertOrder(HashMap<String, String> param);
     public int getPriceByProductId(int productId);
     public void decreaseStock(@Param("product_id") int productId, @Param("quantity") int quantity);
     public List<ProductDTO> getPopularProducts();

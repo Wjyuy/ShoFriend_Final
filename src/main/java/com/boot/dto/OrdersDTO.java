@@ -10,12 +10,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrdersDTO {
-	private int id;
-	private int product_id;
-	private int customer_id;
-	private int friend_id;
-	private int total_price;
-	private Timestamp created_at;
-	private String status;
-	private int posted;
+    private int id;
+    private String partnerOrderId;
+    private int customerId;
+    private Timestamp orderDate;
+    private String orderStatus;
+    private int totalQuantity;
+    private int totalPrice;
+    private String deliveryAddress;
+    private int deliveryZipcode;
+    private String deliveryMemo;
+    private String paymentMethod;
+    private String paymentStatus;
+    private String transactionId;
+    private Integer friendOrderId; // Nullable 외래 키이므로 Integer 사용
+    private Integer posted;        // Nullable 외래 키이므로 Integer 사용
+
+    // 필요한 경우 연관된 OrderItem 리스트를 가질 수도 있습니다.
+    // private List<OrderItemDTO> orderItems;
 }

@@ -140,6 +140,7 @@
 			<tr>
 				<td>가게 이름</td>
 				<td>
+					<input type="hidden" name="id" value="${product.id}">
 					<input type="hidden" name="store_id" value="${product.store_id}">
 				    <c:forEach var="store" items="${stores}">
 				      <c:if test="${store.id == product.store_id}">

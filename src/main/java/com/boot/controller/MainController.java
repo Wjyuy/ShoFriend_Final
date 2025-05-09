@@ -1,5 +1,9 @@
 package com.boot.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +11,17 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +31,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.ProductDTO;
-import com.boot.dto.ProductPopularity;
 import com.boot.dto.SellerDTO;
 import com.boot.dto.StoreDTO;
 import com.boot.service.FriendService;
@@ -176,7 +188,48 @@ public class MainController {
 	    
 	    return "content";
 	}
-
+	
+//	이미지파일을 받아서 화면에 출력(byte 배열타입)
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getFile(String fileName) {
+		log.info("@# display fileName=>"+fileName);
+		
+//		File file = new File("C:\\develop\\upload"+fileName);
+		File file = new File("C:\\develop\\upload\\"+fileName);
+		log.info("@# file=>"+file);
+		
+		ResponseEntity<byte[]> result=null;
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+//			파일타입을 헤더에 추가
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+//			파일정보를 byte 배열로 복사+헤더정보+http상태 정상을 결과에 저장
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+		} catch (IOException e) {
+			log.debug("이미지 파일 읽기 오류 (파일 없음): {}", e.getMessage()); // debug 또는 trace
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return result;
+	}
+	
+	private final ResourceLoader resourceLoader = null;
+	
+	@ExceptionHandler(NoSuchFileException.class)
+    public ResponseEntity<Resource> handleNoSuchFileException(NoSuchFileException e) {
+        log.error("파일을 찾을 수 없습니다: {}", e.getMessage());
+        // 대체 이미지 응답
+        Resource defaultImage = resourceLoader.getResource("classpath:static/assets/images/products/product-5.jpg");
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG); // 대체 이미지 형식에 맞게 설정
+            return new ResponseEntity<>(defaultImage, headers, HttpStatus.OK);
+        } catch (Exception ex) {
+            log.error("대체 이미지 로드 실패: {}", ex.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // 대체 이미지 로드 실패 시 500 응답
+        }
+    }
 	
 	@RequestMapping("/product_write")
 	public String insert(

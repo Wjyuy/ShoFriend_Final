@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
+
 </head>
 
 <body>
@@ -618,16 +619,35 @@
                                             <button class="btn" style="width: 100%;">Add to Cart</button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-reload"></i> Compare</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
-                                        </div>
-                                    </div>
+									
+									<div class="col-lg-4 col-md-4 col-12">
+									    <div class="wish-button">
+									        <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+									    </div>
+									</div>											
+									
+									<!-- 25.05.09 권준우 : 친구 관련 기능 추가 -->
+									<!-- 공유 버튼 영역 -->
+									<div class="col-lg-4 col-md-4 col-12">
+										<div class="wish-button">
+											<button class="btn w-100" onclick="toggleFriendShare()">
+												<i class="lni lni-share-alt"></i> 친구에게 공유
+											</button>
+										</div>
+									</div>
+
+									<!-- 버튼 아래 row 전체에 공유 박스 추가 -->
+									<div class="col-12" id="friendShareBox" style="display: none; margin-top: 15px;">
+										<div class="input-group">
+											<select id="friendSelect" class="form-select">
+												<option value="">공유할 친구 선택</option>
+												<c:forEach var="friend" items="${myFriends}">
+													<option value="${friend.id}">${friend.name} (${friend.email})</option>
+												</c:forEach>
+											</select>
+											<button onclick="shareProduct()" class="btn btn-primary">공유하기</button>
+										</div>
+									</div>
                                 </div>
                             </div>
 
@@ -637,6 +657,20 @@
 						
 						    <input type="submit" class="btn btn-primary w-100"   value="구매하기">
 						</form>
+							<!-- 테스트용 임시코드 주연 추가(goToPay 스크립트 이동도 있음) -->
+							<form id="orderForm2" action="product_order" method="post">
+								테스트용입니다 아래는 폼이 별개라 수량도 따로뺐어요
+								<input type="hidden" name="contentId" value="${product.id}">
+								<input type="number" class="form-control" name="quantity" value="1" min="1" max="${product.stock}" required>
+						    	<button type="button" onclick="goToPay()">바로 구매하기</button>
+							</form>
+							<script>
+							    function goToPay() {
+							      const form = document.getElementById('orderForm2');
+							      form.action = '/pay/checkout';
+							      form.submit();
+							    }
+							  </script>
 						<%--
 			       </c:otherwise>
 			    </c:choose>
@@ -914,28 +948,82 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
+
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-        const current = document.getElementById("current");
-        const opacity = 0.6;
-        const imgs = document.querySelectorAll(".img");
-        imgs.forEach(img => {
-            img.addEventListener("click", (e) => {
-                //reset opacity
-                imgs.forEach(img => {
-                    img.style.opacity = 1;
-                });
-                current.src = e.target.src;
-                //adding class 
-                //current.classList.add("fade-in");
-                //opacity
-                e.target.style.opacity = opacity;
-            });
-        });
-    </script>
+	
+<!--	<script>-->
+<!--		const senderName = "${loginCustomer.name}";-->
+<!--	</script>-->
+
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		// 🔸 WebSocket 연결
+		let socket = new WebSocket("ws://localhost:8485/chat");
+
+		socket.onopen = function () {
+			console.log("✅ WebSocket 연결됨");
+		};
+
+		socket.onmessage = function (event) {
+			console.log("📩 받은 메시지: " + event.data);
+		};
+
+		socket.onclose = function () {
+			console.log("❌ WebSocket 연결 종료됨");
+		};
+
+		socket.onerror = function (error) {
+			console.log("⚠️ WebSocket 오류 발생:", error);
+		};
+
+		// 🔸 친구 공유 toggle
+		
+		window.toggleFriendShare = function () {
+			const box = document.getElementById("friendShareBox");
+			box.style.display = (box.style.display === "none") ? "block" : "none";
+		};
+
+		// 🔸 상품 링크 공유
+		window.shareProduct = function () {
+			const friendId = document.getElementById("friendSelect").value;
+			if (!friendId) {
+				alert("공유할 친구를 선택하세요.");
+				return;
+			}
+
+			const currentUrl = window.location.href;
+			const senderName = "${loginCustomer.name}"; // JSP에서 전달받은 로그인 고객 이름
+
+			const composedMessage =
+				senderName + " 님이 상품을 공유하고 싶어합니다.\n" + currentUrl;
+
+			if (socket && socket.readyState === WebSocket.OPEN) {
+				socket.send(friendId + ":" + composedMessage);
+				alert("공유 완료!");
+			} else {
+				alert("WebSocket 연결이 안 되어 있습니다.");
+			}
+
+		};
+
+		// 🔸 이미지 클릭 이벤트
+		const current = document.getElementById("current");
+		const opacity = 0.6;
+		const imgs = document.querySelectorAll(".img");
+
+		imgs.forEach(img => {
+			img.addEventListener("click", (e) => {
+				imgs.forEach(img => img.style.opacity = 1);
+				current.src = e.target.src;
+				e.target.style.opacity = opacity;
+			});
+		});
+	});
+	</script>
+	
 </body>
 
 </html>

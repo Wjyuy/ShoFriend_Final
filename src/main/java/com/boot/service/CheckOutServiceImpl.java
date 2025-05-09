@@ -114,15 +114,15 @@ public class CheckOutServiceImpl implements CheckOutService{
         
      // partnerOrderId 생성 (예시: 날짜 + 고유 ID)
         String partnerOrderId = (String) session.getAttribute("partnerOrderId");
-        orderDTO.setPartnerOrderId(partnerOrderId);
-        orderDTO.setOrderStatus("pending"); // 기본 주문 상태 설정
+        orderDTO.setPartner_order_id(partnerOrderId);
+        orderDTO.setOrder_status("pending"); // 기본 주문 상태 설정
 
         orderDAO.insertOrder(orderDTO);
         int orderId = orderDTO.getId(); // 자동 생성된 주문 ID 가져오기
 
         // 주문 아이템 저장
         for (OrderItemDTO item : orderItems) {
-            item.setOrderId(orderId);
+            item.setOrder_id(orderId);
             orderDAO.insertOrderItem(item);
         }
 

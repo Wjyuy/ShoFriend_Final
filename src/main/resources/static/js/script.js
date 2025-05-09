@@ -190,7 +190,8 @@ function checkout_ok() {
         document.checkout_frm.address1.focus();
         return false;
     }
-	alert("true.");
+	alert("결제를 시작합니다!");
+	document.checkout_frm.submit();
     return true;
 }
 

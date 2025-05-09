@@ -81,9 +81,9 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
                             <ul class="useful-links">
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="main">Home</a></li>
                                 <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="friend">Friend</a></li>
                             </ul>
                         </div>
                     </div>
@@ -95,10 +95,13 @@
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="login.html">Sign In</a>
+                                    <a href="my_page">My Page</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="log/login">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="log/customer_register">Register</a>
                                 </li>
                             </ul>
                         </div>
@@ -113,8 +116,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="index.html">
-                            <img src="assets/images/logo/logo.svg" alt="Logo">
+                        <a class="navbar-brand" href="main">
+<!--                            <img src="assets/images/logo/logo.svg" alt="Logo">-->
+                            <img src="assets/images/logo/ShoFriend_logo.png" alt="Logo">
                         </a>
                         <!-- End Header Logo -->
                     </div>
@@ -151,7 +155,8 @@
                             <div class="nav-hotline">
                                 <i class="lni lni-phone"></i>
                                 <h3>Hotline:
-                                    <span>(+100) 123 456 7890</span>
+<!--                                    <span>(+100) 123 456 7890</span>-->
+                                    <span> 051) 123 4567</span>
                                 </h3>
                             </div>
                             <div class="navbar-cart">
@@ -228,31 +233,22 @@
                         <div class="mega-category-menu">
                             <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                             <ul class="sub-category">
-                                <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
+                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
-                                        <li><a href="product-grids.html">Digital Cameras</a></li>
-                                        <li><a href="product-grids.html">Camcorders</a></li>
-                                        <li><a href="product-grids.html">Camera Drones</a></li>
-                                        <li><a href="product-grids.html">Smart Watches</a></li>
-                                        <li><a href="product-grids.html">Headphones</a></li>
-                                        <li><a href="product-grids.html">MP3 Players</a></li>
-                                        <li><a href="product-grids.html">Microphones</a></li>
-                                        <li><a href="product-grids.html">Chargers</a></li>
-                                        <li><a href="product-grids.html">Batteries</a></li>
-                                        <li><a href="product-grids.html">Cables & Adapters</a></li>
+                                        <li><a href="product-grids.html">하위목록1</a></li>
+                                        <li><a href="product-grids.html">하위목록2</a></li>
+                                        <li><a href="product-grids.html">하위목록3</a></li>
+                                        <li><a href="product-grids.html">하위목록4</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="product-grids.html">accessories</a></li>
-                                <li><a href="product-grids.html">Televisions</a></li>
-                                <li><a href="product-grids.html">best selling</a></li>
-                                <li><a href="product-grids.html">top 100 offer</a></li>
-                                <li><a href="product-grids.html">sunglass</a></li>
-                                <li><a href="product-grids.html">watch</a></li>
-                                <li><a href="product-grids.html">man’s product</a></li>
-                                <li><a href="product-grids.html">Home Audio & Theater</a></li>
-                                <li><a href="product-grids.html">Computers & Tablets </a></li>
-                                <li><a href="product-grids.html">Video Games </a></li>
-                                <li><a href="product-grids.html">Home Appliances </a></li>
+                                <li><a href="product-grids.html">반짝세일</a></li>
+                                <li><a href="product-grids.html">식품</a></li>
+                                <li><a href="product-grids.html">가구</a></li>
+                                <li><a href="product-grids.html">도서</a></li>
+                                <li><a href="product-grids.html">스포츠/레저</a></li>
+                                <li><a href="product-grids.html">출산/유아용품</a></li>
+                                <li><a href="product-grids.html">반려동물용품</a></li>
+                                <li><a href="product-grids.html">뷰티</a></li>
                             </ul>
                         </div>
                         <!-- End Mega Category Menu -->

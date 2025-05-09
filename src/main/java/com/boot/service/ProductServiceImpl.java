@@ -155,11 +155,11 @@ public class ProductServiceImpl implements ProductService{
 		return dao.getProductListTop10();
 	}
 	
-	@Override
-	public void insertOrder(HashMap<String, String> param) {
-		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
-		dao.insertOrder(param);
-	}
+//	@Override
+//	public void insertOrder(HashMap<String, String> param) {
+//		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
+//		dao.insertOrder(param);
+//	}
 	
 	@Override
 	public int getPriceByProductId(int productId) {

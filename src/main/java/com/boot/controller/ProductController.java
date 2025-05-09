@@ -60,7 +60,7 @@ public class ProductController {
 	    param.put("total_price", String.valueOf(totalPrice));
 	    param.put("status", "pending");
 
-	    service.insertOrder(param);
+//	    service.insertOrder(param);
 	    service.decreaseStock(productId, quantity);
 	    redirectAttributes.addFlashAttribute("msg", "구매가 완료되었습니다! 주문정보는 마이페이지>주문조회에서 확인해주세요! 😊");
 	    return "redirect:main";

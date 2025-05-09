@@ -661,7 +661,7 @@
 							<form id="orderForm2" action="product_order" method="post">
 								테스트용입니다 아래는 폼이 별개라 수량도 따로뺐어요
 								<input type="hidden" name="contentId" value="${product.id}">
-								<input type="number" class="form-control" name="quantity2" value="1" min="1" max="${product.stock}" required>
+								<input type="number" class="form-control" name="quantity" value="1" min="1" max="${product.stock}" required>
 						    	<button type="button" onclick="goToPay()">바로 구매하기</button>
 							</form>
 							<script>

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.CustomerDTO;
+import com.boot.dto.ProductDTO;
 import com.boot.service.CheckOutService;
+import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,17 +24,25 @@ import lombok.extern.slf4j.Slf4j;
 public class CheckOutController {
 	@Autowired
     private CheckOutService kakaoPayService;
-
+	
+	@Autowired
+	private ProductService productService;
+	
 	@RequestMapping("/checkout")
-	public String checkout(HttpSession session,RedirectAttributes redirectAttributes) {
+	public String checkout(Model model,@RequestParam("contentId") int product_id,@RequestParam("quantity") String quantity,HttpSession session,RedirectAttributes redirectAttributes) {
 		log.info("checkout()");
-
-
-	    CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
-	    if (customer == null) {
-	    	redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
-	    	return "redirect:../log/login";
-	    }
+		log.info("product_id=>"+product_id);
+		log.info("quantity=>"+quantity);
+		
+		CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
+		if (customer == null) {
+			redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
+			return "redirect:../log/login";
+		}
+	    ProductDTO product = productService.getProductById(product_id);
+	    model.addAttribute("product", product);
+	    log.info("product=>"+product);
+	    
 
 	    return "pay/checkout";
 	}
@@ -40,6 +50,7 @@ public class CheckOutController {
 	@PostMapping("/ready")
     public String kakaoPay() {
         String redirectUrl = kakaoPayService.kakaoPayReady();
+        log.info("redirectUrl=>"+redirectUrl);
         return "redirect:" + redirectUrl;
     }
 

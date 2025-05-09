@@ -10,11 +10,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service("CheckOutService")
 public class CheckOutServiceImpl implements CheckOutService{
 	
     private static final String HOST = "https://kapi.kakao.com";
-    private static final String ADMIN_KEY = "KakaoAK DEVB555FE82A57082D36F7FB718D583EFCD59D29";
+    private static final String ADMIN_KEY = "KakaoAK 81ab368bf14242468daa66fd3bde4ece";
     private String tid;
     
     @Override
@@ -42,10 +44,12 @@ public class CheckOutServiceImpl implements CheckOutService{
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<>(params, headers);
 
         try {
+        	log.info("try1=>");
             ResponseEntity<Map> response = restTemplate.postForEntity(
                 HOST + "/v1/payment/ready", body, Map.class);
             
             this.tid = (String) response.getBody().get("tid");
+            log.info("response=>"+response);
 
             return (String) response.getBody().get("next_redirect_pc_url");
 

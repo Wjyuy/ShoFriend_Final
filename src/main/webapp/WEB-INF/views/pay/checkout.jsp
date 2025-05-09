@@ -464,9 +464,9 @@
 
     <!-- Start Item Details -->
 	<section class="item-details section">
-	    <div class="container">
-	        <div class="row">
-	            <div class="col-md-9"> 
+        <div class="row">
+        	<div class="col-md-9"> 	
+			    <div class="container">
 					<div class="top-area">
 	                    <div class="your-personal-details-container" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
 	                        Your Personal Details
@@ -520,19 +520,32 @@
 		                    </div>
 						</form>
 	                </div>
+					<div class="col-md-3">
+						<div class="container">
+							<div class="top-area">
+						      사이드바
+						      <ul>
+						        <li><a href="#">메뉴 1</a></li>
+						        <li><a href="#">메뉴 2</a></li>
+						        <li><a href="#">메뉴 3</a></li>
+						      </ul>
+						  </div>
+					  </div>
+				    </div>
+					
+					<div class="col-md-9"> 
+						<div class="container">
+							<div class="top-area">
+								Payment Info
+								<form action="/pay/ready" method="post">
+								    <button type="submit">카카오페이 결제하기</button>
+								</form>
+							<div>
+			            </div>
+			        </div>
 	            </div>
+				
 	        </div>
-			
-			<div class="col-md-9"> 
-				<div class="container">
-					<div class="top-area">
-						Payment Info
-						<form action="/pay/ready" method="post">
-						    <button type="submit">카카오페이 결제하기</button>
-						</form>
-					<div>
-	            </div>
-            </div>
 			
 	    </section>
     <!-- End Item Details -->

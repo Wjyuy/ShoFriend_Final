@@ -27,20 +27,20 @@
             order_date,
             order_status
         ) VALUES (
-            #{partnerOrderId},
-            #{customerId},
-            #{totalQuantity},
-            #{totalPrice},
-            #{deliveryAddress},
-            #{deliveryZipcode},
-            #{deliveryMemo},
-            #{paymentMethod},
-            #{paymentStatus},
-            #{transactionId},
-            #{friendOrderId},
+            #{partner_order_id},
+            #{customer_id},
+            #{total_quantity},
+            #{total_price},
+            #{delivery_address},
+            #{delivery_zipcode},
+            #{delivery_memo},
+            #{payment_method},
+            #{payment_status},
+            #{transaction_id},
+            #{friend_order_id},
             #{posted},
             NOW(),
-            #{orderStatus}
+            #{order_status}
         )
     </insert>
 
@@ -51,10 +51,10 @@
             quantity,
             sale_price
         ) VALUES (
-            #{orderId},
-            #{productId},
+            #{order_id},
+            #{product_id},
             #{quantity},
-            #{salePrice}
+            #{sale_price}
         )
     </insert>
 

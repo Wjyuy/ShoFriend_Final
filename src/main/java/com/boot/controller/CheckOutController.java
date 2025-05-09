@@ -129,18 +129,18 @@ public class CheckOutController {
                      session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
 
             OrdersDTO orderDTO = new OrdersDTO();
-            orderDTO.setCustomerId(loginCustomer.getId());
-            orderDTO.setTotalPrice((Integer) session.getAttribute("totalPrice"));
-            orderDTO.setTotalQuantity((Integer) session.getAttribute("quantity"));
-            orderDTO.setPartnerOrderId((String) session.getAttribute("partnerOrderId"));
-            orderDTO.setDeliveryZipcode((String) session.getAttribute("deliveryZipcode"));
-            orderDTO.setDeliveryAddress((String) session.getAttribute("deliveryAddress"));
-            orderDTO.setDeliveryMemo((String) session.getAttribute("deliveryMemo"));
+            orderDTO.setCustomer_id(loginCustomer.getId());
+            orderDTO.setTotal_price((Integer) session.getAttribute("totalPrice"));
+            orderDTO.setTotal_quantity((Integer) session.getAttribute("quantity"));
+            orderDTO.setPartner_order_id((String) session.getAttribute("partnerOrderId"));
+            orderDTO.setDelivery_zipcode((String) session.getAttribute("deliveryZipcode"));
+            orderDTO.setDelivery_address((String) session.getAttribute("deliveryAddress"));
+            orderDTO.setDelivery_memo((String) session.getAttribute("deliveryMemo"));
 
             OrderItemDTO orderItemDTO = new OrderItemDTO();
-            orderItemDTO.setProductId((Integer) session.getAttribute("productId"));
+            orderItemDTO.setProduct_id((Integer) session.getAttribute("productId"));
             orderItemDTO.setQuantity((Integer) session.getAttribute("quantity"));
-            orderItemDTO.setSalePrice((Integer) session.getAttribute("totalPrice") / (Integer) session.getAttribute("quantity"));
+            orderItemDTO.setSale_price((Integer) session.getAttribute("totalPrice") / (Integer) session.getAttribute("quantity"));
 
             List<OrderItemDTO> orderItems = new ArrayList<>();
             orderItems.add(orderItemDTO);

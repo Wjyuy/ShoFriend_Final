@@ -11,6 +11,7 @@
 		<mapper resource="mybatis/mappers/product.xml"/>
 		<mapper resource="mybatis/mappers/regi.xml"/>
 		<mapper resource="mybatis/mappers/store.xml"/>
+		<mapper resource="mybatis/mappers/cart.xml"/>
 		<mapper resource="mybatis/mappers/chat.xml"/>
 	</mappers>
 </configuration>

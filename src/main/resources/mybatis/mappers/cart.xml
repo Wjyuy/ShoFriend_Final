@@ -53,5 +53,13 @@
 		#{id}
 		</foreach>
 	</delete>
+	
+		<delete id="deleteSoldOut">
+		delete from cart where user_id =#{user_id}
+		and product_id IN(
+			select id from product where stock = 0
+		)
+		
+	</delete>
 
 </mapper>

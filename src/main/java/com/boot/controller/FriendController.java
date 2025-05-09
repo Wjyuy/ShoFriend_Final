@@ -58,11 +58,8 @@ public class FriendController {
 	        int customerId1 = loginCustomer.getId();  // 로그인한 사람
 	        int customerId2 = (int) req.get("customer_id2"); // 검색된 친구
 
-	        // 작은 ID가 customer_id1이 되도록 조정
-	        int smaller = Math.min(customerId1, customerId2);
-	        int larger = Math.max(customerId1, customerId2);
-
-	        service.insertFriend(smaller, larger, "pending");
+	        //높은숫자 -> 낮은숫자 보내지기는 하는데 10->2 , 2->10 양방향친구가됨 (수정예정)
+	        service.insertFriend(customerId1, customerId2, "pending");
 
 	        result.put("success", true);
 	    } catch (Exception e) {

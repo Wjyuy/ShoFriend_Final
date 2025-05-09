@@ -16,10 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.CategoryDTO;
+import com.boot.dto.CustomerDTO;
 import com.boot.dto.ProductDTO;
 import com.boot.dto.ProductPopularity;
 import com.boot.dto.SellerDTO;
 import com.boot.dto.StoreDTO;
+import com.boot.service.FriendService;
 import com.boot.service.ProductService;
 import com.boot.service.StoreService;
 
@@ -39,6 +41,8 @@ public class MainController {
 	private ProductService service;
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	private FriendService friendService;
 	
 	@RequestMapping("/main")
 	public String main(Model model) {
@@ -148,8 +152,9 @@ public class MainController {
 	}
 
 	
+//	25.05.09 권준우 수정 (친구 공유 기능을 위해 친구 목록 조회 추가)
 	@RequestMapping("/content")
-	public String content(@RequestParam("id") int product_id, Model model) {
+	public String content(@RequestParam("id") int product_id, Model model, HttpSession session) {
 	    ProductDTO product = service.getProductById(product_id);
 	    model.addAttribute("product", product);
 
@@ -159,6 +164,16 @@ public class MainController {
 	    ArrayList<CategoryDTO> categorylist = service.categorylist();
 	    model.addAttribute("categorylist", categorylist);
 
+	    // 로그인한 사용자 정보 가져오기
+	    CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
+	    if (customer != null) {
+	        int myId = customer.getId();
+
+	        // 친구 목록 조회 (이미 구현된 친구 서비스 사용)
+	        List<CustomerDTO> myFriends = friendService.getAcceptedFriends(myId);
+	        model.addAttribute("myFriends", myFriends);
+	    }
+	    
 	    return "content";
 	}
 

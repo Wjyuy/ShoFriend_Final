@@ -36,6 +36,7 @@
 		}
 			
 		function updateSubtotal(input){
+		
 			const price = parseInt(input.dataset.price);
 			const qty = parseInt(input.value);
 			const row = input.closest('.cart-row');
@@ -50,14 +51,37 @@
 			let total = 0;
 			rows.forEach(row =>{
 				const checkbox = row.querySelector('.cartCheckbox');
-				if(checkbox.checked){
-					const subtotal = parseInt(row.querySelector('.subtotal').textContent);
-					total += subtotal;
-				}
+				// const input = row.querySelector('.qty');
+				const subtotalCell = row.querySelector('.subtotal');
+				
+				if(!checkbox || !checkbox.checked || checkbox.disabled) return;
+					const rawText = subtotalCell.textContent ||"";
+					const digitsOnly = rawText.replace(/[^\d]/g,'').trim();
+					if(digitsOnly === '') return;
+					const subtotal = parseInt(digitsOnly);
+					// const subtotal = parseInt(row.querySelector('.subtotal').textContent);
+					if (!isNaN(subtotal) && subtotal >0) {
+						total += subtotal;
+					}
+			
 			});
-			document.getElementById('totalAmount').textContent = total;
+			const totalEl = document.getElementById('totalAmount')
+			if (totalEl) {
+				totalEl.textContent = total +'원';
+			}
+			// document.getElementById('totalAmount').textContent = total+'원';
 		}
+
 	</script>
+	<style>
+		.text-muted{
+			color: #999;
+		}
+		.text-soldOut{
+			color: red;
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
     <h2>장바구니</h2>
@@ -74,20 +98,33 @@
 		</tr>
 		
 		<c:forEach var="dto" items="${items}">
-			<tr class="cart-row">
-				<td><input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox" onchange="calculateTotal()" checked></td>
+			<c:set var="isSoldOut"  value="${dto.stock == 0}"/>
+			<!-- <tr class="cart-row> -->
+			<tr class="cart-row ${isSoldOut ? 'text-muted' : ''}">
+			<!--품절이면 disable-->
+				<td><input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox" 
+					${isSoldOut ? 'disabled' :''} onchange="calculateTotal()" checked></td>
 				<td>${dto.id}</td>
 				<td>${dto.product_id}</td>
 				<td>${dto.product_title}</td>
 				<td><input type="number" class="qty" name="cart_quantity_${dto.id}" value="${dto.quantity}" min="1"
-					data-price="${dto.price}" onchange="updateSubtotal(this)"></td>
+					data-price="${dto.price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}></td>
 				<td class="price">${dto.price}원</td>
-				<td class="subtotal">${dto.price*dto.quantity}원</td>
+				<td class="subtotal">
+					<c:choose>
+						<c:when test="${isSoldOut}">
+							<span class="text-soldOut">품절</span>
+						</c:when>
+						<c:otherwise>
+							${dto.price*dto.quantity}원
+						</c:otherwise>
+					</c:choose>
+					</td>
 			</tr>
 		</c:forEach>
 		<tr>
 			<td colspan="7" >
-				총합계:<span id="totalAmount">0</span>원
+				총합계:<span id="totalAmount">0</span>
 				<button type="submit" name="submitType" value="order">주문하기</button>
 				<button type="submit" name="submitType" value="delete">선택 삭제</button>
 			</td>

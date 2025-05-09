@@ -13,6 +13,7 @@ public class CartDTO {
 	private int product_id;
 	private String product_title;
 	private int quantity;
+	private int stock;
 	private int price;
 	
 }

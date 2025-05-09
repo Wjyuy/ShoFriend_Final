@@ -10,6 +10,7 @@
 			border-radius: 12px;
 			margin: 5px 0;
 			display: inline-block;
+			white-space: pre-line; /* 줄바꿈(\n) 또는 <br> 처리 */
 		}
 		.chat-left {
 			background-color: #f1f1f1;
@@ -67,7 +68,11 @@
 			const container = document.getElementById("chatContainer");
 			const div = document.createElement("div");
 			div.className = "chat-bubble " + (isMine ? "chat-right" : "chat-left");
-			div.textContent = msg;
+			
+			// \n을 <br>로 변환하고 HTML로 출력
+			const formattedMsg = msg.trim().replace(/\n/g, "<br>");
+			div.innerHTML = formattedMsg;		
+			
 			container.appendChild(div);
 			container.scrollTop = container.scrollHeight;
 		}
@@ -82,6 +87,22 @@
 				appendMessage("🚫 WebSocket 연결 안 됨");
 			}
 		}
+		
+		// 엔터키 입력 시 전송
+		document.addEventListener("DOMContentLoaded", function () {
+			
+			// 채팅창 스크롤을 맨 아래로 이동
+			const chatBox = document.getElementById("chatContainer");
+			chatBox.scrollTop = chatBox.scrollHeight;			
+			
+			const input = document.getElementById("message");
+			input.addEventListener("keydown", function (event) {
+				if (event.key === "Enter") {
+					event.preventDefault(); // 줄바꿈 방지
+					sendMessage(); // 전송 함수 호출
+				}
+			});
+		});
 
 	</script>
 </head>
@@ -99,7 +120,7 @@
 		<c:choose>
 			<c:when test="${msg.senderId == myId}">
 				<div class="chat-bubble chat-right">
-					나: ${msg.message}
+					${msg.message}
 				</div>
 			</c:when>
 			<c:otherwise>

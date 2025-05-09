@@ -81,6 +81,19 @@
 			color: red;
 			font-weight: bold;
 		}
+		.original{
+			color: #aaa;
+			margin-right: 4px;
+		}
+		.discount{
+			color: blue;
+			font-weight: bold;
+		}
+		.rate{
+			color: #444;
+			font-size: 0.9em;
+			margin-left: 3px;
+		}
 	</style>
 </head>
 <body>
@@ -108,15 +121,30 @@
 				<td>${dto.product_id}</td>
 				<td>${dto.product_title}</td>
 				<td><input type="number" class="qty" name="cart_quantity_${dto.id}" value="${dto.quantity}" min="1"
-					data-price="${dto.price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}></td>
-				<td class="price">${dto.price}원</td>
+					data-price="${dto.final_price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}></td>
+				<!-- <td class="price">${dto.price}원</td> -->
+				<!-- <td class="price">${dto.final_price}원</td> -->
+				<td class="price">
+					<c:choose>
+						<c:when test="${dto.final_price lt dto.price}">
+								<span class="original"><del>${dto.price}원</del></span>
+								<span class="rate">(${dto.discount_percentage}%)</span>
+								<span class="discount">${dto.final_price}원</span>
+						</c:when>
+						<c:otherwise>
+							${dto.price}원
+						</c:otherwise>
+					</c:choose>
+				</td>	
+						
+				
 				<td class="subtotal">
 					<c:choose>
 						<c:when test="${isSoldOut}">
 							<span class="text-soldOut">품절</span>
 						</c:when>
 						<c:otherwise>
-							${dto.price*dto.quantity}원
+							${dto.final_price*dto.quantity}원
 						</c:otherwise>
 					</c:choose>
 					</td>

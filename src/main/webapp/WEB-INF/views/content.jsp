@@ -640,7 +640,10 @@
 						</form>
 							<!-- 테스트용 임시코드 주연 추가(goToPay 스크립트 이동도 있음) -->
 							<form id="orderForm2" action="product_order" method="post">
-						    	<button type="button" onclick="goToPay()">카카오페이 결제하기</button>
+								테스트용입니다 아래는 폼이 별개라 수량도 따로뺐어요
+								<input type="hidden" name="contentId" value="${product.id}">
+								<input type="number" class="form-control" name="quantity" value="1" min="1" max="${product.stock}" required>
+						    	<button type="button" onclick="goToPay()">바로 구매하기</button>
 							</form>
 							<script>
 							    function goToPay() {

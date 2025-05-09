@@ -119,7 +119,7 @@
 					${isSoldOut ? 'disabled' :''} onchange="calculateTotal()" checked></td>
 				<td>${dto.id}</td>
 				<td>${dto.product_id}</td>
-				<td>${dto.product_title}</td>
+				<td><a href="/content?id=${dto.product_id}">${dto.product_title}</a></td>
 				<td><input type="number" class="qty" name="cart_quantity_${dto.id}" value="${dto.quantity}" min="1"
 					data-price="${dto.final_price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}></td>
 				<!-- <td class="price">${dto.price}원</td> -->

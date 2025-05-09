@@ -21,5 +21,31 @@
 	<select id="getCartItems" resultType="com.boot.dto.CartDTO">
 		SELECT * FROM cart WHERE user_id = #{user_id}
 	</select>
+	
+	<select id="getCartItemsWithProduct" resultType="com.boot.dto.CartDTO">
+		select c.id, c.user_id, c.product_id, p.title As product_title, p.price, p.stock
+		from cart c
+		join product p on c.product_id =p.id
+		where c.user_id =#{user_id}
+	</select>
+	
+	<insert id="orderSelectedItems">
+		insert into orders(customer_id, product_id, total_price)
+		select #{customer_id}, c.product_id, c.price
+		from cart c
+		where c.user_id = #{customer_id}
+		and c.id In
+		<foreach item="id" collection="selectedIds" open="(" separator="," close=")">
+		#{id}
+		</foreach>
+	</insert>
+	
+	<delete id="deleteSelectedItems">
+		delete from cart where user_id =#{user_id}
+		and id IN
+		<foreach item="id" collection="selectedIds" open="(" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
 
 </mapper>

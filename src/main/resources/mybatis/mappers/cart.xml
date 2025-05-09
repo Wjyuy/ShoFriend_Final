@@ -23,7 +23,13 @@
 	</select>
 	
 	<select id="getCartItemsWithProduct" resultType="com.boot.dto.CartDTO">
-		select c.id, c.user_id, c.product_id, p.title As product_title, p.price, p.stock
+		select c.id, c.user_id, c.product_id, c.quantity, p.title As product_title, p.price, p.stock, p.discount_percentage,
+		case when p.discount_percentage is not null
+		and p.discount_start &lt; now()
+		and p.discount_end &gt; now()
+		then floor(p.price * (1-(p.discount_percentage/100)))
+		else p.price
+		end as final_price
 		from cart c
 		join product p on c.product_id =p.id
 		where c.user_id =#{user_id}

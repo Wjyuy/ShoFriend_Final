@@ -90,6 +90,11 @@
 		
 		// 엔터키 입력 시 전송
 		document.addEventListener("DOMContentLoaded", function () {
+			
+			// 채팅창 스크롤을 맨 아래로 이동
+			const chatBox = document.getElementById("chatContainer");
+			chatBox.scrollTop = chatBox.scrollHeight;			
+			
 			const input = document.getElementById("message");
 			input.addEventListener("keydown", function (event) {
 				if (event.key === "Enter") {

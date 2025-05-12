@@ -5080,3 +5080,161 @@ top: 2px;
     display: none;
   }
 }
+
+/* 전체 폼 스타일 */
+.account-login {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.login-form {
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 30px;
+    background-color: #fff;
+}
+
+/* 제목 */
+.login-form .title h3 {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.login-form .title p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 소셜 로그인 버튼 */
+.social-login .btn {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+.google-btn, .facebook-btn, .twitter-btn {
+    border: 1px solid;
+    background-color: #fff;
+    transition: all 0.3s ease; /* Smooth transition for all buttons */
+}
+
+.google-btn {
+    color: #DB4437;
+    border-color: #DB4437;
+}
+
+.facebook-btn {
+    color: #4267B2;
+    border-color: #4267B2;
+}
+
+.twitter-btn {
+    color: #1DA1F2;
+    border-color: #1DA1F2;
+}
+
+.google-btn:hover {
+    background-color: #DB4437;
+    color: #fff;
+}
+
+.facebook-btn:hover {
+    background-color: #4267B2;
+    color: #fff;
+}
+
+.twitter-btn:hover {
+    background-color: #1DA1F2;
+    color: #fff;
+}
+
+
+
+/* 구분선 */
+.alt-option {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.alt-option span {
+    background-color: #fff;
+    padding: 0 10px;
+    color: #999;
+}
+
+.alt-option::before,
+.alt-option::after {
+    content: "";
+    height: 1px;
+    width: 40%;
+    background-color: #ddd;
+    position: absolute;
+    top: 50%;
+}
+
+.alt-option::before {
+    left: 0;
+}
+
+.alt-option::after {
+    right: 0;
+}
+
+/* 인풋 */
+.login-form .form-control {
+    height: 44px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 체크박스와 비밀번호 찾기 */
+.bottom-content {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-check-label {
+    font-size: 14px;
+}
+
+.lost-pass {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 로그인 버튼 */
+.login-form .btn[type="submit"] {
+    width: 100%;
+    background-color: #0056FF;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.login-form .btn[type="submit"]:hover {
+    background-color: #0041cc;
+}
+
+/* 회원가입 링크 */
+.outer-link {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.outer-link a {
+    color: #0056FF;
+    text-decoration: none;
+}

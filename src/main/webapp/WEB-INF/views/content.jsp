@@ -369,7 +369,7 @@
                         <div class="product-images">
                             <main id="gallery">
                                 <div class="main-img">
-									<img src="/display?fileName=${product.picture}" alt="${product.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
+									<img src="/display?fileName=${product.picture}" alt="${product.title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'">
 <!--                                    <img src="assets/images/product-details/01.jpg" id="current" alt="#">-->
                                 </div>
                                 <!-- <div class="images">-->

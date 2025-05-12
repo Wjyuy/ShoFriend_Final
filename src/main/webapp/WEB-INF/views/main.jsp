@@ -457,7 +457,7 @@
 	                    <div class="single-product">
 							
 	                        <div class="product-image">
-	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
+	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'">
 								<c:set var="now" value="<%= new java.util.Date() %>" />
 		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
 									<span class="sale-tag">${dto.discount_percentage}%</span>

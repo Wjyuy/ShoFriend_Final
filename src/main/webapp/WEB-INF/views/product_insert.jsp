@@ -86,7 +86,11 @@
 	    	        location.href = "main";
 	    	    },
 	    	    error: function () {
-	    	        alert("입력이 제대로 되었는지 확인해주세요.");
+					console.error("AJAX 요청 실패:");
+			        console.error("jqXHR:", jqXHR);
+			        console.error("textStatus:", textStatus);
+			        console.error("errorThrown:", errorThrown);
+	    	        alert("저장하는 중 오류가 발생하였습니다!");
 	    	        store_id.disabled = true; 
 	    	        stock.disabled = true; 
 	    	    }

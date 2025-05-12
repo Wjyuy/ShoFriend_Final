@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,6 +22,9 @@ import com.boot.dto.ProductPopularity;
 // 25/04/10    우주연
 @Service("ProductService")
 public class ProductServiceImpl implements ProductService{
+	
+	@Autowired
+	private ProductDAO productDAO;
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -191,6 +195,37 @@ public class ProductServiceImpl implements ProductService{
 	public ProductDTO findTopDiscountProductNearExpiration() {
 		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
 		return dao.findTopDiscountProductNearExpiration();
+	}
+
+	@Override
+	public void addRecommend(int productId, int recommendCount) {
+		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
+		Map<String, Object> param = new HashMap<>();
+        param.put("productId", productId);
+        param.put("recommendCount", recommendCount);
+        dao.addRecommend(param);
 	}	
+	
+	@Override
+	public List<ProductDTO> getAllProductsPaging(int limit, int offset) {	// 상품 리스트 페이징
+		return productDAO.getAllProductsPaging(limit, offset);
+	}
+
+	@Override
+	public int countAllProducts() {	// 총 상품 개수
+		return productDAO.countAllProducts();
+	}
+
+	
+	@Override
+	public List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset) {	// 카테고리별 상품 리스트 페이징
+		return productDAO.getProductsByCategoryPaging(categoryId, limit, offset);
+	}
+
+	@Override
+	public int countProductsByCategory(int categoryId) {	// 카테고리별 총 상품 개수
+		return productDAO.countProductsByCategory(categoryId);
+	}
+
 
 }

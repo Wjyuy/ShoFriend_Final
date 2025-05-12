@@ -48,6 +48,8 @@ public class CheckOutController {
 	                       HttpSession session,
 	                       RedirectAttributes redirectAttributes) {
 	    log.info("checkout()");
+	    log.info("productIds length: " + productIds.length);
+	    log.info("quantities length: " + quantities.length);
 
 	    CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
 	    if (customer == null) {

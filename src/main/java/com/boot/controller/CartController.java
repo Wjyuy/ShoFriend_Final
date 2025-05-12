@@ -115,6 +115,9 @@ public class CartController {
 	    if (submitType.equals("order")) {
 	    	log.info("@# order()");
 	    	log.info("@# delete()selectedIds=>"+selectedIds);
+	    	List<Integer> productIds = new ArrayList<>();
+	        List<Integer> quantities = new ArrayList<>();
+
 	    	List<OrderItemDTO> orderItems = new ArrayList<>();
 	        int userId = customer.getId(); // 현재 로그인한 사용자 ID
 	        List<CartDTO> cartItems = service.getCartItemsByIds(selectedIds, userId); // 선택된 CartItem 정보 조회
@@ -127,20 +130,24 @@ public class CartController {
 	            if (quantityStr != null && !quantityStr.isEmpty()) {
 	                try {
 	                    int quantity = Integer.parseInt(quantityStr);
-	                    OrderItemDTO orderItem = new OrderItemDTO();
-	                    orderItem.setProduct_id(cartItem.getProduct_id());
-	                    orderItem.setQuantity(quantity);
-	                    orderItem.setSale_price(cartItem.getFinal_price()); // 장바구니의 최종 가격 사용
-	                    orderItems.add(orderItem);
+	                    productIds.add(cartItem.getProduct_id());
+	                    quantities.add(quantity);
 	                } catch (NumberFormatException e) {
 	                    redirectAttributes.addFlashAttribute("msg", "잘못된 수량 정보가 있습니다.");
 	                    return "redirect:/cart_view";
 	                }
 	            }
 	        }
-	        log.info("@# orderItems"+orderItems);
-	        session.setAttribute("orderItemsForPayment", orderItems);
+	        
+	        for (Integer productId : productIds) {
+	            redirectAttributes.addAttribute("product_id[]", productId);
+	        }
+	        for (Integer quantity : quantities) {
+	            redirectAttributes.addAttribute("quantity[]", quantity);
+	        }
+	        
 	        return "redirect:/pay/checkout"; // 결제 페이지로 리다이렉트
+	        
 	    } else if (submitType.equals("delete")) {
 	    	log.info("@# delete()selectedIds=>"+selectedIds);
 	        service.deleteSelectedItems(selectedIds, customer.getId());

@@ -23,4 +23,8 @@ public class ProductDTO {
 	private Timestamp discount_start;
 	private Timestamp discount_end;
 	private int discount_percentage;
+	
+	//20250512장바구니하면서추가
+	private int final_price;
+	private int quantity;
 }

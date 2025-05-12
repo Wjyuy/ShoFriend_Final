@@ -86,8 +86,9 @@ public class MainController {
 	@RequestMapping("/category")
 	public String category(Model model) {
 		log.info("category()");
-//		List<ProductPopularity> popularlist= service.getPopularProducts();
-//		model.addAttribute("popularlist", popularlist);
+		
+		List<ProductDTO> popularlist= service.getPopularProducts();
+		model.addAttribute("popularlist", popularlist);
 		
 		ArrayList<ProductDTO> list = service.product_list();
 		model.addAttribute("list", list);

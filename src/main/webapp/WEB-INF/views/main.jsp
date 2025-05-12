@@ -22,6 +22,11 @@
 </head>
 
 <body>
+	<c:if test="${not empty msg}">
+		   <script>
+		       alert("${msg}");
+		   </script>
+		</c:if>
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -53,25 +58,20 @@
                                 <li>
                                     <div class="select-position">
                                         <select id="select4">
-                                            <option value="0" selected>$ USD</option>
+                                            <option value="0" selected>₩ WON</option>
                                             <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
+                                            <option value="2">$ USD</option>
                                             <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
                                         </select>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="select-position">
                                         <select id="select5">
-                                            <option value="0" selected>English</option>
+                                            <option value="0" selected>Korean</option>
                                             <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
+                                            <option value="2">English</option>
                                             <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
                                         </select>
                                     </div>
                                 </li>
@@ -178,51 +178,44 @@
                                 <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
-                                    </a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
-                                            <a href="cart.html">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
-                                                </div>
+										<c:if test="${sessionScope.userType == 'customer'}">
+                                        	<span class="total-items">${items.size()}</span>
+                                    	</a>
+                                    	<!-- Shopping Item -->
+                                    	<div class="shopping-item">
+	                                        <div class="dropdown-cart-header">
+	                                            <span>${items.size()} Items</span>
+	                                            
+	                                        </div>
+	                                        <ul class="shopping-list">
+												<c:forEach var="item" items="${items}">
+													<li>
+								                        <div class="cart-img-head">
+								                            <a class="cart-img" href="content?id=${item.product_id}"><img
+								                                    src="/display?fileName=${item.picture}" alt="${item.product_title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'"></a>
+								                        </div>
 
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">
-                                                            Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.html" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
+								                        <div class="content">
+								                            <h4><a href="product-details.html?id=${item.product_id}">${item.product_title}</a></h4>
+								                            <p class="quantity">${item.quantity}x - <span class="amount"><fmt:formatNumber value="${item.final_price}" pattern="#,###원"/></span></p>
+								                        </div>
+								                    </li>
+													</c:forEach>
+												</ul>
+		                                        <div class="bottom">
+	                                           		<div class="total">
+	                                                <span>Total</span>
+													<c:forEach var="item" items="${items}">
+								                            <c:set var="totalAmount" value="${totalAmount + (item.final_price * item.quantity)}"/>
+								                        </c:forEach>
+								                        <span class="total-amount"><fmt:formatNumber value="${totalAmount}" pattern="#,###원"/></span>
+								                    </span>
+	                                            </div>
+												<div class="button">
+												    <a href="cart_view" class="btn animate" >View Cart</a>
+												</div>
+	                                        </div>
+										</c:if>
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
@@ -382,7 +375,7 @@
                             <!-- End Single Slider -->
 							<c:forEach var="flashlist" items="${flashlist}">
 								<div class="single-slider"
-	                                style="background-image: url(assets/images/hero/slider-bg2.jpg);">
+	                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
 	                                <div class="content">
 	                                    <h2><span>오늘까지 할인상품!</span>
 	                                        ${flashlist.title}

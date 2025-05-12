@@ -455,7 +455,7 @@
 									<span class="sale-tag">${dto.discount_percentage}%</span>
 		                        </c:if>
 	                            <div class="button">
-	                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+	                                <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
 	                            </div>
 	                        </div>
 	                        <div class="product-info">

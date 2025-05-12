@@ -240,7 +240,7 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-                            <span class="cat-button"><a href="main"><i class="lni lni-menu"></i>All Categories</a></span>
+                            <span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All Categories</a></span>
                             <ul class="sub-category">
                                 <li><a href="product-grids.html">추천상품</a>
 <!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->

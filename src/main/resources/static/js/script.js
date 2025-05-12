@@ -113,11 +113,11 @@ function check_pwd() {
         return;
     }
 
-	if(false === p_pattern.test(pwd_frm.input_pwd.value)){
-		alert("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.");
-        pwd_frm.input_pwd.focus();
-		return;
-	}
+//	if(false === p_pattern.test(pwd_frm.input_pwd.value)){
+//		alert("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.");
+//        pwd_frm.input_pwd.focus();
+//		return;
+//	}
     
     document.pwd_frm.submit();
 }

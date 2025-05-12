@@ -448,6 +448,7 @@
 				<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">
                 	<div class="col-lg-3 col-md-6 col-12">
 	                    <div class="single-product">
+							
 	                        <div class="product-image">
 	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
 								<c:set var="now" value="<%= new java.util.Date() %>" />

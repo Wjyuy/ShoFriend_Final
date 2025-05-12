@@ -138,7 +138,8 @@ public class CartController {
                     return "redirect:/cart_view";
                 }
             }
-
+            session.setAttribute("selectedIdsToDelete", selectedIds);
+            
             try { // productIdsList, quantitiesList  확정 후 urlencode
                 for (int i = 0; i < productIdsList.size(); i++) {
                     redirectURL.append(URLEncoder.encode("product_id[]", StandardCharsets.UTF_8)).append("=")

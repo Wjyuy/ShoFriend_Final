@@ -21,6 +21,7 @@ import com.boot.dto.CustomerDTO;
 import com.boot.dto.OrderItemDTO;
 import com.boot.dto.OrdersDTO;
 import com.boot.dto.ProductDTO;
+import com.boot.service.CartService;
 import com.boot.service.CheckOutService;
 import com.boot.service.ProductService;
 
@@ -39,6 +40,10 @@ public class CheckOutController {
 	
 	@Autowired
 	private CheckOutService checkoutService;
+	
+	@Autowired
+	private CartService cartService;
+	
 	
 	//장바구니용 결제창
 	@RequestMapping("/checkout")
@@ -250,6 +255,14 @@ public class CheckOutController {
 
 	        checkoutService.createOrder(orderDTO, orderItems);
 
+	        List<Integer> cartItemIdsToDelete = (List<Integer>) session.getAttribute("selectedIdsToDelete");
+	        if (cartItemIdsToDelete != null && !cartItemIdsToDelete.isEmpty()) {
+	        	cartService.deleteSelectedItems(cartItemIdsToDelete, loginCustomer.getId());
+	        	session.removeAttribute("selectedIdsToDelete"); // 삭제 후 세션에서 제거
+	        	log.info("장바구니에서 결제된 상품 {}개를 삭제했습니다.", cartItemIdsToDelete.size());
+	        } else {
+	        	log.warn("삭제할 장바구니 아이템 ID가 없습니다.");
+	        }
 	        session.removeAttribute("partnerOrderId");
 	        session.removeAttribute("partnerUserId");
 	        session.removeAttribute("totalPrice");
@@ -259,6 +272,7 @@ public class CheckOutController {
 	        session.removeAttribute("deliveryAddress");
 	        session.removeAttribute("deliveryMemo");
 
+	        
 	    } else {
 	        model.addAttribute("error", "로그인 정보 또는 상품 정보가 없습니다.");
 	    }

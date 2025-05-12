@@ -7,6 +7,7 @@ import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,10 +32,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.ProductDTO;
+import com.boot.dto.ReviewDTO;
 import com.boot.dto.SellerDTO;
 import com.boot.dto.StoreDTO;
 import com.boot.service.FriendService;
 import com.boot.service.ProductService;
+import com.boot.service.ReviewService;
 import com.boot.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +58,8 @@ public class MainController {
 	private StoreService storeService;
 	@Autowired
 	private FriendService friendService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping("/main")
 	public String main(Model model) {
@@ -164,7 +169,7 @@ public class MainController {
 	}
 
 	
-//	25.05.09 권준우 수정 (친구 공유 기능을 위해 친구 목록 조회 추가)
+//	25.05.09 권준우 수정 (친구 목록 조회, 리뷰 리스트, 별점 통계 추가)
 	@RequestMapping("/content")
 	public String content(@RequestParam("id") int product_id, Model model, HttpSession session) {
 	    ProductDTO product = service.getProductById(product_id);
@@ -186,8 +191,21 @@ public class MainController {
 	        model.addAttribute("myFriends", myFriends);
 	    }
 	    
-	    return "content";
+		// 리뷰 리스트 가져오기
+		List<ReviewDTO> reviews = reviewService.getReviews(product_id);
+		model.addAttribute("reviews", reviews);
+
+		
+		// 별점 통계 가져오기
+		Map<Integer, Integer> ratingCounts = reviewService.getRatingCounts(product_id); // 1~5점 개수 map
+		Double averageRatingObj = reviewService.getAverageRating(product_id);
+		double averageRating = (averageRatingObj != null) ? averageRatingObj : 0.0;
+		model.addAttribute("ratingCounts", ratingCounts);
+		model.addAttribute("averageRating", averageRating);
+
+		return "content";
 	}
+	    
 	
 //	이미지파일을 받아서 화면에 출력(byte 배열타입)
 	@GetMapping("/display")

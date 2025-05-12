@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8" />
@@ -81,10 +82,10 @@
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="login.html">Sign In</a>
+                                    <a href="log/login">Sign In</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="log/customer_register">Register</a>
                                 </li>
                             </ul>
                         </div>
@@ -518,54 +519,34 @@
             </div>
 
 
-            {여기부터 리뷰 div 제작}
+            <!-- 리뷰 영역 시작 -->
             <div class="product-details-info">
                 <div class="single-block">
                     <div class="row">
+
+                        <!-- 별점 통계 -->
                         <div class="col-lg-4 col-12">
                             <div class="single-block give-review">
-                                <h4>{별점 평균 나와야함}</h4>
+                                <h4>평균 별점: <fmt:formatNumber value="${averageRating}" type="number" maxFractionDigits="1"/> / 5</h4>
                                 <ul>
-                                    <li>
-                                        <span>5 stars - {5점 갯수}</span>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                    </li>
-                                    <li>
-                                        <span>4 stars - {4점 갯수}</span>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star"></i>
-                                    </li>
-                                    <li>
-                                        <span>3 stars - {3점 갯수}</span>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star"></i>
-                                        <i class="lni lni-star"></i>
-                                    </li>
-                                    <li>
-                                        <span>2 stars - {2점 갯수}</span>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star"></i>
-                                        <i class="lni lni-star"></i>
-                                        <i class="lni lni-star"></i>
-                                    </li>
-                                    <li>
-                                        <span>1 stars - {1점 갯수}</span>
-                                        <i class="lni lni-star-filled"></i>
-                                        <i class="lni lni-star"></i>
-                                        <i class="lni lni-star"></i>
-                                        <i class="lni lni-star"></i>
-                                        <i class="lni lni-star"></i>
-                                    </li>
+                                    <c:set var="ratings" value="${[5,4,3,2,1]}" />
+                                    <c:forEach var="i" items="${ratings}">
+                                        <li>
+                                            <span>${i} stars -
+                                                <c:choose>
+                                                    <c:when test="${ratingCounts[i] != null}">
+                                                        ${ratingCounts[i]}
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        0
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </span>
+                                            <c:forEach var="j" begin="1" end="5">
+                                                <i class="lni ${j <= i ? 'lni-star-filled' : 'lni-star'}"></i>
+                                            </c:forEach>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
 
                                 <!-- 리뷰 버튼 -->
@@ -574,39 +555,39 @@
                                 </button>
                             </div>
                         </div>
+                        <!-- 별점 통계 끝 -->
+
+                        <!-- 리뷰 리스트 -->
                         <div class="col-lg-8 col-12">
                             <div class="single-block">
                                 <div class="reviews">
-                                    <h4 class="title">Latest Reviews</h4>
-                                    <!-- Start Single Review -->
-                                    <div class="single-review">
-                                        {여기서 for문 만들어서 review 보여주기}
-                                        <img src="assets/images/blog/comment1.jpg" alt="#">
-                                        <div class="review-info">
-                                            <h4> {리뷰 title}
-                                                <span> {리뷰 customer name}
-                                                </span>
-                                            </h4>
-                                            <ul class="stars">
-                                                {별점 갯수 만큼 for 반복문 돌려서 별 입력}
-                                                <li><i class="lni lni-star-filled"></i></li>
-                                                <li><i class="lni lni-star-filled"></i></li>
-                                                <li><i class="lni lni-star-filled"></i></li>
-                                                <li><i class="lni lni-star-filled"></i></li>
-                                                <li><i class="lni lni-star"></i></li>
-                                            </ul>
-                                            <p>{리뷰 내용}</p>
+                                    <h4 class="title">Latest Reviews</h4>   
+                                    <c:forEach var="review" items="${reviews}">
+                                        <div class="single-review">
+                                            <img src="assets/images/blog/comment1.jpg" alt="#">
+                                            <div class="review-info">
+                                                <h4>${review.title}
+                                                    <span>by ${review.customerId}</span>
+                                                </h4>
+                                                <ul class="stars">
+                                                    <c:forEach var="i" begin="1" end="5">
+                                                        <li>
+                                                            <i class="lni ${i <= review.rating ? 'lni-star-filled' : 'lni-star'}"></i>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                                <p>${review.content}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- End Single Review -->
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
-
+                        <!-- 리뷰 리스트 끝 -->
                     </div>
                 </div>
             </div>
-            {리뷰 div 끝}
+            <!-- 리뷰 영역 끝 -->
         </div>
 
     </section>

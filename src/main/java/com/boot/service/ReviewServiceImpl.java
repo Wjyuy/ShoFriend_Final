@@ -27,16 +27,17 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Map<Integer, Integer> getRatingCounts(int productId) {
+	public Map<String, Integer> getRatingCounts(int productId) {
 		List<Map<String, Object>> rawList = reviewDAO.getRatingCounts(productId);
-		Map<Integer, Integer> result = new HashMap<>();
+		Map<String, Integer> result = new HashMap<>();
 		for (Map<String, Object> row : rawList) {
-			Integer rating = (Integer) row.get("rating");
-			Long count = (Long) row.get("count"); // MySQL COUNT는 Long으로 맵핑됨
+			String rating = String.valueOf(row.get("rating")); // 여기!
+			Long count = (Long) row.get("count");
 			result.put(rating, count.intValue());
 		}
 		return result;
 	}
+
 
 
 	@Override

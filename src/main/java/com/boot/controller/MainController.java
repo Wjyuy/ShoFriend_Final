@@ -61,19 +61,34 @@ public class MainController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	// 25.05.12 권준우 수정(인기 상품 목록에 별점 정보 가져와서 노출되도록 추가)
 	@RequestMapping("/main")
 	public String main(Model model) {
 		log.info("main()");
 		
 		List<ProductDTO> popularlist= service.getPopularProducts();
+//		추가되는 부분
+		Map<Integer, Double> avgRatings = new HashMap<>();
+		Map<Integer, Integer> reviewCounts = new HashMap<>();
+		for (ProductDTO product : popularlist) {
+			int productId = product.getId();
+			Double avg = reviewService.getAverageRating(productId);
+			int count = reviewService.getReviews(productId).size(); // 또는 별도 count 쿼리 써도 됨
+
+			avgRatings.put(productId, avg != null ? avg : 0.0);
+			reviewCounts.put(productId, count);
+		}
+		model.addAttribute("avgRatings", avgRatings);
+		model.addAttribute("reviewCounts", reviewCounts);
+//		추가 끝
 		model.addAttribute("popularlist", popularlist);
-//		
+		
 //		ArrayList<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
 //		
 		ArrayList<CategoryDTO> categorylist = service.categorylist();
 		model.addAttribute("categorylist", categorylist);
-//		
+		
 		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
 		model.addAttribute("flashlist", flashlist);
 		
@@ -197,7 +212,9 @@ public class MainController {
 
 		
 		// 별점 통계 가져오기
-		Map<Integer, Integer> ratingCounts = reviewService.getRatingCounts(product_id); // 1~5점 개수 map
+		Map<String, Integer> ratingCounts = reviewService.getRatingCounts(product_id); // 1~5점 개수 map
+		log.info("@# ratingCounts = " + ratingCounts);
+		
 		Double averageRatingObj = reviewService.getAverageRating(product_id);
 		double averageRating = (averageRatingObj != null) ? averageRatingObj : 0.0;
 		model.addAttribute("ratingCounts", ratingCounts);

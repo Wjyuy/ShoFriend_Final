@@ -560,7 +560,8 @@
                             <div class="single-block give-review">
                                 <h4>평균 별점: <fmt:formatNumber value="${averageRating}" type="number" maxFractionDigits="1"/> / 5</h4>
                                 <ul>
-                                    <c:set var="ratings" value="${[5,4,3,2,1]}" />
+                                    <!-- <c:set var="ratings" value="${[5,4,3,2,1]}" /> -->
+                                    <c:set var="ratings" value="${fn:split('5,4,3,2,1', ',')}" />
                                     <c:forEach var="i" items="${ratings}">
                                         <li>
                                             <span>${i} stars -
@@ -588,28 +589,30 @@
                         </div>
                         <!-- 별점 통계 끝 -->
 
-                        <!-- 리뷰 리스트 -->
+                        <!-- 리뷰 리스트 (최대 5개 까지 노출) -->
                         <div class="col-lg-8 col-12">
                             <div class="single-block">
                                 <div class="reviews">
                                     <h4 class="title">Latest Reviews</h4>   
-                                    <c:forEach var="review" items="${reviews}">
-                                        <div class="single-review">
-                                            <img src="assets/images/blog/comment1.jpg" alt="#">
-                                            <div class="review-info">
-                                                <h4>${review.title}
-                                                    <span>by ${review.customerId}</span>
-                                                </h4>
-                                                <ul class="stars">
-                                                    <c:forEach var="i" begin="1" end="5">
-                                                        <li>
-                                                            <i class="lni ${i <= review.rating ? 'lni-star-filled' : 'lni-star'}"></i>
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                                <p>${review.content}</p>
+                                    <c:forEach var="review" items="${reviews}" varStatus="status">
+                                        <c:if test="${status.index < 5}">
+                                            <div class="single-review">
+                                                <img src="assets/images/blog/comment1.jpg" alt="#">
+                                                <div class="review-info">
+                                                    <h4>${review.title}
+                                                        <span>by ${review.customerName}</span>
+                                                    </h4>
+                                                    <ul class="stars">
+                                                        <c:forEach var="i" begin="1" end="5">
+                                                            <li>
+                                                                <i class="lni ${i <= review.rating ? 'lni-star-filled' : 'lni-star'}"></i>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                    <p>${review.content}</p>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </c:if>
                                     </c:forEach>
                                 </div>
                             </div>

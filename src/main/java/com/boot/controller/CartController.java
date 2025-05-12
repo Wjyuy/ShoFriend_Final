@@ -45,7 +45,7 @@ public class CartController {
 	@RequestMapping(value = "/addToCart", method = RequestMethod.POST)
 	public String addToCart(@RequestParam("product_id") int product_id,
 							@RequestParam("product_title") String product_title,
-							@RequestParam("price") int price,
+							@RequestParam("product_price") int product_price,
 							@RequestParam("quantity") int quantity,
 							HttpSession session,
 							RedirectAttributes redirectAttributes) {
@@ -66,7 +66,7 @@ public class CartController {
 	    param.put("user_id", customer.getId());
 	    param.put("product_id", product_id);
 	    param.put("product_title", product_title);
-	    param.put("price", price);
+	    param.put("price", product_price);
 	    param.put("quantity", quantity);
 		service.addToCart(param);
 		return "redirect:cart_view";

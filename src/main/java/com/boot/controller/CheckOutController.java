@@ -41,7 +41,7 @@ public class CheckOutController {
 	private CheckOutService checkoutService;
 	
 	@RequestMapping("/checkout")
-	public String checkout(Model model,@RequestParam("contentId") int product_id,@RequestParam("quantity") int quantity,HttpSession session,RedirectAttributes redirectAttributes) {
+	public String checkout(Model model,@RequestParam("product_id") int product_id,@RequestParam("quantity") int quantity,HttpSession session,RedirectAttributes redirectAttributes) {
 		log.info("checkout()");
 		log.info("product_id=>"+product_id);
 		log.info("quantity=>"+quantity);

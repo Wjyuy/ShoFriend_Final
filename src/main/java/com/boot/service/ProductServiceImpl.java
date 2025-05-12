@@ -196,9 +196,13 @@ public class ProductServiceImpl implements ProductService{
 		return dao.findTopDiscountProductNearExpiration();
 	}
 	
+//	@Override
+//	public List<ProductDTO> getAllProductsPaging(int limit, int offset) {	// 상품 리스트 페이징
+//		return productDAO.getAllProductsPaging(limit, offset);
+//	}
 	@Override
-	public List<ProductDTO> getAllProductsPaging(int limit, int offset) {	// 상품 리스트 페이징
-		return productDAO.getAllProductsPaging(limit, offset);
+	public List<ProductDTO> getAllProductsSorted(int limit, int offset, String sort) {
+		return productDAO.getAllProductsSorted(limit, offset, sort);
 	}
 
 	@Override
@@ -206,10 +210,15 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.countAllProducts();
 	}
 
+
 	
+//	@Override
+//	public List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset) {	// 카테고리별 상품 리스트 페이징
+//		return productDAO.getProductsByCategoryPaging(categoryId, limit, offset);
+//	}
 	@Override
-	public List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset) {	// 카테고리별 상품 리스트 페이징
-		return productDAO.getProductsByCategoryPaging(categoryId, limit, offset);
+	public List<ProductDTO> getProductsByCategorySorted(int categoryId, int limit, int offset, String sort) {
+		return productDAO.getProductsByCategorySorted(categoryId, limit, offset, sort);
 	}
 
 	@Override

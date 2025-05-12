@@ -73,11 +73,28 @@
 	
 	
 	<!-- 전체 상품 리스트 페이징 / 25.05.12 권준우 -->
-	<select id="getAllProductsPaging" resultType="com.boot.dto.ProductDTO">
-		SELECT * FROM product
-		ORDER BY id DESC
+	<select id="getAllProductsSorted" resultType="com.boot.dto.ProductDTO">
+		SELECT *
+		FROM product
+		<choose>
+			<when test="sort == 'priceAsc'">
+				ORDER BY price ASC
+			</when>
+			<when test="sort == 'priceDesc'">
+				ORDER BY price DESC
+			</when>
+			<otherwise>
+				ORDER BY recommend DESC
+			</otherwise>
+		</choose>
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
+	
+<!--	<select id="getAllProductsPaging" resultType="com.boot.dto.ProductDTO">-->
+<!--		SELECT * FROM product-->
+<!--		ORDER BY id DESC-->
+<!--		LIMIT #{limit} OFFSET #{offset}-->
+<!--	</select>-->
 	
 	<!-- 총 상품 개수 / 25.05.12 권준우 -->
 	<select id="countAllProducts" resultType="int">
@@ -86,13 +103,31 @@
 
 	
 	<!-- 카테고리별 상품 리스트 페이징 / 25.05.12 권준우 -->
-	<select id="getProductsByCategoryPaging" resultType="com.boot.dto.ProductDTO">
+	<select id="getProductsByCategorySorted" resultType="com.boot.dto.ProductDTO">
 		SELECT *
 		FROM product
 		WHERE category_id = #{categoryId}
-		ORDER BY id DESC
+		<choose>
+			<when test="sort == 'priceAsc'">
+				ORDER BY price ASC
+			</when>
+			<when test="sort == 'priceDesc'">
+				ORDER BY price DESC
+			</when>
+			<otherwise>
+				ORDER BY recommend DESC
+			</otherwise>
+		</choose>
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
+
+<!--	<select id="getProductsByCategoryPaging" resultType="com.boot.dto.ProductDTO">-->
+<!--		SELECT *-->
+<!--		FROM product-->
+<!--		WHERE category_id = #{categoryId}-->
+<!--		ORDER BY id DESC-->
+<!--		LIMIT #{limit} OFFSET #{offset}-->
+<!--	</select>-->
 	
 	<!-- 카테고리별 총 상품 개수 / 25.05.12 권준우 -->
 	<select id="countProductsByCategory" resultType="int">

@@ -529,16 +529,19 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-7 col-md-8 col-12">
                                     <div class="product-sorting">
-                                        <label for="sorting">Sort by:</label>
-                                        <select class="form-control" id="sorting">
-                                            <option>Popularity</option>
-                                            <option>Low - High Price</option>
-                                            <option>High - Low Price</option>
-                                            <option>Average Rating</option>
-                                            <option>A - Z Order</option>
-                                            <option>Z - A Order</option>
-                                        </select>
-                                        <h3 class="total-show-product">Showing: <span>1 - 12 items</span></h3>
+                                        <!-- <label for="sorting">Sort by:</label> -->
+                                        <form method="get" action="/category" style="display: inline;">
+                                            <input type="hidden" name="categoryId" value="${categoryId}" />
+                                            <input type="hidden" name="page" value="${currentPage}" />
+                                            <label for="sort">Sort by:</label>
+                                            <!-- <select class="form-control" id="sorting"></select> -->
+                                            <select class="form-control" name="sort" id="sorting" onchange="this.form.submit()">
+                                                <option value="recommend" ${param.sort == 'recommend' ? 'selected' : ''}>추천순</option>
+                                                <option value="priceDesc" ${param.sort == 'priceDesc' ? 'selected' : ''}>가격 높은 순</option>
+                                                <option value="priceAsc" ${param.sort == 'priceAsc' ? 'selected' : ''}>가격 낮은 순</option>
+                                            </select>
+                                        </form>
+                                        <!-- <h3 class="total-show-product">Showing: <span>1 - 12 items(미구현)</span></h3> -->
                                     </div>
                                 </div>
                                 <!-- 정렬 분류 버튼 없앰 -->

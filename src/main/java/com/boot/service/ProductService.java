@@ -32,10 +32,12 @@ public interface ProductService {
     void decreaseStock(int productId, int quantity);
     public List<ProductDTO> getPopularProducts();
     public ProductDTO findTopDiscountProductNearExpiration();
-  
-    List<ProductDTO> getAllProductsPaging(int limit, int offset);	// 상품 리스트 페이징
+
+//    List<ProductDTO> getAllProductsPaging(int limit, int offset);	// 상품 리스트 페이징
+    List<ProductDTO> getAllProductsSorted(int limit, int offset, String sort);
     int countAllProducts();	// 총 상품 개수
-    List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset);	// 카테고리별 상품 리스트 페이징
+//    List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset);	// 카테고리별 상품 리스트 페이징
+    List<ProductDTO> getProductsByCategorySorted(int categoryId, int limit, int offset, String sort);
     int countProductsByCategory(int categoryId);	// 카테고리별 총 상품 개수
 
 }

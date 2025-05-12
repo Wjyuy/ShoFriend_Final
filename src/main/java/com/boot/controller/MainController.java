@@ -73,7 +73,7 @@ public class MainController {
 		for (ProductDTO product : popularlist) {
 			int productId = product.getId();
 			Double avg = reviewService.getAverageRating(productId);
-			int count = reviewService.getReviews(productId).size(); // 또는 별도 count 쿼리 써도 됨
+			int count = reviewService.getReviews(productId).size();
 
 			avgRatings.put(productId, avg != null ? avg : 0.0);
 			reviewCounts.put(productId, count);
@@ -114,6 +114,7 @@ public class MainController {
 	@RequestMapping("/category")
 	public String category(@RequestParam(name = "categoryId", required = false) Integer categoryId,
 							@RequestParam(name = "page", defaultValue = "1") int page,
+							@RequestParam(name = "sort", defaultValue = "recommend") String sort,
 							Model model) {
 		log.info("category()");
 		
@@ -131,7 +132,7 @@ public class MainController {
 //		List<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
 		
-// 25.05.12 권준우 category&paging 처리 list
+// 		category&paging 처리 list - 25.05.12 권준우
 		int pageSize = 30;
 		int offset = (page - 1) * pageSize;
 		
@@ -139,27 +140,26 @@ public class MainController {
 		int totalCount;
 
 		if (categoryId != null) {
-			// 카테고리별 상품 조회
-			list = productService.getProductsByCategoryPaging(categoryId, pageSize, offset);
+			list = productService.getProductsByCategorySorted(categoryId, pageSize, offset, sort);
 			totalCount = productService.countProductsByCategory(categoryId);
 		} else {
-			// 전체 상품 조회
-			list = productService.getAllProductsPaging(pageSize, offset);
+			list = productService.getAllProductsSorted(pageSize, offset, sort);
 			totalCount = productService.countAllProducts();
 		}
 
 		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
-
 //		List<CategoryDTO> categoryList = categoryService.getAllCategories();
 
-//		model.addAttribute("categorylist", categoryList);
 		model.addAttribute("list", list);
+//		model.addAttribute("categorylist", categoryList);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("categoryId", categoryId);
+		model.addAttribute("sort", sort); // 선택 유지용
 		
 		return ("category");
 	}
+	
 	
 	@RequestMapping("/product_insert")
 	public String productInsert(HttpSession session, Model model,RedirectAttributes redirectAttributes) {
@@ -177,7 +177,7 @@ public class MainController {
 
 	    return "product_insert";
 	}
-
+	
 	
 	@RequestMapping("/product_modify")
 	public String product_modify(@RequestParam("id") int product_id,Model model,HttpSession session,RedirectAttributes redirectAttributes) {

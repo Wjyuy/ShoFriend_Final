@@ -501,11 +501,42 @@
 <!--                                <button type="button" onclick="goToPay()">바로 구매하기</button>-->
 <!--                            </form>-->
                             <script>
-                                function goToPay() {
-                                    const form = document.getElementById('orderForm');
-                                    form.action = '/pay/checkout';
-                                    form.submit();
-                                }
+								
+<!--								단품용-->
+<!--                                function goToPay() {-->
+<!--                                    const form = document.getElementById('orderForm');-->
+<!--                                    form.action = '/pay/checkout';-->
+<!--                                    form.submit();-->
+<!--                                }-->
+								function goToPay() {
+								    const form = document.getElementById('orderForm');
+								    const productId = form.querySelector('input[name="product_id"]').value;
+								    const quantity = form.querySelector('input[name="quantity"]').value;
+
+									console.log("productId"+productId);
+									console.log("quantity"+quantity);
+									
+								    // 새로운 폼을 생성하여 POST 방식으로 /checkout URL로 데이터를 전송
+								    const goToPayForm = document.createElement('form');
+								    goToPayForm.action = '/pay/checkout';
+
+								    const productIdInput = document.createElement('input');
+								    productIdInput.type = 'hidden';
+								    productIdInput.name = 'product_id[]';
+								    productIdInput.value = productId;
+								    goToPayForm.appendChild(productIdInput);
+
+								    const quantityInput = document.createElement('input');
+								    quantityInput.type = 'hidden';
+								    quantityInput.name = 'quantity[]';
+								    quantityInput.value = quantity;
+								    goToPayForm.appendChild(quantityInput);
+
+								    document.body.appendChild(goToPayForm);
+								    goToPayForm.submit();
+								}
+
+								// (기존 장바구니 담기 관련 JavaScript 코드는 그대로 유지)
                             </script>
                         </div>
                     </div>

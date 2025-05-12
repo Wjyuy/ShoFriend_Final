@@ -1,5 +1,7 @@
 package com.boot.controller;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,66 +97,77 @@ public class CartController {
 	}
 	
 	@PostMapping("/cartAction")
-	public String handleCartAction(@RequestParam("selectedIds") List<Integer> selectedIds,
-	                             @RequestParam("submitType") String submitType,
-	                             HttpServletRequest request, // 수량 정보를 받기 위해 HttpServletRequest 사용
-	                             HttpSession session,
-	                             RedirectAttributes redirectAttributes) {
-		log.info("@# cartAction()");
-	    CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
-	    if (customer == null) {
-	        redirectAttributes.addFlashAttribute("msg", "로그인 후 이용해 주세요");
-	        return "redirect:/log/login";
-	    }
+    public String handleCartAction(@RequestParam("selectedIds") List<Integer> selectedIds,
+                                 @RequestParam("submitType") String submitType,
+                                 HttpServletRequest request,
+                                 HttpSession session,
+                                 RedirectAttributes redirectAttributes) {
+        CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (customer == null) {
+            redirectAttributes.addFlashAttribute("msg", "로그인 후 이용해 주세요");
+            return "redirect:/log/login";
+        }
 
-	    if (selectedIds == null || selectedIds.isEmpty()) {
-	        redirectAttributes.addFlashAttribute("msg", "선택된 항목이 없습니다.");
-	        return "redirect:/cart_view";
-	    }
+        if (selectedIds == null || selectedIds.isEmpty()) {
+            redirectAttributes.addFlashAttribute("msg", "선택된 항목이 없습니다.");
+            return "redirect:/cart_view";
+        }
 
-	    if (submitType.equals("order")) {
-	    	log.info("@# order()");
-	    	log.info("@# delete()selectedIds=>"+selectedIds);
-	    	List<Integer> productIds = new ArrayList<>();
-	        List<Integer> quantities = new ArrayList<>();
+        if (submitType.equals("order")) {
+            StringBuilder redirectURL = new StringBuilder("/pay/checkout?");
+            List<Integer> productIdsList = new ArrayList<>();
+            List<Integer> quantitiesList = new ArrayList<>();
 
-	    	List<OrderItemDTO> orderItems = new ArrayList<>();
-	        int userId = customer.getId(); // 현재 로그인한 사용자 ID
-	        List<CartDTO> cartItems = service.getCartItemsByIds(selectedIds, userId); // 선택된 CartItem 정보 조회
-	        log.info("@# cartItems=>"+cartItems);
-	        
+            int userId = customer.getId();
+            List<CartDTO> cartItems = service.getCartItemsByIds(selectedIds, userId);
 
-	        for (CartDTO cartItem : cartItems) {
-	            String quantityParamName = "cart_quantity_" + cartItem.getId();
-	            String quantityStr = request.getParameter(quantityParamName);
-	            if (quantityStr != null && !quantityStr.isEmpty()) {
-	                try {
-	                    int quantity = Integer.parseInt(quantityStr);
-	                    productIds.add(cartItem.getProduct_id());
-	                    quantities.add(quantity);
-	                } catch (NumberFormatException e) {
-	                    redirectAttributes.addFlashAttribute("msg", "잘못된 수량 정보가 있습니다.");
-	                    return "redirect:/cart_view";
-	                }
-	            }
-	        }
-	        
-	        for (Integer productId : productIds) {
-	            redirectAttributes.addAttribute("product_id[]", productId);
-	        }
-	        for (Integer quantity : quantities) {
-	            redirectAttributes.addAttribute("quantity[]", quantity);
-	        }
-	        
-	        return "redirect:/pay/checkout"; // 결제 페이지로 리다이렉트
-	        
-	    } else if (submitType.equals("delete")) {
-	    	log.info("@# delete()selectedIds=>"+selectedIds);
-	        service.deleteSelectedItems(selectedIds, customer.getId());
-	        redirectAttributes.addFlashAttribute("msg", "선택된 항목이 삭제되었습니다.");
-	    }
-	    return "redirect:/cart_view";
-	}
+            for (CartDTO cartItem : cartItems) {
+                String quantityParamName = "cart_quantity_" + cartItem.getId();
+                String quantityStr = request.getParameter(quantityParamName);
+                if (quantityStr != null && !quantityStr.isEmpty()) {
+                    try {
+                        int quantity = Integer.parseInt(quantityStr);
+                        productIdsList.add(cartItem.getProduct_id());
+                        quantitiesList.add(quantity);
+                    } catch (NumberFormatException e) {
+                        redirectAttributes.addFlashAttribute("msg", "잘못된 수량 정보가 있습니다.");
+                        return "redirect:/cart_view"; // 에러 발생 시 바로 리턴
+                    }
+                } else {
+                    redirectAttributes.addFlashAttribute("msg", "수량 정보가 없습니다.");
+                    return "redirect:/cart_view";
+                }
+            }
+            session.setAttribute("selectedIdsToDelete", selectedIds);
+            
+            try { // productIdsList, quantitiesList  확정 후 urlencode
+                for (int i = 0; i < productIdsList.size(); i++) {
+                    redirectURL.append(URLEncoder.encode("product_id[]", StandardCharsets.UTF_8)).append("=")
+                            .append(URLEncoder.encode(String.valueOf(productIdsList.get(i)), StandardCharsets.UTF_8)).append("&");
+                    redirectURL.append(URLEncoder.encode("quantity[]", StandardCharsets.UTF_8)).append("=")
+                            .append(URLEncoder.encode(String.valueOf(quantitiesList.get(i)), StandardCharsets.UTF_8)).append("&");
+                }
+
+                // 마지막 '&' 제거
+                if (redirectURL.length() > "/pay/checkout?".length()) {
+                    redirectURL.deleteCharAt(redirectURL.length() - 1);
+                }
+
+                return "redirect:" + redirectURL.toString();
+
+            } catch (Exception e) {
+                // URL 인코딩 실패 시 예외 처리
+                redirectAttributes.addFlashAttribute("msg", "주문 처리 중 오류가 발생했습니다.");
+                return "redirect:/cart_view";
+            }
+
+        } else if (submitType.equals("delete")) {
+            service.deleteSelectedItems(selectedIds, customer.getId());
+            redirectAttributes.addFlashAttribute("msg", "선택된 항목이 삭제되었습니다.");
+        }
+        return "redirect:/cart_view";
+    }
+
 	//원래장바구니코드
 //	@PostMapping("/cartAction")
 //	public String handleCartAction(@RequestParam("selectedIds") List<Integer> selectedIds

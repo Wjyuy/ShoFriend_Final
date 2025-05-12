@@ -151,6 +151,29 @@
 	            }
 	        }).open();
 	    }
+		
+		document.addEventListener('DOMContentLoaded', function() {
+		    const deliveryMemoSelect = document.getElementById('delivery_memo_select');
+		    const directInputContainer = document.getElementById('direct_input_container');
+		    const deliveryMemoDirectInput = document.getElementById('delivery_memo_direct');
+		    const deliveryMemoHiddenInput = document.getElementById('delivery_memo');
+
+		    deliveryMemoSelect.addEventListener('change', function() {
+		        const selectedValue = this.value;
+
+		        if (selectedValue === 'direct_input') {
+		            directInputContainer.style.display = 'block';
+		            deliveryMemoHiddenInput.value = deliveryMemoDirectInput.value; // 초기 값 동기화
+		        } else {
+		            directInputContainer.style.display = 'none';
+		            deliveryMemoHiddenInput.value = selectedValue;
+		        }
+		    });
+
+		    deliveryMemoDirectInput.addEventListener('input', function() {
+		        deliveryMemoHiddenInput.value = this.value;
+		    });
+		});
 	</script>
 </head>
 
@@ -562,9 +585,22 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 col-md-6 col-12">
 									<div>
-							            <label for="delivery_memo">배송 메시지:</label>
-							            <input type="text" id="delivery_memo" name="delivery_memo" class="form-control">
-							        </div>
+									    <label for="delivery_memo_select">배송 메시지:</label>
+									    <div class="form-group">
+									        <select class="form-control" id="delivery_memo_select" name="delivery_memo_select">
+									            <option value="">선택해주세요</option>
+									            <option value="배송시 연락 주세요.">배송시 연락 주세요.</option>
+									            <option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
+									            <option value="집 앞에 둬주세요.">집 앞에 둬주세요.</option>
+									            <option value="direct_input">직접 입력하기</option>
+									        </select>
+									    </div>
+									    <div id="direct_input_container" style="display: none;">
+									        <label for="delivery_memo_direct">직접 입력:</label>
+									        <input type="text" id="delivery_memo_direct" name="delivery_memo_direct" class="form-control">
+									    </div>
+									    <input type="hidden" id="delivery_memo" name="delivery_memo" value="">
+									</div>
                                 </div>
                             </div>
                         </div>

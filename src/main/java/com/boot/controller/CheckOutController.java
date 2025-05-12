@@ -136,6 +136,9 @@ public class CheckOutController {
             orderDTO.setDelivery_zipcode((String) session.getAttribute("deliveryZipcode"));
             orderDTO.setDelivery_address((String) session.getAttribute("deliveryAddress"));
             orderDTO.setDelivery_memo((String) session.getAttribute("deliveryMemo"));
+            orderDTO.setPayment_method("카카오페이");
+            orderDTO.setPayment_status("결제완료");
+            orderDTO.setPosted(0);
 
             OrderItemDTO orderItemDTO = new OrderItemDTO();
             orderItemDTO.setProduct_id((Integer) session.getAttribute("productId"));

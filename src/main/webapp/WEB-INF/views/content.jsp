@@ -454,7 +454,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To
+                                            <button class="btn" type="button"><i class="lni lni-heart"></i> To
                                                 Wishlist</button>
                                         </div>
                                     </div>
@@ -462,7 +462,7 @@
                                     <!-- 공유 버튼 영역 -->
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="wish-button">
-                                            <button class="btn w-100" onclick="toggleFriendShare()">
+                                            <button class="btn w-100" type="button" onclick="toggleFriendShare()">
                                                 <i class="lni lni-share-alt"></i> 친구에게 공유
                                             </button>
                                         </div>
@@ -478,7 +478,7 @@
                                                         (${friend.email})</option>
                                                 </c:forEach>
                                             </select>
-                                            <button onclick="shareProduct()"
+                                            <button onclick="shareProduct()" type="button"
                                                 class="btn btn-primary">공유하기</button>
                                         </div>
                                     </div>

@@ -17,4 +17,6 @@ public class ReviewDTO {
 	private String content;
 	private int rating;
 	private Timestamp createdAt;
+	
+	private String customerName; // 리뷰 작성자 이름 
 }

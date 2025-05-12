@@ -433,7 +433,8 @@
     </div>
     <!-- End Breadcrumbs -->
 
-    <!-- Start Account Register Area -->
+
+<!--     Start Account Register Area -->
     <div class="account-login section">
         <div class="container">
             <div class="row">
@@ -491,7 +492,7 @@
 <!--                                <button class="btn" onclick="check_ok()" type="button">등록</button>-->
                                 <button class="btn" onclick="check_ok()" type="submit">등록</button>
                             </div>
-                            <p class="outer-link"><a href="log/login">Login Now</a>
+                            <p class="outer-link"><a href="login">Login Now</a>
                             </p>
                         </form>
                     </div>
@@ -499,7 +500,8 @@
             </div>
         </div>
     </div>
-    <!-- End Account Register Area -->
+<!--     End Account Register Area -->
+
 
 	 <!-- Start Footer Area -->
 	    <footer class="footer">

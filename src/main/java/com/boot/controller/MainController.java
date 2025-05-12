@@ -113,6 +113,7 @@ public class MainController {
 	}
 	@RequestMapping("/category")
 	public String category(@RequestParam(name = "categoryId", required = false) Integer categoryId,
+							@RequestParam(name = "keyword", required = false) String keyword,
 							@RequestParam(name = "page", defaultValue = "1") int page,
 							@RequestParam(name = "sort", defaultValue = "recommend") String sort,
 							Model model) {
@@ -120,7 +121,6 @@ public class MainController {
 		
 		List<ProductDTO> popularlist= productService.getPopularProducts();
 		model.addAttribute("popularlist", popularlist);
-		
 		
 		ArrayList<ProductDTO> flashlist = productService.selectFlashSaleItems();
 		model.addAttribute("flashlist", flashlist);
@@ -138,20 +138,35 @@ public class MainController {
 		
 		List<ProductDTO> list;
 		int totalCount;
-
-		if (categoryId != null) {
-			list = productService.getProductsByCategorySorted(categoryId, pageSize, offset, sort);
-			totalCount = productService.countProductsByCategory(categoryId);
+		
+		if (keyword != null && !keyword.isEmpty()) {
+			// 검색 모드
+			if (categoryId != null) {
+				list = productService.searchProductsByCategory(categoryId, keyword, pageSize, offset, sort);
+				totalCount = productService.countSearchedProductsByCategory(categoryId, keyword);
+			} else {
+				list = productService.searchAllProducts(keyword, pageSize, offset, sort);
+				totalCount = productService.countAllSearchedProducts(keyword);
+			}
+			
 		} else {
-			list = productService.getAllProductsSorted(pageSize, offset, sort);
-			totalCount = productService.countAllProducts();
+			// 검색 X
+			if (categoryId != null) {
+				list = productService.getProductsByCategorySorted(categoryId, pageSize, offset, sort);
+				totalCount = productService.countProductsByCategory(categoryId);
+			} else {
+				list = productService.getAllProductsSorted(pageSize, offset, sort);
+				totalCount = productService.countAllProducts();
+			}			
 		}
 
 		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
-//		List<CategoryDTO> categoryList = categoryService.getAllCategories();
+		List<CategoryDTO> categoryList = productService.getAllCategories();
+		Map<Integer, Integer> categoryCounts = productService.countProductsByAllCategories();
 
 		model.addAttribute("list", list);
-//		model.addAttribute("categorylist", categoryList);
+		model.addAttribute("categorylist", categoryList);
+		model.addAttribute("categoryCounts", categoryCounts);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("categoryId", categoryId);
@@ -266,6 +281,9 @@ public class MainController {
 		model.addAttribute("ratingCounts", ratingCounts);
 		model.addAttribute("averageRating", averageRating);
 
+		// 상품 클릭 시 추천 + 1
+		productService.addRecommend(product_id, 1);
+		
 		return "content";
 	}
 	    

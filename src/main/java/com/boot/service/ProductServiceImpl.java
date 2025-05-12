@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
@@ -195,13 +196,18 @@ public class ProductServiceImpl implements ProductService{
 		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
 		return dao.findTopDiscountProductNearExpiration();
 	}
-	
-//	@Override
-//	public List<ProductDTO> getAllProductsPaging(int limit, int offset) {	// 상품 리스트 페이징
-//		return productDAO.getAllProductsPaging(limit, offset);
-//	}
+
 	@Override
-	public List<ProductDTO> getAllProductsSorted(int limit, int offset, String sort) {
+	public void addRecommend(int productId, int recommendCount) {
+		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
+		Map<String, Object> param = new HashMap<>();
+        param.put("productId", productId);
+        param.put("recommendCount", recommendCount);
+        dao.addRecommend(param);
+	}	
+	
+	@Override
+	public List<ProductDTO> getAllProductsSorted(int limit, int offset, String sort) {	// 상품 리스트 페이징&분류
 		return productDAO.getAllProductsSorted(limit, offset, sort);
 	}
 
@@ -209,15 +215,9 @@ public class ProductServiceImpl implements ProductService{
 	public int countAllProducts() {	// 총 상품 개수
 		return productDAO.countAllProducts();
 	}
-
-
 	
-//	@Override
-//	public List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset) {	// 카테고리별 상품 리스트 페이징
-//		return productDAO.getProductsByCategoryPaging(categoryId, limit, offset);
-//	}
 	@Override
-	public List<ProductDTO> getProductsByCategorySorted(int categoryId, int limit, int offset, String sort) {
+	public List<ProductDTO> getProductsByCategorySorted(int categoryId, int limit, int offset, String sort) {	// 카테고리별 상품 리스트 페이징&분류
 		return productDAO.getProductsByCategorySorted(categoryId, limit, offset, sort);
 	}
 
@@ -225,6 +225,42 @@ public class ProductServiceImpl implements ProductService{
 	public int countProductsByCategory(int categoryId) {	// 카테고리별 총 상품 개수
 		return productDAO.countProductsByCategory(categoryId);
 	}
+	
+	@Override
+	public List<ProductDTO> searchAllProducts(String keyword, int limit, int offset, String sort) {	// 검색시 상품 리스트 페이징&분류
+		return productDAO.searchAllProducts(keyword, limit, offset, sort);
+	}
+	
+	@Override
+	public int countAllSearchedProducts(String keyword) {	// 검색시 총 상품 개수
+		return productDAO.countAllSearchedProducts(keyword);
+	}
+	
+	@Override
+	public List<ProductDTO> searchProductsByCategory(int categoryId, String keyword, int limit, int offset, String sort) {	// 검색시 카테고리별 상품 리스트 페이징&분류
+		return productDAO.searchProductsByCategory(categoryId, keyword, limit, offset, sort);
+	}
 
+	@Override
+	public int countSearchedProductsByCategory(int categoryId, String keyword) {	// 검색시 카테고리별 총 상품 개수
+		return productDAO.countSearchedProductsByCategory(categoryId, keyword);
+	}
+
+	@Override
+	public List<CategoryDTO> getAllCategories() {	// 카테고리 목록
+		return productDAO.getAllCategories();
+	}
+
+	@Override
+	public Map<Integer, Integer> countProductsByAllCategories() {
+		List<Map<String, Object>> rawList = productDAO.countProductsByAllCategories();
+		Map<Integer, Integer> result = new HashMap<>();
+		for (Map<String, Object> row : rawList) {
+			Integer categoryId = (Integer) row.get("category_id");
+			Long count = (Long) row.get("count");
+			result.put(categoryId, count.intValue());
+		}
+		return result;
+	}
 
 }

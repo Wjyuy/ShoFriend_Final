@@ -71,6 +71,11 @@
 	    SELECT * FROM product ORDER BY recommend DESC LIMIT 8
     </select>
 	
+	<update id="addRecommend" parameterType="java.util.Map">
+	    UPDATE product
+	    SET recommend = recommend + #{recommendCount}
+	    WHERE id = #{productId}
+	</update>
 	
 	<!-- 전체 상품 리스트 페이징 / 25.05.12 권준우 -->
 	<select id="getAllProductsSorted" resultType="com.boot.dto.ProductDTO">
@@ -134,6 +139,71 @@
 		SELECT COUNT(*)
 		FROM product
 		WHERE category_id = #{categoryId}
+	</select>
+	
+	
+	<select id="countProductsByAllCategories" resultType="map">
+		SELECT category_id, COUNT(*) AS count
+		FROM product
+		GROUP BY category_id
+	</select>
+	
+	<select id="getAllCategories" resultType="com.boot.dto.CategoryDTO">
+		SELECT * FROM category ORDER BY id ASC
+	</select>
+	
+	
+	<!-- 카테고리별 키워드 검색 -->
+	<select id="searchProductsByCategory" resultType="com.boot.dto.ProductDTO">
+		SELECT *
+		FROM product
+		WHERE category_id = #{categoryId}
+		  AND title LIKE CONCAT('%', #{keyword}, '%')
+		<choose>
+			<when test="sort == 'priceAsc'">
+				ORDER BY price ASC
+			</when>
+			<when test="sort == 'priceDesc'">
+				ORDER BY price DESC
+			</when>
+			<otherwise>
+				ORDER BY recommend DESC
+			</otherwise>
+		</choose>
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+	
+	<select id="countSearchedProductsByCategory" resultType="int">
+		SELECT COUNT(*)
+		FROM product
+		WHERE category_id = #{categoryId}
+		  AND title LIKE CONCAT('%', #{keyword}, '%')
+	</select>
+
+
+	<!-- 전체 상품 키워드 검색 -->
+	<select id="searchAllProducts" resultType="com.boot.dto.ProductDTO">
+		SELECT *
+		FROM product
+		WHERE title LIKE CONCAT('%', #{keyword}, '%')
+		<choose>
+			<when test="sort == 'priceAsc'">
+				ORDER BY price ASC
+			</when>
+			<when test="sort == 'priceDesc'">
+				ORDER BY price DESC
+			</when>
+			<otherwise>
+				ORDER BY recommend DESC
+			</otherwise>
+		</choose>
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+	
+	<select id="countAllSearchedProducts" resultType="int">
+		SELECT COUNT(*)
+		FROM product
+		WHERE title LIKE CONCAT('%', #{keyword}, '%')
 	</select>
 	
 </mapper>

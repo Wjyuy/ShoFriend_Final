@@ -267,7 +267,7 @@ public class MainController {
 		model.addAttribute("averageRating", averageRating);
 
 		// 상품 클릭 시 추천 + 1
-		service.addRecommend(product_id, 1);
+		productService.addRecommend(product_id, 1);
 		
 		return "content";
 	}

@@ -29,12 +29,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.boot.dto.CartDTO;
 import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.ProductDTO;
 import com.boot.dto.ReviewDTO;
 import com.boot.dto.SellerDTO;
 import com.boot.dto.StoreDTO;
+import com.boot.service.CartService;
 import com.boot.service.FriendService;
 import com.boot.service.ProductService;
 import com.boot.service.ReviewService;
@@ -60,6 +62,8 @@ public class MainController {
 	private FriendService friendService;
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private CartService cartService;
 	
 	// 25.05.12 권준우 수정(인기 상품 목록에 별점 정보 가져와서 노출되도록 추가)
 	@RequestMapping("/main")
@@ -95,11 +99,14 @@ public class MainController {
 		ProductDTO TopDiscountProduct = productService.findTopDiscountProductNearExpiration();
 		model.addAttribute("TopDiscountProduct", TopDiscountProduct);
 		
+		//로그인인 경우 친구추천상품, 장바구니 출력함
 		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
         if (loginCustomer != null) {
             int currentCustomerId = loginCustomer.getId();
             List<Map<String, Object>> friendRecentOrders = friendService.getFriendRecentOrders(currentCustomerId);
-
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+            
             if (!friendRecentOrders.isEmpty()) {
                 Map<String, Object> latestFriendOrder = friendRecentOrders.get(0);
                 int productId = (int) latestFriendOrder.get("product_id");
@@ -108,6 +115,7 @@ public class MainController {
                 model.addAttribute("friendOrderProduct", friendOrderProduct);
             }
         }
+        
 		
 		return ("main");
 	}

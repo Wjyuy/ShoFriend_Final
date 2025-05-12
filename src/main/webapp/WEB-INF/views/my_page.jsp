@@ -379,7 +379,7 @@
 								</div>
 								<br>
 								<div class="button cart-button">
-									<button class="btn" style="width: 100%;" onclick="location.href='#'">점포 관리</button>
+									<button class="btn" style="width: 100%;" onclick="location.href='store_list'">점포 관리</button>
 								</div>
 								<br>
 								<div class="button cart-button">

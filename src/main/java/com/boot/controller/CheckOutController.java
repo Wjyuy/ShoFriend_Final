@@ -23,6 +23,7 @@ import com.boot.dto.OrdersDTO;
 import com.boot.dto.ProductDTO;
 import com.boot.service.CartService;
 import com.boot.service.CheckOutService;
+import com.boot.service.FriendService;
 import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -263,6 +264,8 @@ public class CheckOutController {
 	        } else {
 	        	log.warn("삭제할 장바구니 아이템 ID가 없습니다.");
 	        }
+	        
+	        
 	        session.removeAttribute("partnerOrderId");
 	        session.removeAttribute("partnerUserId");
 	        session.removeAttribute("totalPrice");

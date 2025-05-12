@@ -357,22 +357,27 @@
                     <div class="slider-head">
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
+							
                             <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
-                                <div class="content">
-                                    <h2><span>친구가 구매한 상품이에요(만들예정)</span>
-                                        M75 Sport Watch
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
+							<c:if test="${sessionScope.userType == 'customer'}">
+	                            <div class="single-slider"
+	                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
+	                                <div class="content">
+	                                    <h2><span>최근 친구가 구매한 상품이에요</span>
+	                                        ${friendOrderProduct.title}
+	                                    </h2>
+	                                    <p>${friendOrderProduct.description}</p>
+										<c:set var="now" value="<%= new java.util.Date() %>" />
+										<h3>
+											<fmt:formatNumber value="${friendOrderProduct.price - (friendOrderProduct.price * friendOrderProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
+	                                    <div class="button">
+	                                        <a href="content?id=${friendOrderProduct.id}" class="btn">Shop Now</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+							</c:if>
                             <!-- End Single Slider -->
+							
                             <!-- Start Single Slider -->
                             <div class="single-slider"
                                 style="background-image: url(assets/images/hero/slider-bg2.jpg);">
@@ -382,7 +387,7 @@
                                     </h2>
                                     <p>${TopDiscountProduct.discount_percentage}% 할인된 가격! ${TopDiscountProduct.description}</p>
 									<c:set var="now" value="<%= new java.util.Date() %>" />
-                                    <h3><span>Now Only : </span>
+                                    <h3>
 										<fmt:formatNumber value="${TopDiscountProduct.price - (TopDiscountProduct.price * TopDiscountProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
                                     <div class="button">
                                         <a href="content?id=${TopDiscountProduct.id}" class="btn">Shop Now</a>
@@ -390,6 +395,23 @@
                                 </div>
                             </div>
                             <!-- End Single Slider -->
+							<c:forEach var="flashlist" items="${flashlist}">
+								<div class="single-slider"
+	                                style="background-image: url(assets/images/hero/slider-bg2.jpg);">
+	                                <div class="content">
+	                                    <h2><span>오늘까지 할인상품!</span>
+	                                        ${flashlist.title}
+	                                    </h2>
+	                                    <p>${flashlist.discount_percentage}% 할인된 가격! ${flashlist.description}</p>
+										<c:set var="now" value="<%= new java.util.Date() %>" />
+	                                    <h3>
+											<fmt:formatNumber value="${flashlist.price - (flashlist.price * flashlist.discount_percentage / 100)}" pattern="#,###" />원</h3>
+	                                    <div class="button">
+	                                        <a href="content?id=${flashlist.id}" class="btn">Shop Now</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+							</c:forEach>
                         </div>
                         <!-- End Hero Slider -->
                     </div>

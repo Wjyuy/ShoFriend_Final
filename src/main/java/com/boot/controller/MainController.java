@@ -60,10 +60,14 @@ public class MainController {
 	private FriendService friendService;
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private ProductService productService;
+	
+	
 	
 	// 25.05.12 권준우 수정(인기 상품 목록에 별점 정보 가져와서 노출되도록 추가)
 	@RequestMapping("/main")
-	public String main(Model model) {
+	public String main(Model model,HttpSession session) {
 		log.info("main()");
 		
 		List<ProductDTO> popularlist= service.getPopularProducts();
@@ -95,6 +99,19 @@ public class MainController {
 		ProductDTO TopDiscountProduct = service.findTopDiscountProductNearExpiration();
 		model.addAttribute("TopDiscountProduct", TopDiscountProduct);
 		
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<Map<String, Object>> friendRecentOrders = friendService.getFriendRecentOrders(currentCustomerId);
+
+            if (!friendRecentOrders.isEmpty()) {
+                Map<String, Object> latestFriendOrder = friendRecentOrders.get(0);
+                int productId = (int) latestFriendOrder.get("product_id");
+                ProductDTO friendOrderProduct = productService.getProductById(productId);
+                log.info("friendOrderProduct()"+friendOrderProduct);
+                model.addAttribute("friendOrderProduct", friendOrderProduct);
+            }
+        }
 		
 		return ("main");
 	}

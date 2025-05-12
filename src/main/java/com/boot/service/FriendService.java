@@ -3,6 +3,7 @@ package com.boot.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.boot.dto.CustomerDTO;
 
@@ -14,5 +15,5 @@ public interface FriendService {
 	public List<CustomerDTO> getAcceptedFriends(int id);
 	public void rejectFriend(HashMap<String, String> param);
 	void deleteFriend(int myId, int friendId);
-	
+	public List<Map<String, Object>> getFriendRecentOrders(int currentCustomerId);
 }

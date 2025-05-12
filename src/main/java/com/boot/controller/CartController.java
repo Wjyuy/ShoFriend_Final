@@ -196,6 +196,7 @@ public class CartController {
 //		return "redirect:/cart_view";
 //	}
 	
+
 	@PostMapping("/deleteSoldOut")
 	public String deleteSoldOut(HttpSession session) {
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");

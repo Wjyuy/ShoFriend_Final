@@ -99,8 +99,8 @@
 	                    <div class="col-lg-4 col-md-4 col-12">
 	                        <div class="top-middle">
 	                            <ul class="useful-links">
-	                                <li><a href="main">Home</a></li>
-	                                <li><a href="friend">Friend</a></li>
+	                                <li><a href="../main">Home</a></li>
+	                                <li><a href="../friend">Friend</a></li>
 	                            </ul>
 	                        </div>
 	                    </div>
@@ -122,13 +122,13 @@
 	                            </div>
 	                            <ul class="user-login">
 	                                <li>
-	                                    <a href="my_page">My Page</a>
+	                                    <a href="../my_page">My Page</a>
 	                                </li>
 	                                <li>
-	                                    <a href="log/login">Sign In</a>
+	                                    <a href="login">Sign In</a>
 	                                </li>
 	                                <li>
-	                                    <a href="log/customer_register">Register</a>
+	                                    <a href="customer_register">Register</a>
 	                                </li>
 	                            </ul>
 	                        </div>
@@ -363,7 +363,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="main"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="../main"><i class="lni lni-home"></i> Home</a></li>
                         <li>Login</li>
                     </ul>
                 </div>

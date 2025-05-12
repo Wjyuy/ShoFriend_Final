@@ -107,7 +107,7 @@ public class CartController {
 		}
 		if (submitType.equals("order")) {
 			session.setAttribute("orderItems", selectedIds);
-			return "redirect:/order_view";
+			return "redirect:/pay/checkout";
 		
 		}else if (submitType.equals("delete")) {
 //			service.deleteSelectedItems(selectedIds);

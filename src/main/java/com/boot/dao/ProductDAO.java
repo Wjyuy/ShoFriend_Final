@@ -38,5 +38,35 @@ public interface ProductDAO {
     int countAllProducts();	// 총 상품 개수
     List<ProductDTO> getProductsByCategoryPaging(@Param("categoryId") int categoryId, @Param("limit") int limit, @Param("offset") int offset);	// 카테고리별 상품 리스트 페이징
     int countProductsByCategory(int categoryId);	// 카테고리별 총 상품 개수
+    List<ProductDTO> getLatestProducts();
 
+    
+    List<ProductDTO> getAllProductsSorted(@Param("limit") int limit,
+    		@Param("offset") int offset,
+    		@Param("sort") String sort);
+    
+    List<ProductDTO> getProductsByCategorySorted(@Param("categoryId") int categoryId,
+    		@Param("limit") int limit,
+    		@Param("offset") int offset,
+    		@Param("sort") String sort);
+    
+    List<ProductDTO> searchProductsByCategory(@Param("categoryId") int categoryId,
+			  @Param("keyword") String keyword,
+			  @Param("limit") int limit,
+			  @Param("offset") int offset,
+			  @Param("sort") String sort);
+
+	int countSearchedProductsByCategory(@Param("categoryId") int categoryId,
+			@Param("keyword") String keyword);
+	
+	List<ProductDTO> searchAllProducts(@Param("keyword") String keyword,
+		   @Param("limit") int limit,
+		   @Param("offset") int offset,
+		   @Param("sort") String sort);
+	
+	int countAllSearchedProducts(@Param("keyword") String keyword);
+
+    
+    List<CategoryDTO> getAllCategories();
+    List<Map<String, Object>> countProductsByAllCategories();
 }

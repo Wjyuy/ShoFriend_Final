@@ -397,19 +397,20 @@
                 <div class="col-lg-4 col-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner"
-                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
-                                <div class="content">
-                                    <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
-                                    </h2>
-                                    <h3>$259.99</h3>
-                                </div>
-                            </div>
-                            <!-- End Small Banner -->
-                        </div>
+							<div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+	                            <!-- Start Small Banner -->
+	                            <div class="hero-small-banner"
+	                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
+	                                <div class="content">
+	                                    <h2>
+	                                        <span>방금 등록된 상품!</span>
+	                                        ${latestProduct.title}
+	                                    </h2>
+	                                    <h3><fmt:formatNumber value="${latestProduct.price}" pattern="#,###" />원</h3>
+	                                </div>
+	                            </div>
+	                            <!-- End Small Banner -->
+	                        </div>
                         <div class="col-lg-12 col-md-6 col-12">
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner style2">
@@ -431,79 +432,76 @@
     <!-- End Hero Area -->
 
     <!-- Start Trending Product Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>인기 상품</h2>
-                        <p>가장 많이 팔린 상품이에요</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-				
-				
-                    <!-- Start Single Product -->
-				<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">
-                	<div class="col-lg-3 col-md-6 col-12">
-	                    <div class="single-product">
-							
-	                        <div class="product-image">
-	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'">
-								<c:set var="now" value="<%= new java.util.Date() %>" />
-		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
-									<span class="sale-tag">${dto.discount_percentage}%</span>
-		                        </c:if>
-	                            <div class="button">
-	                                <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+	<c:forEach var="group" items="${combinedProducts}">
+	    <section class="trending-product section" style="margin-top: 12px;">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="section-title">
+	                        <h2>${group.title}</h2>
+	                        <p>${group.description}</p>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <c:forEach var="dto" items="${group.products}" varStatus="catStatus">
+	                    <div class="col-lg-3 col-md-6 col-12">
+	                        <div class="single-product">
+	                            <div class="product-image">
+	                                <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'">
+	                                <c:set var="now" value="<%= new java.util.Date() %>" />
+	                                <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
+	                                    <span class="sale-tag">${dto.discount_percentage}%</span>
+	                                </c:if>
+	                                <div class="button">
+	                                    <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+	                                </div>
 	                            </div>
-	                        </div>
-	                        <div class="product-info">
-								<c:forEach var="category" items="${categorylist}" varStatus="catStatus">
-									<c:if test="${dto.category_id == category.id}">
-	                            		<span class="category">${category.name}</span>
-									</c:if>
-								</c:forEach>
-	                            <h4 class="title">
-	                                <a href="content?id=${dto.id}">${dto.title}</a>
-	                            </h4>
-                                <ul class="review">
-                                    <c:set var="avg" value="${avgRatings[dto.id]}" />
-                                    <c:set var="count" value="${reviewCounts[dto.id]}" />
-                                    <li>
-                                        <i class="lni ${avg >= 1 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 2 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 3 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 4 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 5 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <fmt:formatNumber value="${avg}" type="number" maxFractionDigits="1"/>
-                                            (리뷰 ${count}개)
-                                        </span>
-                                    </li>
-                                </ul>
-	                            <div class="price">
-									<c:choose>
-				                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
-											<span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
-			                                <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
-				                        </c:when>
-				                        <c:otherwise>
-				                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
-				                        </c:otherwise>
-				                    </c:choose>
+	                            <div class="product-info">
+	                                <c:forEach var="category" items="${categorylist}" varStatus="catStatus">
+	                                    <c:if test="${dto.category_id == category.id}">
+	                                        <span class="category">${category.name}</span>
+	                                    </c:if>
+	                                </c:forEach>
+	                                <h4 class="title">
+	                                    <a href="content?id=${dto.id}">${dto.title}</a>
+	                                </h4>
+	                                <ul class="review">
+	                                    <c:set var="avg" value="${avgRatings[dto.id]}" />
+	                                    <c:set var="count" value="${reviewCounts[dto.id]}" />
+	                                    <li>
+	                                        <i class="lni ${avg >= 1 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 2 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 3 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 4 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 5 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                    </li>
+	                                    <li>
+	                                        <span>
+	                                            <fmt:formatNumber value="${avg}" type="number" maxFractionDigits="1"/>
+	                                            (리뷰 ${count}개)
+	                                        </span>
+	                                    </li>
+	                                </ul>
+	                                <div class="price">
+	                                    <c:choose>
+	                                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
+	                                            <span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
+	                                            <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+	                                        </c:when>
+	                                        <c:otherwise>
+	                                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+	                                        </c:otherwise>
+	                                    </c:choose>
+	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
-               		 </div>
-					</c:forEach>
-					<!-- End Single Product -->
-            </div>
-        </div>
-    </section>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </section>
+	</c:forEach>
     <!-- End Trending Product Area -->
 
     <!-- Start Call Action Area -->
@@ -513,12 +511,12 @@
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <div class="inner">
                         <div class="content">
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Currently You are using free<br>
-                                Lite version of ShopGrids</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template
-                                to get all pages,<br> features and commercial license.</p>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">쇼프렌 : 친구와 함께 즐기는 쇼핑 천국! </h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">혼자 하는 쇼핑은 이제 그만!🙅‍♀️🙅‍♂️<br>
+                                쇼프렌 (ShoFriend)과 함께라면 쇼핑이 더욱 즐겁고 특별한 경험이 됩니다🤩 <br>
+								마치 친한 친구와 손잡고 옷 구경하듯, 쇼프렌에서는 다양한 상품을 둘러보고 서로의 취향을 공유하며 함께 쇼핑 해 보세요!</p>
                             <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="javascript:void(0)" class="btn">Purchase Now</a>
+                                <a href="/log/customer_register" class="btn">회원가입해 시작하기</a>
                             </div>
                         </div>
                     </div>

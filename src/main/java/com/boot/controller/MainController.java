@@ -77,7 +77,7 @@ public class MainController {
 		for (ProductDTO product : popularlist) {
 			int productId = product.getId();
 			Double avg = reviewService.getAverageRating(productId);
-			int count = reviewService.getReviews(productId).size(); // 또는 별도 count 쿼리 써도 됨
+			int count = reviewService.getReviews(productId).size();
 
 			avgRatings.put(productId, avg != null ? avg : 0.0);
 			reviewCounts.put(productId, count);
@@ -85,7 +85,9 @@ public class MainController {
 		model.addAttribute("avgRatings", avgRatings);
 		model.addAttribute("reviewCounts", reviewCounts);
 //		추가 끝
-		model.addAttribute("popularlist", popularlist);
+		
+		//살포시 없애보았음
+//		model.addAttribute("popularlist", popularlist);
 		
 //		ArrayList<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
@@ -99,6 +101,32 @@ public class MainController {
 		ProductDTO TopDiscountProduct = productService.findTopDiscountProductNearExpiration();
 		model.addAttribute("TopDiscountProduct", TopDiscountProduct);
 		
+		List<ProductDTO> latestProducts = productService.getLatestProducts();
+		ProductDTO latestProduct = null;
+        if (!latestProducts.isEmpty()) {
+            latestProduct = latestProducts.get(0);
+        }
+        model.addAttribute("latestProduct", latestProduct);
+		
+        List<Map<String, Object>> combinedProducts = new ArrayList<>();
+
+        // 인기 상품 그룹
+        Map<String, Object> popularGroup = new HashMap<>();
+        popularGroup.put("title", "인기 상품");
+        popularGroup.put("description", "가장 많이 팔린 상품이에요");
+        popularGroup.put("products", popularlist);
+        combinedProducts.add(popularGroup);
+
+        // 최근 등록 상품 그룹
+        Map<String, Object> latestGroup = new HashMap<>();
+        latestGroup.put("title", "최근 등록 상품");
+        latestGroup.put("description", "새롭게 등록된 상품들이에요");
+        latestGroup.put("products", latestProducts);
+        combinedProducts.add(latestGroup);
+        
+        model.addAttribute("combinedProducts", combinedProducts);
+        model.addAttribute("categorylist", productService.categorylist());
+        
 		//로그인인 경우 친구추천상품, 장바구니 출력함
 		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
         if (loginCustomer != null) {
@@ -121,13 +149,14 @@ public class MainController {
 	}
 	@RequestMapping("/category")
 	public String category(@RequestParam(name = "categoryId", required = false) Integer categoryId,
+							@RequestParam(name = "keyword", required = false) String keyword,
 							@RequestParam(name = "page", defaultValue = "1") int page,
+							@RequestParam(name = "sort", defaultValue = "recommend") String sort,
 							Model model) {
 		log.info("category()");
 		
 		List<ProductDTO> popularlist= productService.getPopularProducts();
 		model.addAttribute("popularlist", popularlist);
-		
 		
 		ArrayList<ProductDTO> flashlist = productService.selectFlashSaleItems();
 		model.addAttribute("flashlist", flashlist);
@@ -139,35 +168,49 @@ public class MainController {
 //		List<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
 		
-// 25.05.12 권준우 category&paging 처리 list
+// 		category&paging 처리 list - 25.05.12 권준우
 		int pageSize = 30;
 		int offset = (page - 1) * pageSize;
 		
 		List<ProductDTO> list;
 		int totalCount;
-
-		if (categoryId != null) {
-			// 카테고리별 상품 조회
-			list = productService.getProductsByCategoryPaging(categoryId, pageSize, offset);
-			totalCount = productService.countProductsByCategory(categoryId);
+		
+		if (keyword != null && !keyword.isEmpty()) {
+			// 검색 모드
+			if (categoryId != null) {
+				list = productService.searchProductsByCategory(categoryId, keyword, pageSize, offset, sort);
+				totalCount = productService.countSearchedProductsByCategory(categoryId, keyword);
+			} else {
+				list = productService.searchAllProducts(keyword, pageSize, offset, sort);
+				totalCount = productService.countAllSearchedProducts(keyword);
+			}
+			
 		} else {
-			// 전체 상품 조회
-			list = productService.getAllProductsPaging(pageSize, offset);
-			totalCount = productService.countAllProducts();
+			// 검색 X
+			if (categoryId != null) {
+				list = productService.getProductsByCategorySorted(categoryId, pageSize, offset, sort);
+				totalCount = productService.countProductsByCategory(categoryId);
+			} else {
+				list = productService.getAllProductsSorted(pageSize, offset, sort);
+				totalCount = productService.countAllProducts();
+			}			
 		}
 
 		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+		List<CategoryDTO> categoryList = productService.getAllCategories();
+		Map<Integer, Integer> categoryCounts = productService.countProductsByAllCategories();
 
-//		List<CategoryDTO> categoryList = categoryService.getAllCategories();
-
-//		model.addAttribute("categorylist", categoryList);
 		model.addAttribute("list", list);
+		model.addAttribute("categorylist", categoryList);
+		model.addAttribute("categoryCounts", categoryCounts);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("categoryId", categoryId);
+		model.addAttribute("sort", sort); // 선택 유지용
 		
 		return ("category");
 	}
+	
 	
 	@RequestMapping("/product_insert")
 	public String productInsert(HttpSession session, Model model,RedirectAttributes redirectAttributes) {
@@ -185,7 +228,7 @@ public class MainController {
 
 	    return "product_insert";
 	}
-
+	
 	
 	@RequestMapping("/product_modify")
 	public String product_modify(@RequestParam("id") int product_id,Model model,HttpSession session,RedirectAttributes redirectAttributes) {

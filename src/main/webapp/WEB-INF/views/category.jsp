@@ -253,23 +253,11 @@
 							<span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All
 									Categories</a></span>
 							<ul class="sub-category">
-								<li><a href="product-grids.html">추천상품</a>
-									<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
-									<!--                                    <ul class="inner-sub-category">-->
-									<!--                                        <li><a href="product-grids.html">하위목록1</a></li>-->
-									<!--                                        <li><a href="product-grids.html">하위목록2</a></li>-->
-									<!--                                        <li><a href="product-grids.html">하위목록3</a></li>-->
-									<!--                                        <li><a href="product-grids.html">하위목록4</a></li>-->
-									<!--                                    </ul>-->
-								</li>
-								<li><a href="product-grids.html">반짝세일</a></li>
-								<li><a href="product-grids.html">식품</a></li>
-								<li><a href="product-grids.html">가구</a></li>
-								<li><a href="product-grids.html">도서</a></li>
-								<li><a href="product-grids.html">스포츠/레저</a></li>
-								<li><a href="product-grids.html">출산/유아용품</a></li>
-								<li><a href="product-grids.html">반려동물용품</a></li>
-								<li><a href="product-grids.html">뷰티</a></li>
+                                <c:forEach var="cat" items="${categorylist}">
+                                    <li>
+                                        <a href="/category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
+                                    </li>
+                                </c:forEach>
 							</ul>
 						</div>
 						<!-- End Mega Category Menu -->
@@ -377,163 +365,149 @@
 						<div class="single-widget search">
 
 							<h3>Search Product</h3>
-							<form action="#">
-								<input type="text" placeholder="Search Here...">
-								<button type="submit"><i class="lni lni-search-alt"></i></button>
-							</form>
+                            <form method="get" action="/category">
+                                <input type="hidden" name="categoryId" value="${categoryId}" />
+                                <input type="hidden" name="sort" value="${sort}" />
+                                <input type="text" name="keyword" placeholder="Search Here..." value="${param.keyword}" />
+                            </form>
 						</div>
 
-						<!-- End Single Widget -->
-						<!-- Start Single Widget -->
-						<div class="single-widget">
-							<h3>모든 카테고리</h3>
-							<ul class="list">
-								<li>
-									<a href="product-grids.html">추천상품</a><span>(1138)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">반짝세일</a><span>(2356)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">식품</a><span>(420)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">가구</a><span>(874)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">도서</a><span>(1239)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">스포츠/레저</a><span>(340)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">출산/유아용품</a><span>(512)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">반려동물용품</a><span>(512)</span>
-								</li>
-								<li>
-									<a href="product-grids.html">뷰티</a><span>(512)</span>
-								</li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-						<!-- Start Single Widget -->
-						<div class="single-widget range">
-							<h3>가격 범위</h3>
-							<input type="range" class="form-range" name="range" step="5" min="100" max="1000000"
-								value="100" onchange="rangePrimary.value=value">
-							<div class="range-inner">
-								<input type="text" id="rangePrimary" placeholder="100" />
-								<label>원</label>
-							</div>
-						</div>
-						<!-- End Single Widget -->
-						<!-- Start Single Widget -->
-						<div class="single-widget condition">
-							<h3>가격조정</h3>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-								<label class="form-check-label" for="flexCheckDefault1">
-									0 - 10,000 (208)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-								<label class="form-check-label" for="flexCheckDefault2">
-									10,000 - 100,000 (311)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-								<label class="form-check-label" for="flexCheckDefault3">
-									100,000 - 1,000,000 (485)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
-								<label class="form-check-label" for="flexCheckDefault4">
-									1,000,000 - 10,000,000 (213)
-								</label>
-							</div>
-						</div>
-						<!-- End Single Widget -->
-						<!-- Start Single Widget -->
-						<div class="single-widget condition">
-							<h3>브랜드 별</h3>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
-								<label class="form-check-label" for="flexCheckDefault11">
-									Apple (254)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault22">
-								<label class="form-check-label" for="flexCheckDefault22">
-									Bosh (39)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault33">
-								<label class="form-check-label" for="flexCheckDefault33">
-									Canon Inc. (128)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault44">
-								<label class="form-check-label" for="flexCheckDefault44">
-									Dell (310)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault55">
-								<label class="form-check-label" for="flexCheckDefault55">
-									Hewlett-Packard (42)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault66">
-								<label class="form-check-label" for="flexCheckDefault66">
-									Hitachi (217)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault77">
-								<label class="form-check-label" for="flexCheckDefault77">
-									LG Electronics (310)
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault88">
-								<label class="form-check-label" for="flexCheckDefault88">
-									Panasonic (74)
-								</label>
-							</div>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<!-- End Product Sidebar -->
-				</div>
-				<div class="col-lg-9 col-12">
-					<div class="product-grids-head">
-						<div class="product-grid-topbar">
-							<div class="row align-items-center">
-								<div class="col-lg-7 col-md-8 col-12">
-									<div class="product-sorting">
-										<label for="sorting">Sort by:</label>
-										<select class="form-control" id="sorting">
-											<option>Popularity</option>
-											<option>Low - High Price</option>
-											<option>High - Low Price</option>
-											<option>Average Rating</option>
-											<option>A - Z Order</option>
-											<option>Z - A Order</option>
-										</select>
-										<h3 class="total-show-product">Showing: <span>1 - 12 items</span></h3>
-									</div>
-								</div>
-								<!-- 정렬 분류 버튼 없앰 -->
-								<!-- <div class="col-lg-5 col-md-4 col-12">
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <div class="single-widget">
+                            <h3>모든 카테고리</h3>
+                            <ul class="list">
+                                <c:forEach var="cat" items="${categorylist}">
+                                    <li>
+                                        <a href="/category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
+                                        <span>(${categoryCounts[cat.id] != null ? categoryCounts[cat.id] : 0})</span>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+
+                        </div>
+                        <!-- End Single Widget -->
+
+                        <!-- 안쓰는 Single Widget 3개 주석 처리 -->
+                        <!-- Start Single Widget -->
+                        <!-- <div class="single-widget range">
+                            <h3>가격 범위</h3>
+                            <input type="range" class="form-range" name="range" step="5" min="100" max="1000000"
+                                value="100" onchange="rangePrimary.value=value">
+                            <div class="range-inner">
+                                <input type="text" id="rangePrimary" placeholder="100" />
+                                <label>원</label>
+                            </div>
+                        </div> -->
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <!-- <div class="single-widget condition">
+                            <h3>가격조정</h3>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                                <label class="form-check-label" for="flexCheckDefault1">
+                                    0 - 10,000 (208)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                                <label class="form-check-label" for="flexCheckDefault2">
+                                    10,000 - 100,000 (311)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                                <label class="form-check-label" for="flexCheckDefault3">
+                                    100,000 - 1,000,000 (485)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+                                <label class="form-check-label" for="flexCheckDefault4">
+                                    1,000,000 - 10,000,000 (213)
+                                </label>
+                            </div>
+                        </div> -->
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <!-- <div class="single-widget condition">
+                            <h3>브랜드 별</h3>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
+                                <label class="form-check-label" for="flexCheckDefault11">
+                                    Apple (254)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault22">
+                                <label class="form-check-label" for="flexCheckDefault22">
+                                    Bosh (39)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault33">
+                                <label class="form-check-label" for="flexCheckDefault33">
+                                    Canon Inc. (128)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault44">
+                                <label class="form-check-label" for="flexCheckDefault44">
+                                    Dell (310)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault55">
+                                <label class="form-check-label" for="flexCheckDefault55">
+                                    Hewlett-Packard (42)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault66">
+                                <label class="form-check-label" for="flexCheckDefault66">
+                                    Hitachi (217)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault77">
+                                <label class="form-check-label" for="flexCheckDefault77">
+                                    LG Electronics (310)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault88">
+                                <label class="form-check-label" for="flexCheckDefault88">
+                                    Panasonic (74)
+                                </label>
+                            </div>
+                        </div> -->
+                        <!-- End Single Widget -->
+                    </div>
+                    <!-- End Product Sidebar -->
+                </div>
+                <div class="col-lg-9 col-12">
+                    <div class="product-grids-head">
+                        <div class="product-grid-topbar">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7 col-md-8 col-12">
+                                    <div class="product-sorting">
+                                        <!-- <label for="sorting">Sort by:</label> -->
+                                        <form method="get" action="/category" style="display: inline;">
+                                            <input type="hidden" name="categoryId" value="${categoryId}" />
+                                            <input type="hidden" name="page" value="${currentPage}" />
+                                            <label for="sort">Sort by:</label>
+                                            <!-- <select class="form-control" id="sorting"></select> -->
+                                            <select class="form-control" name="sort" id="sorting" onchange="this.form.submit()">
+                                                <option value="recommend" ${param.sort == 'recommend' ? 'selected' : ''}>추천순</option>
+                                                <option value="priceDesc" ${param.sort == 'priceDesc' ? 'selected' : ''}>가격 높은 순</option>
+                                                <option value="priceAsc" ${param.sort == 'priceAsc' ? 'selected' : ''}>가격 낮은 순</option>
+                                            </select>
+                                        </form>
+                                        <!-- <h3 class="total-show-product">Showing: <span>1 - 12 items(미구현)</span></h3> -->
+                                    </div>
+                                </div>
+                                <!-- 정렬 분류 버튼 없앰 -->
+                                <!-- <div class="col-lg-5 col-md-4 col-12">
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                             <button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab"

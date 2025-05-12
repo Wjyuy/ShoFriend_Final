@@ -8,6 +8,6 @@ import com.boot.dto.ReviewDTO;
 public interface ReviewService {
 	void saveReview(ReviewDTO dto);
 	List<ReviewDTO> getReviews(int productId);
-	Map<Integer, Integer> getRatingCounts(int productId); // 별점별 갯수
+	Map<String, Integer> getRatingCounts(int productId); // 별점별 갯수
 	Double getAverageRating(int productId); // 평균	
 }

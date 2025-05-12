@@ -15,4 +15,5 @@ public interface CartService {
     public List<CartDTO> getCartItemsWithProduct(int user_id);
     public void deleteSoldOut(int user_id);
 	public void deleteSelectedItems(List<Integer> selectedIds, int user_id);
+	List<CartDTO> getCartItemsByIds(List<Integer> cartItemIds, int userId); 
 }

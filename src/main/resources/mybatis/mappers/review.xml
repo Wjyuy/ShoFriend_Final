@@ -11,11 +11,29 @@
 	</insert>
 	
 	<!-- 상품별 리뷰 전체 조회 -->
-	<select id="getReviews" resultType="com.boot.dto.ReviewDTO">
-		SELECT * FROM review
-		WHERE product_id = #{productId}
-		ORDER BY created_at DESC
+<!--	<select id="getReviews" resultType="com.boot.dto.ReviewDTO">-->
+<!--		SELECT * FROM review-->
+<!--		WHERE product_id = #{productId}-->
+<!--		ORDER BY created_at DESC-->
+<!--	</select>-->
+	
+	<!--	join을 통해 customerId 를 가져오도록 쿼리 수정	-->
+	<select id="getReviews" parameterType="int" resultType="com.boot.dto.ReviewDTO">
+		SELECT 
+			r.id,
+			r.product_id,
+			r.customer_id,
+			r.title,
+			r.content,
+			r.rating,
+			r.created_at,
+			c.name AS customerName
+		FROM review r
+		JOIN customer c ON r.customer_id = c.id
+		WHERE r.product_id = #{productId}
+		ORDER BY r.created_at DESC
 	</select>
+
 
 	<!-- 별점별 갯수 조회 -->
 	<select id="getRatingCounts" resultType="map">

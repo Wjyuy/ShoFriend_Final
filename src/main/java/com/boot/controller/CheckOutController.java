@@ -40,39 +40,90 @@ public class CheckOutController {
 	@Autowired
 	private CheckOutService checkoutService;
 	
+	//장바구니용 결제창
 	@RequestMapping("/checkout")
-	public String checkout(Model model,@RequestParam("product_id") int product_id,@RequestParam("quantity") int quantity,HttpSession session,RedirectAttributes redirectAttributes) {
-		log.info("checkout()");
-		log.info("product_id=>"+product_id);
-		log.info("quantity=>"+quantity);
-		
-		CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
-		if (customer == null) {
-			redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
-			return "redirect:../log/login";
-		}
-	    ProductDTO product = productService.getProductById(product_id);
-	    model.addAttribute("product", product);
-	    model.addAttribute("quantity", quantity);
-	    log.info("product=>"+product);
-	    
-	    int price = product.getPrice();
-	    int discount = 0;
+	public String checkout(Model model,
+	                       @RequestParam("product_id[]") int[] productIds,
+	                       @RequestParam("quantity[]") int[] quantities,
+	                       HttpSession session,
+	                       RedirectAttributes redirectAttributes) {
+	    log.info("checkout()");
+	    log.info("productIds length: " + productIds.length);
+	    log.info("quantities length: " + quantities.length);
 
-	    Date now = new Date();
-	    if (product.getDiscount_start() != null && product.getDiscount_end() != null &&
-	        now.after(product.getDiscount_start()) && now.before(product.getDiscount_end())) {
-	        discount = product.getDiscount_percentage();
+	    CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
+	    if (customer == null) {
+	        redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
+	        return "redirect:../log/login";
 	    }
 
-	    int finalPrice = price - (price * discount / 100);
-	    int totalPrice = finalPrice * quantity;
-	    
-	    model.addAttribute("finalPrice", finalPrice);
+	    List<ProductDTO> products = new ArrayList<>();
+	    int totalPrice = 0;
+
+	    for (int i = 0; i < productIds.length; i++) {
+	        int productId = productIds[i];
+	        int quantity = quantities[i];
+
+	        ProductDTO product = productService.getProductById(productId);
+	        if (product != null) {
+	            int price = product.getPrice();
+	            int discount = 0;
+	            Date now = new Date();
+	            if (product.getDiscount_start() != null && product.getDiscount_end() != null &&
+	                now.after(product.getDiscount_start()) && now.before(product.getDiscount_end())) {
+	                discount = product.getDiscount_percentage();
+	            }
+	            int finalPrice = price - (price * discount / 100);
+	            int itemTotalPrice = finalPrice * quantity;
+	            totalPrice += itemTotalPrice;
+	            model.addAttribute("finalPrice", finalPrice);
+	    	    model.addAttribute("totalPrice", totalPrice);
+//	            product.setFinalPrice(finalPrice); // ProductDTO에 finalPrice 필드 추가 필요
+//	            product.setQuantity(quantity);     // ProductDTO에 quantity 필드 추가 필요
+	            products.add(product);
+	        }
+	    }
+
+	    model.addAttribute("products", products);
 	    model.addAttribute("totalPrice", totalPrice);
 
 	    return "pay/checkout";
 	}
+	
+	//단품결제용 
+//	@RequestMapping("/checkout")
+//	public String checkout(Model model,@RequestParam("product_id") int product_id,@RequestParam("quantity") int quantity,HttpSession session,RedirectAttributes redirectAttributes) {
+//		log.info("checkout()");
+//		log.info("product_id=>"+product_id);
+//		log.info("quantity=>"+quantity);
+//		
+//		CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
+//		if (customer == null) {
+//			redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
+//			return "redirect:../log/login";
+//		}
+//	    ProductDTO product = productService.getProductById(product_id);
+//	    model.addAttribute("product", product);
+//	    model.addAttribute("quantity", quantity);
+//	    log.info("product=>"+product);
+//	    
+//	    int price = product.getPrice();
+//	    int discount = 0;
+//
+//	    Date now = new Date();
+//	    if (product.getDiscount_start() != null && product.getDiscount_end() != null &&
+//	        now.after(product.getDiscount_start()) && now.before(product.getDiscount_end())) {
+//	        discount = product.getDiscount_percentage();
+//	    }
+//
+//	    int finalPrice = price - (price * discount / 100);
+//	    int totalPrice = finalPrice * quantity;
+//	    
+//	    model.addAttribute("finalPrice", finalPrice);
+//	    model.addAttribute("totalPrice", totalPrice);
+//
+//	    return "pay/checkout";
+//	}
 	
     @PostMapping("/ready")
     public String kakaoPay(@RequestParam Map<String, String> params, HttpSession session) {

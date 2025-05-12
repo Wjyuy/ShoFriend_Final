@@ -17,4 +17,5 @@ public interface CartDAO {
 	public List<CartDTO> getCartItemsWithProduct(int user_id);
 	public void deleteSoldOut(int user_id);
 	public void deleteSelectedItems(Map<String, Object> param);
+	List<CartDTO> selectCartItemsByIds(@Param("cartItemIds") List<Integer> cartItemIds, @Param("userId") int userId);
 }

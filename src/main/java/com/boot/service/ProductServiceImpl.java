@@ -227,5 +227,10 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.countProductsByCategory(categoryId);
 	}
 
+	@Override
+	public List<ProductDTO> getLatestProducts() {
+		return productDAO.getLatestProducts();
+	}
+
 
 }

@@ -106,4 +106,12 @@
 		WHERE category_id = #{categoryId}
 	</select>
 	
+<!--	20250512주연 메인단 최근추가상품 추가 -->
+	<select id="getLatestProducts" resultType="com.boot.dto.ProductDTO">
+	    select id, store_id, category_id, title, description, price, stock, status, picture, recommend, discount_start, discount_end, discount_percentage
+	    from product
+	    order by id desc
+	    LIMIT 8
+	</select>
+
 </mapper>

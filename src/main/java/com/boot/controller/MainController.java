@@ -85,7 +85,9 @@ public class MainController {
 		model.addAttribute("avgRatings", avgRatings);
 		model.addAttribute("reviewCounts", reviewCounts);
 //		추가 끝
-		model.addAttribute("popularlist", popularlist);
+		
+		//살포시 없애보았음
+//		model.addAttribute("popularlist", popularlist);
 		
 //		ArrayList<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
@@ -99,6 +101,32 @@ public class MainController {
 		ProductDTO TopDiscountProduct = productService.findTopDiscountProductNearExpiration();
 		model.addAttribute("TopDiscountProduct", TopDiscountProduct);
 		
+		List<ProductDTO> latestProducts = productService.getLatestProducts();
+		ProductDTO latestProduct = null;
+        if (!latestProducts.isEmpty()) {
+            latestProduct = latestProducts.get(0);
+        }
+        model.addAttribute("latestProduct", latestProduct);
+		
+        List<Map<String, Object>> combinedProducts = new ArrayList<>();
+
+        // 인기 상품 그룹
+        Map<String, Object> popularGroup = new HashMap<>();
+        popularGroup.put("title", "인기 상품");
+        popularGroup.put("description", "가장 많이 팔린 상품이에요");
+        popularGroup.put("products", popularlist);
+        combinedProducts.add(popularGroup);
+
+        // 최근 등록 상품 그룹
+        Map<String, Object> latestGroup = new HashMap<>();
+        latestGroup.put("title", "최근 등록 상품");
+        latestGroup.put("description", "새롭게 등록된 상품들이에요");
+        latestGroup.put("products", latestProducts);
+        combinedProducts.add(latestGroup);
+        
+        model.addAttribute("combinedProducts", combinedProducts);
+        model.addAttribute("categorylist", productService.categorylist());
+        
 		//로그인인 경우 친구추천상품, 장바구니 출력함
 		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
         if (loginCustomer != null) {

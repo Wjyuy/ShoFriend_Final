@@ -439,34 +439,10 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <br>
-                                <%-- <c:choose>
-                                    <c:when test="${sessionScope.userType == 'seller'}">
-                                        <input type="button" class="btn btn-outline-secondary"
-                                            style="margin-bottom:5px; margin-top: 20px;" value="수정하기"
-                                            onclick="location.href='product_modify?id=${product.id}'">
-                                        <input type="button" class="btn btn-outline-secondary" value="삭제하기"
-                                            onclick="location.href='product_delete?id=${product.id}'">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:choose>
-                                            <c:when
-                                                test="${product.status == '품절' and sessionScope.userType == 'customer'}">
-                                                <input type="button" class="btn btn-secondary w-100"
-                                                    style="margin-top:25px;" value="구매하기"
-                                                    onclick="alert('⚠ 이 제품은 품절입니다!')"
-                                                    style="background-color: lightgray;">
-                                            </c:when>
-                                            <c:otherwise>
-                                                <form id="orderForm" action="product_order" method="post">
-                                                    <input type="hidden" name="product_id"
-                                                        value="${product.id}">
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:otherwise>
-                                    </c:choose>
-                                    --%>
-                                    <!--		비로그인/고객 일시 구매하기-->
-                                    <!--		seller일때 구매하기+위에 수정 삭제 버튼 -->
+                                <form id="orderForm" action="product_order" method="post">
+                                    <input type="hidden" name="product_id" value="${product.id}">
+                                    <input type="hidden" name="product_title" value="${product.title}">
+                                    <input type="hidden" name="product_price" value="${product.price}">
                             </p>
                             <div class="row">
                             </div>
@@ -474,12 +450,12 @@
                                 <div class="row align-items-end">
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Add to Cart</button>
+                                            <input type="submit" class="btn" formaction="addToCart" style="width: 100%;" value="Add to Cart">
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To
+                                            <button class="btn" type="button"><i class="lni lni-heart"></i> To
                                                 Wishlist</button>
                                         </div>
                                     </div>
@@ -487,7 +463,7 @@
                                     <!-- 공유 버튼 영역 -->
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="wish-button">
-                                            <button class="btn w-100" onclick="toggleFriendShare()">
+                                            <button class="btn w-100" type="button" onclick="toggleFriendShare()">
                                                 <i class="lni lni-share-alt"></i> 친구에게 공유
                                             </button>
                                         </div>
@@ -503,7 +479,7 @@
                                                         (${friend.email})</option>
                                                 </c:forEach>
                                             </select>
-                                            <button onclick="shareProduct()"
+                                            <button onclick="shareProduct()" type="button"
                                                 class="btn btn-primary">공유하기</button>
                                         </div>
                                     </div>
@@ -513,19 +489,20 @@
                             <label class="form-label mt-4">수량: </label>
                             <input type="number" class="form-control" name="quantity" value="1" min="1"
                                 max="${product.stock}" required>
-                            <input type="submit" class="btn btn-primary w-100" value="구매하기">
+<!--                            <input type="submit" class="btn btn-primary w-100" value="구매하기">-->
+							<button type="button" class="btn btn-primary w-100" onclick="goToPay()">구매하기</button>
                             </form>
-                            <!-- 테스트용 임시코드 주연 추가(goToPay 스크립트 이동도 있음) -->
-                            <form id="orderForm2" action="product_order" method="post">
-                                테스트용입니다 아래는 폼이 별개라 수량도 따로뺐어요
-                                <input type="hidden" name="contentId" value="${product.id}">
-                                <input type="number" class="form-control" name="quantity" value="1" min="1"
-                                max="${product.stock}" required>
-                                <button type="button" onclick="goToPay()">바로 구매하기</button>
-                            </form>
+<!--                             테스트용 임시코드 주연 추가(goToPay 스크립트 이동도 있음) -->
+<!--                            <form id="orderForm2" action="product_order" method="post">-->
+<!--                                테스트용입니다 아래는 폼이 별개라 수량도 따로뺐어요-->
+<!--                                <input type="hidden" name="contentId" value="${product.id}">-->
+<!--                                <input type="number" class="form-control" name="quantity" value="1" min="1"-->
+<!--                                max="${product.stock}" required>-->
+<!--                                <button type="button" onclick="goToPay()">바로 구매하기</button>-->
+<!--                            </form>-->
                             <script>
                                 function goToPay() {
-                                    const form = document.getElementById('orderForm2');
+                                    const form = document.getElementById('orderForm');
                                     form.action = '/pay/checkout';
                                     form.submit();
                                 }

@@ -3,6 +3,7 @@ package com.boot.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,5 +33,5 @@ public interface ProductDAO {
     public void decreaseStock(@Param("product_id") int productId, @Param("quantity") int quantity);
     public List<ProductDTO> getPopularProducts();
     public ProductDTO findTopDiscountProductNearExpiration();
-    
+    void addRecommend(Map<String, Object> param);
 }

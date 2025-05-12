@@ -32,5 +32,5 @@ public interface ProductService {
     void decreaseStock(int productId, int quantity);
     public List<ProductDTO> getPopularProducts();
     public ProductDTO findTopDiscountProductNearExpiration();
-
+    public void addRecommend(int productId, int recommendCount);
 }

@@ -71,5 +71,10 @@
 	    SELECT * FROM product ORDER BY recommend DESC LIMIT 8
     </select>
 	
+	<update id="addRecommend" parameterType="java.util.Map">
+	    UPDATE product
+	    SET recommend = recommend + #{recommendCount}
+	    WHERE id = #{productId}
+	</update>
 	
 </mapper>

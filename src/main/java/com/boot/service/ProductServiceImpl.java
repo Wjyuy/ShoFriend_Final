@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
@@ -191,6 +192,15 @@ public class ProductServiceImpl implements ProductService{
 	public ProductDTO findTopDiscountProductNearExpiration() {
 		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
 		return dao.findTopDiscountProductNearExpiration();
+	}
+
+	@Override
+	public void addRecommend(int productId, int recommendCount) {
+		ProductDAO dao = sqlSession.getMapper(ProductDAO.class);
+		Map<String, Object> param = new HashMap<>();
+        param.put("productId", productId);
+        param.put("recommendCount", recommendCount);
+        dao.addRecommend(param);
 	}	
 
 }

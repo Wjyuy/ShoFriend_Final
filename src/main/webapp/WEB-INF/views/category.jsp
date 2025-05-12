@@ -557,365 +557,129 @@
                                 </div>
                             </div>
                         </div>
+
+								
+						
                         <div class="tab-content" id="nav-tabContent">
-			
-							  <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
-							                                aria-labelledby="nav-grid-tab">
-							                                <div class="row">
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-1.jpg" alt="#">
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Watches</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Xiaomi Mi Band 5</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star"></i></li>
-							                                                    <li><span>4.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$199.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-2.jpg" alt="#">
-							                                                <span class="sale-tag">-25%</span>
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Speaker</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Bluetooth Speaker</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><span>5.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$275.00</span>
-							                                                    <span class="discount-price">$300.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-3.jpg" alt="#">
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Camera</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">WiFi Security Camera</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><span>5.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$399.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-4.jpg" alt="#">
-							                                                <span class="new-tag">New</span>
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Phones</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">iphone 6x plus</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><span>5.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$400.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-5.jpg" alt="#">
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Headphones</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Wireless Headphones</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><span>5.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$350.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-6.jpg" alt="#">
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Speaker</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Mini Bluetooth Speaker</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star"></i></li>
-							                                                    <li><span>4.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$70.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-7.jpg" alt="#">
-							                                                <span class="sale-tag">-50%</span>
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Headphones</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Wireless Headphones</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star"></i></li>
-							                                                    <li><span>4.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$100.00</span>
-							                                                    <span class="discount-price">$200.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-8.jpg" alt="#">
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Laptop</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Apple MacBook Air</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><span>5.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$899.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-4 col-md-6 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="product-image">
-							                                                <img src="assets/images/products/product-2.jpg" alt="#">
-							                                                <span class="sale-tag">-25%</span>
-							                                                <div class="button">
-							                                                    <a href="product-details.html" class="btn"><i
-							                                                            class="lni lni-cart"></i> Add to Cart</a>
-							                                                </div>
-							                                            </div>
-							                                            <div class="product-info">
-							                                                <span class="category">Speaker</span>
-							                                                <h4 class="title">
-							                                                    <a href="product-grids.html">Bluetooth Speaker</a>
-							                                                </h4>
-							                                                <ul class="review">
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><i class="lni lni-star-filled"></i></li>
-							                                                    <li><span>5.0 Review(s)</span></li>
-							                                                </ul>
-							                                                <div class="price">
-							                                                    <span>$275.00</span>
-							                                                    <span class="discount-price">$300.00</span>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                </div>
+							  <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+				                                <div class="row">
+				                                        <!-- Start Single Product -->
+														<c:forEach var="dto" items="${list}" varStatus="catStatus">
+														         <div class="col-lg-4 col-md-6 col-12">
+														             <!-- single-product 카드 전체 포함 -->
+														             <div class="single-product">
+														                 <div class="product-image">
+														                     <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
+														                     <c:set var="now" value="<%= new java.util.Date() %>" />
+														                     <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
+														                         <span class="sale-tag">${dto.discount_percentage}%</span>
+														                     </c:if>
+														                     <div class="button">
+														                         <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+														                     </div>
+														                 </div>
+														                 <div class="product-info">
+														                     <c:forEach var="category" items="${categorylist}">
+														                         <c:if test="${dto.category_id == category.id}">
+														                             <span class="category">${category.name}</span>
+														                         </c:if>
+														                     </c:forEach>
+														                     <h4 class="title"><a href="content?id=${dto.id}">${dto.title}</a></h4>
+														                     <ul class="review">
+														                         <li><i class="lni lni-star-filled"></i></li>
+														                         <li><i class="lni lni-star-filled"></i></li>
+														                         <li><i class="lni lni-star-filled"></i></li>
+														                         <li><i class="lni lni-star-filled"></i></li>
+														                         <li><i class="lni lni-star-filled"></i></li>
+														                         <li><span>5.0 Review(s)</span></li>
+														                     </ul>
+														                     <div class="price">
+														                         <c:choose>
+														                             <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
+														                                 <span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
+														                                 <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+														                             </c:when>
+														                             <c:otherwise>
+														                                 <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+														                             </c:otherwise>
+														                         </c:choose>
+														                     </div>
+														                 </div>
+														             </div>
+														         </div>
+														     </c:forEach>
+
+				                                        <!-- End Single Product -->
+				                                    </div>
+							                      </div>
 							                                <div class="row">
 							                                    <div class="col-12">
-							                                        <!-- Pagination -->
-							                                        <div class="pagination left">
-							                                            <ul class="pagination-list">
-							                                                <li><a href="javascript:void(0)">1</a></li>
-							                                                <li class="active"><a href="javascript:void(0)">2</a></li>
-							                                                <li><a href="javascript:void(0)">3</a></li>
-							                                                <li><a href="javascript:void(0)">4</a></li>
-							                                                <li><a href="javascript:void(0)"><i
-							                                                            class="lni lni-chevron-right"></i></a></li>
-							                                            </ul>
-							                                        </div>
-							                                        <!--/ End Pagination -->
+<!--																	<--  End Pagination -->
+
+																<div class="pagination left">
+																  <ul class="pagination-list">
+
+																    <%-- 이전 페이지 버튼 --%>
+																    <c:if test="${PageMaker.prev}">
+																      <li class="pagenate_button">
+																        <a href="?pageNum=${PageMaker.startPage - 1}"><i class="lni lni-chevron-left"></i></a>
+																		[이전]
+																      </li>
+																    </c:if>
+
+																    <%-- 페이지 번호 리스트 --%>
+																    <c:forEach var="num" begin="${PageMaker.startPage}" end="${PageMaker.endPage}">
+																      <li class="pagenate_button ${PageMaker.cri.pageNum == num ? 'active' : ''}">
+																        <a href="?pageNum=${num}">${num}</a>
+																      </li>
+																    </c:forEach>
+
+																    <%-- 다음 페이지 버튼 --%>
+																    <c:if test="${PageMaker.next}">
+																      <li class="pagenate_button">
+																        <a href="?pageNum=${PageMaker.endPage + 1}"><i class="lni lni-chevron-right"></i></a>
+																		[다음]
+																      </li>
+																    </c:if>
+
+																  </ul>
+																</div>
+																
+																
+																
+						                                        <!--/ End Pagination -->
 							                                    </div>
 							                                </div>
 							                            </div>
+							                            </div>
 							                            <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
 							                                <div class="row">
-							                                    <div class="col-lg-12 col-md-12 col-12">
 							                                        <!-- Start Single Product -->
+																	<c:forEach var="dto" items="${list}" varStatus="catStatus">
+							                                    <div class="col-lg-12 col-md-12 col-12">
 							                                        <div class="single-product">
 							                                            <div class="row align-items-center">
 							                                                <div class="col-lg-4 col-md-4 col-12">
 							                                                    <div class="product-image">
-							                                                        <img src="assets/images/products/product-1.jpg" alt="#">
+																					<img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
+																						<c:set var="now" value="<%= new java.util.Date() %>" />
+																                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
+																							<span class="sale-tag">${dto.discount_percentage}%</span>
+																                        </c:if>
 							                                                        <div class="button">
-							                                                            <a href="product-details.html" class="btn"><i
-							                                                                    class="lni lni-cart"></i> Add to
-							                                                                Cart</a>
+							                                                              <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
 							                                                        </div>
 							                                                    </div>
 							                                                </div>
 							                                                <div class="col-lg-8 col-md-8 col-12">
 							                                                    <div class="product-info">
-							                                                        <span class="category">Watches</span>
+																					<c:forEach var="category" items="${categorylist}" varStatus="catStatus">
+																						<c:if test="${dto.category_id == category.id}">
+														                            		<span class="category">${category.name}</span>
+																						</c:if>
+																					</c:forEach>
 							                                                        <h4 class="title">
-							                                                            <a href="product-grids.html">Xiaomi Mi Band 5</a>
-							                                                        </h4>
-							                                                        <ul class="review">
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star"></i></li>
-							                                                            <li><span>4.0 Review(s)</span></li>
-							                                                        </ul>
-							                                                        <div class="price">
-							                                                            <span>$199.00</span>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-12 col-md-12 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="row align-items-center">
-							                                                <div class="col-lg-4 col-md-4 col-12">
-							                                                    <div class="product-image">
-							                                                        <img src="assets/images/products/product-2.jpg" alt="#">
-							                                                        <span class="sale-tag">-25%</span>
-							                                                        <div class="button">
-							                                                            <a href="product-details.html" class="btn"><i
-							                                                                    class="lni lni-cart"></i> Add to
-							                                                                Cart</a>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                                <div class="col-lg-8 col-md-8 col-12">
-							                                                    <div class="product-info">
-							                                                        <span class="category">Speaker</span>
-							                                                        <h4 class="title">
-							                                                            <a href="product-grids.html">Big Power Sound Speaker</a>
+							                                                            <a href="content?id=${dto.id}">${dto.title}</a>
 							                                                        </h4>
 							                                                        <ul class="review">
 							                                                            <li><i class="lni lni-star-filled"></i></li>
@@ -926,144 +690,71 @@
 							                                                            <li><span>5.0 Review(s)</span></li>
 							                                                        </ul>
 							                                                        <div class="price">
-							                                                            <span>$275.00</span>
-							                                                            <span class="discount-price">$300.00</span>
+																						<c:choose>
+																	                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
+																								<span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
+																                                <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+																	                        </c:when>
+																	                        <c:otherwise>
+																	                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+																	                        </c:otherwise>
+																	                    </c:choose>
 							                                                        </div>
 							                                                    </div>
 							                                                </div>
 							                                            </div>
 							                                        </div>
+																	</c:forEach>
 							                                        <!-- End Single Product -->
 							                                    </div>
-							                                    <div class="col-lg-12 col-md-12 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="row align-items-center">
-							                                                <div class="col-lg-4 col-md-4 col-12">
-							                                                    <div class="product-image">
-							                                                        <img src="assets/images/products/product-3.jpg" alt="#">
-							                                                        <div class="button">
-							                                                            <a href="product-details.html" class="btn"><i
-							                                                                    class="lni lni-cart"></i> Add to
-							                                                                Cart</a>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                                <div class="col-lg-8 col-md-8 col-12">
-							                                                    <div class="product-info">
-							                                                        <span class="category">Camera</span>
-							                                                        <h4 class="title">
-							                                                            <a href="product-grids.html">WiFi Security Camera</a>
-							                                                        </h4>
-							                                                        <ul class="review">
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><span>5.0 Review(s)</span></li>
-							                                                        </ul>
-							                                                        <div class="price">
-							                                                            <span>$399.00</span>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-12 col-md-12 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="row align-items-center">
-							                                                <div class="col-lg-4 col-md-4 col-12">
-							                                                    <div class="product-image">
-							                                                        <img src="assets/images/products/product-4.jpg" alt="#">
-							                                                        <span class="new-tag">New</span>
-							                                                        <div class="button">
-							                                                            <a href="product-details.html" class="btn"><i
-							                                                                    class="lni lni-cart"></i> Add to
-							                                                                Cart</a>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                                <div class="col-lg-8 col-md-8 col-12">
-							                                                    <div class="product-info">
-							                                                        <span class="category">Phones</span>
-							                                                        <h4 class="title">
-							                                                            <a href="product-grids.html">iphone 6x plus</a>
-							                                                        </h4>
-							                                                        <ul class="review">
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><span>5.0 Review(s)</span></li>
-							                                                        </ul>
-							                                                        <div class="price">
-							                                                            <span>$400.00</span>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                    <div class="col-lg-12 col-md-12 col-12">
-							                                        <!-- Start Single Product -->
-							                                        <div class="single-product">
-							                                            <div class="row align-items-center">
-							                                                <div class="col-lg-4 col-md-4 col-12">
-							                                                    <div class="product-image">
-							                                                        <img src="assets/images/products/product-7.jpg" alt="#">
-							                                                        <span class="sale-tag">-50%</span>
-							                                                        <div class="button">
-							                                                            <a href="product-details.html" class="btn"><i
-							                                                                    class="lni lni-cart"></i> Add to
-							                                                                Cart</a>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                                <div class="col-lg-8 col-md-8 col-12">
-							                                                    <div class="product-info">
-							                                                        <span class="category">Headphones</span>
-							                                                        <h4 class="title">
-							                                                            <a href="product-grids.html">PX7 Wireless Headphones</a>
-							                                                        </h4>
-							                                                        <ul class="review">
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star-filled"></i></li>
-							                                                            <li><i class="lni lni-star"></i></li>
-							                                                            <li><span>4.0 Review(s)</span></li>
-							                                                        </ul>
-							                                                        <div class="price">
-							                                                            <span>$100.00</span>
-							                                                            <span class="discount-price">$200.00</span>
-							                                                        </div>
-							                                                    </div>
-							                                                </div>
-							                                            </div>
-							                                        </div>
-							                                        <!-- End Single Product -->
-							                                    </div>
-							                                </div>
-							                                <div class="row">
-							                                    <div class="col-12">
-							                                        <!-- Pagination -->
-							                                        <div class="pagination left">
-							                                            <ul class="pagination-list">
-							                                                <li><a href="javascript:void(0)">1</a></li>
-							                                                <li class="active"><a href="javascript:void(0)">2</a></li>
-							                                                <li><a href="javascript:void(0)">3</a></li>
-							                                                <li><a href="javascript:void(0)">4</a></li>
-							                                                <li><a href="javascript:void(0)"><i
-							                                                            class="lni lni-chevron-right"></i></a></li>
-							                                            </ul>
-							                                        </div>
+							                                 
+<!--							                  
+							                                        <-- / End Pagination -->
+
+																	<div class="pagination left">
+																	  <ul class="pagination-list">
+
+																	    <%-- 이전 페이지 버튼 --%>
+																	    <c:if test="${PageMaker.prev}">
+																	      <li class="pagenate_button">
+																	        <a href="?pageNum=${PageMaker.startPage - 1}"><i class="lni lni-chevron-left"></i></a>
+																	      </li>
+																	    </c:if>
+
+																	    <%-- 페이지 번호 리스트 --%>
+																	    <c:forEach var="num" begin="${PageMaker.startPage}" end="${PageMaker.endPage}">
+																	      <li class="pagenate_button ${PageMaker.cri.pageNum == num ? 'active' : ''}">
+																	        <a href="?pageNum=${num}">${num}</a>
+																	      </li>
+																	    </c:forEach>
+
+																	    <%-- 다음 페이지 버튼 --%>
+																	    <c:if test="${PageMaker.next}">
+																	      <li class="pagenate_button">
+																	        <a href="?pageNum=${PageMaker.endPage + 1}"><i class="lni lni-chevron-right"></i></a>
+																	      </li>
+																	    </c:if>
+
+																	  </ul>
+																	</div>
+																	
+																	
+																	
 							                                        <!--/ End Pagination -->
+																	
+																	
+																	<form id="actionForm" action="list" method="get">
+																			<input type="hidden" name="pageNum" value="${PageMaker.cri.pageNum}">
+																			<input type="hidden" name="amount" value="${PageMaker.cri.amount}">
+																			<!-- 페이지 검색시 페이지 번호를 클릭핳때 필요한 파라미터 -->
+																			<input type="hidden" name="type" value="${PageMaker.cri.type}">
+																			<input type="hidden" name="keyword" value="${PageMaker.cri.keyword}">
+																			<!-- 이름은 넘어갈때 사용되는거 값은 페이지 번호 : "${PageMaker.cri.pageNum}"  -->
+																			<!-- 히든으로 넘어오는거는 Criteria.java dto에서 가져오면됨 -->
+
+																		</form>
+
+																	
 							                                    </div>
 							                                </div>
 							                            </div>
@@ -1229,9 +920,57 @@
 
 							    <!-- ========================= JS here ========================= -->
 							    <script src="assets/js/bootstrap.min.js"></script>
+<!--								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--								<script src="assets/js/bootstrap.bundle.min.js"></script>-->
 							    <script src="assets/js/tiny-slider.js"></script>
 							    <script src="assets/js/glightbox.min.js"></script>
 							    <script src="assets/js/main.js"></script>
 							</body>
 
 							</html>
+							<script>
+								
+								var actionForm = $("#actionForm");
+
+
+									//페이지 번호 처리리
+									$(".pagenate_button a").on("click",function (e) {
+										e.preventDefault();
+										console.log("click!!~~~");
+										// console.log("$(this)"+$(this));
+										console.log("@# href -> "+$(this).attr("href"));
+										// console.log("@# href -> "+$(this).data("href"));
+										
+										
+										//input 안에 속성-이름 대괄호 사용 - 클릭한 값 찾는다. 이걸 액션폼으로 ~
+										actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+										
+										//버그처리
+										//이동하려면 서브밋 사용 - 경로 지정 갔다오면 컨텐트를 물고있음 리스트를 넣어줘야합니다.
+										//게시글 클릭후 뒤로가기 누른후 다른페이지 클릭할때 contentview물고있는거 해결 contentview옴.
+										actionForm.attr("action","list").submit();
+										
+									}); //end of pagenate_button click
+								
+								$(".move_link").on("click",function (e) {
+										e.preventDefault();
+										//게시글 번호가찍힌다 - 클릭했을때 번호를 들고갈수 있겠다.
+										console.log("@# href -> "+$(this).attr("href"));
+										
+										console.log("move_link click!!~~~");
+										
+										//변수사용할거다 대상은 보드 넘버다.
+										var targetBno = $(this).attr("href");
+										//넘어가는거 액션폼 사용 게시글 찾아가야하니까 어펜드 사용-태그를 넣는다. 화면단보면됨
+										//이름은 보드넘버 값은 위에만든 타겟보드넘버인데 작은따옴표안에 큰따옴표 ++ 사용해서 넣으면됨
+										// content_view?boardNo=${dto.boardNo} 를 actionForm으로 정리
+
+										//버그처리 값이 있으면 리무브 ! = 값이 있으면
+										//버그처리 (게시글 클릭후 뒤로가기 누른후 다른 게시글 클릭할때 &boardNo=번호 계속 누적방지)
+										var bno = actionForm.find("input[name='id']").val();
+										if (bno != "") {
+											actionForm.find("input[name='id']").remove();
+											
+										}
+								
+							</script>

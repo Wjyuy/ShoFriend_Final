@@ -57,5 +57,42 @@
             #{sale_price}
         )
     </insert>
+    
+	<select id="selectOrderById" parameterType="int" resultType="com.boot.dto.OrdersDTO">
+        SELECT
+            id,
+            partner_order_id,
+            customer_id,
+            order_date,
+            order_status,
+            total_quantity,
+            total_price,
+            delivery_address,
+            delivery_zipcode,
+            delivery_memo,
+            payment_method,
+            payment_status,
+            transaction_id,
+            friend_order_id,
+            posted
+        FROM
+            orders
+        WHERE
+            id = #{orderId}
+    </select>
+
+    <select id="selectOrderItemsByOrderId" parameterType="int" resultType="com.boot.dto.OrderItemDTO">
+        SELECT
+            id,
+            order_id,
+            product_id,
+            quantity,
+            sale_price
+        FROM
+            order_items
+        WHERE
+            order_id = #{orderId}
+    </select>
+
 
 </mapper>

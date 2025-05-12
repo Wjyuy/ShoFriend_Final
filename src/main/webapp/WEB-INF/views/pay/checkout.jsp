@@ -151,6 +151,29 @@
 	            }
 	        }).open();
 	    }
+		
+		document.addEventListener('DOMContentLoaded', function() {
+		    const deliveryMemoSelect = document.getElementById('delivery_memo_select');
+		    const directInputContainer = document.getElementById('direct_input_container');
+		    const deliveryMemoDirectInput = document.getElementById('delivery_memo_direct');
+		    const deliveryMemoHiddenInput = document.getElementById('delivery_memo');
+
+		    deliveryMemoSelect.addEventListener('change', function() {
+		        const selectedValue = this.value;
+
+		        if (selectedValue === 'direct_input') {
+		            directInputContainer.style.display = 'block';
+		            deliveryMemoHiddenInput.value = deliveryMemoDirectInput.value; // 초기 값 동기화
+		        } else {
+		            directInputContainer.style.display = 'none';
+		            deliveryMemoHiddenInput.value = selectedValue;
+		        }
+		    });
+
+		    deliveryMemoDirectInput.addEventListener('input', function() {
+		        deliveryMemoHiddenInput.value = this.value;
+		    });
+		});
 	</script>
 </head>
 
@@ -562,9 +585,22 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 col-md-6 col-12">
 									<div>
-							            <label for="delivery_memo">배송 메시지:</label>
-							            <input type="text" id="delivery_memo" name="delivery_memo" class="form-control">
-							        </div>
+									    <label for="delivery_memo_select">배송 메시지:</label>
+									    <div class="form-group">
+									        <select class="form-control" id="delivery_memo_select" name="delivery_memo_select">
+									            <option value="">선택해주세요</option>
+									            <option value="배송시 연락 주세요.">배송시 연락 주세요.</option>
+									            <option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
+									            <option value="집 앞에 둬주세요.">집 앞에 둬주세요.</option>
+									            <option value="direct_input">직접 입력하기</option>
+									        </select>
+									    </div>
+									    <div id="direct_input_container" style="display: none;">
+									        <label for="delivery_memo_direct">직접 입력:</label>
+									        <input type="text" id="delivery_memo_direct" name="delivery_memo_direct" class="form-control">
+									    </div>
+									    <input type="hidden" id="delivery_memo" name="delivery_memo" value="">
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -572,29 +608,39 @@
 	            </div>
 	            <div class="col-md-3">
 	                <div class="top-area">
-	                    상품정보
-	                    <ul>
-	                        <li><a href="../content?id=${product.id}">상품명:${product.title}</a></li>
-	                        <li><a href="#">원 상품가격:${product.price}</a></li>
-	                        <li><a href="#">갯수:${quantity}</a></li>
-	                        <li><a href="#">할인적용된 상품가:${finalPrice}</a></li>
-	                    </ul>
-	                </div>
-			        <div class="top-area">
-			            Payment Info
-			            
-							결제금액
-							<ul>
-		                        <li><a href="#">실제 결제금액:${totalPrice}</a></li>
-		                    </ul>
-							<input type="hidden" name="totalAmount" value="${totalPrice}"> 
-					        <input type="hidden" name="itemName" value="${product.title}">   
-					        <input type="hidden" name="quantity" value="${quantity}">
-							<input type="hidden" name="productId" value="${product.id}">
-                            <div class="button cart-button">
-				                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
-                            </div>
-			            </form>
+						상품정보
+						            <c:forEach var="product" items="${products}" varStatus="status">
+						                <ul>
+						                    <li><a href="../content?id=${product.id}">상품명:${product.title}</a></li>
+						                    <c:set var="now" value="<%= new java.util.Date() %>"/>
+						                    <c:choose>
+						                        <c:when test="${product.discount_start <= now and now <= product.discount_end}">
+						                            <span><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###"/>원</span>
+						                            <del><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</del>
+						                        </c:when>
+						                        <c:otherwise>
+						                            <span><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</span>
+						                        </c:otherwise>
+						                    </c:choose>
+						                    <input type="hidden" name="productId[]" value="${product.id}">
+						                    <input type="hidden" name="quantity[]" value="${quantities[status.index]}">
+						                </ul>
+						            </c:forEach>
+						        </div>
+						        <div class="top-area">
+						            Payment Info
+
+						            <ul>
+						                <li><a href="#">결제 금액:<fmt:formatNumber value="${totalPrice}" pattern="#,###"/></a></li>
+						            </ul>
+						            <input type="hidden" name="totalAmount" value="${totalPrice}">
+						            <input type="hidden" name="itemName" value="${products[0].title} 외 ${products.size() - 1}건">
+						            <div class="button cart-button">
+						                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
+						            </div>
+						        </div>
+						    </div>
+						</form>
 			        <div>
 	            </div>
 	        </div> 

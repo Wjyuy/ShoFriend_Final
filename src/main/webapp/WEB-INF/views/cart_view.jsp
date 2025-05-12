@@ -170,22 +170,23 @@
 </c:choose>
 </body>
 <script>
-	function submitDeleteSoldOut(){
-		const form = document.createElement("form");
-		form.method = "post";
-		form.action = "deleteSoldOut";
-		document.body.appendChild(form);
-		form.submit();
-	}
-	function validateCartSelection() {
-		const checkboxes = document.querySelectorAll('.cartCheckbox');
-		for(let cb of checkboxes){
-			if(cb.checked && !cb.disabled){
-			return true;
+		function submitDeleteSoldOut(){
+			const form = document.createElement("form");
+			form.method = "post";
+			form.action = "deleteSoldOut";
+			document.body.appendChild(form);
+			form.submit();
 		}
-	}
-	alert("선택된 상품이 없습니다.");
-	return false;
-	}
+		function validateCartSelection() {
+			const checkboxes = document.querySelectorAll('.cartCheckbox');
+			for(let cb of checkboxes){
+				if(cb.checked && !cb.disabled){
+				return true;
+			}
+		}
+		alert("선택된 상품이 없습니다.");
+		return false;
+		}
+
 </script>
 </html>

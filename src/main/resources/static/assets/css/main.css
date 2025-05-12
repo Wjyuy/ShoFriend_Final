@@ -31,6 +31,20 @@ p {
   padding: 0;
 }
 
+.pagenate_button a {
+  padding: 6px 12px;
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagenate_button.active a {
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
 .navbar-toggler:focus,
 a:focus,
 input:focus,

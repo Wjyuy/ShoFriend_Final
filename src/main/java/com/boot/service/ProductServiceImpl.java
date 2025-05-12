@@ -44,7 +44,13 @@ public class ProductServiceImpl implements ProductService{
 	    }
 	    try {
 //	    	String uploadDir = "C:/ShoFriend/";
-	        String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
+//	        String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
+	    	String uploadDir = "C:\\develop\\upload\\";
+	    	
+	    	File uploadPath = new File(uploadDir);
+	    	if (!uploadPath.exists()) {
+	    		uploadPath.mkdirs(); // 폴더가 없으면 생성
+	    	}
 	        String originalFilename = picture.getOriginalFilename();
 	        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 	        String timestamp = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
@@ -67,7 +73,8 @@ public class ProductServiceImpl implements ProductService{
 	    }
 
 	    try {
-	        String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
+	    	String uploadDir = "C:\\develop\\upload\\";
+//	        String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
 
 	        String oldFileName = param.get("picture");
 	        if (oldFileName != null && !oldFileName.isEmpty()) {
@@ -127,7 +134,8 @@ public class ProductServiceImpl implements ProductService{
 	    if (product != null) {
 	        String picture = product.getPicture();
 	        if (picture != null && !picture.isEmpty()) {
-	            String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
+//	            String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
+	        	String uploadDir = "C:\\develop\\upload\\";
 	            File file = new File(uploadDir + picture);
 	            if (file.exists()) {
 	                if (file.delete()) {

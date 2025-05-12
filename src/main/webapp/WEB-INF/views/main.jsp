@@ -90,8 +90,18 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             <div class="user">
-                                <i class="lni lni-user"></i>
-                                Hello
+								<c:choose>
+									<c:when test="${sessionScope.userType == 'seller'}">
+		                                <i class="lni lni-user"></i>
+	                                	${sessionScope.loginSeller.name}
+									</c:when>
+									<c:when test="${sessionScope.userType == 'customer'}">
+		                                <i class="lni lni-user"></i>
+										${sessionScope.loginCustomer.name}
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>
                             </div>
                             <ul class="user-login">
                                 <li>
@@ -438,14 +448,15 @@
 				<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">
                 	<div class="col-lg-3 col-md-6 col-12">
 	                    <div class="single-product">
+							
 	                        <div class="product-image">
-	                            <img src="assets/images/products/product-2.jpg" alt="#">
+	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
 								<c:set var="now" value="<%= new java.util.Date() %>" />
 		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
 									<span class="sale-tag">${dto.discount_percentage}%</span>
 		                        </c:if>
 	                            <div class="button">
-	                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+	                                <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
 	                            </div>
 	                        </div>
 	                        <div class="product-info">
@@ -457,14 +468,23 @@
 	                            <h4 class="title">
 	                                <a href="content?id=${dto.id}">${dto.title}</a>
 	                            </h4>
-	                            <ul class="review">
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star-filled"></i></li>
-	                                <li><i class="lni lni-star"></i></li>
-	                                <li><span>4.0 Review(s)</span></li>
-	                            </ul>
+                                <ul class="review">
+                                    <c:set var="avg" value="${avgRatings[dto.id]}" />
+                                    <c:set var="count" value="${reviewCounts[dto.id]}" />
+                                    <li>
+                                        <i class="lni ${avg >= 1 ? 'lni-star-filled' : 'lni-star'}"></i>
+                                        <i class="lni ${avg >= 2 ? 'lni-star-filled' : 'lni-star'}"></i>
+                                        <i class="lni ${avg >= 3 ? 'lni-star-filled' : 'lni-star'}"></i>
+                                        <i class="lni ${avg >= 4 ? 'lni-star-filled' : 'lni-star'}"></i>
+                                        <i class="lni ${avg >= 5 ? 'lni-star-filled' : 'lni-star'}"></i>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <fmt:formatNumber value="${avg}" type="number" maxFractionDigits="1"/>
+                                            (리뷰 ${count}개)
+                                        </span>
+                                    </li>
+                                </ul>
 	                            <div class="price">
 									<c:choose>
 				                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">

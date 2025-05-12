@@ -35,7 +35,7 @@
                             <td><fmt:formatNumber value="${order.total_price}" pattern="#,###원"/></td>
                             <td>${order.delivery_address} (${order.delivery_zipcode})</td>
                             <td>${order.payment_status}</td>
-                            <td><a href="${pageContext.request.contextPath}/order/detail?orderid=${order.id}" class="btn btn-sm btn-outline-primary">상세 보기</a></td>
+                            <td><a href="${pageContext.request.contextPath}/pay/detail?order_id=${order.id}" class="btn btn-sm btn-outline-primary">상세 보기</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

@@ -1,14 +1,28 @@
 package com.boot.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,11 +32,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.ProductDTO;
-import com.boot.dto.ProductPopularity;
+import com.boot.dto.ReviewDTO;
 import com.boot.dto.SellerDTO;
 import com.boot.dto.StoreDTO;
 import com.boot.service.FriendService;
 import com.boot.service.ProductService;
+import com.boot.service.ReviewService;
 import com.boot.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,20 +58,37 @@ public class MainController {
 	private StoreService storeService;
 	@Autowired
 	private FriendService friendService;
+	@Autowired
+	private ReviewService reviewService;
 	
+	// 25.05.12 권준우 수정(인기 상품 목록에 별점 정보 가져와서 노출되도록 추가)
 	@RequestMapping("/main")
 	public String main(Model model) {
 		log.info("main()");
 		
 		List<ProductDTO> popularlist= service.getPopularProducts();
+//		추가되는 부분
+		Map<Integer, Double> avgRatings = new HashMap<>();
+		Map<Integer, Integer> reviewCounts = new HashMap<>();
+		for (ProductDTO product : popularlist) {
+			int productId = product.getId();
+			Double avg = reviewService.getAverageRating(productId);
+			int count = reviewService.getReviews(productId).size(); // 또는 별도 count 쿼리 써도 됨
+
+			avgRatings.put(productId, avg != null ? avg : 0.0);
+			reviewCounts.put(productId, count);
+		}
+		model.addAttribute("avgRatings", avgRatings);
+		model.addAttribute("reviewCounts", reviewCounts);
+//		추가 끝
 		model.addAttribute("popularlist", popularlist);
-//		
+		
 //		ArrayList<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);
 //		
 		ArrayList<CategoryDTO> categorylist = service.categorylist();
 		model.addAttribute("categorylist", categorylist);
-//		
+		
 		ArrayList<ProductDTO> flashlist = service.selectFlashSaleItems();
 		model.addAttribute("flashlist", flashlist);
 		
@@ -69,8 +101,9 @@ public class MainController {
 	@RequestMapping("/category")
 	public String category(Model model) {
 		log.info("category()");
-//		List<ProductPopularity> popularlist= service.getPopularProducts();
-//		model.addAttribute("popularlist", popularlist);
+		
+		List<ProductDTO> popularlist= service.getPopularProducts();
+		model.addAttribute("popularlist", popularlist);
 		
 		ArrayList<ProductDTO> list = service.product_list();
 		model.addAttribute("list", list);
@@ -152,7 +185,7 @@ public class MainController {
 	}
 
 	
-//	25.05.09 권준우 수정 (친구 공유 기능을 위해 친구 목록 조회 추가)
+//	25.05.09 권준우 수정 (친구 목록 조회, 리뷰 리스트, 별점 통계 추가)
 	@RequestMapping("/content")
 	public String content(@RequestParam("id") int product_id, Model model, HttpSession session) {
 	    ProductDTO product = service.getProductById(product_id);
@@ -174,9 +207,65 @@ public class MainController {
 	        model.addAttribute("myFriends", myFriends);
 	    }
 	    
-	    return "content";
-	}
+		// 리뷰 리스트 가져오기
+		List<ReviewDTO> reviews = reviewService.getReviews(product_id);
+		model.addAttribute("reviews", reviews);
 
+		
+		// 별점 통계 가져오기
+		Map<String, Integer> ratingCounts = reviewService.getRatingCounts(product_id); // 1~5점 개수 map
+		log.info("@# ratingCounts = " + ratingCounts);
+		
+		Double averageRatingObj = reviewService.getAverageRating(product_id);
+		double averageRating = (averageRatingObj != null) ? averageRatingObj : 0.0;
+		model.addAttribute("ratingCounts", ratingCounts);
+		model.addAttribute("averageRating", averageRating);
+
+		return "content";
+	}
+	    
+	
+//	이미지파일을 받아서 화면에 출력(byte 배열타입)
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getFile(String fileName) {
+		log.info("@# display fileName=>"+fileName);
+		
+//		File file = new File("C:\\develop\\upload"+fileName);
+		File file = new File("C:\\develop\\upload\\"+fileName);
+		log.info("@# file=>"+file);
+		
+		ResponseEntity<byte[]> result=null;
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+//			파일타입을 헤더에 추가
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+//			파일정보를 byte 배열로 복사+헤더정보+http상태 정상을 결과에 저장
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+		} catch (IOException e) {
+			log.debug("이미지 파일 읽기 오류 (파일 없음): {}", e.getMessage()); // debug 또는 trace
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return result;
+	}
+	
+	private final ResourceLoader resourceLoader = null;
+	
+	@ExceptionHandler(NoSuchFileException.class)
+    public ResponseEntity<Resource> handleNoSuchFileException(NoSuchFileException e) {
+        log.error("파일을 찾을 수 없습니다: {}", e.getMessage());
+        // 대체 이미지 응답
+        Resource defaultImage = resourceLoader.getResource("classpath:static/assets/images/products/product-5.jpg");
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG); // 대체 이미지 형식에 맞게 설정
+            return new ResponseEntity<>(defaultImage, headers, HttpStatus.OK);
+        } catch (Exception ex) {
+            log.error("대체 이미지 로드 실패: {}", ex.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // 대체 이미지 로드 실패 시 500 응답
+        }
+    }
 	
 	@RequestMapping("/product_write")
 	public String insert(

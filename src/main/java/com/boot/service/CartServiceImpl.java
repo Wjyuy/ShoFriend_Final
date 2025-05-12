@@ -13,6 +13,9 @@ import com.boot.dao.OrdersDAO;
 import com.boot.dto.CartDTO;
 import com.boot.dto.OrdersDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service("CartService")
 public class CartServiceImpl implements CartService {
 
@@ -78,5 +81,14 @@ public class CartServiceImpl implements CartService {
 		CartDAO dao = sqlSession.getMapper(CartDAO.class);
 		dao.deleteSoldOut(user_id);
 		
+	}
+
+	@Override
+	public List<CartDTO> getCartItemsByIds(List<Integer> cartItemIds, int userId) {
+		log.info("getCartItemsByIds_sercvice");
+		CartDAO dao = sqlSession.getMapper(CartDAO.class);
+		log.info("cartItemIds=>"+cartItemIds);
+		log.info("userId=>"+userId);
+		return dao.selectCartItemsByIds(cartItemIds, userId);
 	}
 }

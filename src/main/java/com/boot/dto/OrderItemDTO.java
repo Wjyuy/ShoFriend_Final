@@ -13,4 +13,5 @@ public class OrderItemDTO {
     private int product_id;
     private int quantity;
     private int sale_price;
+    private ProductDTO product;
 }

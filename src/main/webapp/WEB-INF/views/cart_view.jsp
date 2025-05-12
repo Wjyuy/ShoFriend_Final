@@ -121,7 +121,8 @@
 			<!-- <tr class="cart-row> -->
 			<tr class="cart-row ${isSoldOut ? 'text-muted' : ''}">
 			<!--품절이면 disable-->
-				<td><input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox"></td>
+			<td><input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox" 
+			         ${isSoldOut ? 'disabled' :''} onchange="calculateTotal()" checked></td>
 				<td>${dto.id}</td>
 				<td>${dto.product_id}</td>
 				<td><a href="/content?id=${dto.product_id}">${dto.product_title}</a></td>

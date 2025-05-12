@@ -22,7 +22,6 @@ public class PageController {
 	private PageService service;
 	
 	
-
 	@RequestMapping("/list")
 	public String list(Criteria cri, Model model) {
 		log.info("@# list()->");

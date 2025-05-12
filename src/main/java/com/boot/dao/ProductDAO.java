@@ -33,4 +33,9 @@ public interface ProductDAO {
     public List<ProductDTO> getPopularProducts();
     public ProductDTO findTopDiscountProductNearExpiration();
     
+    List<ProductDTO> getAllProductsPaging(@Param("limit") int limit, @Param("offset") int offset);	// 상품 리스트 페이징
+    int countAllProducts();	// 총 상품 개수
+    List<ProductDTO> getProductsByCategoryPaging(@Param("categoryId") int categoryId, @Param("limit") int limit, @Param("offset") int offset);	// 카테고리별 상품 리스트 페이징
+    int countProductsByCategory(int categoryId);	// 카테고리별 총 상품 개수
+
 }

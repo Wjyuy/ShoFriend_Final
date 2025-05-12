@@ -34,6 +34,7 @@ public class ReviewController {
 		dto.setCustomerId(customer.getId());
 		dto.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
 		reviewService.saveReview(dto);
+		
 		log.info("@# productId: " + dto.getProductId());
 
 		return "redirect:/content?id=" + dto.getProductId(); // 다시 상품 페이지로 이동

@@ -82,7 +82,6 @@
                         <div class="top-middle">
                             <ul class="useful-links">
                                 <li><a href="main">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
                                 <li><a href="friend">Friend</a></li>
                             </ul>
                         </div>
@@ -128,7 +127,7 @@
                         <!-- Start Header Logo -->
                         <a class="navbar-brand" href="main">
 <!--                            <img src="assets/images/logo/logo.svg" alt="Logo">-->
-                            <img src="assets/images/logo/ShoFriend_logo.png" alt="Logo">
+                            <img src="assets/images/logo/ShoFriend_logo.png" alt="Logo" >
                         </a>
                         <!-- End Header Logo -->
                     </div>
@@ -241,15 +240,16 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-                            <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
+                            <span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All Categories</a></span>
                             <ul class="sub-category">
-                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a href="product-grids.html">하위목록1</a></li>
-                                        <li><a href="product-grids.html">하위목록2</a></li>
-                                        <li><a href="product-grids.html">하위목록3</a></li>
-                                        <li><a href="product-grids.html">하위목록4</a></li>
-                                    </ul>
+                                <li><a href="product-grids.html">추천상품</a>
+<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
+<!--                                    <ul class="inner-sub-category">-->
+<!--                                        <li><a href="product-grids.html">하위목록1</a></li>-->
+<!--                                        <li><a href="product-grids.html">하위목록2</a></li>-->
+<!--                                        <li><a href="product-grids.html">하위목록3</a></li>-->
+<!--                                        <li><a href="product-grids.html">하위목록4</a></li>-->
+<!--                                    </ul>-->
                                 </li>
                                 <li><a href="product-grids.html">반짝세일</a></li>
                                 <li><a href="product-grids.html">식품</a></li>
@@ -274,19 +274,16 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a href="index.html" class="active" aria-label="Toggle navigation">Home</a>
+                                        <a href="main" class="active" aria-label="Toggle navigation">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">Pages</a>
                                         <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="about-us.html">About Us</a></li>
-                                            <li class="nav-item"><a href="faq.html">Faq</a></li>
-                                            <li class="nav-item"><a href="login.html">Login</a></li>
-                                            <li class="nav-item"><a href="register.html">Register</a></li>
-                                            <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
-                                            <li class="nav-item"><a href="404.html">404 Error</a></li>
+<!--                                            <li class="nav-item"><a href="faq.html">Faq</a></li>-->
+                                            <li class="nav-item"><a href="log/login">Login</a></li>
+                                            <li class="nav-item"><a href="log/customer_register">Register</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
@@ -294,28 +291,16 @@
                                             data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">Shop</a>
                                         <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
-                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>
-                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>
-                                            <li class="nav-item"><a href="cart.html">Cart</a></li>
-                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>
+<!--                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>-->
+<!--                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>-->
+<!--                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>-->
+                                            <li class="nav-item"><a href="cart_view">Cart</a></li>
+<!--                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>-->
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
-                                            </li>
-                                            <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-                                            <li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-                                                    Sibebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>
-                                    </li>
+<!--                                    <li class="nav-item">-->
+<!--                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>-->
+<!--                                    </li>-->
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>
@@ -357,22 +342,27 @@
                     <div class="slider-head">
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
+							
                             <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
-                                <div class="content">
-                                    <h2><span>친구가 구매한 상품이에요(만들예정)</span>
-                                        M75 Sport Watch
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
+							<c:if test="${sessionScope.userType == 'customer'}">
+	                            <div class="single-slider"
+	                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
+	                                <div class="content">
+	                                    <h2><span>최근 친구가 구매한 상품이에요</span>
+	                                        ${friendOrderProduct.title}
+	                                    </h2>
+	                                    <p>${friendOrderProduct.description}</p>
+										<c:set var="now" value="<%= new java.util.Date() %>" />
+										<h3>
+											<fmt:formatNumber value="${friendOrderProduct.price - (friendOrderProduct.price * friendOrderProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
+	                                    <div class="button">
+	                                        <a href="content?id=${friendOrderProduct.id}" class="btn">Shop Now</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+							</c:if>
                             <!-- End Single Slider -->
+							
                             <!-- Start Single Slider -->
                             <div class="single-slider"
                                 style="background-image: url(assets/images/hero/slider-bg2.jpg);">
@@ -382,7 +372,7 @@
                                     </h2>
                                     <p>${TopDiscountProduct.discount_percentage}% 할인된 가격! ${TopDiscountProduct.description}</p>
 									<c:set var="now" value="<%= new java.util.Date() %>" />
-                                    <h3><span>Now Only : </span>
+                                    <h3>
 										<fmt:formatNumber value="${TopDiscountProduct.price - (TopDiscountProduct.price * TopDiscountProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
                                     <div class="button">
                                         <a href="content?id=${TopDiscountProduct.id}" class="btn">Shop Now</a>
@@ -390,6 +380,23 @@
                                 </div>
                             </div>
                             <!-- End Single Slider -->
+							<c:forEach var="flashlist" items="${flashlist}">
+								<div class="single-slider"
+	                                style="background-image: url(assets/images/hero/slider-bg2.jpg);">
+	                                <div class="content">
+	                                    <h2><span>오늘까지 할인상품!</span>
+	                                        ${flashlist.title}
+	                                    </h2>
+	                                    <p>${flashlist.discount_percentage}% 할인된 가격! ${flashlist.description}</p>
+										<c:set var="now" value="<%= new java.util.Date() %>" />
+	                                    <h3>
+											<fmt:formatNumber value="${flashlist.price - (flashlist.price * flashlist.discount_percentage / 100)}" pattern="#,###" />원</h3>
+	                                    <div class="button">
+	                                        <a href="content?id=${flashlist.id}" class="btn">Shop Now</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+							</c:forEach>
                         </div>
                         <!-- End Hero Slider -->
                     </div>
@@ -450,7 +457,7 @@
 	                    <div class="single-product">
 							
 	                        <div class="product-image">
-	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
+	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'">
 								<c:set var="now" value="<%= new java.util.Date() %>" />
 		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
 									<span class="sale-tag">${dto.discount_percentage}%</span>
@@ -612,40 +619,6 @@
 
     <!-- Start Footer Area -->
     <footer class="footer">
-        <!-- Start Footer Top -->
-        <div class="footer-top">
-            <div class="container">
-                <div class="inner-content">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-12">
-                            <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="assets/images/logo/white-logo.svg" alt="#">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-12">
-                            <div class="footer-newsletter">
-                                <h4 class="title">
-                                    Subscribe to our Newsletter
-                                    <span>Get all the latest information, Sales and Offers.</span>
-                                </h4>
-                                <div class="newsletter-form-head">
-                                    <form action="#" method="get" target="_blank" class="newsletter-form">
-                                        <input name="EMAIL" placeholder="Email address here..." type="email">
-                                        <div class="button">
-                                            <button class="btn">Subscribe<span class="dir-part"></span></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Top -->
-        <!-- Start Footer Middle -->
         <div class="footer-middle">
             <div class="container">
                 <div class="bottom-inner">
@@ -653,47 +626,44 @@
                         <div class="col-lg-3 col-md-6 col-12">
                             <!-- Single Widget -->
                             <div class="single-footer f-contact">
-                                <h3>Get In Touch With Us</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
+                                <h3>customer service center</h3>
+                                <p class="phone">Phone: +82 (02) 252 5252</p>
                                 <ul>
                                     <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
                                     <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
                                 </ul>
-                                <p class="mail">
-                                    <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
-                                </p>
                             </div>
                             <!-- End Single Widget -->
                         </div>
                         <div class="col-lg-3 col-md-6 col-12">
-                            <!-- Single Widget -->
+<!--                             Single Widget -->
                             <div class="single-footer our-app">
-                                <h3>Our Mobile App</h3>
+                                <h3>My Page</h3>
                                 <ul class="app-btn">
                                     <li>
-                                        <a href="javascript:void(0)">
+                                        <a href="log/login">
                                             <i class="lni lni-apple"></i>
-                                            <span class="small-title">Download on the</span>
-                                            <span class="big-title">App Store</span>
+                                            <span class="small-title">login</span>
+                                            <span class="big-title">our store</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="lni lni-play-store"></i>
-                                            <span class="small-title">Download on the</span>
-                                            <span class="big-title">Google Play</span>
-                                        </a>
-                                    </li>
+<!--                                    <li>-->
+<!--                                        <a href="javascript:void(0)">-->
+<!--                                            <i class="lni lni-play-store"></i>-->
+<!--                                            <span class="small-title">Download on the</span>-->
+<!--                                            <span class="big-title">Google Play</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
                                 </ul>
                             </div>
-                            <!-- End Single Widget -->
+<!--                             End Single Widget -->
                         </div>
                         <div class="col-lg-3 col-md-6 col-12">
                             <!-- Single Widget -->
                             <div class="single-footer f-link">
                                 <h3>Information</h3>
                                 <ul>
-                                    <li><a href="javascript:void(0)">About Us</a></li>
+<!--                                    <li><a href="javascript:void(0)">About Us</a></li>-->
                                     <li><a href="javascript:void(0)">Contact Us</a></li>
                                     <li><a href="javascript:void(0)">Downloads</a></li>
                                     <li><a href="javascript:void(0)">Sitemap</a></li>
@@ -707,11 +677,14 @@
                             <div class="single-footer f-link">
                                 <h3>Shop Departments</h3>
                                 <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
+								   <li><a href="product-grids.html">반짝세일</a></li>
+	                               <li><a href="product-grids.html">식품</a></li>
+	                               <li><a href="product-grids.html">가구</a></li>
+	                               <li><a href="product-grids.html">도서</a></li>
+	                               <li><a href="product-grids.html">스포츠/레저</a></li>
+	                               <li><a href="product-grids.html">출산/유아용품</a></li>
+	                               <li><a href="product-grids.html">반려동물용품</a></li>
+	                               <li><a href="product-grids.html">뷰티</a></li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -726,20 +699,28 @@
             <div class="container">
                 <div class="inner-content">
                     <div class="row align-items-center">
-                        <div class="col-lg-4 col-12">
-                            <div class="payment-gateway">
-                                <span>We Accept:</span>
-                                <img src="assets/images/footer/credit-cards-footer.png" alt="#">
-                            </div>
+                        <div class="col-lg-3 col-md-6 col-12 mb-2">
+							
+							<div class="footer-logos" style="display: flex; align-items: center; gap: 16px;">
+								<span>We Accept:</span>
+							  <img src="assets/images/footer/카카오페이_CI_combination_with_BG.svg" alt="카카오페이" style="height: 24px; max-width: 80px; width: auto;">
+							  <img src="assets/images/footer/credit-cards-footer.png" alt="카드로고" style="height: 24px; max-width: 200px; width: auto;">
+							</div>
+							
+<!--                            <div class="payment-gateway">-->
+<!--                                <span>We Accept:</span>-->
+<!--                                <img src="assets/images/footer/credit-cards-footer.png" alt="#">-->
+<!--                                <img src="assets/images/footer/카카오페이_CI_combination_with_BG.svg" alt="#">-->
+<!--                            </div>-->
                         </div>
-                        <div class="col-lg-4 col-12">
+                        <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
                             <div class="copyright">
-                                <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
-                                        target="_blank">GrayGrids</a></p>
+                                <p>Designed and Developed by<a href="main" rel="nofollow"
+                                        target="_blank">Shofriend</a></p>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-12">
-                            <ul class="socila">
+                        <div class="col-lg-4 col-12 mb-2 text-end">
+                            <ul class="socila" style="display: flex; justify-content: end; align-items: center; gap: 8px; flex-wrap: wrap;">
                                 <li>
                                     <span>Follow Us On:</span>
                                 </li>

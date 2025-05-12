@@ -15,5 +15,5 @@ public interface FriendDAO {
 	public List<CustomerDTO> getAcceptedFriends(int id);
 	public void rejectFriend(HashMap<String, String> param);
 	public void deleteFriend(HashMap<String, String> param);
-	
+	List<Map<String, Object>> getFriendRecentOrders(int currentCustomerId);
 }

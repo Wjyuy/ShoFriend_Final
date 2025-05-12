@@ -608,29 +608,39 @@
 	            </div>
 	            <div class="col-md-3">
 	                <div class="top-area">
-	                    상품정보
-	                    <ul>
-	                        <li><a href="../content?id=${product.id}">상품명:${product.title}</a></li>
-	                        <li><a href="#">원 상품가격:${product.price}</a></li>
-	                        <li><a href="#">갯수:${quantity}</a></li>
-	                        <li><a href="#">할인적용된 상품가:${finalPrice}</a></li>
-	                    </ul>
-	                </div>
-			        <div class="top-area">
-			            Payment Info
-			            
-							결제금액
-							<ul>
-		                        <li><a href="#">실제 결제금액:${totalPrice}</a></li>
-		                    </ul>
-							<input type="hidden" name="totalAmount" value="${totalPrice}"> 
-					        <input type="hidden" name="itemName" value="${product.title}">   
-					        <input type="hidden" name="quantity" value="${quantity}">
-							<input type="hidden" name="productId" value="${product.id}">
-                            <div class="button cart-button">
-				                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
-                            </div>
-			            </form>
+						상품정보
+						            <c:forEach var="product" items="${products}" varStatus="status">
+						                <ul>
+						                    <li><a href="../content?id=${product.id}">상품명:${product.title}</a></li>
+						                    <c:set var="now" value="<%= new java.util.Date() %>"/>
+						                    <c:choose>
+						                        <c:when test="${product.discount_start <= now and now <= product.discount_end}">
+						                            <span><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###"/>원</span>
+						                            <del><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</del>
+						                        </c:when>
+						                        <c:otherwise>
+						                            <span><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</span>
+						                        </c:otherwise>
+						                    </c:choose>
+						                    <input type="hidden" name="productId[]" value="${product.id}">
+						                    <input type="hidden" name="quantity[]" value="${quantities[status.index]}">
+						                </ul>
+						            </c:forEach>
+						        </div>
+						        <div class="top-area">
+						            Payment Info
+
+						            <ul>
+						                <li><a href="#">결제 금액:<fmt:formatNumber value="${totalPrice}" pattern="#,###"/></a></li>
+						            </ul>
+						            <input type="hidden" name="totalAmount" value="${totalPrice}">
+						            <input type="hidden" name="itemName" value="${products[0].title} 외 ${products.size() - 1}건">
+						            <div class="button cart-button">
+						                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
+						            </div>
+						        </div>
+						    </div>
+						</form>
 			        <div>
 	            </div>
 	        </div> 

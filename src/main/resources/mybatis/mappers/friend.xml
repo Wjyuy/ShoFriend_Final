@@ -48,6 +48,26 @@
 	  WHERE customer_id1 = #{customer_id1} AND customer_id2 = #{customer_id2}
 	</delete>
 	
+	<select id="getFriendRecentOrders" parameterType="int" resultType="java.util.Map">
+        SELECT
+            o.id AS order_id,
+            o.order_date,
+            o.customer_id,
+            oi.product_id
+        FROM
+            orders o
+        JOIN
+            order_items oi ON o.id = oi.order_id
+        JOIN
+            friend f ON (o.customer_id = f.customer_id1 OR o.customer_id = f.customer_id2)
+        WHERE
+            (f.customer_id1 = #{currentCustomerId} OR f.customer_id2 = #{currentCustomerId})
+            AND o.customer_id != #{currentCustomerId}
+            AND f.status = 'accepted'
+        ORDER BY
+            o.order_date DESC
+        LIMIT 1
+    </select>
 	
 	
 </mapper>

@@ -22,6 +22,9 @@ import com.boot.dto.ProductPopularity;
 // 25/04/10    우주연
 @Service("ProductService")
 public class ProductServiceImpl implements ProductService{
+	
+	@Autowired
+	private ProductDAO productDAO;
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -202,5 +205,27 @@ public class ProductServiceImpl implements ProductService{
         param.put("recommendCount", recommendCount);
         dao.addRecommend(param);
 	}	
+	
+	@Override
+	public List<ProductDTO> getAllProductsPaging(int limit, int offset) {	// 상품 리스트 페이징
+		return productDAO.getAllProductsPaging(limit, offset);
+	}
+
+	@Override
+	public int countAllProducts() {	// 총 상품 개수
+		return productDAO.countAllProducts();
+	}
+
+	
+	@Override
+	public List<ProductDTO> getProductsByCategoryPaging(int categoryId, int limit, int offset) {	// 카테고리별 상품 리스트 페이징
+		return productDAO.getProductsByCategoryPaging(categoryId, limit, offset);
+	}
+
+	@Override
+	public int countProductsByCategory(int categoryId) {	// 카테고리별 총 상품 개수
+		return productDAO.countProductsByCategory(categoryId);
+	}
+
 
 }

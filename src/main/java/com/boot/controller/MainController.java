@@ -60,10 +60,6 @@ public class MainController {
 	private FriendService friendService;
 	@Autowired
 	private ReviewService reviewService;
-	@Autowired
-	private ProductService productService;
-	
-	
 	
 	// 25.05.12 권준우 수정(인기 상품 목록에 별점 정보 가져와서 노출되도록 추가)
 	@RequestMapping("/main")

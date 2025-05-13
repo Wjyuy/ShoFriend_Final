@@ -362,13 +362,13 @@
 			          <div class="row align-items-center">
 			              <div class="col-lg-6 col-md-6 col-12">
 			                  <div class="breadcrumbs-content">
-			                      <h1 class="../friend">Friend</h1>
+			                      <h1 class="login">Login</h1>
 			                  </div>
 			              </div>
 			              <div class="col-lg-6 col-md-6 col-12">
 			                  <ul class="breadcrumb-nav">
 			                      <li><a href="../main"><i class="lni lni-home"></i> Home</a></li>
-			                      <li>Friend</li>
+			                      <li>Login</li>
 			                  </ul>
 			              </div>
 			          </div>
@@ -458,7 +458,7 @@
 	                                <h3>My Page</h3>
 	                                <ul class="app-btn">
 	                                    <li>
-	                                        <a href="log/login">
+	                                        <a href="login">
 	                                            <i class="lni lni-apple"></i>
 	                                            <span class="small-title">login</span>
 	                                            <span class="big-title">our store</span>

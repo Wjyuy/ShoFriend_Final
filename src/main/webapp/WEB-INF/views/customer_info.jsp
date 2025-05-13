@@ -516,10 +516,10 @@
                                 <div class="col-sm-12">
                                     <label for="reg-fn">주소</label><br>
                                     <div class="zip-row">
-                                        <input type="text" name="zipcode"  class="form-control" id="sample6_postcode" value="${store_view.zipcode}">
+                                        <input type="text" name="zipcode"  class="form-control" id="sample6_postcode" value="${loginCustomer.zipcode}">
                                         <input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-outline-secondary" value="우편번호 찾기"></div>
-                                        <input type="text" name="address"  class="form-control" id="sample6_address" value="${store_view.address}">
-                                        <input type="text" name="address1" class="form-control"  id="sample6_extraAddress" value="${store_view.address1}" >
+                                        <input type="text" name="address"  class="form-control" id="sample6_address" value="${loginCustomer.address}">
+                                        <input type="text" name="address1" class="form-control"  id="sample6_extraAddress" value="${loginCustomer.address1}" >
                                         <!-- 	address1 사용안해서 히든처리 (없으면 팝업창 안뜸) 04.10 -->
                                         <input type="hidden" name="address2" id="sample6_detailAddress" >
                                         <!-- <input type="button" style="margin-top: 10px;" class="btn btn-outline-secondary btn-sm" value="주소 수정" onclick="updateInfo('address')" ></td> -->

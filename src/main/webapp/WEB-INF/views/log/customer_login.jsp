@@ -433,7 +433,7 @@
     </div>
     <!-- End Account Login Area -->
 
-	 <!-- Start Footer Area -->
+	  <!-- Start Footer Area -->
 	    <footer class="footer">
 	        <div class="footer-middle">
 	            <div class="container">
@@ -444,6 +444,7 @@
 	                            <div class="single-footer f-contact">
 	                                <h3>customer service center</h3>
 	                                <p class="phone">Phone: +82 (02) 252 5252</p>
+	                                <p class="phone">Email: KH@exam.com</p>
 	                                <ul>
 	                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
 	                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
@@ -457,19 +458,12 @@
 	                                <h3>My Page</h3>
 	                                <ul class="app-btn">
 	                                    <li>
-	                                        <a href="login">
+	                                        <a href="log/login">
 	                                            <i class="lni lni-apple"></i>
 	                                            <span class="small-title">login</span>
 	                                            <span class="big-title">our store</span>
 	                                        </a>
 	                                    </li>
-	<!--                                    <li>-->
-	<!--                                        <a href="javascript:void(0)">-->
-	<!--                                            <i class="lni lni-play-store"></i>-->
-	<!--                                            <span class="small-title">Download on the</span>-->
-	<!--                                            <span class="big-title">Google Play</span>-->
-	<!--                                        </a>-->
-	<!--                                    </li>-->
 	                                </ul>
 	                            </div>
 	<!--                             End Single Widget -->
@@ -493,14 +487,13 @@
 	                            <div class="single-footer f-link">
 	                                <h3>Shop Departments</h3>
 	                                <ul>
-									   <li><a href="product-grids.html">반짝세일</a></li>
-		                               <li><a href="product-grids.html">식품</a></li>
-		                               <li><a href="product-grids.html">가구</a></li>
-		                               <li><a href="product-grids.html">도서</a></li>
-		                               <li><a href="product-grids.html">스포츠/레저</a></li>
-		                               <li><a href="product-grids.html">출산/유아용품</a></li>
-		                               <li><a href="product-grids.html">반려동물용품</a></li>
-		                               <li><a href="product-grids.html">뷰티</a></li>
+		                               <li><a href="/category?categoryId=1">식품</a></li>
+		                               <li><a href="/category?categoryId=2">가구</a></li>
+		                               <li><a href="/category?categoryId=3">도서</a></li>
+		                               <li><a href="/category?categoryId=4">스포츠/레저</a></li>
+		                               <li><a href="/category?categoryId=5">출산/유아용품</a></li>
+		                               <li><a href="/category?categoryId=6">반려동물용품</a></li>
+		                               <li><a href="/category?categoryId=7">뷰티</a></li>
 	                                </ul>
 	                            </div>
 	                            <!-- End Single Widget -->
@@ -525,8 +518,8 @@
 								
 	<!--                            <div class="payment-gateway">-->
 	<!--                                <span>We Accept:</span>-->
-	<!--                                <img src="../assets/images/footer/credit-cards-footer.png" alt="#">-->
-	<!--                                <img src="../assets/images/footer/카카오페이_CI_combination_with_BG.svg" alt="#">-->
+	<!--                                <img src="assets/images/footer/credit-cards-footer.png" alt="#">-->
+	<!--                                <img src="assets/images/footer/카카오페이_CI_combination_with_BG.svg" alt="#">-->
 	<!--                            </div>-->
 	                        </div>
 	                        <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
@@ -554,56 +547,58 @@
 	    </footer>
 	    <!--/ End Footer Area -->
 
-		  <!-- ========================= scroll-top ========================= -->
-		    <a href="#" class="scroll-top">
-		        <i class="lni lni-chevron-up"></i>
-		    </a>
+	    <!-- ========================= scroll-top ========================= -->
+	    <a href="#" class="scroll-top">
+	        <i class="lni lni-chevron-up"></i>
+	    </a>
 
-		    <!-- ========================= JS here ========================= -->
-		    <script src="../assets/js/bootstrap.min.js"></script>
-		    <script src="../assets/js/tiny-slider.js"></script>
-		    <script src="../assets/js/glightbox.min.js"></script>
-		    <script src="../assets/js/main.js"></script>
-		    <script type="../text/javascript">
-<!--		        ========= Hero Slider -->
-		        tns({
-		            container: '.hero-slider',
-		            slideBy: 'page',
-		            autoplay: true,
-		            autoplayButtonOutput: false,
-		            mouseDrag: true,
-		            gutter: 0,
-		            items: 1,
-		            nav: false,
-		            controls: true,
-		            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
-		        });
+	    <!-- ========================= JS here ========================= -->
+	    <script src="../assets/js/bootstrap.min.js"></script>
+	    <script src="../assets/js/tiny-slider.js"></script>
+	    <script src="../assets/js/glightbox.min.js"></script>
+	    <script src="../assets/js/main.js"></script>
+	    <script type="../text/javascript">
+	        //========= Hero Slider 
+	        tns({
+	            container: '.hero-slider',
+	            slideBy: 'page',
+	            autoplay: true,
+	            autoplayButtonOutput: false,
+	            mouseDrag: true,
+	            gutter: 0,
+	            items: 1,
+	            nav: false,
+	            controls: true,
+	            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+	        });
 
-<!--		        //======== Brand Slider-->
-		        tns({
-		            container: '.brands-logo-carousel',
-		            autoplay: true,
-		            autoplayButtonOutput: false,
-		            mouseDrag: true,
-		            gutter: 15,
-		            nav: false,
-		            controls: false,
-		            responsive: {
-		                0: {
-		                    items: 1,
-		                },
-		                540: {
-		                    items: 3,
-		                },
-		                768: {
-		                    items: 5,
-		                },
-		                992: {
-		                    items: 6,
-		                }
-		            }
-		        });
-		    </script>
-		</body>
+	        //======== Brand Slider
+	        tns({
+	            container: '.brands-logo-carousel',
+	            autoplay: true,
+	            autoplayButtonOutput: false,
+	            mouseDrag: true,
+	            gutter: 15,
+	            nav: false,
+	            controls: false,
+	            responsive: {
+	                0: {
+	                    items: 1,
+	                },
+	                540: {
+	                    items: 3,
+	                },
+	                768: {
+	                    items: 5,
+	                },
+	                992: {
+	                    items: 6,
+	                }
+	            }
+	        });
+	    </script>
+	</body>
 
-		</html>
+
+
+

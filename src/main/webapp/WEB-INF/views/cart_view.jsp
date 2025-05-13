@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html class="no-js" lang="zxx"></html>
 <head>
 <meta charset="UTF-8">
@@ -86,7 +87,8 @@
 			});
 			const totalEl = document.getElementById('totalAmount')
 			if (totalEl) {
-				totalEl.textContent = total +'원';
+				const numberFormat = new Intl.NumberFormat('ko-KR'); // 한국 통화 형식
+				totalEl.textContent = numberFormat.format(total) + '원';
 			}
 			// document.getElementById('totalAmount').textContent = total+'원';
 		}
@@ -414,6 +416,7 @@
         <!-- End Header Bottom -->
     </header>
     <!-- End Header Area -->
+	
 	<!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -435,128 +438,125 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-	 <div>	                
-		<h3>장바구니</h3><br>        
-	              </div>
-	<c:choose>
-		<c:when test="${empty items}">
-			<p style="text-align: center; font-weight: bold;">장바구니가 비어 있습니다.</p>
-		</c:when>
-		<c:otherwise>
-	<form method="post" action="/cartAction">
-    <table  class="table table-bordered table-hover" width="500" border="1">
-		<tr>
-			<td><input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked>전체선택</td>
-            <td>주문번호</td>
-			<td>상품ID</td>
-			<td>상품명</td>
-			<td>수량</td>
-			<td>가격</td>
-			<td>합계</td>
-		</tr>
-		
-		<c:forEach var="dto" items="${items}">
-			<c:set var="isSoldOut"  value="${dto.stock == 0}"/>
-			<!-- <tr class="cart-row> -->
-			<tr class="cart-row ${isSoldOut ? 'text-muted' : ''}">
-			<!--품절이면 disable-->
-			<td><input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox" 
-			         ${isSoldOut ? 'disabled' :''} onchange="calculateTotal()" checked></td>
-				<td>${dto.id}</td>
-				<td>${dto.product_id}</td>
-				<td><a href="/content?id=${dto.product_id}">${dto.product_title}</a></td>
-				<td><input type="number" class="qty" name="cart_quantity_${dto.id}" value="${dto.quantity}" min="1"
-					data-price="${dto.final_price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}></td>
-				<!-- <td class="price">${dto.price}원</td> -->
-				<!-- <td class="price">${dto.final_price}원</td> -->
-				<td class="price">
-					<c:choose>
-						<c:when test="${dto.final_price lt dto.price}">
-								<span class="original"><del>${dto.price}원</del></span>
-								<span class="rate">(${dto.discount_percentage}%)</span>
-								<span class="discount">${dto.final_price}원</span>
-						</c:when>
-						<c:otherwise>
-							${dto.price}원
-						</c:otherwise>
-					</c:choose>
-				</td>	
+	
+	<!-- Shopping Cart -->
+		<form method="post" action="/cartAction">
+		    <div class="account-login section">
+		        <div class="container">
+		            <div class="cart-list-head">
+		                <!-- Cart List Title -->
+		                <div class="cart-list-title">
+		                    <div class="row">
+		                        <div class="col-lg-1 col-md-1 col-12">
+									<input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked>
+		                        </div>
+		                        <div class="col-lg-1 col-md-1 col-12">
+		                        </div>
+		                        <div class="col-lg-3 col-md-3 col-12">
+		                            <p>상품명</p>
+		                        </div>
+		                        <div class="col-lg-2 col-md-2 col-12">
+		                            <p>수량</p>
+		                        </div>
+		                        <div class="col-lg-2 col-md-2 col-12">
+		                            <p>할인 적용가</p>
+		                        </div>
+		                        <div class="col-lg-2 col-md-2 col-12">
+		                            <p>합계</p>
+		                        </div>
+		                        <div class="col-lg-1 col-md-2 col-12">
+		                            <p>삭제</p>
+		                        </div>
+		                    </div>
+		                </div>
+		                <!-- End Cart List Title -->
 						
-				
-				<td class="subtotal">
-					<c:choose>
-						<c:when test="${isSoldOut}">
-							<span class="text-soldOut">품절</span>
-						</c:when>
-						<c:otherwise>
-							${dto.final_price*dto.quantity}원
-						</c:otherwise>
-					</c:choose>
-					</td>
-			</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="7" >
-				총합계:<span id="totalAmount">0</span>
-				<button type="submit" onclick="return validateCartSelection()" name="submitType" value="order">주문하기</button>
-				<button type="submit" onclick="return validateCartSelection()" name="submitType" value="delete">선택 삭제</button>
-				<button type="button" onclick="submitDeleteSoldOut()">품절 상품 삭제</button>
-			</td>
-		</tr>
-	</table>
-</form>
-</c:otherwise>
-
-</c:choose>
-    
-
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <!-- Total Amount -->
-                    <div class="total-amount">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-6 col-12">
-                                <div class="left">
-                                    <div class="coupon">
-                                        <form action="#" target="_blank">
-                                            <input name="Coupon" placeholder="Enter Your Coupon">
-                                            <div class="button">
-                                                <button class="btn">Apply Coupon</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="right">
-                                    <ul>
-                                        <li>Cart Subtotal<span>$2560.00</span></li>
-                                        <li>Shipping<span>Free</span></li>
-                                        <li>You Save<span>$29.00</span></li>
-                                        <li class="last">You Pay<span>$2531.00</span></li>
-                                    </ul>
-                                    <div class="button">
-                                        <a href="checkout.html" class="btn">Checkout</a>
-                                        <a href="product-grids.html" class="btn btn-alt">Continue shopping</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ End Total Amount -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ End Shopping Cart -->
-	  
-			         </div>
-                </div>
-            </div>
-        </div>
-
-	</section>
+		                <!-- Cart Single List list -->
+						<c:forEach var="dto" items="${items}">
+							<c:set var="isSoldOut"  value="${dto.stock == 0}"/>
+			                <div class="cart-single-list cart-row ${isSoldOut ? 'text-muted' : ''}">
+			                    <div class="row align-items-center">
+									<div class="col-lg-1 col-md-1 col-12">
+										<input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox" 
+												         ${isSoldOut ? 'disabled' :''} onchange="calculateTotal()" checked>
+								 	</div>
+			                        <div class="col-lg-1 col-md-1 col-12">
+										<a class="cart-img" href="content?id=${dto.product_id}"><img
+		                                    src="/display?fileName=${dto.picture}" alt="${dto.product_title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'"></a>
+			                        </div>
+			                        <div class="col-lg-3 col-md-3 col-12">
+			                            <h5 class="product-name"><a href="/content?id=${dto.product_id}">
+			                                    ${dto.product_title}</a></h5>
+			                        </div>
+			                        <div class="col-lg-2 col-md-2 col-12">
+			                            <div class="count-input">
+											<input type="number" class="qty form-control" name="cart_quantity_${dto.id}" value="${dto.quantity}" min="1"
+												data-price="${dto.final_price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}>
+			                            </div>
+			                        </div>
+			                        <div class="col-lg-2 col-md-2 col-12">
+										<c:choose>
+											<c:when test="${dto.final_price lt dto.price}">
+													<span class="rate">(${dto.discount_percentage}%)</span>
+													<span class="discount"><fmt:formatNumber value="${dto.final_price}" pattern="#,###" />원</span>
+											</c:when>
+											<c:otherwise>
+												<fmt:formatNumber value="${dto.price}" pattern="#,###" />원
+											</c:otherwise>
+										</c:choose>
+			                        </div>
+			                        <div class="col-lg-2 col-md-2 col-12">
+										<div class="subtotal">
+											<c:choose>
+												<c:when test="${isSoldOut}">
+													<span class="text-soldOut">품절</span>
+												</c:when>
+												<c:otherwise>
+													<fmt:formatNumber value="${dto.final_price*dto.quantity}" pattern="#,###" />원
+												</c:otherwise>
+											</c:choose>
+										</div>
+			                        </div>
+									<div class="col-lg-1 col-md-2 col-12">
+									    <a class="remove-item" href="javascript:void(0)" onclick="removeItemFromCart('${dto.id}')"><i class="lni lni-close"></i></a>
+									</div>
+			                    </div>
+			                </div>
+						</c:forEach>
+		                <!-- End Single List list -->
+					</div>
+		            <div class="row">
+		                <div class="col-12">
+		                    <!-- Total Amount -->
+		                    <div class="total-amount">
+		                        <div class="row">
+		                            <div class="col-lg-8 col-md-6 col-12">
+										<button type="button" onclick="submitDeleteSoldOut()">품절 상품 삭제</button>
+										<button type="submit" onclick="return validateCartSelection()" name="submitType" value="delete">선택 삭제</button>
+		                                <div class="left">
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-4 col-md-6 col-12">
+		                                <div class="right">
+		                                    <ul>
+		                                        <li>합계<span id="totalAmount">0원</span></li>
+		                                    </ul>
+		                                    <div class="button">
+		                                        <button type="submit" onclick="return validateCartSelection()" name="submitType" value="order">주문하기</button>
+		                                        <a href="main" class="btn btn-alt">Continue shopping</a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!--/ End Total Amount -->
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</form>
+	    <!--/ End Shopping Cart -->
+	
 <!-- footer -->
 <footer class="footer">
         <div class="footer-middle">
@@ -746,7 +746,29 @@
 		alert("선택된 상품이 없습니다.");
 		return false;
 		}
+		function removeItemFromCart(itemId) {
+		    if (confirm("해당 상품을 장바구니에서 삭제하시겠습니까?")) {
+		        const form = document.createElement("form");
+		        form.method = "post";
+		        form.action = "/cartAction";
 
+		        const selectedIdsInput = document.createElement("input");
+		        selectedIdsInput.type = "hidden";
+		        selectedIdsInput.name = "selectedIds";
+		        selectedIdsInput.value = itemId;
+
+		        const submitTypeInput = document.createElement("input");
+		        submitTypeInput.type = "hidden";
+		        submitTypeInput.name = "submitType";
+		        submitTypeInput.value = "delete"; // 단일 삭제 요청임을 명시
+
+		        form.appendChild(selectedIdsInput);
+		        form.appendChild(submitTypeInput);
+
+		        document.body.appendChild(form);
+		        form.submit();
+		    }
+		}
 </script>
 </body>
 </html>

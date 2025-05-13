@@ -375,7 +375,7 @@
 	       
 	            <div class="card-body">
 	              <div class="title">
-	                <h3>Check Password</h3><br>
+	                <h3>비밀번호 확인</h3><br>
 	                
 	              </div>
                   <div class="form-group input-group">

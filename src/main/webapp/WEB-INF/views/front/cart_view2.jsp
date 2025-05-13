@@ -2,37 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html class="no-js" lang="zxx"></html>
 <head>
-<!-- * 25.04.10 권준우 최초 작성 -->
-<!-- 25/04/14    김채윤   프론트엔드 적용 -->
-</head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script>
-	function updateInfo2(field) {
-// 		alert("업데이트 함수 도달: " + field);  // 작동 확인
-		const newValue = document.getElementById(field + "_input").value;
-
-		$.ajax({
-			type: "post",
-			url: "updateSellerInfo",
-			data: {
-				field: field,
-				value: newValue
-			},
-			success: function(response) {
-				alert("수정 완료!");
-				location.reload();
-			},
-			error: function() {
-				alert("수정 실패!");
-			}
-		});
-	}
-</script>
-<head>
-	<meta charset="UTF-8">
-	<title>판매자 정보</title>
+	<title>장바구니</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -51,11 +22,101 @@
     <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
     <link rel="stylesheet" href="assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />	
-</head> 
+    <link rel="stylesheet" href="assets/css/main.css" />
+	<script>
+		window.onload = function(){
+			calculateTotal();
+			setIndividualCheckbox();
+		}
+		function toggleAll(source){
+			const checkboxes = document.getElementsByClassName('cartCheckbox');
+			for(let i = 0; i <checkboxes.length; i++){
+				if (!checkboxes[i].disabled) {
+					checkboxes[i].checked = source.checked;
+					}
+		}
+			calculateTotal();
+			}
+		function setIndividualCheckbox(){
+			const checkboxes = document.querySelectorAll('.cartCheckbox');
+			const selectAll = document.getElementById('selectAll');
 
+			checkboxes.forEach(cb=>{
+				cb.addEventListener('change', () =>{
+					if (!cb.checked) {
+						selectAll.checked = false;
+					}else{
+						const allChecked = Array.from(checkboxes).every(box => box.checked);
+						selectAll.checked = allChecked;
+					}
+					calculateTotal();
+				});
+			});
+		}
+			
+		function updateSubtotal(input){
+		
+			const price = parseInt(input.dataset.price);
+			const qty = parseInt(input.value);
+			const row = input.closest('.cart-row');
+			const subtotalCell = row.querySelector('.subtotal');
+			const subtotal = qty * price;
+			subtotalCell.textContent = subtotal +'원';
+
+			calculateTotal();
+		}
+		function calculateTotal(){
+			const rows = document.querySelectorAll('.cart-row');
+			let total = 0;
+			rows.forEach(row =>{
+				const checkbox = row.querySelector('.cartCheckbox');
+				// const input = row.querySelector('.qty');
+				const subtotalCell = row.querySelector('.subtotal');
+				
+				if(!checkbox || !checkbox.checked || checkbox.disabled) return;
+					const rawText = subtotalCell.textContent ||"";
+					const digitsOnly = rawText.replace(/[^\d]/g,'').trim();
+					if(digitsOnly === '') return;
+					const subtotal = parseInt(digitsOnly);
+					// const subtotal = parseInt(row.querySelector('.subtotal').textContent);
+					if (!isNaN(subtotal) && subtotal >0) {
+						total += subtotal;
+					}
+			
+			});
+			const totalEl = document.getElementById('totalAmount')
+			if (totalEl) {
+				totalEl.textContent = total +'원';
+			}
+			// document.getElementById('totalAmount').textContent = total+'원';
+		}
+
+	</script>
+	<style>
+		.text-muted{
+			color: #999;
+		}
+		.text-soldOut{
+			color: red;
+			font-weight: bold;
+		}
+		.original{
+			color: #aaa;
+			margin-right: 4px;
+		}
+		.discount{
+			color: blue;
+			font-weight: bold;
+		}
+		.rate{
+			color: #444;
+			font-size: 0.9em;
+			margin-left: 3px;
+		}
+	</style>
+</head>
 <body>
-    <!--[if lte IE 9]>
+	 <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
@@ -86,25 +147,20 @@
                                 <li>
                                     <div class="select-position">
                                         <select id="select4">
-                                            <option value="0" selected>$ USD</option>
+                                            <option value="0" selected>₩ WON</option>
                                             <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
+                                            <option value="2">$ USD</option>
                                             <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
                                         </select>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="select-position">
                                         <select id="select5">
-                                            <option value="0" selected>English</option>
+                                            <option value="0" selected>Korean</option>
                                             <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
+                                            <option value="2">English</option>
                                             <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
                                         </select>
                                     </div>
                                 </li>
@@ -139,12 +195,22 @@
                                 <li>
                                     <a href="my_page">My Page</a>
                                 </li>
-                                <li>
-                                    <a href="log/login">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="log/customer_register">Register</a>
-                                </li>
+								<c:choose>
+									<c:when test="${sessionScope.userType == 'seller'}">
+	                                    <li><a href="logout">Log out</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userType == 'customer'}">
+	                                    <li><a href="logout">Log out</a></li>
+									</c:when>
+									<c:otherwise>
+		                                <li>
+		                                    <a href="log/login">Sign In</a>
+		                                </li>
+		                                <li>
+		                                    <a href="log/customer_register">Register</a>
+		                                </li>
+									</c:otherwise>
+								</c:choose>
                             </ul>
                         </div>
                     </div>
@@ -152,7 +218,7 @@
             </div>
         </div>
         <!-- End Topbar -->
-        <!-- Start Header Middle -->
+   <!-- Start Header Middle -->
         <div class="header-middle">
             <div class="container">
                 <div class="row align-items-center">
@@ -168,26 +234,26 @@
                         <!-- Start Main Menu Search -->
                         <div class="main-menu-search">
                             <!-- navbar search start -->
-                            <div class="navbar-search search-style-5">
-                                <div class="search-select">
-                                    <div class="select-position">
-                                        <select id="select1">
-                                            <option selected>All</option>
-                                            <option value="1">option 01</option>
-                                            <option value="2">option 02</option>
-                                            <option value="3">option 03</option>
-                                            <option value="4">option 04</option>
-                                            <option value="5">option 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search-input">
-                                    <input type="text" placeholder="Search">
-                                </div>
-                                <div class="search-btn">
-                                    <button><i class="lni lni-search-alt"></i></button>
-                                </div>
-                            </div>
+							<form method="get" action="/category">
+	                            <div class="navbar-search search-style-5">
+	                                <div class="search-select">
+	                                    <div class="select-position">
+	                                        <select id="selectCategory" name="categoryId">
+	                                            <option value="" selected>All</option>
+				                                <c:forEach var="cat" items="${categorylist}">
+		                                        	<option value="${cat.id}" ${categoryId == cat.id ? 'selected' : ''}>${cat.name}</option>
+				                                </c:forEach>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="search-input">
+		                                <input type="text" name="keyword" placeholder="Search" value="${param.keyword}" />
+	                                </div>
+	                                <div class="search-btn">
+	                                    <button><i class="lni lni-search-alt"></i></button>
+	                                </div>
+	                            </div>
+                            </form>
                             <!-- navbar search Ends -->
                         </div>
                         <!-- End Main Menu Search -->
@@ -205,57 +271,50 @@
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-heart"></i>
-                                        <span class="total-items">0</span>
+<!--                                        <span class="total-items">0</span>-->
                                     </a>
                                 </div>
                                 <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
-                                    </a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
-                                            <a href="cart.html">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
-                                                </div>
+										<c:if test="${sessionScope.userType == 'customer'}">
+                                        	<span class="total-items">${items.size()}</span>
+                                    	</a>
+                                    	<!-- Shopping Item -->
+                                    	<div class="shopping-item">
+	                                        <div class="dropdown-cart-header">
+	                                            <span>${items.size()} Items</span>
+	                                            
+	                                        </div>
+	                                        <ul class="shopping-list">
+												<c:forEach var="item" items="${items}">
+													<li>
+								                        <div class="cart-img-head">
+								                            <a class="cart-img" href="content?id=${item.product_id}"><img
+								                                    src="/display?fileName=${item.picture}" alt="${item.product_title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'"></a>
+								                        </div>
 
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">
-                                                            Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.html" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
+								                        <div class="content">
+								                            <h4><a href="product-details.html?id=${item.product_id}">${item.product_title}</a></h4>
+								                            <p class="quantity">${item.quantity}x - <span class="amount"><fmt:formatNumber value="${item.final_price}" pattern="#,###원"/></span></p>
+								                        </div>
+								                    </li>
+													</c:forEach>
+												</ul>
+		                                        <div class="bottom">
+	                                           		<div class="total">
+	                                                <span>Total</span>
+													<c:forEach var="item" items="${items}">
+								                            <c:set var="totalAmount" value="${totalAmount + (item.final_price * item.quantity)}"/>
+								                        </c:forEach>
+								                        <span class="total-amount"><fmt:formatNumber value="${totalAmount}" pattern="#,###원"/></span>
+								                    </span>
+	                                            </div>
+												<div class="button">
+												    <a href="cart_view" class="btn animate" >View Cart</a>
+												</div>
+	                                        </div>
+										</c:if>
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
@@ -273,26 +332,15 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-                            <span class="cat-button"><a href="main"><i class="lni lni-menu"></i>All Categories</a></span>
-                            <ul class="sub-category">
-                                <li><a href="product-grids.html">추천상품</a>
-<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
-<!--                                    <ul class="inner-sub-category">-->
-<!--                                        <li><a href="product-grids.html">하위목록1</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록2</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록3</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록4</a></li>-->
-<!--                                    </ul>-->
-                                </li>
-                                <li><a href="product-grids.html">반짝세일</a></li>
-                                <li><a href="product-grids.html">식품</a></li>
-                                <li><a href="product-grids.html">가구</a></li>
-                                <li><a href="product-grids.html">도서</a></li>
-                                <li><a href="product-grids.html">스포츠/레저</a></li>
-                                <li><a href="product-grids.html">출산/유아용품</a></li>
-                                <li><a href="product-grids.html">반려동물용품</a></li>
-                                <li><a href="product-grids.html">뷰티</a></li>
-                            </ul>
+							<span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All
+									Categories</a></span>
+							<ul class="sub-category">
+                                <c:forEach var="cat" items="${categorylist}">
+                                    <li>
+                                        <a href="/category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
+                                    </li>
+                                </c:forEach>
+							</ul>
                         </div>
                         <!-- End Mega Category Menu -->
                         <!-- Start Navbar -->
@@ -366,101 +414,150 @@
         <!-- End Header Bottom -->
     </header>
     <!-- End Header Area -->
-
 	<!-- Start Breadcrumbs -->
-	<div class="breadcrumbs">
+    <div class="breadcrumbs">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
                         <!-- <h1 class="page-title">Single Product</h1> -->
-                        <h1 class="page-title">Seller Info</h1>
+                        <h1 class="page-title">Cart</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="main"><i class="lni lni-home"></i> Main</a></li>
                         <!-- <li><a href="index.html">Shop</a></li> -->
-                        <li>Seller Info</li>
+                        <li>Cart</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<body>
-<!-- End Breadcrumbs -->
+    <!-- End Breadcrumbs -->
+	 <div>	                
+		<h3>장바구니</h3><br>        
+	              </div>
+	<c:choose>
+		<c:when test="${empty items}">
+			<p style="text-align: center; font-weight: bold;">장바구니가 비어 있습니다.</p>
+		</c:when>
+		<c:otherwise>
+	<form method="post" action="/cartAction">
+    <table  class="table table-bordered table-hover" width="500" border="1">
+		<tr>
+			<td><input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked>전체선택</td>
+            <td>주문번호</td>
+			<td>상품ID</td>
+			<td>상품명</td>
+			<td>수량</td>
+			<td>가격</td>
+			<td>합계</td>
+		</tr>
+		
+		<c:forEach var="dto" items="${items}">
+			<c:set var="isSoldOut"  value="${dto.stock == 0}"/>
+			<!-- <tr class="cart-row> -->
+			<tr class="cart-row ${isSoldOut ? 'text-muted' : ''}">
+			<!--품절이면 disable-->
+			<td><input type="checkbox" name="selectedIds" value="${dto.id}" class="cartCheckbox" 
+			         ${isSoldOut ? 'disabled' :''} onchange="calculateTotal()" checked></td>
+				<td>${dto.id}</td>
+				<td>${dto.product_id}</td>
+				<td><a href="/content?id=${dto.product_id}">${dto.product_title}</a></td>
+				<td><input type="number" class="qty" name="cart_quantity_${dto.id}" value="${dto.quantity}" min="1"
+					data-price="${dto.final_price}" onchange="updateSubtotal(this)" ${isSoldOut ? 'disabled' :''}></td>
+				<!-- <td class="price">${dto.price}원</td> -->
+				<!-- <td class="price">${dto.final_price}원</td> -->
+				<td class="price">
+					<c:choose>
+						<c:when test="${dto.final_price lt dto.price}">
+								<span class="original"><del>${dto.price}원</del></span>
+								<span class="rate">(${dto.discount_percentage}%)</span>
+								<span class="discount">${dto.final_price}원</span>
+						</c:when>
+						<c:otherwise>
+							${dto.price}원
+						</c:otherwise>
+					</c:choose>
+				</td>	
+						
+				
+				<td class="subtotal">
+					<c:choose>
+						<c:when test="${isSoldOut}">
+							<span class="text-soldOut">품절</span>
+						</c:when>
+						<c:otherwise>
+							${dto.final_price*dto.quantity}원
+						</c:otherwise>
+					</c:choose>
+					</td>
+			</tr>
+		</c:forEach>
+		<tr>
+			<td colspan="7" >
+				총합계:<span id="totalAmount">0</span>
+				<button type="submit" onclick="return validateCartSelection()" name="submitType" value="order">주문하기</button>
+				<button type="submit" onclick="return validateCartSelection()" name="submitType" value="delete">선택 삭제</button>
+				<button type="button" onclick="submitDeleteSoldOut()">품절 상품 삭제</button>
+			</td>
+		</tr>
+	</table>
+</form>
+</c:otherwise>
 
-<!-- 본문 -->
-	
-	<!-- <div class="container">
-		<a class="nav-link disabled" aria-disabled="true">${sessionScope.loginSeller.name} 님은 <b>seller</b> 입니다.</a>
-	</div> -->
-<div class="account-login section">
-        <div class="container">
+</c:choose>
+    
+
+            </div>
             <div class="row">
-                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <div class="register-form">
-<!--                    <div class="card-body">-->
-                        <div class="title">
-                            <h3>내정보 확인</h3>
-                            <br>
+                <div class="col-12">
+                    <!-- Total Amount -->
+                    <div class="total-amount">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+                                <div class="left">
+                                    <div class="coupon">
+                                        <form action="#" target="_blank">
+                                            <input name="Coupon" placeholder="Enter Your Coupon">
+                                            <div class="button">
+                                                <button class="btn">Apply Coupon</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="right">
+                                    <ul>
+                                        <li>Cart Subtotal<span>$2560.00</span></li>
+                                        <li>Shipping<span>Free</span></li>
+                                        <li>You Save<span>$29.00</span></li>
+                                        <li class="last">You Pay<span>$2531.00</span></li>
+                                    </ul>
+                                    <div class="button">
+                                        <a href="checkout.html" class="btn">Checkout</a>
+                                        <a href="product-grids.html" class="btn btn-alt">Continue shopping</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-    <c:choose>
-        <c:when test="${not empty sessionScope.loginSeller}">
-            <div class="form-group input-group">
-                <div class="col-sm-12">
-                    <label for="reg-fn">아이디(E-mail)</label>
+                    </div>
+                    <!--/ End Total Amount -->
                 </div>
-                    <input type="text" class="form-control form-control-sm" value="${loginSeller.email}" readonly>
             </div>
-                <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">비밀번호</label><br>
-                        </div>
-                            <input class="form-control form-control-sm" value="${loginSeller.password}" readonly>
+        </div>
+    </div>
+    <!--/ End Shopping Cart -->
+	  
+			         </div>
                 </div>
-                <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">이름</label><br>
-                        </div>
-                           <input type="text" class="form-control" id="name_input" value="${loginSeller.name}">
-                           <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo2('name')" >
-                </div>
-                 <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">전화번호</label><br>
-                        </div>
-                          <input type="text" class="form-control" id="phone_input" value="${loginSeller.phone}">
-                           <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo2('phone')" >
-                </div>
+            </div>
+        </div>
 
-<!--             <form action="main" method="get"> -->
-<!-- 			   	 <input type="submit" value="메인으로"> -->
-<!-- 			</form> -->
-			<div class="text-center" style="margin-top:30px;">
-			<button class="btn btn-primary" onclick="location.href='main'">메인으로</button>
-			<button class="btn btn-primary" onclick="location.href='my_page'">마이페이지</button>
-			<button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button>
-			</div>
-			
-			<div class="text-end" style="margin-top:40px;">
-            </div>
-             </div>
-            </div>
-            </div>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div class="text-center">
-            <p>로그인이 필요합니다.</p>
-            <a href="log/login">로그인 페이지로 이동</a>
-            </div>
-        </c:otherwise>
-    </c:choose>
-	</div>
-
-
+	</section>
+<!-- footer -->
 <footer class="footer">
         <div class="footer-middle">
             <div class="container">
@@ -631,5 +728,25 @@
             }
         });
     </script>
+<script>
+		function submitDeleteSoldOut(){
+			const form = document.createElement("form");
+			form.method = "post";
+			form.action = "deleteSoldOut";
+			document.body.appendChild(form);
+			form.submit();
+		}
+		function validateCartSelection() {
+			const checkboxes = document.querySelectorAll('.cartCheckbox');
+			for(let cb of checkboxes){
+				if(cb.checked && !cb.disabled){
+				return true;
+			}
+		}
+		alert("선택된 상품이 없습니다.");
+		return false;
+		}
+
+</script>
 </body>
 </html>

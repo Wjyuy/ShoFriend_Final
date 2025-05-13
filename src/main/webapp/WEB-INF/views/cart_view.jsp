@@ -3,7 +3,7 @@
 <html class="no-js" lang="zxx"></html>
 <head>
 <meta charset="UTF-8">
-	<title>상품 등록</title>
+	<title>장바구니</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -421,33 +421,30 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
                         <!-- <h1 class="page-title">Single Product</h1> -->
-                        <h1 class="page-title">Product Insert</h1>
+                        <h1 class="page-title">Cart</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="main"><i class="lni lni-home"></i> Main</a></li>
                         <!-- <li><a href="index.html">Shop</a></li> -->
-                        <li>Product Insert</li>
+                        <li>Cart</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Breadcrumbs -->
-<section class="item-details section">
-<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
-    <h2>장바구니</h2>
+	 <div>	                
+		<h3>장바구니</h3><br>        
+	              </div>
 	<c:choose>
 		<c:when test="${empty items}">
 			<p style="text-align: center; font-weight: bold;">장바구니가 비어 있습니다.</p>
 		</c:when>
 		<c:otherwise>
 	<form method="post" action="/cartAction">
-    <table width="500" border="1">
+    <table  class="table table-bordered table-hover" width="500" border="1">
 		<tr>
 			<td><input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked>전체선택</td>
             <td>주문번호</td>
@@ -511,6 +508,49 @@
 </c:otherwise>
 
 </c:choose>
+    
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- Total Amount -->
+                    <div class="total-amount">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+                                <div class="left">
+                                    <div class="coupon">
+                                        <form action="#" target="_blank">
+                                            <input name="Coupon" placeholder="Enter Your Coupon">
+                                            <div class="button">
+                                                <button class="btn">Apply Coupon</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="right">
+                                    <ul>
+                                        <li>Cart Subtotal<span>$2560.00</span></li>
+                                        <li>Shipping<span>Free</span></li>
+                                        <li>You Save<span>$29.00</span></li>
+                                        <li class="last">You Pay<span>$2531.00</span></li>
+                                    </ul>
+                                    <div class="button">
+                                        <a href="checkout.html" class="btn">Checkout</a>
+                                        <a href="product-grids.html" class="btn btn-alt">Continue shopping</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ End Total Amount -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Shopping Cart -->
+	  
 			         </div>
                 </div>
             </div>

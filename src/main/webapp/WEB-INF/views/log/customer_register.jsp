@@ -19,10 +19,11 @@
     <link rel="stylesheet" href="../assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
 	
+	<link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/register.css ">
-<!--	<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.rtl.css "> --%>-->
+	 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.rtl.css "> 
 	<script src="${pageContext.request.contextPath}/js/script.js"></script>
 		<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 		<script type="text/javascript"></script>
@@ -487,13 +488,13 @@
 													<input type="hidden" name="address2" id="sample6_detailAddress" placeholder="참고">
 									    </div>
                                 </div>
-                            </div>
                             <div class="button">
 <!--                                <button class="btn" onclick="check_ok()" type="button">등록</button>-->
                                 <button class="btn" onclick="check_ok()" type="submit">등록</button>
                             </div>
                             <p class="outer-link"><a href="login">Login Now</a>
                             </p>
+                            </div>
                         </form>
                     </div>
                 </div>

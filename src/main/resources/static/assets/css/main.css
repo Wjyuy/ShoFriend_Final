@@ -5239,3 +5239,102 @@ top: 2px;
     color: #0056FF;
     text-decoration: none;
 }
+
+/* 전체 섹션 패딩 및 배경 */
+.account-login.section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+/* 카드형 등록 폼 */
+.register-form {
+
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 타이틀 스타일 */
+.register-form .title h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.register-form .title p {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+/* 입력창 공통 여백 */
+.register-form .form-group {
+  margin-bottom: 20px;
+}
+
+/* 버튼 */
+.register-form .button .btn {
+  width: 100%;
+  background-color: #0167F3;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.register-form .button .btn:hover {
+  background-color: #0156d3;
+}
+
+/* 하단 로그인 링크 */
+.register-form .outer-link {
+  text-align: center;
+  margin-top: 20px;
+/*  font-size: 14px;*/
+/*  color: #6c757d;*/
+  
+  font-family: "Manrope", sans-serif;
+   font-weight: 500;
+   font-style: normal;
+   color: #888;
+   overflow-x: hidden;
+   font-size: 14px;
+}
+
+.register-form .outer-link a {
+  color: #0167F3;
+  text-decoration: none;
+}
+
+.register-form .outer-link a:hover {
+  text-decoration: underline;
+}
+
+/* 설명 텍스트 */
+.register-form .title p {
+  color: #adb5bd;  /* 기존보다 더 연한 회색 */
+}
+
+/* 라벨 텍스트 */
+.register-form label {
+  color: #6c757d;  /* Bootstrap 기본 중간 회색 */
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* 하단 로그인 안내 텍스트 */
+.register-form .outer-link {
+  color: #adb5bd;  /* 연한 회색 */
+}
+
+/* 로그인 링크만 파란색 유지 */
+.register-form .outer-link a {
+  color: #0167F3;
+  text-decoration: none;
+}
+

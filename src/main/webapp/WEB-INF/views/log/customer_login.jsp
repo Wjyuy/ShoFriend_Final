@@ -143,7 +143,7 @@
 	                <div class="row align-items-center">
 	                    <div class="col-lg-3 col-md-3 col-7">
 	                        <!-- Start Header Logo -->
-	                        <a class="navbar-brand" href="main">
+	                        <a class="navbar-brand" href="../main">
 	<!--                            <img src="../assets/images/logo/logo.svg" alt="Logo">-->
 	                            <img src="../assets/images/logo/ShoFriend_logo.png" alt="Logo" >
 	                        </a>
@@ -258,7 +258,7 @@
 	                    <div class="nav-inner">
 	                        <!-- Start Mega Category Menu -->
 	                        <div class="mega-category-menu">
-	                            <span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All Categories</a></span>
+	                            <span class="cat-button"><a href="../category"><i class="lni lni-menu"></i>All Categories</a></span>
 	                            <ul class="sub-category">
 	                                <li><a href="product-grids.html">추천상품</a>
 	<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
@@ -292,7 +292,7 @@
 	                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 	                                <ul id="nav" class="navbar-nav ms-auto">
 	                                    <li class="nav-item">
-	                                        <a href="main" class="active" aria-label="Toggle navigation">Home</a>
+	                                        <a href="../main" class="active" aria-label="Toggle navigation">Home</a>
 	                                    </li>
 	                                    <li class="nav-item">
 	                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -300,8 +300,8 @@
 	                                            aria-expanded="false" aria-label="Toggle navigation">Pages</a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-2">
 	<!--                                            <li class="nav-item"><a href="faq.html">Faq</a></li>-->
-	                                            <li class="nav-item"><a href="log/login">Login</a></li>
-	                                            <li class="nav-item"><a href="log/customer_register">Register</a></li>
+	                                            <li class="nav-item"><a href="login">Login</a></li>
+	                                            <li class="nav-item"><a href="customer_register">Register</a></li>
 	                                        </ul>
 	                                    </li>
 	                                    <li class="nav-item">
@@ -312,7 +312,7 @@
 	<!--                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>-->
 	<!--                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>-->
 	<!--                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>-->
-	                                            <li class="nav-item"><a href="cart_view">Cart</a></li>
+	                                            <li class="nav-item"><a href="../cart_view">Cart</a></li>
 	<!--                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>-->
 	                                        </ul>
 	                                    </li>

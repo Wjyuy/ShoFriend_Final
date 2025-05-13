@@ -365,31 +365,42 @@
     </div>
     <!-- End Breadcrumbs -->
 
-     <!-- 본문 -->
-<section class="item-details section">
+	  <!-- Start Account Login Area -->
+	  
+	  <div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-5 offset-lg-3 col-md-10 offset-md-1 col-12">
+                <form class="card login-form" name="pwd_frm" method="post" action="checkPwdOk">
+	       
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>Check Password</h3><br>
+	                
+	              </div>
+                  <div class="form-group input-group">
+							<div class="col-sm-12" style="margin-bottom: 2px;">
+                                <label for="reg-fn">password :</label>
+                            </div>
+                       
+                        <input type="password" class="form-control" name="input_pwd"/>
+                        <input type="button" class="btn btn-primary"  value="확인" 
+                            onclick="check_pwd()" />
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
-		<!-- <div class="form-box"> -->
-			<h2 class="text-center" font-weight: bold;" style="margin-top: 20px;">비밀번호 확인 </h2>
-
-			<form name="pwd_frm" method="post" action="checkPwdOk">
-				<div style="display: flex; justify-content: center; margin-top: 80px; margin-bottom: 50px; align-items: center; gap: 10px;">
-					
-					<!-- <label class="form-label mt-4" style="text-align: center;">비밀번호:</label> -->
-				<input type="password" class="form-control" name="input_pwd" style="width: 250px; margin-left: 30px;"/>
-				<!-- <input type="button" class="btn btn-primary w-100" style="margin-top:30px;" value="확인"> -->
-				<input type="button" class="btn btn-primary"  value="확인" 
-					onclick="check_pwd()" />
+			            </form>
 					</div>
-			</form>
-			</div>
-				</div>
-		</div>
-	</div>
-</section>
+                            </div>
+                            
+
+	             
+
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+
 
 
 <!-- footer -->

@@ -391,53 +391,50 @@
 <!-- End Breadcrumbs -->
 
 <!-- 본문 -->
-<section class="item-details section">	
-	<div class="container">
+	
+	<!-- <div class="container">
 		<a class="nav-link disabled" aria-disabled="true">${sessionScope.loginSeller.name} 님은 <b>seller</b> 입니다.</a>
-	</div>
-	<div class="container">
-			<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
-<!-- <div class ="form-box"> -->
-     <h2 class="text-center" style="margin-bottom: 50px; font-weight: bold;">내 정보 확인</h2>
+	</div> -->
+<div class="account-login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+                    <div class="register-form">
+<!--                    <div class="card-body">-->
+                        <div class="title">
+                            <h3>내정보 확인</h3>
+                            <br>
+                        </div>
 
     <c:choose>
         <c:when test="${not empty sessionScope.loginSeller}">
-            <table style="margin:  0 auto;" cellpadding="10">
-                <tr>
-                    <td>아이디(E-mail)</td>
-					<td>
-					<div class="d-flex mb-3" style="gap: 8px;">
-                   <input type="text" class="form-control form-control-sm" id="name_input" value="${loginSeller.email}" readonly>
-                   </div>
-				   </td>
-					
-<!--                    <td colspan="2">${loginSeller.email}</td>-->
-                </tr>
-<!--                 <tr> -->
-<!--                     <td>비밀번호</td> -->
-<%--                     <td colspan="2">${loginCustomer.password}</td> --%>
-<!--                 </tr> -->
-                <tr>
-                    <td>이름</td>
-                    <td>
-                     <div class="d-flex mb-3" style="gap: 8px;">
-                    <input type="text" class="form-control form-control-sm" id="name_input" value="${loginSeller.name}">
-                    <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo2('name')" >
-                    </div></td>
-                </tr>
-                <tr>
-                    <td>전화번호</td>
-                    <td>
-                    <div class="d-flex mb-3" style="gap: 8px;">
-                    <input type="text" class="form-control form-control-sm" id="phone_input" value="${loginSeller.phone}">
-                    <input type="button" class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo2('phone')" >
-                    </div>
-                    </td>
-                </tr>
-            </table>
-            
+            <div class="form-group input-group">
+                <div class="col-sm-12">
+                    <label for="reg-fn">아이디(E-mail)</label>
+                </div>
+                    <input type="text" class="form-control form-control-sm" value="${loginSeller.email}" readonly>
+            </div>
+                <!-- <div class="form-group input-group">
+                        <div class="col-sm-12">
+                            <label for="reg-fn">비밀번호</label><br>
+                        </div>
+                            <input class="form-control form-control-sm" value="${loginSeller.password}" readonly>
+                </div> -->
+                <div class="form-group input-group">
+                        <div class="col-sm-12">
+                            <label for="reg-fn">이름</label><br>
+                        </div>
+                           <input type="text" class="form-control" id="name_input" value="${loginSeller.name}">
+                           <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo2('name')" >
+                </div>
+                 <div class="form-group input-group">
+                        <div class="col-sm-12">
+                            <label for="reg-fn">전화번호</label><br>
+                        </div>
+                          <input type="text" class="form-control" id="phone_input" value="${loginSeller.phone}">
+                           <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo2('phone')" >
+                </div>
+
 <!--             <form action="main" method="get"> -->
 <!-- 			   	 <input type="submit" value="메인으로"> -->
 <!-- 			</form> -->
@@ -451,6 +448,8 @@
             </div>
              </div>
             </div>
+            </div>
+            </div>
         </c:when>
         <c:otherwise>
             <div class="text-center">
@@ -460,7 +459,7 @@
         </c:otherwise>
     </c:choose>
 	</div>
-</section>	
+
 
 <footer class="footer">
         <div class="footer-middle">

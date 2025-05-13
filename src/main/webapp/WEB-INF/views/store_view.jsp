@@ -425,12 +425,16 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-<section class="item-details section">
-<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
-        <h2 class="text-center" style="margin-bottom: 50px; font-size: 40px;"><b>점포 수정</b></h2>
+<div class="account-login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 offset-lg-2 col-md-10 offset-md-1 col-15">
+                    <div class="register-form">
+<!--                    <div class="card-body">-->
+                        <div class="title">
+                            <h3>점포 수정</h3>
+                            <br>
+                        </div>
 		<form name="storeReg_frm2" method="post" action="store_modify">
 			<input type="hidden" name="id" value="${store_view.id}">
 <!-- 			<tr> -->
@@ -472,7 +476,8 @@
          </div>
             </div>
             </div>
-</section>
+            </div>
+
 <!-- footer -->
 <footer class="footer">
         <div class="footer-middle">

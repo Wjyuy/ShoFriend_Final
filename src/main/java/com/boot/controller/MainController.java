@@ -161,7 +161,7 @@ public class MainController {
 							@RequestParam(name = "keyword", required = false) String keyword,
 							@RequestParam(name = "page", defaultValue = "1") int page,
 							@RequestParam(name = "sort", defaultValue = "recommend") String sort,
-							Model model) {
+							Model model, HttpSession session) {
 		log.info("category()");
 		
 		List<ProductDTO> popularlist= productService.getPopularProducts();
@@ -220,6 +220,13 @@ public class MainController {
 		model.addAttribute("categoryId", categoryId);
 		model.addAttribute("sort", sort); // 선택 유지용
 		
+		//로그인인 경우 장바구니 출력함
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return ("category");
 	}
 	

@@ -45,7 +45,7 @@ public class InfoController {
 	public String myPage(Model model,HttpSession session) {
 		log.info("@# my_page()");
 		
-		//로그인인 경우 친구추천상품, 장바구니 출력함
+		//로그인인 경우 장바구니 출력함
 		ArrayList<CategoryDTO> categorylist = productService.categorylist();
 		model.addAttribute("categorylist", categorylist);
 		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");

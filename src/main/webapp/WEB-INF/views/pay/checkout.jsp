@@ -636,8 +636,11 @@
 						            <input type="hidden" name="totalAmount" value="${totalPrice}">
 						            <input type="hidden" name="itemName" value="${products[0].title} 외 ${products.size() - 1}건">
 						            <div class="button cart-button">
+										<img src="../assets/images/footer/카카오페이_CI_combination_with_BG.svg" alt="카카오페이" style="height: 24px; max-width: 80px; width: auto;">
 						                <button class="btn" style="width: 100%;" type="submit">카카오페이 결제하기</button>
 						            </div>
+									
+									
 						        </div>
 						    </div>
 						</form>

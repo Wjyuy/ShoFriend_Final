@@ -100,8 +100,8 @@
 	                    <div class="col-lg-4 col-md-4 col-12">
 	                        <div class="top-middle">
 	                            <ul class="useful-links">
-	                                <li><a href="main">Home</a></li>
-	                                <li><a href="friend">Friend</a></li>
+	                                <li><a href="../main">Home</a></li>
+	                                <li><a href="../friend">Friend</a></li>
 	                            </ul>
 	                        </div>
 	                    </div>
@@ -123,13 +123,13 @@
 	                            </div>
 	                            <ul class="user-login">
 	                                <li>
-	                                    <a href="my_page">My Page</a>
+	                                    <a href="../my_page">My Page</a>
 	                                </li>
 	                                <li>
-	                                    <a href="log/login">Sign In</a>
+	                                    <a href="login">Sign In</a>
 	                                </li>
 	                                <li>
-	                                    <a href="log/customer_register">Register</a>
+	                                    <a href="seller_register">Register</a>
 	                                </li>
 	                            </ul>
 	                        </div>
@@ -144,7 +144,7 @@
 	                <div class="row align-items-center">
 	                    <div class="col-lg-3 col-md-3 col-7">
 	                        <!-- Start Header Logo -->
-	                        <a class="navbar-brand" href="main">
+	                        <a class="navbar-brand" href="../main">
 	<!--                            <img src="../assets/images/logo/logo.svg" alt="Logo">-->
 	                            <img src="../assets/images/logo/ShoFriend_logo.png" alt="Logo" >
 	                        </a>
@@ -259,7 +259,7 @@
 	                    <div class="nav-inner">
 	                        <!-- Start Mega Category Menu -->
 	                        <div class="mega-category-menu">
-	                            <span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All Categories</a></span>
+	                            <span class="cat-button"><a href="../category"><i class="lni lni-menu"></i>All Categories</a></span>
 	                            <ul class="sub-category">
 	                                <li><a href="product-grids.html">추천상품</a>
 	<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
@@ -293,7 +293,7 @@
 	                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 	                                <ul id="nav" class="navbar-nav ms-auto">
 	                                    <li class="nav-item">
-	                                        <a href="main" class="active" aria-label="Toggle navigation">Home</a>
+	                                        <a href="../main" class="active" aria-label="Toggle navigation">Home</a>
 	                                    </li>
 	                                    <li class="nav-item">
 	                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -301,8 +301,8 @@
 	                                            aria-expanded="false" aria-label="Toggle navigation">Pages</a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-2">
 	<!--                                            <li class="nav-item"><a href="faq.html">Faq</a></li>-->
-	                                            <li class="nav-item"><a href="log/login">Login</a></li>
-	                                            <li class="nav-item"><a href="log/customer_register">Register</a></li>
+	                                            <li class="nav-item"><a href="login">Login</a></li>
+	                                            <li class="nav-item"><a href="customer_register">Register</a></li>
 	                                        </ul>
 	                                    </li>
 	                                    <li class="nav-item">
@@ -313,7 +313,7 @@
 	<!--                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>-->
 	<!--                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>-->
 	<!--                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>-->
-	                                            <li class="nav-item"><a href="cart_view">Cart</a></li>
+	                                            <li class="nav-item"><a href="../cart_view">Cart</a></li>
 	<!--                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>-->
 	                                        </ul>
 	                                    </li>
@@ -359,12 +359,12 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="log/login">Login</h1>
+                        <h1 class="login">Login</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="main"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="../main"><i class="lni lni-home"></i> Home</a></li>
                         <li>Login</li>
                     </ul>
                 </div>
@@ -419,7 +419,7 @@
                             <div class="button">
                                 <button class="btn" type="submit">Login</button>
                             </div>
-                            <p class="outer-link">Don't have an account? <a href="customer_register">회원가입</a>
+                            <p class="outer-link">Don't have an account? <a href="seller_register">회원가입</a>
                             </p>
                         </div>
                     </form>
@@ -453,7 +453,7 @@
 	                                <h3>My Page</h3>
 	                                <ul class="app-btn">
 	                                    <li>
-	                                        <a href="log/login">
+	                                        <a href="login">
 	                                            <i class="lni lni-apple"></i>
 	                                            <span class="small-title">login</span>
 	                                            <span class="big-title">our store</span>
@@ -527,7 +527,7 @@
 	                        </div>
 	                        <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
 	                            <div class="copyright">
-	                                <p>Designed and Developed by<a href="main" rel="nofollow"
+	                                <p>Designed and Developed by<a href="../main" rel="nofollow"
 	                                        target="_blank">Shofriend</a></p>
 	                            </div>
 	                        </div>

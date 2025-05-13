@@ -303,7 +303,8 @@
 	                                            aria-expanded="false" aria-label="Toggle navigation">Manage</a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-3">
 	                                            <li class="nav-item"><a href="store_list">My Store</a></li>
-	                                            <li class="nav-item"><a href="product_insert">Add product</a></li>
+	                                            <li class="nav-item"><a href="product_insert">Add Product</a></li>
+	                                            <li class="nav-item"><a href="store_register">Add Store</a></li>
 	                                        </ul>
 	                                    </li>
 									</c:if>

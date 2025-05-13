@@ -409,7 +409,7 @@
                     </td>
                     <td>${product.category_id}</td>
                     <td>${product.title}</td>
-                    <td><fmt:formatNumber value="${product.price}" pattern="#,##0" /></td>
+                    <td>${product.price}</td>
                     <td>${product.stock}</td>
                     <td>${product.status}</td>
                     <td>

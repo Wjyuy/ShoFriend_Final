@@ -20,6 +20,82 @@
     <link rel="stylesheet" href="assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 	
+	
+	<style>
+	/* 결제 취소 알림 스타일 */
+	.payment-cancel-notification {
+	  padding: 50px 0;
+	  background-color: #f7f7f7; /* 배경 색상 */
+	}
+
+	.notification-card {
+	  position: relative;
+	  background-color: #fff;
+	  border-radius: 12px;
+	  padding: 30px;
+	  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 미세한 그림자 */
+	  text-align: center;
+	  max-width: 600px;
+	  margin: 0 auto; /* 가운데 정렬 */
+	}
+
+	.notification-body {
+	  color: #333;
+	}
+
+	.notification-title h3 {
+	  font-size: 24px;
+	  color: #1e88e5; /* 카카오톡 블루 */
+	  font-weight: bold;
+	  margin-bottom: 15px;
+	}
+
+	.notification-title p {
+	  font-size: 16px;
+	  color: #555;
+	  margin-bottom: 30px;
+	}
+
+	/* 말풍선 꼬리 */
+	.notification-card::after {
+	  content: "";
+	  position: absolute;
+	  bottom: -20px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  border-left: 10px solid transparent;
+	  border-right: 10px solid transparent;
+	  border-top: 20px solid #fff;
+	}
+
+	.notification-action .btn-primary {
+	  background-color: #1e88e5; /* 카카오톡 블루 */
+	  border-color: #1e88e5;
+	  font-size: 16px;
+	  padding: 12px 30px;
+	  border-radius: 30px;
+	  text-align: center;
+	  transition: background-color 0.3s ease;
+	}
+
+	.notification-action .btn-primary:hover {
+	  background-color: #1565c0; /* hover 시 더 어두운 블루 */
+	  border-color: #1565c0;
+	}
+
+	/* 반응형 디자인 */
+	@media (max-width: 768px) {
+	  .notification-card {
+	    padding: 20px;
+	  }
+
+	  .notification-action .btn-primary {
+	    width: 100%;
+	    font-size: 18px;
+	  }
+	}
+	</style>
+	
 
 </head>
 
@@ -368,26 +444,53 @@
 	<!-- End Breadcrumbs -->
 	
 
-	<div class="account-login section">
+	<!-- 결제 취소 알림 시작 -->
+	<div class="payment-cancel-notification section">
 	  <div class="container">
-	    <div class="row">
-	      <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-	        <div class="card login-form">
-	          <div class="card-body">
-	            <div class="title">
-	              <h3>카카오페이 결제 취소</h3><br>
+	    <div class="row justify-content-center">
+	      <div class="col-lg-6 col-md-8 col-12">
+	        <div class="notification-card">
+	          <div class="notification-body">
+	            <div class="notification-title">
+	              <h3> 💥카카오페이 결제 취소 💥 </h3><br>
 	              <p>결제 진행 중 취소되었습니다! ${message}</p>
 	            </div>
-	            <div class="col-md-auto">
-					<a href="../main" class="btn btn-primary">홈으로 돌아가기</a>
+	            <div class="notification-action">
+	              <a href="../main" class="btn btn-primary">홈으로 돌아가기</a>
 	            </div>
-
 	          </div>
 	        </div>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	<!-- 결제 취소 알림 끝 -->
+	
+	
+	
+<!--	결제 취소 시작-->
+<!--	<div class="account-card section">-->
+<!--	  <div class="container">-->
+<!--	    <div class="row">-->
+<!--	      <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">-->
+<!--	        <div class="card pay-form">-->
+<!--	          <div class="card-body">-->
+<!--	            <div class="title">-->
+<!--	              <h3>카카오페이 결제 취소</h3><br>-->
+<!--	              <p>결제 진행 중 취소되었습니다! ${message}</p>-->
+<!--	            </div>-->
+<!--	            <div class="col-md-auto">-->
+<!--					<a href="../main" class="btn btn-primary">홈으로 돌아가기</a>-->
+<!--	            </div>-->
+
+<!--	          </div>-->
+<!--	        </div>-->
+<!--	      </div>-->
+<!--	    </div>-->
+<!--	  </div>-->
+<!--	</div>-->
+	
+	<!--	결제 취소 끝-->
 
 	    <!-- Start Footer Area -->
 	    <footer class="footer">

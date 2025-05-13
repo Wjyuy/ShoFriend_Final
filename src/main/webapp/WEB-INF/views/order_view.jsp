@@ -369,45 +369,83 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-<section class="item-details section">
-    <div class="container mt-5">
-        <h2>주문 목록</h2>
-        <c:if test="${empty orderList}">
-            <p>주문 내역이 없습니다.</p>
-        </c:if>
-        <c:if test="${not empty orderList}">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>주문 번호</th>
-                        <th>주문 날짜</th>
-                        <th>총 주문 금액</th>
-                        <th>배송 주소</th>
-                        <th>배송 상태</th>
-                        <th>주문 상세</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="order" items="${orderList}">
-                        <tr>
-                            <td>${order.partner_order_id}</td>
-                            <td><fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                            <td><fmt:formatNumber value="${order.total_price}" pattern="#,###원"/></td>
-                            <td>${order.delivery_address} (${order.delivery_zipcode})</td>
-                            <td>${order.payment_status}</td>
-                            <td><a href="${pageContext.request.contextPath}/pay/detail?order_id=${order.id}" class="btn btn-sm btn-outline-primary">상세 보기</a></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
-        <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">홈으로 돌아가기</a>
+	
+	
+	
+
+
+<!-- Start Account 주문목록 Area -->
+  
+  <div class="account-login section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-10  col-12">
+          <div class="card login-form">
+            <div class="card-body">
+              <div class="title">
+                <h3>주문목록</h3><br>
+                <p>주문 목록과 상세내역 입니다 !</p>
+              </div>
+
+			  <div class="container mt-5">
+			          <c:if test="${empty orderList}">
+			              <p>주문 내역이 없습니다.</p>
+			          </c:if>
+			          <c:if test="${not empty orderList}">
+			              <table class="table table-bordered">
+			                  <thead>
+			                      <tr>
+			                          <th>주문 번호</th>
+			                          <th>주문 날짜</th>
+			                          <th>총 주문 금액</th>
+			                          <th>배송 주소</th>
+			                          <th>배송 상태</th>
+			                          <th>주문 상세</th>
+			                      </tr>
+			                  </thead>
+			                  <tbody>
+			                      <c:forEach var="order" items="${orderList}">
+			                          <tr>
+			                              <td>${order.partner_order_id}</td>
+			                              <td><fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			                              <td><fmt:formatNumber value="${order.total_price}" pattern="#,###원"/></td>
+			                              <td>${order.delivery_address} (${order.delivery_zipcode})</td>
+			                              <td>${order.payment_status}</td>
+			                              <td><a href="${pageContext.request.contextPath}/pay/detail?order_id=${order.id}" class="btn btn-sm btn-outline-primary">상세 보기</a></td>
+			                          </tr>
+			                      </c:forEach>
+			                  </tbody>
+			              </table>
+			          </c:if>
+			          <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">홈으로 돌아가기</a>
+			      </div>
+
+			      <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  
+
+
+
+
+
+
+
+
+<!-- footer -->
+<footer class="footer">
 
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
 </section>
    <!-- Start Footer Area -->
     <footer class="footer">
+
         <div class="footer-middle">
             <div class="container">
                 <div class="bottom-inner">

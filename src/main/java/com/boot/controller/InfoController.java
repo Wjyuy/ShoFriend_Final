@@ -1,20 +1,28 @@
 package com.boot.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
+import com.boot.dto.ProductDTO;
 import com.boot.dto.SellerDTO;
+import com.boot.service.CartService;
 import com.boot.service.InfoService;
+import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,32 +36,73 @@ public class InfoController {
 	
 	@Autowired
 	private InfoService service;	
+	@Autowired
+	private CartService cartService;	
+	@Autowired
+	private ProductService productService;
 	
 	//25.04.09 권준우 - 마이페이지 호출
 	@RequestMapping("/my_page")
-	public String myPage() {
+	public String myPage(Model model,HttpSession session) {
 		log.info("@# my_page()");
+		
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return "my_page";
 	}
 	
 	//25.04.09 권준우 - 구매자 정보 페이지 호출
 	@RequestMapping("/customer_info")
-	public String customerInfo() {
+	public String customerInfo(Model model,HttpSession session) {
 		log.info("@# customer_info()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return "customer_info";
 	}
 	
 	//25.04.09 권준우 - 판매자 정보 페이지 호출
 	@RequestMapping("/seller_info")
-	public String sellerInfo() {
+	public String sellerInfo(Model model,HttpSession session) {
 		log.info("@# seller_info()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return "seller_info";
 	}
 	
 	//25.04.09 권준우 - 비밀번호 변경 페이지 호출
 	@RequestMapping("/update_pwd")
-	public String updatePwd() {
+	public String updatePwd(Model model,HttpSession session) {
 		log.info("@# update_pwd()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 	    return "update_pwd";
 	}
 
@@ -129,8 +178,17 @@ public class InfoController {
 	
 	//25.04.09 권준우 - 비밀번호 확인 페이지 호출
 	@RequestMapping("/check_pwd")
-	public String checkPwdPage() {
+	public String checkPwdPage(Model model,HttpSession session) {
 		log.info("@# check_pwd()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 	    return "check_pwd";  //
 	}
 	

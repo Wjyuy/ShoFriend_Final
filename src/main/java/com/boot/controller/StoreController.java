@@ -13,10 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.ProductDTO;
 import com.boot.dto.SellerDTO;
 import com.boot.dto.StoreDTO;
+import com.boot.service.CartService;
 import com.boot.service.LogService;
+import com.boot.service.ProductService;
 import com.boot.service.StoreService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +35,10 @@ public class StoreController {
 	@Autowired
 	private StoreService service;
 	private LogService logService;
+	@Autowired
+	private CartService cartService;	
+	@Autowired
+	private ProductService productService;
 	
 	//(등록된 점포 리스트) 25.04.09 김채윤
 		@RequestMapping("/store_list")
@@ -41,7 +48,8 @@ public class StoreController {
 			
 			HttpSession session = request.getSession();
 			SellerDTO seller = (SellerDTO) session.getAttribute("loginSeller");
-			
+			ArrayList<CategoryDTO> categorylist = productService.categorylist();
+			model.addAttribute("categorylist", categorylist);
 			if (seller != null) {
 				int seller_id = seller.getId();
 				ArrayList<StoreDTO> store_list = service.store_list(seller_id);
@@ -59,7 +67,8 @@ public class StoreController {
 		@RequestMapping("/store_view")
 		public String store_view(@RequestParam HashMap<String, String> param, Model model) {
 			log.info("@# store_view()");
-
+			ArrayList<CategoryDTO> categorylist = productService.categorylist();
+			model.addAttribute("categorylist", categorylist);
 			StoreDTO dto = service.store_view(param);
 			model.addAttribute("store_view", dto);
 			return "store_view";
@@ -86,8 +95,10 @@ public class StoreController {
 		
 //		(점포 등록) 25.04.09 김채윤
 		@RequestMapping("/store_register")
-		public String store_register(@RequestParam HashMap<String, String> param, HttpServletRequest request) {
+		public String store_register(@RequestParam HashMap<String, String> param, HttpServletRequest request,Model model) {
 			log.info("store_register 컨트롤러");
+			ArrayList<CategoryDTO> categorylist = productService.categorylist();
+			model.addAttribute("categorylist", categorylist);
 			return "store_register";
 
 			
@@ -120,6 +131,8 @@ public class StoreController {
 		public String viewStoreProducts(@RequestParam("id") int storeId, Model model) {
 			List<ProductDTO> productList = service.getProductsByStoreId(storeId);
 			model.addAttribute("productList", productList);
+			ArrayList<CategoryDTO> categorylist = productService.categorylist();
+			model.addAttribute("categorylist", categorylist);
 			return "store_view_product"; 
 		}
 	}

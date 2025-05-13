@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html class="no-js" lang="zxx"></html>
 
  <head>
@@ -399,6 +400,8 @@
                 <th>상태</th>
                 <th>할인율</th>
                 <th>할인기간</th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
         </thead>
         <tbody>
@@ -409,7 +412,7 @@
                     </td>
                     <td>${product.category_id}</td>
                     <td>${product.title}</td>
-                    <td>${product.price}</td>
+                    <td><fmt:formatNumber value="${product.price}" pattern="#,###원"/></td>
                     <td>${product.stock}</td>
                     <td>${product.status}</td>
                     <td>
@@ -423,15 +426,23 @@
                         </c:choose>
                     </td>
                     <td>
-                        <c:choose>
-                            <c:when test="${not empty product.discount_start}">
-                                ${product.discount_start} ~ ${product.discount_end}
-                            </c:when>
-                            <c:otherwise>
-                                -
-                            </c:otherwise>
-                        </c:choose>
+						<c:choose>
+						    <c:when test="${not empty product.discount_start}">
+						        <fmt:formatDate var="startDateFormatted" value="${product.discount_start}" pattern="yy-MM-dd"/>
+						        <fmt:formatDate var="endDateFormatted" value="${product.discount_end}" pattern="yy-MM-dd"/>
+						        ${startDateFormatted} ~ ${endDateFormatted}
+						    </c:when>
+						    <c:otherwise>
+						        -
+						    </c:otherwise>
+						</c:choose>
                     </td>
+					<td>
+						<input type="button"  class="btn btn-outline-secondary" style="margin-bottom:5px; margin-top: 20px;" value="수정하기" onclick="location.href='product_modify?id=${product.id}'">
+					</td>
+					<td>
+						<input type="button" class="btn btn-outline-secondary" value="삭제하기" onclick="location.href='product_delete?id=${product.id}'">
+					</td>
                 </tr>
             </c:forEach>
         </tbody>

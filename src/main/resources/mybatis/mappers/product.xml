@@ -68,7 +68,7 @@
 	</update>
 	
     <select id="getPopularProducts" resultType="com.boot.dto.ProductDTO">
-	    SELECT * FROM product ORDER BY recommend DESC LIMIT 8
+	    SELECT * FROM product WHERE status != '숨김' ORDER BY recommend DESC LIMIT 8
     </select>
 	
 	<update id="addRecommend" parameterType="java.util.Map">
@@ -145,6 +145,7 @@
 	<select id="getLatestProducts" resultType="com.boot.dto.ProductDTO">
 	    select id, store_id, category_id, title, description, price, stock, status, picture, recommend, discount_start, discount_end, discount_percentage
 	    from product
+	    WHERE status != '숨김'
 	    order by id desc
 	    LIMIT 8
 	</select>

@@ -475,7 +475,12 @@
                             <input type="number" class="form-control" name="quantity" value="1" min="1"
                                 max="${product.stock}" required>
 <!--                            <input type="submit" class="btn btn-primary w-100" value="구매하기">-->
-							<button type="button" class="btn btn-primary w-100" onclick="goToPay()">구매하기</button>
+							<c:if test="${product.stock==0}">
+								<button type="button" class="btn btn-primary w-100" ">품절</button>
+							</c:if>
+							<c:if test="${product.stock!=0}">
+								<button type="button" class="btn btn-primary w-100" onclick="goToPay()">구매하기</button>
+							</c:if>
                             </form>
 <!--                             테스트용 임시코드 주연 추가(goToPay 스크립트 이동도 있음) -->
 <!--                            <form id="orderForm2" action="product_order" method="post">-->

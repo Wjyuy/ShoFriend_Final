@@ -388,8 +388,10 @@
 				<div class="top-area">
 <div class="container mt-5">
 <!-- 2025/04/14 우주연 추가 -->
-    <h2 class="text-center mb-4">해당 점포의 상품 목록</h2>
-    <table class="table table-bordered table-hover">
+    <h2 class="text-center mb-4" style="font-weight: bold;">해당 점포의 상품 목록</h2>
+    <br>
+    <br>
+    <table class="table table-bordered table-hover" style="text-align: center;">
         <thead class="table-light">
             <tr>
                 <th>상품번호</th>
@@ -437,11 +439,14 @@
 						    </c:otherwise>
 						</c:choose>
                     </td>
-					<td>
-						<input type="button"  class="btn btn-outline-secondary" style="margin-bottom:5px; margin-top: 20px;" value="수정하기" onclick="location.href='product_modify?id=${product.id}'">
+					<td style="text-align: center;">
+						<input type="button"  class="btn btn-outline-secondary" value="수정하기" onclick="location.href='product_modify?id=${product.id}'">
 					</td>
 					<td>
-						<input type="button" class="btn btn-outline-secondary" value="삭제하기" onclick="location.href='product_delete?id=${product.id}'">
+                        <div class="col-lg-1 col-md-2 col-12">
+									    <a class="remove-item" style="margin-top: 13; margin-left: 20px;" href="javascript:void(0)" onclick="location.href='product_delete?id=${product.id}'"><i class="lni lni-close"></i></a>
+									</div>
+						<!-- <input type="button" class="btn btn-outline-secondary" style="margin-bottom:5px; margin-top: 20px;" value="삭제하기" onclick="location.href='product_delete?id=${product.id}'"> -->
 					</td>
                 </tr>
             </c:forEach>

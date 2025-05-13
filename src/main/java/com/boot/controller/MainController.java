@@ -226,6 +226,15 @@ public class MainController {
 		Map<Integer, Double> avgRatings = new HashMap<>();
 		Map<Integer, Integer> reviewCounts = new HashMap<>();
 		
+		for (ProductDTO product : list) {
+			int productId = product.getId();
+			
+			int count = reviewService.getReviews(productId).size();
+			Double avg = reviewService.getAverageRating(productId);
+			
+			avgRatings.put(productId, avg != null ? avg : 0.0);
+			reviewCounts.put(productId, count);
+		}
 		for (ProductDTO product : popularlist) {
 			int productId = product.getId();
 			

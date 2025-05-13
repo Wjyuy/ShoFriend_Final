@@ -569,7 +569,7 @@
                                     <c:forEach var="review" items="${reviews}" varStatus="status">
                                         <c:if test="${status.index < 5}">
                                             <div class="single-review">
-                                                <img src="assets/images/blog/comment1.jpg" alt="#">
+                                                <img src="assets/images/profile/default_profile.png" alt="#">
                                                 <div class="review-info">
                                                     <h4>${review.title}
                                                         <span>by ${review.customerName}</span>

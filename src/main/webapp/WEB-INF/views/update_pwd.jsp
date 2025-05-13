@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 수정정</title>
 <script src="${pageContext.request.contextPath}/js/script.js"></script>
 </head>
 <!-- 25/04/14    김채윤   프론트엔드 적용 -->

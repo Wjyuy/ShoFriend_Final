@@ -424,7 +424,10 @@
     </div>
     <!-- End Breadcrumbs -->
 <section class="item-details section">
-<div class ="container">
+<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="top-area">
 
 		<form name="storeReg_frm" method="post" action="store_registerOk">
 		<input type="hidden" name="seller_id" value="${sessionScope.loginSeller.id}">
@@ -450,7 +453,10 @@
 				
 	
 		</form>
-			</div>
+			         </div>
+                </div>
+            </div>
+        </div>
 
 	</section>
 <!-- footer -->

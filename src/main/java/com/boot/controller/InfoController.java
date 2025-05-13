@@ -1,18 +1,27 @@
 package com.boot.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
+import com.boot.dto.ProductDTO;
 import com.boot.dto.SellerDTO;
+import com.boot.service.CartService;
 import com.boot.service.InfoService;
+import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,11 +35,25 @@ public class InfoController {
 	
 	@Autowired
 	private InfoService service;	
+	@Autowired
+	private CartService cartService;	
+	@Autowired
+	private ProductService productService;
 	
 	//25.04.09 권준우 - 마이페이지 호출
 	@RequestMapping("/my_page")
-	public String myPage() {
+	public String myPage(Model model,HttpSession session) {
 		log.info("@# my_page()");
+		
+		//로그인인 경우 친구추천상품, 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return "my_page";
 	}
 	

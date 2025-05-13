@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.OrderItemDTO;
 import com.boot.dto.OrdersDTO;
@@ -28,6 +29,7 @@ import com.boot.dto.ProductDTO;
 import com.boot.service.CartService;
 import com.boot.service.CartServiceImpl;
 import com.boot.service.OrdersService;
+import com.boot.service.ProductService;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.mysql.cj.Session;
 
@@ -39,7 +41,8 @@ public class CartController {
 
     private final CartServiceImpl CartService;
 
-
+    @Autowired
+    private ProductService productService;
 	@Autowired
 	private CartService service;
 
@@ -92,7 +95,8 @@ public class CartController {
 //		List<CartDTO> items = service.getCartItems(param);
 		List<CartDTO> items = service.getCartItemsWithProduct(user_id);
 		model.addAttribute("items", items);
-		
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		
 		return "cart_view";
 	}

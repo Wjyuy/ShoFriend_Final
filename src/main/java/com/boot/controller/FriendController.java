@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
+import com.boot.service.CartService;
 import com.boot.service.FriendService;
+import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,6 +37,10 @@ public class FriendController {
 */
 	@Autowired
 	private FriendService service;
+	@Autowired
+	private ProductService productService;
+	@Autowired
+	private CartService cartService;
 	
 	@GetMapping("/checkFriend")
 	@ResponseBody
@@ -91,6 +99,11 @@ public class FriendController {
             // Pending 친구 요청 목록 조회
             ArrayList<CustomerDTO> pendingList = service.findpending(param);
             model.addAttribute("pendingList", pendingList);
+            
+            ArrayList<CategoryDTO> categorylist = productService.categorylist();
+    		model.addAttribute("categorylist", categorylist);
+    		List<CartDTO> items = cartService.getCartItemsWithProduct(Integer.parseInt(myId));
+            model.addAttribute("items", items);
         }
         return "friend";
 	}

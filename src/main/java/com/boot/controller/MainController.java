@@ -236,6 +236,8 @@ public class MainController {
 	    // seller_id로 해당하는 가게 목록 조회
 	    List<StoreDTO> stores = storeService.getStoresBySellerId(sellerId);
 	    model.addAttribute("stores", stores);
+  		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+  		model.addAttribute("categorylist", categorylist);
 	    log.info("stores"+stores);
 
 	    return "product_insert";
@@ -252,7 +254,8 @@ public class MainController {
 	    }
 	    
 	    int sellerId = seller.getId();
-		
+  		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+  		model.addAttribute("categorylist", categorylist);
 		ProductDTO product = productService.getProductById(product_id); 
 	    model.addAttribute("product", product); 
 	    List<StoreDTO> stores = storeService.getStoresBySellerId(sellerId);

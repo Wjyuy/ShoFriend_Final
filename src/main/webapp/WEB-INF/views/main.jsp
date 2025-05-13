@@ -233,26 +233,15 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-                            <span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All Categories</a></span>
-                            <ul class="sub-category">
-                                <li><a href="product-grids.html">추천상품</a>
-<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
-<!--                                    <ul class="inner-sub-category">-->
-<!--                                        <li><a href="product-grids.html">하위목록1</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록2</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록3</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록4</a></li>-->
-<!--                                    </ul>-->
-                                </li>
-                                <li><a href="product-grids.html">반짝세일</a></li>
-                                <li><a href="product-grids.html">식품</a></li>
-                                <li><a href="product-grids.html">가구</a></li>
-                                <li><a href="product-grids.html">도서</a></li>
-                                <li><a href="product-grids.html">스포츠/레저</a></li>
-                                <li><a href="product-grids.html">출산/유아용품</a></li>
-                                <li><a href="product-grids.html">반려동물용품</a></li>
-                                <li><a href="product-grids.html">뷰티</a></li>
-                            </ul>
+							<span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All
+									Categories</a></span>
+							<ul class="sub-category">
+                                <c:forEach var="cat" items="${categorylist}">
+                                    <li>
+                                        <a href="/category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
+                                    </li>
+                                </c:forEach>
+							</ul>
                         </div>
                         <!-- End Mega Category Menu -->
                         <!-- Start Navbar -->

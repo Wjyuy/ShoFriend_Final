@@ -362,8 +362,8 @@
 	                                            aria-expanded="false" aria-label="Toggle navigation">Pages</a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-2">
 	<!--                                            <li class="nav-item"><a href="faq.html">Faq</a></li>-->
-	                                            <li class="nav-item"><a href="log/login">Login</a></li>
-	                                            <li class="nav-item"><a href="log/customer_register">Register</a></li>
+	                                            <li class="nav-item"><a href="login">Login</a></li>
+	                                            <li class="nav-item"><a href="customer_register">Register</a></li>
 	                                        </ul>
 	                                    </li>
 	                                    <li class="nav-item">
@@ -374,7 +374,7 @@
 	<!--                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>-->
 	<!--                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>-->
 	<!--                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>-->
-	                                            <li class="nav-item"><a href="cart_view">Cart</a></li>
+	                                            <li class="nav-item"><a href="../cart_view">Cart</a></li>
 	<!--                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>-->
 	                                        </ul>
 	                                    </li>
@@ -528,7 +528,7 @@
 	                                <h3>My Page</h3>
 	                                <ul class="app-btn">
 	                                    <li>
-	                                        <a href="log/login">
+	                                        <a href="login">
 	                                            <i class="lni lni-apple"></i>
 	                                            <span class="small-title">login</span>
 	                                            <span class="big-title">our store</span>
@@ -602,7 +602,7 @@
 	                        </div>
 	                        <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
 	                            <div class="copyright">
-	                                <p>Designed and Developed by<a href="main" rel="nofollow"
+	                                <p>Designed and Developed by<a href="../main" rel="nofollow"
 	                                        target="_blank">Shofriend</a></p>
 	                            </div>
 	                        </div>

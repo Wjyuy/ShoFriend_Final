@@ -530,7 +530,7 @@
                             <h2 class="wow fadeInUp" data-wow-delay=".4s">쇼프렌 : 친구와 함께 즐기는 쇼핑 천국! </h2>
                             <p class="wow fadeInUp" data-wow-delay=".6s">혼자 하는 쇼핑은 이제 그만!🙅‍♀️🙅‍♂️<br>
                                 쇼프렌 (ShoFriend)과 함께라면 쇼핑이 더욱 즐겁고 특별한 경험이 됩니다🤩 <br>
-								마치 친한 친구와 손잡고 옷 구경하듯, 쇼프렌에서는 다양한 상품을 둘러보고 서로의 취향을 공유하며 함께 쇼핑 해 보세요!</p>
+								마치 친한 친구와 손잡고 옷 구경하듯, 쇼프렌에서는 다양한 상품을 둘러보고<br> 서로의 취향을 공유하며 함께 쇼핑 해 보세요!</p>
                             <div class="button wow fadeInUp" data-wow-delay=".8s">
                                 <a href="/log/customer_register" class="btn">회원가입해 시작하기</a>
                             </div>
@@ -541,39 +541,6 @@
         </div>
     </section>
     <!-- End Call Action Area -->
-
-    <!-- Start Banner Area -->
-    <section class="banner section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
-                        <div class="content">
-                            <h2>Smart Watch 2.0</h2>
-                            <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner custom-responsive-margin"
-                        style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
-                        <div class="content">
-                            <h2>Smart Headphone</h2>
-                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
-                                incididunt ut labore.</p>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
 
     <!-- Start Shipping Info -->
     <section class="shipping-info">
@@ -586,7 +553,7 @@
                     </div>
                     <div class="media-body">
                         <h5>Free Shipping</h5>
-                        <span>On order over $99</span>
+                        <span>쇼프렌이 배달비를<br>지원합니다.</span>
                     </div>
                 </li>
                 <!-- Money Return -->
@@ -595,8 +562,8 @@
                         <i class="lni lni-support"></i>
                     </div>
                     <div class="media-body">
-                        <h5>24/7 Support.</h5>
-                        <span>Live Chat Or Call.</span>
+                        <h5>24시간 연중무휴 지원</h5>
+                        <span>라이브 채팅 또는<br>전화로 문의하세요!</span>
                     </div>
                 </li>
                 <!-- Support 24/7 -->
@@ -605,8 +572,8 @@
                         <i class="lni lni-credit-cards"></i>
                     </div>
                     <div class="media-body">
-                        <h5>Online Payment.</h5>
-                        <span>Secure Payment Services.</span>
+                        <h5>온라인 결제</h5>
+                        <span>안전한 결제 서비스를<br>지원합니다.</span>
                     </div>
                 </li>
                 <!-- Safe Payment -->
@@ -615,8 +582,8 @@
                         <i class="lni lni-reload"></i>
                     </div>
                     <div class="media-body">
-                        <h5>Easy Return.</h5>
-                        <span>Hassle Free Shopping.</span>
+                        <h5>간편한 반품</h5>
+                        <span>번거로움 없는 쇼핑을<br>즐기세요! </span>
                     </div>
                 </li>
             </ul>

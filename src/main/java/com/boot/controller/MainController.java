@@ -71,6 +71,8 @@ public class MainController {
 		log.info("main()");
 		
 		List<ProductDTO> popularlist= productService.getPopularProducts();
+		//최근상품에도 리뷰 추가 
+		List<ProductDTO> latestProducts = productService.getLatestProducts();
 //		추가되는 부분
 		Map<Integer, Double> avgRatings = new HashMap<>();
 		Map<Integer, Integer> reviewCounts = new HashMap<>();
@@ -79,6 +81,14 @@ public class MainController {
 			Double avg = reviewService.getAverageRating(productId);
 			int count = reviewService.getReviews(productId).size();
 
+			avgRatings.put(productId, avg != null ? avg : 0.0);
+			reviewCounts.put(productId, count);
+		}
+		for (ProductDTO product : latestProducts) {
+			int productId = product.getId();
+			Double avg = reviewService.getAverageRating(productId);
+			int count = reviewService.getReviews(productId).size();
+			
 			avgRatings.put(productId, avg != null ? avg : 0.0);
 			reviewCounts.put(productId, count);
 		}
@@ -101,7 +111,6 @@ public class MainController {
 		ProductDTO TopDiscountProduct = productService.findTopDiscountProductNearExpiration();
 		model.addAttribute("TopDiscountProduct", TopDiscountProduct);
 		
-		List<ProductDTO> latestProducts = productService.getLatestProducts();
 		ProductDTO latestProduct = null;
         if (!latestProducts.isEmpty()) {
             latestProduct = latestProducts.get(0);

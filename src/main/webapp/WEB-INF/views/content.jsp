@@ -371,18 +371,27 @@
                         <div class="product-info">
                             <h2 class="title">${product.title}</h2>
                             <strong>가게이름:</strong> ${storeName}<br>
-                            <p class="category"><i class="lni lni-tag"></i> 카테고리:<a
-                                    href="javascript:void(0)">
-                                    <c:forEach var="cat" items="${categorylist}">
-                                        <c:if test="${cat.id == product.category_id}">
+                                <c:forEach var="cat" items="${categorylist}">
+                                    <c:if test="${cat.id == product.category_id}">
+                            			<p class="category"><i class="lni lni-tag"></i> 카테고리:<a href="category?categoryId=${cat.id}"">
                                             ${cat.name}
                                         </c:if>
                                     </c:forEach>
                                 </a></p>
-                            <h3 class="price">${product.price}</h3>
-                            <!--                            <h3 class="price" >${product.price}<span><fmt:formatNumber value="${product.price}" pattern="#,###" />원</span> ${product.discount_percentage}%</h3>-->
-                            <!--							<strong><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###" />원</strong>-->
-                            <!--							<del><fmt:formatNumber value="${product.price}" pattern="#,###" />원</del> ${product.discount_percentage}%<br>-->
+                                <c:set var="now" value="<%= new java.util.Date() %>" />
+                                <c:choose>
+                                    <c:when
+                                        test="${product.discount_start <= now and now <= product.discount_end}">
+                                        <del>
+                                            <fmt:formatNumber value="${product.price}" pattern="#,###" />원
+                                        </del> ${product.discount_percentage}%<br>
+			                            <h3 class="price"><fmt:formatNumber value="${product.price - (product.price * product.discount_percentage / 100)}" pattern="#,###" />원</h3>
+                                        <br>
+                                    </c:when>
+                                    <c:otherwise>
+			                            <h3 class="price"><fmt:formatNumber value="${product.price}" pattern="#,###" />원</h3>
+                                    </c:otherwise>
+                                </c:choose>
                             <p class="info-text">
                                 <strong style="font-size: 20px;">재고:</strong> ${product.stock}개<br>
                                 <c:choose>
@@ -393,35 +402,6 @@
                                         <span style="color: red; font-size: 20px;">해당 상품은 숨김상태입니다.
                                         </span><br>
                                     </c:when>
-                                </c:choose>
-                                <c:set var="now" value="<%= new java.util.Date() %>" />
-                                <c:choose>
-                                    <c:when
-                                        test="${product.discount_start <= now and now <= product.discount_end}">
-                                        <del>
-                                            <fmt:formatNumber value="${product.price}" pattern="#,###" />원
-                                        </del> ${product.discount_percentage}%<br>
-                                        <strong>
-                                            <fmt:formatNumber
-                                                value="${product.price - (product.price * product.discount_percentage / 100)}"
-                                                pattern="#,###" />원
-                                        </strong>
-                                        <br>
-                                        <small class="time-left">
-                                            data-end-time="
-                                            <fmt:formatDate value='${product.discount_end}'
-                                                pattern='yyyy-MM-dd\' T\'HH:mm:ss' />">
-                                        </small>
-                                        <small> 남았습니다! </small>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div style="font-size: 30px; color:blue; ">
-                                            <b>
-                                                <fmt:formatNumber value="${product.price}"
-                                                    pattern="#,###" />원
-                                            </b>
-                                        </div>
-                                    </c:otherwise>
                                 </c:choose>
                                 <br>
                                 <form id="orderForm" action="product_order" method="post">

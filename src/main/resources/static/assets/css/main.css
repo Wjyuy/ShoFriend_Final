@@ -5462,3 +5462,48 @@ top: 2px;
 }
 
 /*친구추가폼 끝*/
+
+/*checkout 시작*/
+/* 입력 필드 사이 여백 */
+.personal-details-content .form-control {
+  margin-bottom: 16px;
+}
+
+/* 주소찾기 버튼 */
+.personal-details-content .wish-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.personal-details-content .wish-button .btn {
+  width: 200px; /* 적당한 너비 */
+}
+
+/* 라벨(텍스트)과 입력 필드 간 여백 */
+.personal-details-content label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+/* 배송 메시지 & 결제 영역 스타일 */
+.delivery-section label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.delivery-section .form-group,
+.delivery-section #direct_input_container,
+.delivery-section .payment-method {
+  margin-bottom: 16px;
+}
+
+/* 카카오페이 이미지 정렬 */
+.delivery-section .payment-method img {
+  display: block;
+  margin-top: 8px;
+}
+
+/*checkout 끝*/

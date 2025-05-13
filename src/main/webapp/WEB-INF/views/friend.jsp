@@ -151,8 +151,6 @@
 	
 	            
 	<input type="button"  value="친구추가하기"  class="btn btn-primary"  onclick="showFriendForm()">
-	<input type="button" class="btn btn-primary"  value="친구삭제하기" onclick="location.href='#'"><br><br>
-		<a href="main">🏠 홈으로가기</a><br><br>
 
 
 

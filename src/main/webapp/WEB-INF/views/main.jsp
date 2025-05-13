@@ -186,7 +186,7 @@
                                     </a>
                                 </div>
                                 <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
+                                    <a href="cart_view" class="main-btn">
                                         <i class="lni lni-cart"></i>
 										<c:if test="${sessionScope.userType == 'customer'}">
                                         	<span class="total-items">${items.size()}</span>
@@ -268,6 +268,9 @@
                                     <li class="nav-item">
                                         <a href="main" class="active" aria-label="Toggle navigation">Home</a>
                                     </li>
+									<li class="nav-item">
+									    <a href="" aria-label="Toggle navigation">Contact Us</a>
+									</li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
@@ -278,21 +281,18 @@
                                             <li class="nav-item"><a href="log/customer_register">Register</a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Shop</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-<!--                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>-->
-<!--                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>-->
-<!--                                            <li class="nav-item"><a href="product-details.html">shop Single</a></li>-->
-                                            <li class="nav-item"><a href="cart_view">Cart</a></li>
-<!--                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>-->
-                                        </ul>
-                                    </li>
-<!--                                    <li class="nav-item">-->
-<!--                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>-->
-<!--                                    </li>-->
+									<c:if test="${sessionScope.userType == 'seller'}">
+	                                    <li class="nav-item">
+	                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+	                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
+	                                            aria-expanded="false" aria-label="Toggle navigation">Manage</a>
+	                                        <ul class="sub-menu collapse" id="submenu-1-3">
+	                                            <li class="nav-item"><a href="store_list">My Store</a></li>
+	                                            <li class="nav-item"><a href="product_insert">Add product</a></li>
+	                                        </ul>
+	                                    </li>
+									</c:if>
+
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav>

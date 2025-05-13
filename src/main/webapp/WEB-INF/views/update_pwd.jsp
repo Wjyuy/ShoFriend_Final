@@ -4,14 +4,14 @@
 
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 수정정</title>
+<title>비밀번호 수정</title>
 <script src="${pageContext.request.contextPath}/js/script.js"></script>
 </head>
 <!-- 25/04/14    김채윤   프론트엔드 적용 -->
 
  <head>
 	<meta charset="UTF-8">
-	<title>비밀번호 확인</title>
+	<title>비밀번호 수정정</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -383,24 +383,29 @@
      <!-- 본문 -->
 
 
-<section class="item-details section">
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
+  <div class="account-login section">
+	   
 <c:choose>
     <c:when test="${sessionScope.userType == 'customer' || sessionScope.userType == 'seller'}">
         <div class="container">
-            <div class="form-box">
-                <h2 class="text-center fw-bold" style="margin-top: 20px;">비밀번호 변경</h2>
+	      <div class="row">
+	        <div class="col-lg-5 offset-lg-3 col-md-10 offset-md-1 col-12">
+                <form class="card login-form" name="pwd_frm" method="post" action="checkPwdOk">
+	       
+	            <div class="card-body">
+                     <div class="title">
+	                <h3>비밀번호 변경</h3><br>
+	                
+	              </div>
+                
                 <form name="pwd_frm" method="post" action="updatePwdOk">
-                    <div style="display: flex; justify-content: center; align-items: flex-start; gap: 10px; margin: 50px 0;">
-                        <div style="display: flex; flex-direction: column;">
-                        <label class="form-label mt-4" style="font-weight: bold;">새 비밀번호: </label>
-                    <input type="password" class="form-control" style="width: 250px;" name="new_pwd" required />
-                </div>
-                    <input type="button" class="btn btn-primary" style="margin-top: 52px;" value="변경하기" onclick="update_pwd()" />
+                     <div class="form-group input-group">
+							<div class="col-sm-12" style="margin-bottom: 2px;">
+                                <label for="reg-fn">new password :</label>
+                            </div>
+                            <input type="password" class="form-control" style="width: 250px;" name="new_pwd" required />
+                  
+                    <input type="button" class="btn btn-primary" value="변경하기" onclick="update_pwd()" />
                 </div>
                 </form>
 

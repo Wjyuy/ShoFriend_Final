@@ -5337,4 +5337,128 @@ top: 2px;
   color: #0167F3;
   text-decoration: none;
 }
+/* 친구 관련 영역 공통 스타일 */
+.friend-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+/* 친구 리스트 및 신청 카드 스타일 */
+.friend-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 친구 항목 */
+.friend-item {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.friend-item form {
+  display: inline;
+  margin-left: 5px;
+}
+
+/* 버튼 스타일 */
+.friend-section button,
+.friend-section input[type="button"] {
+  font-size: 14px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.friend-section button:hover,
+.friend-section input[type="button"]:hover {
+  opacity: 0.9;
+}
+
+/* form card (친구 추가 입력 폼) */
+.friend-form-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto 0;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .friend-section {
+    padding: 10px;
+  }
+
+  .friend-form-card {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+/* 카드 안에서 텍스트와 버튼 가운데 정렬 */
+.card-body.text-center {
+  text-align: center;
+}
+
+/* 친구 항목 사이 여백 */
+.friend-item {
+  margin-bottom: 12px;
+}
+
+/* 친구추가 카드 반응형 조정 */
+#friendForm .form-control {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* 친구 버튼 두 개를 한 줄에 가운데 정렬 */
+.friend-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* 버튼 간 간격 */
+  margin-bottom: 15px;
+}
+
+.equal-width-button {
+  width: 120px;          /* 원하는 고정 너비 */
+  min-width: 120px;      /* 버튼 내용 길이와 무관하게 동일 */
+  text-align: center;    /* 텍스트 가운데 정렬 */
+}
+
+/* 친구 추가 폼 카드 가운데 정렬 */
+#friendForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+/* 동일 너비 버튼 */
+.equal-width-button {
+  width: 120px;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* 가운데 정렬을 위한 버튼 wrapper */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/*친구추가폼 끝*/

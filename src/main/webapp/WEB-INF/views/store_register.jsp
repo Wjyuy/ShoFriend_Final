@@ -409,31 +409,34 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
                         <!-- <h1 class="page-title">Single Product</h1> -->
-                        <h1 class="page-title">Product Insert</h1>
+                        <h1 class="page-title">Store register</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="main"><i class="lni lni-home"></i> Main</a></li>
                         <!-- <li><a href="index.html">Shop</a></li> -->
-                        <li>Product Insert</li>
+                        <li>Store register</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Breadcrumbs -->
-<section class="item-details section">
-<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
+	  <div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-9 offset-lg-2 col-md-10 offset-md-1 col-15">
+	          <div class="card login-form">
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>점포 등록</h3><br>
+	                <p>점포등록 페이지입니다.</p>
+	              </div>
 
 		<form name="storeReg_frm" method="post" action="store_registerOk">
 		<input type="hidden" name="seller_id" value="${sessionScope.loginSeller.id}">
 
-					<h1 class="text-center" style="margin-bottom: 50px;">점포 등록</h1>
-					
 					<label  class="form-label mt-4">점포 이름</label>
 					<input type="text" class="form-control" size="50" name="name" placeholder="점포이름을 써주세요">
 
@@ -456,9 +459,10 @@
 			         </div>
                 </div>
             </div>
+            </div>
+        </div>
         </div>
 
-	</section>
 <!-- footer -->
 <footer class="footer">
         <div class="footer-middle">

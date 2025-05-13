@@ -441,38 +441,47 @@
 
     <!-- 본문 -->
 <body>
-
-        <section class="item-details section">
-<div class ="container">
-    	<div class="row">
-			<div class="col-md-12">
-				<div class="top-area">
-<!-- <div class ="form-box"> -->
-    <h2 class="text-center" style="margin-bottom: 50px; font-weight: bold;">내 정보 확인</h2>
+ <div class="account-login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+                    <div class="register-form">
+<!--                    <div class="card-body">-->
+                        <div class="title">
+                            <h3>내정보 확인</h3>
+                            <br>
+                        </div>
 
     <c:choose>
         <c:when test="${not empty sessionScope.loginCustomer}">
-
-            <table style="margin: 0 auto;" cellpadding="10">
-                <tr>
-                    <td>아이디(E-mail)</td>
-                    <td colspan="2">${loginCustomer.email}</td>
-                </tr>
-<!--                 <tr> -->
-<!--                     <td>비밀번호</td> -->
-<%--                     <td colspan="2">${loginCustomer.password}</td> --%>
-<!--                 </tr> -->
-                <tr>
-                    <td>이름</td>
-                    <td>
-                   <div class="d-flex mb-3" style="gap: 8px;">
-                    <input type="text" class="form-control form-control-sm" id="name_input" value="${loginCustomer.name}">
-                  <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo('name')" >
-                  </div>
-                  </td>
-                  </tr>
-             
-                <tr>
+            <div class="form-group input-group">
+                <div class="col-sm-12">
+                    <label for="reg-fn">아이디(E-mail)</label>
+                </div>
+                    <input type="text" class="form-control form-control-sm" value="${loginCustomer.email}" readonly>
+            </div>
+                <div class="form-group input-group">
+                        <div class="col-sm-12">
+                            <label for="reg-fn">비밀번호</label><br>
+                        </div>
+                            <input class="form-control form-control-sm" value="${loginCustomer.password}" readonly>
+                </div>
+                <div class="form-group input-group">
+                        <div class="col-sm-12">
+                            <label for="reg-fn">이름</label><br>
+                        </div>
+                           <input type="text" class="form-control" id="name_input" value="${loginCustomer.name}">
+                           <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo('name')" >
+                </div>
+                 <div class="form-group input-group">
+                        <div class="col-sm-12">
+                            <label for="reg-fn">전화번호</label><br>
+                        </div>
+                          <input type="text" class="form-control" id="phone_input" value="${loginCustomer.phone}">
+                           <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo('phone')" >
+                </div>
+                
+                <!-- <tr>
                     <td>전화번호</td>
                     <td>
                      <div class="d-flex mb-3" style="gap: 8px;">
@@ -480,11 +489,12 @@
                     <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo('phone')" ></td>
                  </div>
                   </td>
-                </tr>
+                </tr> -->
                 
-                <tr>
-                    <td>주소</td>
-                <td colspan="2" width="80">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                            <label for="reg-fn">주소</label><br>
+                     
 				<div class="zip-row">
 				<input type="text" name="zipcode"  class="form-control" id="sample6_postcode" value="${store_view.zipcode}">
 				<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-outline-secondary" value="우편번호 찾기"></div>
@@ -493,10 +503,10 @@
 <!-- 				address1 사용안해서 히든처리 (없으면 팝업창 안뜸) 04.10 -->
 				<input type="hidden" name="address2" id="sample6_detailAddress" >
 				<input type="button" style="margin-top: 10px;" class="btn btn-outline-secondary btn-sm" value="주소 수정" onclick="updateInfo('address')" ></td>
-				</td>
-                </tr>
-            </table>
-            
+				</div>
+                </div>
+          
+
 <!--             <form action="main" method="get"> -->
 <!-- 			   	 <input type="submit" value="메인으로"> -->
 <!-- 			</form> -->
@@ -521,7 +531,7 @@
     </div>
 </div>
 </div>
-
+</div>
 </section>
 
  <!-- footer -->

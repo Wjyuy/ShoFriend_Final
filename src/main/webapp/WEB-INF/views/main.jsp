@@ -215,7 +215,7 @@
 								                        </div>
 
 								                        <div class="content">
-								                            <h4><a href="product-details.html?id=${item.product_id}">${item.product_title}</a></h4>
+								                            <h4><a href="content?id=${item.product_id}">${item.product_title}</a></h4>
 								                            <p class="quantity">${item.quantity}x - <span class="amount"><fmt:formatNumber value="${item.final_price}" pattern="#,###원"/></span></p>
 								                        </div>
 								                    </li>

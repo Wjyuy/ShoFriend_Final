@@ -76,15 +76,33 @@ public class InfoController {
 	
 	//25.04.09 권준우 - 판매자 정보 페이지 호출
 	@RequestMapping("/seller_info")
-	public String sellerInfo() {
+	public String sellerInfo(Model model,HttpSession session) {
 		log.info("@# seller_info()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return "seller_info";
 	}
 	
 	//25.04.09 권준우 - 비밀번호 변경 페이지 호출
 	@RequestMapping("/update_pwd")
-	public String updatePwd() {
+	public String updatePwd(Model model,HttpSession session) {
 		log.info("@# update_pwd()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 	    return "update_pwd";
 	}
 
@@ -160,8 +178,17 @@ public class InfoController {
 	
 	//25.04.09 권준우 - 비밀번호 확인 페이지 호출
 	@RequestMapping("/check_pwd")
-	public String checkPwdPage() {
+	public String checkPwdPage(Model model,HttpSession session) {
 		log.info("@# check_pwd()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 	    return "check_pwd";  //
 	}
 	

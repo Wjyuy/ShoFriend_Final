@@ -1,5 +1,6 @@
 package com.boot.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,10 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.OrderDetailDTO;
 import com.boot.dto.OrdersDTO;
+import com.boot.service.CartService;
 import com.boot.service.OrdersService;
+import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +29,10 @@ public class OrdersController {
 
 	@Autowired
 	private OrdersService service;
-
+	@Autowired
+	private CartService cartService;	
+	@Autowired
+	private ProductService productService;
 	@RequestMapping("/order_view")
 	public String orderView(HttpSession session, Model model) {
 		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
@@ -39,17 +47,30 @@ public class OrdersController {
 
 		List<OrdersDTO> orderList = service.getOrdersByCustomer(param);
 		model.addAttribute("orderList", orderList);
-		
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		log.info("@# order_view_end()");
 
 		return "order_view";
 	}
 	@RequestMapping("/pay/detail")
-	public String getOrderDetail(@RequestParam("order_id") int order_id, Model model) {
+	public String getOrderDetail(@RequestParam("order_id") int order_id, Model model,HttpSession session) {
 		log.info("@# getOrderDetail()");
 		OrderDetailDTO orderDetail = service.getOrderDetail(order_id); // 주문 상세 정보 조회 로직
 	    model.addAttribute("orderDetail", orderDetail);
-	    log.info("@# orderDetail=>"+orderDetail);
+	    ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 	    return "pay/detail"; 
 	}
 	

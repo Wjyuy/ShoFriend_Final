@@ -496,13 +496,22 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-<section class="item-details section">
-     <!-- 본문 -->
-<div class ="container">
-	<!-- 		<form method="post" action="write"> -->
-		<h1 class="text-center" style="margin-bottom: 80px;">상품 수정</h1>
-	<form id="frm_product" enctype="multipart/form-data">
-		<table class="table">
+
+     <!-- start product modify -->
+      <div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-9 offset-lg-2 col-md-10 offset-md-1 col-15">
+	          <div class="card login-form">
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>상품 수정</h3>
+	             <p>상품수정 페이지입니다.</p>
+	              </div>
+                  <br>
+                  <br>
+	        <form id="frm_product" enctype="multipart/form-data">
+		    <table class="table">
 			<tr>
 				<td>가게 이름</td>
 				<td>
@@ -608,17 +617,25 @@
 					<input type="hidden" name="old_picture" value="${product.picture}">
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-<!-- 					<input type="submit" value="입력"> -->
-					<input type="button" class="btn btn-primary w-100" onclick="product_check_ok()" value="입력">
-					<div class="text-end">
-					<a href="main">메인으로</a>
+			
+            </table>
+                    <div class="text-end">
+                        <input type="button" class="btn btn-primary w-100" onclick="product_check_ok()" value="입력">
+				
 					</div>
-					</table>
+                    <div class="text-end">
+					<a href="main" style="margin-top: 10px;">메인으로</a>
+					</div>
 	</form>
 	</div>
-	</section>
+	     </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+<!-- end product modify -->
+
+
 <!-- footer -->
 <footer class="footer">
         <div class="footer-middle">

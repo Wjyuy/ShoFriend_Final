@@ -407,7 +407,13 @@
             <table style="margin:  0 auto;" cellpadding="10">
                 <tr>
                     <td>아이디(E-mail)</td>
-                    <td colspan="2">${loginSeller.email}</td>
+					<td>
+					<div class="d-flex mb-3" style="gap: 8px;">
+                   <input type="text" class="form-control form-control-sm" id="name_input" value="${loginSeller.email}" readonly>
+                   </div>
+				   </td>
+					
+<!--                    <td colspan="2">${loginSeller.email}</td>-->
                 </tr>
 <!--                 <tr> -->
 <!--                     <td>비밀번호</td> -->

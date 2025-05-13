@@ -414,60 +414,57 @@
                             <h3>내정보 확인</h3>
                             <br>
                         </div>
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.loginSeller}">
+                                <div class="form-group input-group">
+                                    <div class="col-sm-12">
+                                        <label for="reg-fn">아이디(E-mail)</label>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm" value="${loginSeller.email}" readonly>
+                                </div>
+                                <div class="form-group input-group">
+                                        <div class="col-sm-12">
+                                            <label for="reg-fn">비밀번호</label><br>
+                                        </div>
+                                    <input type="password" class="form-control" id="password_input" value="">
+                                    <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo2('password')" >
+                                </div>
+                                <div class="form-group input-group">
+                                        <div class="col-sm-12">
+                                            <label for="reg-fn">이름</label><br>
+                                        </div>
+                                    <input type="text" class="form-control" id="name_input" value="${loginSeller.name}">
+                                    <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo2('name')" >
+                                </div>
+                                <div class="form-group input-group">
+                                        <div class="col-sm-12">
+                                            <label for="reg-fn">전화번호</label><br>
+                                        </div>
+                                    <input type="text" class="form-control" id="phone_input" value="${loginSeller.phone}">
+                                    <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo2('phone')" >
+                                </div>
 
-    <c:choose>
-        <c:when test="${not empty sessionScope.loginSeller}">
-            <div class="form-group input-group">
-                <div class="col-sm-12">
-                    <label for="reg-fn">아이디(E-mail)</label>
-                </div>
-                    <input type="text" class="form-control form-control-sm" value="${loginSeller.email}" readonly>
-            </div>
-                <!-- <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">비밀번호</label><br>
+                                <div class="text-center" style="margin-top:30px;">
+                                    <button class="btn btn-primary" onclick="location.href='main'">메인으로</button>
+                                    <button class="btn btn-primary" onclick="location.href='my_page'">마이페이지</button>
+                                    <!-- <button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button> -->
+                                </div>
+                                
+                                <div class="text-end" style="margin-top:40px;">
+                                </div>
+                            </div>
                         </div>
-                            <input class="form-control form-control-sm" value="${loginSeller.password}" readonly>
-                </div> -->
-                <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">이름</label><br>
-                        </div>
-                           <input type="text" class="form-control" id="name_input" value="${loginSeller.name}">
-                           <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo2('name')" >
+                    </div>
                 </div>
-                 <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">전화번호</label><br>
-                        </div>
-                          <input type="text" class="form-control" id="phone_input" value="${loginSeller.phone}">
-                           <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo2('phone')" >
+            </c:when>
+            <c:otherwise>
+                <div class="text-center">
+                    <p>로그인이 필요합니다.</p>
+                    <a href="log/login">로그인 페이지로 이동</a>
                 </div>
-
-<!--             <form action="main" method="get"> -->
-<!-- 			   	 <input type="submit" value="메인으로"> -->
-<!-- 			</form> -->
-			<div class="text-center" style="margin-top:30px;">
-			<button class="btn btn-primary" onclick="location.href='main'">메인으로</button>
-			<button class="btn btn-primary" onclick="location.href='my_page'">마이페이지</button>
-			<button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button>
-			</div>
-			
-			<div class="text-end" style="margin-top:40px;">
-            </div>
-             </div>
-            </div>
-            </div>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div class="text-center">
-            <p>로그인이 필요합니다.</p>
-            <a href="log/login">로그인 페이지로 이동</a>
-            </div>
-        </c:otherwise>
-    </c:choose>
-	</div>
+            </c:otherwise>
+        </c:choose>
+    </div>
 
   <!-- Start Footer Area -->
     <footer class="footer">

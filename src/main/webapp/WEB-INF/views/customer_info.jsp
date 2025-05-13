@@ -492,12 +492,13 @@
                                 </div>
                                 <input type="text" class="form-control form-control-sm" value="${loginCustomer.email}" readonly>
                             </div>
-                            <!-- <div class="form-group input-group">
-                                    <div class="col-sm-12">
-                                        <label for="reg-fn">비밀번호</label><br>
-                                    </div>
-                                        <input class="form-control form-control-sm" value="${loginCustomer.password}" readonly>
-                            </div> -->
+                            <div class="form-group input-group">
+                                <div class="col-sm-12">
+                                    <label for="reg-fn">비밀번호</label><br>
+                                </div>
+                                <input type="password" class="form-control" id="password_input" value="">
+                                <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo('password')" >
+                            </div>
                             <div class="form-group input-group">
                                 <div class="col-sm-12">
                                     <label for="reg-fn">이름</label><br>
@@ -529,7 +530,7 @@
                                 <div class="text-center" style="margin-top:30px;">
                                     <button class="btn btn-primary" onclick="location.href='main'">메인으로</button>
                                     <button class="btn btn-primary" onclick="location.href='my_page'">마이페이지</button>
-                                    <button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button>
+                                    <!-- <button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button> -->
                                 </div>
                                 <div class="text-end" style="margin-top:40px;">
                                 </div>

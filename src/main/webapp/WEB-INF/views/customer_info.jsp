@@ -460,12 +460,12 @@
                 </div>
                     <input type="text" class="form-control form-control-sm" value="${loginCustomer.email}" readonly>
             </div>
-                <div class="form-group input-group">
+                <!-- <div class="form-group input-group">
                         <div class="col-sm-12">
                             <label for="reg-fn">비밀번호</label><br>
                         </div>
                             <input class="form-control form-control-sm" value="${loginCustomer.password}" readonly>
-                </div>
+                </div> -->
                 <div class="form-group input-group">
                         <div class="col-sm-12">
                             <label for="reg-fn">이름</label><br>

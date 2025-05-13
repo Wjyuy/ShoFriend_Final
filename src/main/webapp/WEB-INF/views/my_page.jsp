@@ -1,21 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html class="no-js" lang="zxx">
 <head>
-	<title>마이 페이지</title>
-	
-	<meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- bootstrap css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css ">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />	
+<meta charset="utf-8" />
+   <meta http-equiv="x-ua-compatible" content="ie=edge" />
+   <title>Login - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
+   <meta name="description" content="" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+   <!-- ========================= CSS here ========================= -->
+   <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="../assets/css/LineIcons.3.0.css" />
+   <link rel="stylesheet" href="../assets/css/tiny-slider.css" />
+   <link rel="stylesheet" href="../assets/css/glightbox.min.css" />
+   <link rel="stylesheet" href="../assets/css/main.css" />
+
 </head>
 <!-- 25/04/14    김채윤   프론트엔드 적용 -->
 
@@ -335,45 +343,67 @@
     </div>
     <!-- End Breadcrumbs -->
 
-    <!-- 본문 -->
+	  
 	<c:choose>
 		<c:when test="${sessionScope.userType == 'customer'}">
-			<section class="item-details section">
-				<div class="container">
+			<div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	       <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+	          <div class="card login-form">
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>마이페이지</h3><br>
+	               
+	              </div>
+				<!-- <div class="container">
 					<a class="nav-link disabled" aria-disabled="true">${sessionScope.loginCustomer.name} 님은 <b>customer</b> 입니다.</a>
-				</div>
-				<div class="container">
+				</div> -->
+				<!-- <div class="container">
 					<div class="row">
 						<div class="col-md-12">
-						<!-- <div class="col-md-9"> -->
-							<div class="top-area">
+						 <div class="col-md-9"> -->
+							<!-- <div class="col-md-auto"> -->
+								<div class="button cart-button"> 
+									 <button class="btn" style="width: 100%;" onclick="location.href='check_pwd'">내 정보 보기</button> 
+								 </div>
+								 <br>
 								<div class="button cart-button">
-									<button class="btn" style="width: 100%;" onclick="location.href='check_pwd'">내 정보 보기</button>
-								</div>
-								<br>
-								<div class="button cart-button">
-									<button class="btn" style="width: 100%;" onclick="location.href='order_view'">주문 조회</button>
+									<button class="btn"  style="width: 100%;" onclick="location.href='order_view'">주문 조회</button>
 								</div>
 								<br>
 								<div class="wish-button">
-									<button class="btn" style="width: 100%;" onclick="location.href='logout'">로그아웃</button>
+									<button class="btn"  style="width: 100%;" onclick="location.href='logout'">로그아웃</button>
 								</div>
 							</div>
+
+						</div>
 						</div>
 					</div>
+					</div>
 				</div>
-			</section>
+		
 		</c:when>
 		<c:when test="${sessionScope.userType == 'seller'}">
-			<section class="item-details section">
+			<!-- <section class="item-details section">
 				<div class="container">
 					<a class="nav-link disabled" aria-disabled="true">${sessionScope.loginSeller.name} 님은 <b>seller</b> 입니다.</a>
-				</div>
-				<div class="container">
+				</div> -->
+				<div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	       <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+	          <div class="card login-form">
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>마이페이지</h3><br>
+	               
+	              </div>
+				<!-- <div class="container">
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12"> -->
 						<!-- <div class="col-md-9"> -->
-							<div class="top-area">
+							<!-- <div class="top-area"> -->
 								<div class="button cart-button">
 									<button class="btn" style="width: 100%;" onclick="location.href='check_pwd'">내 정보 보기</button>
 								</div>
@@ -393,18 +423,24 @@
 						</div>
 					</div>
 				</div>
-			</section>
+				</div>
+				</div>
+			
 		</c:when>
 		<c:otherwise>
-			<section class="item-details section">
-				<div class="container">
-					<a class="nav-link disabled" aria-disabled="true">로그인 상태가 아닙니다.</a>
-				</div>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-						<!-- <div class="col-md-9"> -->
-							<div class="top-area">
+		<div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	       <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+	          <div class="card login-form">
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>로그인 상태가 아닙니다.</h3><br>
+	               
+						</div>
+							<!-- <a class="nav-link disabled" aria-disabled="true">로그인 상태가 아닙니다.</a>
+						</div> -->
+			
 								<div class="button cart-button">
 									<button class="btn" style="width: 100%;" onclick="location.href='log/login'">로그인</button>
 								</div>
@@ -416,7 +452,9 @@
 						</div>
 					</div>
 				</div>
-			</section>
+				</div>
+				</div>
+			
 
 		</c:otherwise>
 	</c:choose>

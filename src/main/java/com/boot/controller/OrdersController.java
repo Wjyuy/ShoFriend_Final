@@ -32,7 +32,7 @@ public class OrdersController {
 		log.info("@# order_view_start()");
 		
 		if (loginCustomer == null)
-			return "redirect:login";
+			return "redirect:log/login";
 
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("customer_id", String.valueOf(loginCustomer.getId()));

@@ -106,12 +106,22 @@
                                 <li>
                                     <a href="my_page">My Page</a>
                                 </li>
-                                <li>
-                                    <a href="log/login">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="log/customer_register">Register</a>
-                                </li>
+								<c:choose>
+									<c:when test="${sessionScope.userType == 'seller'}">
+	                                    <li><a href="logout">Log out</a></li>
+									</c:when>
+									<c:when test="${sessionScope.userType == 'customer'}">
+	                                    <li><a href="logout">Log out</a></li>
+									</c:when>
+									<c:otherwise>
+		                                <li>
+		                                    <a href="log/login">Sign In</a>
+		                                </li>
+		                                <li>
+		                                    <a href="log/customer_register">Register</a>
+		                                </li>
+									</c:otherwise>
+								</c:choose>
                             </ul>
                         </div>
                     </div>
@@ -135,26 +145,26 @@
                         <!-- Start Main Menu Search -->
                         <div class="main-menu-search">
                             <!-- navbar search start -->
-                            <div class="navbar-search search-style-5">
-                                <div class="search-select">
-                                    <div class="select-position">
-                                        <select id="select1">
-                                            <option selected>All</option>
-                                            <option value="1">option 01</option>
-                                            <option value="2">option 02</option>
-                                            <option value="3">option 03</option>
-                                            <option value="4">option 04</option>
-                                            <option value="5">option 05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search-input">
-                                    <input type="text" placeholder="Search">
-                                </div>
-                                <div class="search-btn">
-                                    <button><i class="lni lni-search-alt"></i></button>
-                                </div>
-                            </div>
+							<form method="get" action="/category">
+	                            <div class="navbar-search search-style-5">
+	                                <div class="search-select">
+	                                    <div class="select-position">
+	                                        <select id="selectCategory" name="categoryId">
+	                                            <option value="" selected>All</option>
+				                                <c:forEach var="cat" items="${categorylist}">
+		                                        	<option value="${cat.id}" ${categoryId == cat.id ? 'selected' : ''}>${cat.name}</option>
+				                                </c:forEach>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="search-input">
+		                                <input type="text" name="keyword" placeholder="Search" value="${param.keyword}" />
+	                                </div>
+	                                <div class="search-btn">
+	                                    <button><i class="lni lni-search-alt"></i></button>
+	                                </div>
+	                            </div>
+                            </form>
                             <!-- navbar search Ends -->
                         </div>
                         <!-- End Main Menu Search -->
@@ -172,7 +182,7 @@
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-heart"></i>
-                                        <span class="total-items">0</span>
+<!--                                        <span class="total-items">0</span>-->
                                     </a>
                                 </div>
                                 <div class="cart-items">

@@ -452,7 +452,7 @@
 	                                <h3>My Page</h3>
 	                                <ul class="app-btn">
 	                                    <li>
-	                                        <a href="log/login">
+	                                        <a href="login">
 	                                            <i class="lni lni-apple"></i>
 	                                            <span class="small-title">login</span>
 	                                            <span class="big-title">our store</span>
@@ -526,7 +526,7 @@
 	                        </div>
 	                        <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
 	                            <div class="copyright">
-	                                <p>Designed and Developed by<a href="main" rel="nofollow"
+	                                <p>Designed and Developed by<a href="../main" rel="nofollow"
 	                                        target="_blank">Shofriend</a></p>
 	                            </div>
 	                        </div>

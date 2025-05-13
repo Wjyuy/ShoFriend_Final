@@ -553,13 +553,30 @@
 													</c:forEach>
 													<h4 class="title"><a href="content?id=${dto.id}">${dto.title}</a>
 													</h4>
-													<ul class="review">
+													<!-- <ul class="review">
 														<li><i class="lni lni-star-filled"></i></li>
 														<li><i class="lni lni-star-filled"></i></li>
 														<li><i class="lni lni-star-filled"></i></li>
 														<li><i class="lni lni-star-filled"></i></li>
 														<li><i class="lni lni-star-filled"></i></li>
 														<li><span>5.0 Review(s)</span></li>
+													</ul> -->
+													<ul class="review">
+														<c:set var="avg" value="${avgRatings[dto.id]}" />
+														<c:set var="count" value="${reviewCounts[dto.id]}" />
+														<li>
+															<i class="lni ${avg >= 1 ? 'lni-star-filled' : 'lni-star'}"></i>
+															<i class="lni ${avg >= 2 ? 'lni-star-filled' : 'lni-star'}"></i>
+															<i class="lni ${avg >= 3 ? 'lni-star-filled' : 'lni-star'}"></i>
+															<i class="lni ${avg >= 4 ? 'lni-star-filled' : 'lni-star'}"></i>
+															<i class="lni ${avg >= 5 ? 'lni-star-filled' : 'lni-star'}"></i>
+														</li>
+														<li>
+															<span>
+																<fmt:formatNumber value="${avg}" type="number" maxFractionDigits="1"/>
+																(리뷰 ${count}개)
+															</span>
+														</li>
 													</ul>
 													<div class="price">
 														<c:choose>

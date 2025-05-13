@@ -491,6 +491,7 @@
                   <form action="acceptFriend" method="post" style="display:inline;">
                     <input type="hidden" name="customer_id1" value="${req.id}" />
                     <button type="submit" class="btn btn-primary btn-sm">수락</button>
+					<br>
                   </form>
                   <form action="rejectFriend" method="post" style="display:inline;">
                     <input type="hidden" name="customer_id1" value="${req.id}" />

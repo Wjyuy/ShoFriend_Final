@@ -71,21 +71,23 @@ public class MainController {
 		log.info("main()");
 		
 		List<ProductDTO> popularlist= productService.getPopularProducts();
-		//최근상품에도 리뷰 추가 
-		List<ProductDTO> latestProducts = productService.getLatestProducts();
-//		추가되는 부분
+		List<ProductDTO> latestProducts = productService.getLatestProducts();	// 최근상품에도 리뷰 추가 
+		
+		//	별점 연동
 		Map<Integer, Double> avgRatings = new HashMap<>();
 		Map<Integer, Integer> reviewCounts = new HashMap<>();
 		for (ProductDTO product : popularlist) {
 			int productId = product.getId();
-			Double avg = reviewService.getAverageRating(productId);
+			
 			int count = reviewService.getReviews(productId).size();
-
+			Double avg = reviewService.getAverageRating(productId);
+			
 			avgRatings.put(productId, avg != null ? avg : 0.0);
 			reviewCounts.put(productId, count);
 		}
 		for (ProductDTO product : latestProducts) {
 			int productId = product.getId();
+			
 			Double avg = reviewService.getAverageRating(productId);
 			int count = reviewService.getReviews(productId).size();
 			
@@ -94,7 +96,6 @@ public class MainController {
 		}
 		model.addAttribute("avgRatings", avgRatings);
 		model.addAttribute("reviewCounts", reviewCounts);
-//		추가 끝
 		
 		//살포시 없애보았음
 //		model.addAttribute("popularlist", popularlist);
@@ -156,6 +157,7 @@ public class MainController {
 		
 		return ("main");
 	}
+	
 	@RequestMapping("/category")
 	public String category(@RequestParam(name = "categoryId", required = false) Integer categoryId,
 							@RequestParam(name = "keyword", required = false) String keyword,
@@ -219,6 +221,32 @@ public class MainController {
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("categoryId", categoryId);
 		model.addAttribute("sort", sort); // 선택 유지용
+		
+//		별점 연동 카테고리 페이지에도 구현 (list별로)
+		Map<Integer, Double> avgRatings = new HashMap<>();
+		Map<Integer, Integer> reviewCounts = new HashMap<>();
+		
+		for (ProductDTO product : popularlist) {
+			int productId = product.getId();
+			
+			int count = reviewService.getReviews(productId).size();
+			Double avg = reviewService.getAverageRating(productId);
+			
+			avgRatings.put(productId, avg != null ? avg : 0.0);
+			reviewCounts.put(productId, count);
+		}
+		for (ProductDTO product : flashlist) {
+			int productId = product.getId();
+			
+			Double avg = reviewService.getAverageRating(productId);
+			int count = reviewService.getReviews(productId).size();
+			
+			avgRatings.put(productId, avg != null ? avg : 0.0);
+			reviewCounts.put(productId, count);
+		}
+	
+		model.addAttribute("avgRatings", avgRatings);
+		model.addAttribute("reviewCounts", reviewCounts);
 		
 		return ("category");
 	}

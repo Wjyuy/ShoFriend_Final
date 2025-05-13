@@ -38,8 +38,6 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
-
-
 	@Override
 	public Double getAverageRating(int productId) {
 		return reviewDAO.getAverageRating(productId);

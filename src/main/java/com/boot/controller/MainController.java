@@ -164,6 +164,9 @@ public class MainController {
 	    ArrayList<CategoryDTO> categorylist = productService.categorylist();
 		model.addAttribute("categorylist", categorylist);
 		
+		ArrayList<ProductDTO> sale50list = productService.select50percentSaleItems();
+		model.addAttribute("sale50list", sale50list);
+		
 //		기존 list 조회 메서드 폐기 - 25.05.12 권준우
 //		List<ProductDTO> list = service.product_list();
 //		model.addAttribute("list", list);

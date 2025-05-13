@@ -69,4 +69,5 @@ public interface ProductDAO {
     
     List<CategoryDTO> getAllCategories();
     List<Map<String, Object>> countProductsByAllCategories();
+    public ArrayList<ProductDTO> select50percentSaleItems();
 }

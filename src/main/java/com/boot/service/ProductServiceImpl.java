@@ -60,6 +60,7 @@ public class ProductServiceImpl implements ProductService{
 	    	}
 	        String originalFilename = picture.getOriginalFilename();
 	        String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+	        
 	        String timestamp = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
 	        String uuidPart = UUID.randomUUID().toString().substring(0, 8); 
 	        String newFileName = timestamp + "_" + uuidPart + ext;
@@ -274,6 +275,11 @@ public class ProductServiceImpl implements ProductService{
 			result.put(categoryId, count.intValue());
 		}
 		return result;
+	}
+
+	@Override
+	public ArrayList<ProductDTO> select50percentSaleItems() {
+		return productDAO.select50percentSaleItems();
 	}
 
 }

@@ -46,6 +46,18 @@
 	  ]]>
 	</select>
 	
+	<select id="select50percentSaleItems" resultType="com.boot.dto.ProductDTO">
+	    <![CDATA[
+		    SELECT *
+			FROM product
+			WHERE discount_end IS NOT NULL
+			  AND discount_start <= NOW()
+			  AND discount_end > NOW()
+			  AND discount_percentage >= 50
+			ORDER BY discount_end ASC
+		  ]]>
+	</select>
+	
 	<update id="product_modify" >
 		update product set category_id=#{category_id}, title=#{title}, description=#{description}
 		, price=#{price}, stock=#{stock}, status=#{status}, picture=#{picture}

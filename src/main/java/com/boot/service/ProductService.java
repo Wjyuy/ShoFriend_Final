@@ -18,6 +18,7 @@ public interface ProductService {
 	* 25/04/10    우주연   메소드 9개 제작
 	*/
 	public ArrayList<ProductDTO> product_list();
+	public ArrayList<ProductDTO> select50percentSaleItems();
 	public void product_write(HashMap<String, String> param);
 	public String saveImage(MultipartFile picture);
 	public ArrayList<CategoryDTO> categorylist();

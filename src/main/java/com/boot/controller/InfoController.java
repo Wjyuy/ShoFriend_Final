@@ -59,8 +59,17 @@ public class InfoController {
 	
 	//25.04.09 권준우 - 구매자 정보 페이지 호출
 	@RequestMapping("/customer_info")
-	public String customerInfo() {
+	public String customerInfo(Model model,HttpSession session) {
 		log.info("@# customer_info()");
+		//로그인인 경우 장바구니 출력함
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+        }
 		return "customer_info";
 	}
 	

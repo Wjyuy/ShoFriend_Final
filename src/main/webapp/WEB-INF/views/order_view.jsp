@@ -347,7 +347,7 @@
     </header>
 
     <!-- End Header Area -->
-     
+
 	<!-- Start Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -406,8 +406,8 @@
 
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
 </section>
-<!-- footer -->
-<footer class="footer">
+   <!-- Start Footer Area -->
+    <footer class="footer">
         <div class="footer-middle">
             <div class="container">
                 <div class="bottom-inner">
@@ -417,6 +417,7 @@
                             <div class="single-footer f-contact">
                                 <h3>customer service center</h3>
                                 <p class="phone">Phone: +82 (02) 252 5252</p>
+                                <p class="phone">Email: KH@exam.com</p>
                                 <ul>
                                     <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
                                     <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
@@ -436,13 +437,6 @@
                                             <span class="big-title">our store</span>
                                         </a>
                                     </li>
-<!--                                    <li>-->
-<!--                                        <a href="javascript:void(0)">-->
-<!--                                            <i class="lni lni-play-store"></i>-->
-<!--                                            <span class="small-title">Download on the</span>-->
-<!--                                            <span class="big-title">Google Play</span>-->
-<!--                                        </a>-->
-<!--                                    </li>-->
                                 </ul>
                             </div>
 <!--                             End Single Widget -->
@@ -466,14 +460,13 @@
                             <div class="single-footer f-link">
                                 <h3>Shop Departments</h3>
                                 <ul>
-								   <li><a href="product-grids.html">반짝세일</a></li>
-	                               <li><a href="product-grids.html">식품</a></li>
-	                               <li><a href="product-grids.html">가구</a></li>
-	                               <li><a href="product-grids.html">도서</a></li>
-	                               <li><a href="product-grids.html">스포츠/레저</a></li>
-	                               <li><a href="product-grids.html">출산/유아용품</a></li>
-	                               <li><a href="product-grids.html">반려동물용품</a></li>
-	                               <li><a href="product-grids.html">뷰티</a></li>
+	                               <li><a href="/category?categoryId=1">식품</a></li>
+	                               <li><a href="/category?categoryId=2">가구</a></li>
+	                               <li><a href="/category?categoryId=3">도서</a></li>
+	                               <li><a href="/category?categoryId=4">스포츠/레저</a></li>
+	                               <li><a href="/category?categoryId=5">출산/유아용품</a></li>
+	                               <li><a href="/category?categoryId=6">반려동물용품</a></li>
+	                               <li><a href="/category?categoryId=7">뷰티</a></li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -578,4 +571,5 @@
         });
     </script>
 </body>
+
 </html>

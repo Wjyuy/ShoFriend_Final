@@ -86,33 +86,32 @@ public class LogController {
 	
 	// 구매자 판매자 선택 페이지
 	@RequestMapping("/log/login")
-	public String login(Model model,HttpSession session) {
+	public String login(Model model) {
 		log.info("@# /log/login()");
 		
-		//2025.05.13 장바구니출력,카테고리출력
+		//2025.05.13 카테고리출력
 		ArrayList<CategoryDTO> categorylist = productService.categorylist();
 		model.addAttribute("categorylist", categorylist);
-		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
-        if (loginCustomer != null) {
-            int currentCustomerId = loginCustomer.getId();
-            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
-            model.addAttribute("items", items);
-
-        }
 		return ("/log/login");
 	}
 
 	// (customer) 로그인 페이지
 	@RequestMapping("/log/customer_login")
-	public String customerLogin() {
+	public String customerLogin(Model model) {
 		log.info("@# /log/customer_login()");
+		//2025.05.13 카테고리출력
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return ("/log/customer_login");
 	}
 
 	// (seller) 로그인 페이지
 	@RequestMapping("/log/seller_login")
-	public String sellerlogin() {
+	public String sellerlogin(Model model) {
 		log.info("@# /log/sellerLogin()");
+		//2025.05.13 카테고리출력
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return ("/log/seller_login");
 	}
 
@@ -159,8 +158,10 @@ public class LogController {
 
 	// (customer) 아이디 찾기 입력란
 	@RequestMapping("/log/find_id")
-	public String find_id() {
+	public String find_id(Model model) {
 		log.info("@#/log/find_id()");
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return ("/log/find_id");
 	}
 
@@ -178,13 +179,17 @@ public class LogController {
 		log.info("@# /log/do_find_id()");
 		CustomerDTO list = service.doFindId(param);
 		model.addAttribute("list", list);
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return "/log/do_find_id";
 	}
 
 	// (seller) 아이디 찾기 입력란
 	@RequestMapping("/log/find_ids")
-	public String find_ids() {
+	public String find_ids(Model model) {
 		log.info("@#/log/find_ids()");
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return ("/log/find_ids");
 	}
 
@@ -203,13 +208,17 @@ public class LogController {
 
 		SellerDTO list = service.doFindIds(param);
 		model.addAttribute("list", list);
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return "/log/do_find_ids";
 	}
 
 	// (customer) 비밀번호 찾기 입력란
 	@RequestMapping("/log/find_pw")
-	public String find_pw() {
+	public String find_pw(Model model) {
 		log.info("@# /log/find_pw()");
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return ("/log/find_pw");
 	}
 
@@ -228,13 +237,17 @@ public class LogController {
 
 		CustomerDTO list = service.doFindPw(param);
 		model.addAttribute("list", list);
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return "/log/do_find_pw";
 	}
 
 	// (seller) 비밀번호 찾기 입력란
 	@RequestMapping("/log/find_pws")
-	public String find_pws() {
+	public String find_pws(Model model) {
 		log.info("@# /log/find_pws()");
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return ("/log/find_pws");
 	}
 
@@ -253,14 +266,17 @@ public class LogController {
 
 		SellerDTO list = service.doFindPws(param);
 		model.addAttribute("list", list);
-
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return "/log/do_find_pws";
 	}
 
 	// (일반회원가입) 25.04.08 김채윤
 	@RequestMapping("/log/customer_register")
-	public String customer_register() {
+	public String customer_register(Model model) {
 		log.info("@# /log/customer_register()");
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return "/log/customer_register";
 	}
 
@@ -276,8 +292,10 @@ public class LogController {
 
 	// (판매자 회원가입) 25.04.08 김채윤
 	@RequestMapping("/log/seller_register")
-	public String seller_register() {
+	public String seller_register(Model model) {
 		log.info("@# /log/seller_register()");
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 		return "/log/seller_register";
 	}
 

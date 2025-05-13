@@ -444,7 +444,7 @@
 	                                  <h3>My Page</h3>
 	                                  <ul class="app-btn">
 	                                      <li>
-	                                          <a href="log/login">
+	                                          <a href="login">
 	                                              <i class="lni lni-apple"></i>
 	                                              <span class="small-title">login</span>
 	                                              <span class="big-title">our store</span>

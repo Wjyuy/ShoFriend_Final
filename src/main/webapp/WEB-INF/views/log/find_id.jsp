@@ -372,7 +372,7 @@
 			          <div class="row align-items-center">
 			              <div class="col-lg-6 col-md-6 col-12">
 			                  <div class="breadcrumbs-content">
-			                      <h1 class="log/login">Find ID</h1>
+			                      <h1 class="login">Find ID</h1>
 			                  </div>
 			              </div>
 			              <div class="col-lg-6 col-md-6 col-12">
@@ -421,22 +421,7 @@
 
 			    <!-- End Account Login Area -->
 
-	
-<!--	아이디찾기 시작-->
-<!--<div class ="container">-->
-<!--<div class ="form-box">-->
-<!--    <h2 class="text-center" font-weight: bold;">아이디 찾기</h2>-->
 
-<!--	<form id="frm" method="post" action="do_find_id">-->
-<!--        <label class="form-label mt-4">이름:</label>-->
-<!--        <input type="text" style="margin-bottom: 20px" class="form-control" name="name" />-->
-
-<!--						<input type="submit" class="btn btn-primary w-100"-->
-<!--							onclick="fn_submit()" value="찾기"> <br> <br>-->
-<!--							<a href="login" type="submit">로그인</a> &nbsp;&nbsp;&nbsp;&nbsp; <a-->
-<!--							href="customer_register" type="submit">회원가입</a></td>-->
-<!--    </form>-->
-<!--아이디찾기 끝-->
 
  <!-- Start Footer Area -->
 	    <footer class="footer">

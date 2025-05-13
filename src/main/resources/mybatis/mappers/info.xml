@@ -6,8 +6,19 @@
 <mapper namespace="com.boot.dao.InfoDAO">
 
 	<update id="updatePwd"> UPDATE customer SET password = #{new_pwd} WHERE id = #{id} </update>
-	<update id="updateInfo"> UPDATE customer SET name = #{name}, phone = #{phone}, address = #{address}, address1 = #{address1}, zipcode = #{zipcode} WHERE id = #{id} </update>
+	
+	<update id="updateInfo"> UPDATE customer SET ${field} = #{value} WHERE id = #{id} </update>
+	
+	<update id="updateCustomerAddress">
+		UPDATE customer
+		SET zipcode = #{zipcode},
+			address = #{address},
+			address1 = #{address1}
+		WHERE id = #{id}
+	</update>
+	
 	<update id="updatePwd2"> UPDATE seller SET password = #{new_pwd} WHERE id = #{id} </update>
+	
 	<update id="updateInfo2"> UPDATE seller SET ${field} = #{value} WHERE id = #{id} </update>
 	
 </mapper>

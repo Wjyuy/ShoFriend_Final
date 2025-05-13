@@ -84,14 +84,14 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
                             <ul class="useful-links">
-                                <li><a href="main">Home</a></li>
-                                <li><a href="friend">Friend</a></li>
+                                <li><a href="../main">Home</a></li>
+                                <li><a href="../friend">Friend</a></li>
 								<c:choose>
 									<c:when test="${sessionScope.userType == 'seller'}">
-	                                    <li><a href="my_page">seller</a></li>
+	                                    <li><a href="../my_page">seller</a></li>
 									</c:when>
 									<c:when test="${sessionScope.userType == 'customer'}">
-	                                    <li><a href="my_page">customer</a></li>
+	                                    <li><a href="../my_page">customer</a></li>
 									</c:when>
 								</c:choose>
                             </ul>
@@ -115,14 +115,14 @@
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="my_page">My Page</a>
+                                    <a href="../my_page">My Page</a>
                                 </li>
 								<c:choose>
 									<c:when test="${sessionScope.userType == 'seller'}">
-	                                    <li><a href="logout">Log out</a></li>
+	                                    <li><a href="../logout">Log out</a></li>
 									</c:when>
 									<c:when test="${sessionScope.userType == 'customer'}">
-	                                    <li><a href="logout">Log out</a></li>
+	                                    <li><a href="../logout">Log out</a></li>
 									</c:when>
 									<c:otherwise>
 		                                <li>
@@ -146,7 +146,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
-                        <a class="navbar-brand" href="main">
+                        <a class="navbar-brand" href="../main">
 <!--                            <img src="assets/images/logo/logo.svg" alt="Logo">-->
                             <img src="assets/images/logo/ShoFriend_logo.png" alt="Logo" >
                         </a>
@@ -197,7 +197,7 @@
                                     </a>
                                 </div>
                                 <div class="cart-items">
-                                    <a href="cart_view" class="main-btn">
+                                    <a href="../cart_view" class="main-btn">
                                         <i class="lni lni-cart"></i>
 										<c:if test="${sessionScope.userType == 'customer'}">
                                         	<span class="total-items">${items.size()}</span>
@@ -217,7 +217,7 @@
 								                        </div>
 
 								                        <div class="content">
-								                            <h4><a href="content?id=${item.product_id}">${item.product_title}</a></h4>
+								                            <h4><a href="../content?id=${item.product_id}">${item.product_title}</a></h4>
 								                            <p class="quantity">${item.quantity}x - <span class="amount"><fmt:formatNumber value="${item.final_price}" pattern="#,###원"/></span></p>
 								                        </div>
 								                    </li>
@@ -233,7 +233,7 @@
 								                    </span>
 	                                            </div>
 												<div class="button">
-												    <a href="cart_view" class="btn animate" >View Cart</a>
+												    <a href="../cart_view" class="btn animate" >View Cart</a>
 												</div>
 	                                        </div>
 										</c:if>
@@ -254,12 +254,12 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-							<span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All
+							<span class="cat-button"><a href="../category"><i class="lni lni-menu"></i>All
 									Categories</a></span>
 							<ul class="sub-category">
                                 <c:forEach var="cat" items="${categorylist}">
                                     <li>
-                                        <a href="/category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
+                                        <a href="../category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
                                     </li>
                                 </c:forEach>
 							</ul>
@@ -277,10 +277,10 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a href="main" class="active" aria-label="Toggle navigation">Home</a>
+                                        <a href="../main" class="active" aria-label="Toggle navigation">Home</a>
                                     </li>
 									<li class="nav-item">
-									    <a href="friend" aria-label="Toggle navigation">Friend</a>
+									    <a href="../friend" aria-label="Toggle navigation">Friend</a>
 									</li>
 									<li class="nav-item">
 									    <a href="#" aria-label="Toggle navigation">Review</a>
@@ -291,10 +291,10 @@
                                             aria-expanded="false" aria-label="Toggle navigation">My Page</a>
                                         <ul class="sub-menu collapse" id="submenu-1-2">
 <!--                                            <li class="nav-item"><a href="faq.html">Faq</a></li>-->
-                                            <li class="nav-item"><a href="my_page">My Page</a></li>
-                                            <li class="nav-item"><a href="check_pwd">Information</a></li>
+                                            <li class="nav-item"><a href="../my_page">My Page</a></li>
+                                            <li class="nav-item"><a href="../check_pwd">Information</a></li>
 											<c:if test="${sessionScope.userType == 'customer'}">
-                                            	<li class="nav-item"><a href="order_view">Order List</a></li>
+                                            	<li class="nav-item"><a href="../order_view">Order List</a></li>
 											</c:if>
                                         </ul>
                                     </li>
@@ -304,9 +304,9 @@
 	                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
 	                                            aria-expanded="false" aria-label="Toggle navigation">Manage</a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-3">
-	                                            <li class="nav-item"><a href="store_list">My Store</a></li>
-	                                            <li class="nav-item"><a href="product_insert">Add Product</a></li>
-	                                            <li class="nav-item"><a href="store_register">Add Store</a></li>
+	                                            <li class="nav-item"><a href="../store_list">My Store</a></li>
+	                                            <li class="nav-item"><a href="../product_insert">Add Product</a></li>
+	                                            <li class="nav-item"><a href="../store_register">Add Store</a></li>
 	                                        </ul>
 	                                    </li>
 									</c:if>
@@ -357,7 +357,7 @@
 	            </div>
 	            <div class="col-lg-6 col-md-6 col-12">
 	                <ul class="breadcrumb-nav">
-	                    <li><a href="main"><i class="lni lni-home"></i> Home</a></li>
+	                    <li><a href="../main"><i class="lni lni-home"></i> Home</a></li>
 	                    <li><a href="#">pay</a></li>
 	                    <li>cancel</li>
 	                </ul>
@@ -380,7 +380,7 @@
 	              <p>결제 진행 중 취소되었습니다! ${message}</p>
 	            </div>
 	            <div class="col-md-auto">
-					<a href="main" class="btn btn-primary">홈으로 돌아가기</a>
+					<a href="../main" class="btn btn-primary">홈으로 돌아가기</a>
 	            </div>
 
 	          </div>
@@ -446,13 +446,13 @@
 	                            <div class="single-footer f-link">
 	                                <h3>Shop Departments</h3>
 	                                <ul>
-		                               <li><a href="/category?categoryId=1">식품</a></li>
-		                               <li><a href="/category?categoryId=2">가구</a></li>
-		                               <li><a href="/category?categoryId=3">도서</a></li>
-		                               <li><a href="/category?categoryId=4">스포츠/레저</a></li>
-		                               <li><a href="/category?categoryId=5">출산/유아용품</a></li>
-		                               <li><a href="/category?categoryId=6">반려동물용품</a></li>
-		                               <li><a href="/category?categoryId=7">뷰티</a></li>
+		                               <li><a href="../category?categoryId=1">식품</a></li>
+		                               <li><a href="../category?categoryId=2">가구</a></li>
+		                               <li><a href="../category?categoryId=3">도서</a></li>
+		                               <li><a href="../category?categoryId=4">스포츠/레저</a></li>
+		                               <li><a href="../category?categoryId=5">출산/유아용품</a></li>
+		                               <li><a href="../category?categoryId=6">반려동물용품</a></li>
+		                               <li><a href="../category?categoryId=7">뷰티</a></li>
 	                                </ul>
 	                            </div>
 	                            <!-- End Single Widget -->
@@ -483,7 +483,7 @@
 	                        </div>
 	                        <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
 	                            <div class="copyright">
-	                                <p>Designed and Developed by<a href="main" rel="nofollow"
+	                                <p>Designed and Developed by<a href="../main" rel="nofollow"
 	                                        target="_blank">Shofriend</a></p>
 	                            </div>
 	                        </div>

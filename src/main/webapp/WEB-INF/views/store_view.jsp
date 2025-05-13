@@ -411,14 +411,14 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
                         <!-- <h1 class="page-title">Single Product</h1> -->
-                        <h1 class="page-title">Product Insert</h1>
+                        <h1 class="page-title">Store modify</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="main"><i class="lni lni-home"></i> Main</a></li>
                         <!-- <li><a href="index.html">Shop</a></li> -->
-                        <li>Product Insert</li>
+                        <li>Store modify</li>
                     </ul>
                 </div>
             </div>

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html class="no-js" lang="zxx"></html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
 
 
 <head>
@@ -469,101 +471,136 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-<section class="item-details section">
-     <!-- 본문 -->
-<div class ="container">
-	<form id="frm_product" enctype="multipart/form-data">
-	<h1 class="text-center" style="margin-bottom: 50px;">상품 등록</h1>
-		
-		<label  class="form-label mt-4">가게 선택</label>
+	
+	
 
-			        <select class="form-select" aria-label="Default select example" id="storeSelect" onchange="updateStoreId()">
-			            <c:forEach var="store" items="${stores}">
-			                <option value="${store.id}">${store.name}</option>
-			            </c:forEach>
-			        </select>
-			        <!-- 실제 전송되는 store_id -->
-			        <input type="hidden" name="store_id" id="store_id" value="${stores[0].id}" />
-			    
-				<label class="form-label mt-4">카테고리</label>
-				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="category_id" id="cat1" value="1" checked>
-				  <label class="form-check-label" for="cat1">식품</label><br>
-				
-				  <input class="form-check-input" type="radio" name="category_id" id="cat2" value="2">
-				  <label class="form-check-label" for="cat2">가구</label><br>
-				
-				  <input class="form-check-input" type="radio" name="category_id" id="cat3" value="3">
-				  <label class="form-check-label" for="cat3">도서</label><br>
-				
-				  <input class="form-check-input" type="radio" name="category_id" id="cat4" value="4">
-				  <label class="form-check-label" for="cat4">스포츠/레저</label><br>
-				
-				  <input class="form-check-input" type="radio" name="category_id" id="cat5" value="5">
-				  <label class="form-check-label" for="cat5">출산/유아용품</label><br>
-				
-				  <input class="form-check-input" type="radio" name="category_id" id="cat6" value="6">
-				  <label class="form-check-label" for="cat6">반려동물용품</label><br>
-				
-				  <input class="form-check-input" type="radio" name="category_id" id="cat7" value="7">
-				  <label class="form-check-label" for="cat7">뷰티</label>
-				</div>
+	  <!-- Start Account product insert Area -->
+	  
+	  <div class="account-login section">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-9 offset-lg-2 col-md-10 offset-md-1 col-15">
+	          <div class="card login-form">
+	            <div class="card-body">
+	              <div class="title">
+	                <h3>상품등록</h3><br>
+	                <p>상품등록 입니다 !</p>
+	              </div>
 
-				<label  class="form-label mt-4">상품명</label>
-					<input type="text" class="form-control" name="title" size="50">
-			
-				<label  class="form-label mt-4">가격</label>
-					<input type="number" class="form-control" name="price" size="50">
-				
-				<label  class="form-label mt-4">재고</label>
-					<input type="number" class="form-control" name="stock" id="stock" min="1" step="1" size="50" value="0" disabled>
-				
-				<label  class="form-label mt-4">상태</label>
-				<div class="form-check">
-<!-- 			    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1"> -->
-<!-- 					<label class="form-check-label" for="radioDefault1" name="status" value="판매중" min="1" onclick="handleStatusChange(this)"> 판매중</label><br> -->
-<!-- 			    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2"> -->
-<!-- 					<label class="form-check-label" for="radioDefault2" name="status" value="품절" onclick="handleStatusChange(this)" checked> 품절</label><br> -->
-<!-- 			    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault3"> -->
-<!-- 					<label class="form-check-label" for="radioDefault3" name="status" value="숨김" min="1" onclick="handleStatusChange(this)"> 숨김</label> -->
-					<label><input type="radio" name="status" value="판매중" min="1" onclick="handleStatusChange(this)"> 판매중</label><br>
-					<label><input type="radio" name="status" value="품절" onclick="handleStatusChange(this)" checked> 품절</label><br>
-					<label><input type="radio" name="status" value="숨김" min="1" onclick="handleStatusChange(this)"> 숨김</label>
-				</div>
-				
-					<div class="form-check" style="margin-top:20px;">
-			        <input type="checkbox" class="form-check-input" id="discountCheck" onclick="toggleDiscount(this)">
-			        <label  class="form-check-label"  for="defaultCheck1">할인</label>
-			  		</div>
-			        시작  
-			        <input type="datetime-local" class="form-control" name="discount_start" id="discount_start" disabled><br>
-			        끝  
-			        <input type="datetime-local" class="form-control" name="discount_end" id="discount_end" disabled><br>
-			        할인율(%)  
-			        <input type="number" class="form-control" name="discount_percentage" id="discount_percentage" value="0" min="1" max="100" step="1" disabled>
-			
-			
-				<label  class="form-label mt-4">상품설명</label>
-				<div class="form-floating">
-					<textarea class="form-control" style="height: 150px" rows="10" name="description"></textarea>
-			</div>
-			
-				<label  class="form-label mt-4">이미지 업로드</label>
-				<div class="input-group mb-3">
-					<input type="file" class="form-control" id="inputGroupFile02" name="picture" accept="image/*" required>
-				</div>
-				<br>
-				<br>
-				<div class="text-center">
-<!-- 					<input type="submit" value="입력"> -->
-					<input type="button" class="btn btn-primary w-100" onclick="product_check_ok()" value="입력">
-				</div>
-				<div class="text-end">
-					<a href="main">메인으로</a>
-					</div>
-	</form>
-	</div>
-	</section>
+				  <form id="frm_product" enctype="multipart/form-data">
+<!--				  	<h1 class="text-center" style="margin-bottom: 50px;">상품 등록</h1>-->
+				  		
+				  		<label  class="form-label mt-4">가게 선택</label>
+
+				  			        <select class="form-select" aria-label="Default select example" id="storeSelect" onchange="updateStoreId()">
+				  			            <c:forEach var="store" items="${stores}">
+				  			                <option value="${store.id}">${store.name}</option>
+				  			            </c:forEach>
+				  			        </select>
+				  			        <!-- 실제 전송되는 store_id -->
+				  			        <input type="hidden" name="store_id" id="store_id" value="${stores[0].id}" />
+				  			    
+				  				<label class="form-label mt-4">카테고리</label>
+				  				<div class="form-check">
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat1" value="1" checked>
+				  				  <label class="form-check-label" for="cat1">식품</label><br>
+				  				
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat2" value="2">
+				  				  <label class="form-check-label" for="cat2">가구</label><br>
+				  				
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat3" value="3">
+				  				  <label class="form-check-label" for="cat3">도서</label><br>
+				  				
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat4" value="4">
+				  				  <label class="form-check-label" for="cat4">스포츠/레저</label><br>
+				  				
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat5" value="5">
+				  				  <label class="form-check-label" for="cat5">출산/유아용품</label><br>
+				  				
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat6" value="6">
+				  				  <label class="form-check-label" for="cat6">반려동물용품</label><br>
+				  				
+				  				  <input class="form-check-input" type="radio" name="category_id" id="cat7" value="7">
+				  				  <label class="form-check-label" for="cat7">뷰티</label>
+				  				</div>
+
+				  				<label  class="form-label mt-4">상품명</label>
+				  					<input type="text" class="form-control" name="title" size="50">
+				  			
+				  				<label  class="form-label mt-4">가격</label>
+				  					<input type="number" class="form-control" name="price" size="50">
+				  				
+				  				<label  class="form-label mt-4">재고</label>
+				  					<input type="number" class="form-control" name="stock" id="stock" min="1" step="1" size="50" value="0" disabled>
+				  				
+				  				<label  class="form-label mt-4">상태</label>
+				  				<div class="form-check">
+				  <!-- 			    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1"> -->
+				  <!-- 					<label class="form-check-label" for="radioDefault1" name="status" value="판매중" min="1" onclick="handleStatusChange(this)"> 판매중</label><br> -->
+				  <!-- 			    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2"> -->
+				  <!-- 					<label class="form-check-label" for="radioDefault2" name="status" value="품절" onclick="handleStatusChange(this)" checked> 품절</label><br> -->
+				  <!-- 			    <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault3"> -->
+				  <!-- 					<label class="form-check-label" for="radioDefault3" name="status" value="숨김" min="1" onclick="handleStatusChange(this)"> 숨김</label> -->
+				  					<label><input type="radio" name="status" value="판매중" min="1" onclick="handleStatusChange(this)"> 판매중</label><br>
+				  					<label><input type="radio" name="status" value="품절" onclick="handleStatusChange(this)" checked> 품절</label><br>
+				  					<label><input type="radio" name="status" value="숨김" min="1" onclick="handleStatusChange(this)"> 숨김</label>
+				  				</div>
+				  				
+				  					<div class="form-check" style="margin-top:20px;">
+				  			        <input type="checkbox" class="form-check-input" id="discountCheck" onclick="toggleDiscount(this)">
+				  			        <label  class="form-check-label"  for="defaultCheck1">할인</label>
+				  			  		</div>
+				  			        시작  
+				  			        <input type="datetime-local" class="form-control" name="discount_start" id="discount_start" disabled><br>
+				  			        끝  
+				  			        <input type="datetime-local" class="form-control" name="discount_end" id="discount_end" disabled><br>
+				  			        할인율(%)  
+				  			        <input type="number" class="form-control" name="discount_percentage" id="discount_percentage" value="0" min="1" max="100" step="1" disabled>
+				  			
+				  			
+				  				<label  class="form-label mt-4">상품설명</label>
+				  				<div class="form-floating">
+				  					<textarea class="form-control" style="height: 150px" rows="10" name="description"></textarea>
+				  			</div>
+				  			
+				  				<label  class="form-label mt-4">이미지 업로드</label>
+				  				<div class="input-group mb-3">
+				  					<input type="file" class="form-control" id="inputGroupFile02" name="picture" accept="image/*" required>
+				  				</div>
+				  				<br>
+				  				<br>
+				  				<div class="text-center">
+				  <!-- 					<input type="submit" value="입력"> -->
+				  					<input type="button" class="btn btn-primary w-100" onclick="product_check_ok()" value="입력">
+				  				</div>
+								<br>
+				  				<div class="text-end">
+				  					<a href="main">메인으로</a>
+				  					</div>
+				  	</form>
+
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  
+	  
+
+	  <!-- End Account product insert Area -->
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 <!-- footer -->
 <footer class="footer">
         <div class="footer-middle">

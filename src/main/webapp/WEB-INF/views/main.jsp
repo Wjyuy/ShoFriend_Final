@@ -22,6 +22,11 @@
 </head>
 
 <body>
+	<c:if test="${not empty msg}">
+		   <script>
+		       alert("${msg}");
+		   </script>
+		</c:if>
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -53,25 +58,20 @@
                                 <li>
                                     <div class="select-position">
                                         <select id="select4">
-                                            <option value="0" selected>$ USD</option>
+                                            <option value="0" selected>₩ WON</option>
                                             <option value="1">€ EURO</option>
-                                            <option value="2">$ CAD</option>
+                                            <option value="2">$ USD</option>
                                             <option value="3">₹ INR</option>
-                                            <option value="4">¥ CNY</option>
-                                            <option value="5">৳ BDT</option>
                                         </select>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="select-position">
                                         <select id="select5">
-                                            <option value="0" selected>English</option>
+                                            <option value="0" selected>Korean</option>
                                             <option value="1">Español</option>
-                                            <option value="2">Filipino</option>
+                                            <option value="2">English</option>
                                             <option value="3">Français</option>
-                                            <option value="4">العربية</option>
-                                            <option value="5">हिन्दी</option>
-                                            <option value="6">বাংলা</option>
                                         </select>
                                     </div>
                                 </li>
@@ -178,51 +178,44 @@
                                 <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
-                                    </a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
-                                            <a href="cart.html">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item1.jpg" alt="#"></a>
-                                                </div>
+										<c:if test="${sessionScope.userType == 'customer'}">
+                                        	<span class="total-items">${items.size()}</span>
+                                    	</a>
+                                    	<!-- Shopping Item -->
+                                    	<div class="shopping-item">
+	                                        <div class="dropdown-cart-header">
+	                                            <span>${items.size()} Items</span>
+	                                            
+	                                        </div>
+	                                        <ul class="shopping-list">
+												<c:forEach var="item" items="${items}">
+													<li>
+								                        <div class="cart-img-head">
+								                            <a class="cart-img" href="content?id=${item.product_id}"><img
+								                                    src="/display?fileName=${item.picture}" alt="${item.product_title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'"></a>
+								                        </div>
 
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">
-                                                            Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                        class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img
-                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.html" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
+								                        <div class="content">
+								                            <h4><a href="product-details.html?id=${item.product_id}">${item.product_title}</a></h4>
+								                            <p class="quantity">${item.quantity}x - <span class="amount"><fmt:formatNumber value="${item.final_price}" pattern="#,###원"/></span></p>
+								                        </div>
+								                    </li>
+													</c:forEach>
+												</ul>
+		                                        <div class="bottom">
+	                                           		<div class="total">
+	                                                <span>Total</span>
+													<c:forEach var="item" items="${items}">
+								                            <c:set var="totalAmount" value="${totalAmount + (item.final_price * item.quantity)}"/>
+								                        </c:forEach>
+								                        <span class="total-amount"><fmt:formatNumber value="${totalAmount}" pattern="#,###원"/></span>
+								                    </span>
+	                                            </div>
+												<div class="button">
+												    <a href="cart_view" class="btn animate" >View Cart</a>
+												</div>
+	                                        </div>
+										</c:if>
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
@@ -240,26 +233,15 @@
                     <div class="nav-inner">
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
-                            <span class="cat-button"><a href="main"><i class="lni lni-menu"></i>All Categories</a></span>
-                            <ul class="sub-category">
-                                <li><a href="product-grids.html">추천상품</a>
-<!--                                <li><a href="product-grids.html">추천상품<i class="lni lni-chevron-right"></i></a>-->
-<!--                                    <ul class="inner-sub-category">-->
-<!--                                        <li><a href="product-grids.html">하위목록1</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록2</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록3</a></li>-->
-<!--                                        <li><a href="product-grids.html">하위목록4</a></li>-->
-<!--                                    </ul>-->
-                                </li>
-                                <li><a href="product-grids.html">반짝세일</a></li>
-                                <li><a href="product-grids.html">식품</a></li>
-                                <li><a href="product-grids.html">가구</a></li>
-                                <li><a href="product-grids.html">도서</a></li>
-                                <li><a href="product-grids.html">스포츠/레저</a></li>
-                                <li><a href="product-grids.html">출산/유아용품</a></li>
-                                <li><a href="product-grids.html">반려동물용품</a></li>
-                                <li><a href="product-grids.html">뷰티</a></li>
-                            </ul>
+							<span class="cat-button"><a href="category"><i class="lni lni-menu"></i>All
+									Categories</a></span>
+							<ul class="sub-category">
+                                <c:forEach var="cat" items="${categorylist}">
+                                    <li>
+                                        <a href="/category?categoryId=${cat.id}&sort=${sort}">${cat.name}</a>
+                                    </li>
+                                </c:forEach>
+							</ul>
                         </div>
                         <!-- End Mega Category Menu -->
                         <!-- Start Navbar -->
@@ -342,22 +324,27 @@
                     <div class="slider-head">
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
+							
                             <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
-                                <div class="content">
-                                    <h2><span>친구가 구매한 상품이에요(만들예정)</span>
-                                        M75 Sport Watch
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
+							<c:if test="${sessionScope.userType == 'customer'}">
+	                            <div class="single-slider"
+	                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
+	                                <div class="content">
+	                                    <h2><span>최근 친구가 구매한 상품이에요</span>
+	                                        ${friendOrderProduct.title}
+	                                    </h2>
+	                                    <p>${friendOrderProduct.description}</p>
+										<c:set var="now" value="<%= new java.util.Date() %>" />
+										<h3>
+											<fmt:formatNumber value="${friendOrderProduct.price - (friendOrderProduct.price * friendOrderProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
+	                                    <div class="button">
+	                                        <a href="content?id=${friendOrderProduct.id}" class="btn">Shop Now</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+							</c:if>
                             <!-- End Single Slider -->
+							
                             <!-- Start Single Slider -->
                             <div class="single-slider"
                                 style="background-image: url(assets/images/hero/slider-bg2.jpg);">
@@ -367,7 +354,7 @@
                                     </h2>
                                     <p>${TopDiscountProduct.discount_percentage}% 할인된 가격! ${TopDiscountProduct.description}</p>
 									<c:set var="now" value="<%= new java.util.Date() %>" />
-                                    <h3><span>Now Only : </span>
+                                    <h3>
 										<fmt:formatNumber value="${TopDiscountProduct.price - (TopDiscountProduct.price * TopDiscountProduct.discount_percentage / 100)}" pattern="#,###" />원</h3>
                                     <div class="button">
                                         <a href="content?id=${TopDiscountProduct.id}" class="btn">Shop Now</a>
@@ -375,6 +362,23 @@
                                 </div>
                             </div>
                             <!-- End Single Slider -->
+							<c:forEach var="flashlist" items="${flashlist}">
+								<div class="single-slider"
+	                                style="background-image: url(assets/images/hero/slider-bg1.jpg);">
+	                                <div class="content">
+	                                    <h2><span>오늘까지 할인상품!</span>
+	                                        ${flashlist.title}
+	                                    </h2>
+	                                    <p>${flashlist.discount_percentage}% 할인된 가격! ${flashlist.description}</p>
+										<c:set var="now" value="<%= new java.util.Date() %>" />
+	                                    <h3>
+											<fmt:formatNumber value="${flashlist.price - (flashlist.price * flashlist.discount_percentage / 100)}" pattern="#,###" />원</h3>
+	                                    <div class="button">
+	                                        <a href="content?id=${flashlist.id}" class="btn">Shop Now</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+							</c:forEach>
                         </div>
                         <!-- End Hero Slider -->
                     </div>
@@ -382,19 +386,20 @@
                 <div class="col-lg-4 col-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner"
-                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
-                                <div class="content">
-                                    <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
-                                    </h2>
-                                    <h3>$259.99</h3>
-                                </div>
-                            </div>
-                            <!-- End Small Banner -->
-                        </div>
+							<div class="col-lg-12 col-md-6 col-12 md-custom-padding">
+	                            <!-- Start Small Banner -->
+	                            <div class="hero-small-banner"
+	                                style="background-image: url('assets/images/hero/slider-bnr.jpg');">
+	                                <div class="content">
+	                                    <h2>
+	                                        <span>방금 등록된 상품!</span>
+	                                        ${latestProduct.title}
+	                                    </h2>
+	                                    <h3><fmt:formatNumber value="${latestProduct.price}" pattern="#,###" />원</h3>
+	                                </div>
+	                            </div>
+	                            <!-- End Small Banner -->
+	                        </div>
                         <div class="col-lg-12 col-md-6 col-12">
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner style2">
@@ -416,79 +421,76 @@
     <!-- End Hero Area -->
 
     <!-- Start Trending Product Area -->
-    <section class="trending-product section" style="margin-top: 12px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>인기 상품</h2>
-                        <p>가장 많이 팔린 상품이에요</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-				
-				
-                    <!-- Start Single Product -->
-				<c:forEach var="dto" items="${popularlist}" varStatus="catStatus">
-                	<div class="col-lg-3 col-md-6 col-12">
-	                    <div class="single-product">
-							
-	                        <div class="product-image">
-	                            <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/product-5.jpg'">
-								<c:set var="now" value="<%= new java.util.Date() %>" />
-		                        <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
-									<span class="sale-tag">${dto.discount_percentage}%</span>
-		                        </c:if>
-	                            <div class="button">
-	                                <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+	<c:forEach var="group" items="${combinedProducts}">
+	    <section class="trending-product section" style="margin-top: 12px;">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="section-title">
+	                        <h2>${group.title}</h2>
+	                        <p>${group.description}</p>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <c:forEach var="dto" items="${group.products}" varStatus="catStatus">
+	                    <div class="col-lg-3 col-md-6 col-12">
+	                        <div class="single-product">
+	                            <div class="product-image">
+	                                <img src="/display?fileName=${dto.picture}" alt="${dto.title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'">
+	                                <c:set var="now" value="<%= new java.util.Date() %>" />
+	                                <c:if test="${dto.discount_start <= now and now <= dto.discount_end}">
+	                                    <span class="sale-tag">${dto.discount_percentage}%</span>
+	                                </c:if>
+	                                <div class="button">
+	                                    <a href="content?id=${dto.id}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+	                                </div>
 	                            </div>
-	                        </div>
-	                        <div class="product-info">
-								<c:forEach var="category" items="${categorylist}" varStatus="catStatus">
-									<c:if test="${dto.category_id == category.id}">
-	                            		<span class="category">${category.name}</span>
-									</c:if>
-								</c:forEach>
-	                            <h4 class="title">
-	                                <a href="content?id=${dto.id}">${dto.title}</a>
-	                            </h4>
-                                <ul class="review">
-                                    <c:set var="avg" value="${avgRatings[dto.id]}" />
-                                    <c:set var="count" value="${reviewCounts[dto.id]}" />
-                                    <li>
-                                        <i class="lni ${avg >= 1 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 2 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 3 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 4 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                        <i class="lni ${avg >= 5 ? 'lni-star-filled' : 'lni-star'}"></i>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <fmt:formatNumber value="${avg}" type="number" maxFractionDigits="1"/>
-                                            (리뷰 ${count}개)
-                                        </span>
-                                    </li>
-                                </ul>
-	                            <div class="price">
-									<c:choose>
-				                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
-											<span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
-			                                <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
-				                        </c:when>
-				                        <c:otherwise>
-				                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
-				                        </c:otherwise>
-				                    </c:choose>
+	                            <div class="product-info">
+	                                <c:forEach var="category" items="${categorylist}" varStatus="catStatus">
+	                                    <c:if test="${dto.category_id == category.id}">
+	                                        <span class="category">${category.name}</span>
+	                                    </c:if>
+	                                </c:forEach>
+	                                <h4 class="title">
+	                                    <a href="content?id=${dto.id}">${dto.title}</a>
+	                                </h4>
+	                                <ul class="review">
+	                                    <c:set var="avg" value="${avgRatings[dto.id]}" />
+	                                    <c:set var="count" value="${reviewCounts[dto.id]}" />
+	                                    <li>
+	                                        <i class="lni ${avg >= 1 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 2 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 3 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 4 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                        <i class="lni ${avg >= 5 ? 'lni-star-filled' : 'lni-star'}"></i>
+	                                    </li>
+	                                    <li>
+	                                        <span>
+	                                            <fmt:formatNumber value="${avg}" type="number" maxFractionDigits="1"/>
+	                                            (리뷰 ${count}개)
+	                                        </span>
+	                                    </li>
+	                                </ul>
+	                                <div class="price">
+	                                    <c:choose>
+	                                        <c:when test="${dto.discount_start <= now and now <= dto.discount_end}">
+	                                            <span><fmt:formatNumber value="${dto.price - (dto.price * dto.discount_percentage / 100)}" pattern="#,###" />원</span>
+	                                            <span class="discount-price"><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+	                                        </c:when>
+	                                        <c:otherwise>
+	                                            <span><fmt:formatNumber value="${dto.price}" pattern="#,###" />원</span>
+	                                        </c:otherwise>
+	                                    </c:choose>
+	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
-               		 </div>
-					</c:forEach>
-					<!-- End Single Product -->
-            </div>
-        </div>
-    </section>
+	                </c:forEach>
+	            </div>
+	        </div>
+	    </section>
+	</c:forEach>
     <!-- End Trending Product Area -->
 
     <!-- Start Call Action Area -->
@@ -498,12 +500,12 @@
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <div class="inner">
                         <div class="content">
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Currently You are using free<br>
-                                Lite version of ShopGrids</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template
-                                to get all pages,<br> features and commercial license.</p>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">쇼프렌 : 친구와 함께 즐기는 쇼핑 천국! </h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">혼자 하는 쇼핑은 이제 그만!🙅‍♀️🙅‍♂️<br>
+                                쇼프렌 (ShoFriend)과 함께라면 쇼핑이 더욱 즐겁고 특별한 경험이 됩니다🤩 <br>
+								마치 친한 친구와 손잡고 옷 구경하듯, 쇼프렌에서는 다양한 상품을 둘러보고 서로의 취향을 공유하며 함께 쇼핑 해 보세요!</p>
                             <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="javascript:void(0)" class="btn">Purchase Now</a>
+                                <a href="/log/customer_register" class="btn">회원가입해 시작하기</a>
                             </div>
                         </div>
                     </div>

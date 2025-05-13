@@ -1600,6 +1600,7 @@ top: -1px;
   font-weight: 500;
   font-size: 14px;
   white-space: nowrap;
+  text-decoration: none;  
 }
 
 .header .topbar .top-end .user-login li a:hover {
@@ -5080,3 +5081,260 @@ top: 2px;
     display: none;
   }
 }
+
+/* 전체 폼 스타일 */
+.account-login  {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.login-form  {
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 30px;
+    background-color: #fff;
+}
+
+/* 제목 */
+.login-form  .title h3 {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.login-form  .title p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 소셜 로그인 버튼 */
+.social-login .btn {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+.google-btn, .facebook-btn, .twitter-btn {
+    border: 1px solid;
+    background-color: #fff;
+    transition: all 0.3s ease; /* Smooth transition for all buttons */
+}
+
+.google-btn {
+    color: #DB4437;
+    border-color: #DB4437;
+}
+
+.facebook-btn {
+    color: #4267B2;
+    border-color: #4267B2;
+}
+
+.twitter-btn {
+    color: #1DA1F2;
+    border-color: #1DA1F2;
+}
+
+.google-btn:hover {
+    background-color: #DB4437;
+    color: #fff;
+}
+
+.facebook-btn:hover {
+    background-color: #4267B2;
+    color: #fff;
+}
+
+.twitter-btn:hover {
+    background-color: #1DA1F2;
+    color: #fff;
+}
+
+
+
+/* 구분선 */
+.alt-option {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.alt-option span {
+    background-color: #fff;
+    padding: 0 10px;
+    color: #999;
+}
+
+.alt-option::before,
+.alt-option::after {
+    content: "";
+    height: 1px;
+    width: 40%;
+    background-color: #ddd;
+    position: absolute;
+    top: 50%;
+}
+
+.alt-option::before {
+    left: 0;
+}
+
+.alt-option::after {
+    right: 0;
+}
+
+/* 인풋 */
+.login-form .form-control {
+    height: 44px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 체크박스와 비밀번호 찾기 */
+.bottom-content {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-check-label {
+    font-size: 14px;
+}
+
+.lost-pass {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 로그인 버튼 */
+.login-form .btn[type="submit"] {
+    width: 100%;
+    background-color: #0056FF;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.login-form .btn[type="submit"]:hover {
+    background-color: #0041cc;
+}
+
+/* 회원가입 링크 */
+.outer-link {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.outer-link a {
+    color: #0056FF;
+    text-decoration: none;
+}
+
+/* 전체 섹션 패딩 및 배경 */
+.account-login.section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+/* 카드형 등록 폼 */
+.register-form {
+
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 타이틀 스타일 */
+.register-form .title h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.register-form .title p {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+/* 입력창 공통 여백 */
+.register-form .form-group {
+  margin-bottom: 20px;
+}
+
+/* 버튼 */
+.register-form .button .btn {
+  width: 100%;
+  background-color: #0167F3;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.register-form .button .btn:hover {
+  background-color: #0156d3;
+}
+
+/* 하단 로그인 링크 */
+.register-form .outer-link {
+  text-align: center;
+  margin-top: 20px;
+/*  font-size: 14px;*/
+/*  color: #6c757d;*/
+  
+  font-family: "Manrope", sans-serif;
+   font-weight: 500;
+   font-style: normal;
+   color: #888;
+   overflow-x: hidden;
+   font-size: 14px;
+}
+
+.register-form .outer-link a {
+  color: #0167F3;
+  text-decoration: none;
+}
+
+.register-form .outer-link a:hover {
+  text-decoration: underline;
+}
+
+/* 설명 텍스트 */
+.register-form .title p {
+  color: #adb5bd;  /* 기존보다 더 연한 회색 */
+}
+
+/* 라벨 텍스트 */
+.register-form label {
+  color: #6c757d;  /* Bootstrap 기본 중간 회색 */
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* 하단 로그인 안내 텍스트 */
+.register-form .outer-link {
+  color: #adb5bd;  /* 연한 회색 */
+}
+
+/* 로그인 링크만 파란색 유지 */
+.register-form .outer-link a {
+  color: #0167F3;
+  text-decoration: none;
+}
+

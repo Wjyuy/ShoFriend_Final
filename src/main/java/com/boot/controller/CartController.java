@@ -74,7 +74,8 @@ public class CartController {
 	    param.put("price", product_price);
 	    param.put("quantity", quantity);
 		service.addToCart(param);
-		return "redirect:cart_view";
+        redirectAttributes.addFlashAttribute("msg", "선택된 상품이 장바구니에 담겼습니다!");
+		return "redirect:main";
 	}
 	
 	@RequestMapping("/cart_view")
@@ -104,7 +105,7 @@ public class CartController {
                                  RedirectAttributes redirectAttributes) {
         CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
         if (customer == null) {
-            redirectAttributes.addFlashAttribute("msg", "로그인 후 이용해 주세요");
+            redirectAttributes.addFlashAttribute("msg", "로그인 후 이용해 주세요!");
             return "redirect:/log/login";
         }
 

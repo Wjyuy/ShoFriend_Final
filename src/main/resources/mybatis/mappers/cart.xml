@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="getCartItemsWithProduct" resultType="com.boot.dto.CartDTO">
-		select c.id, c.user_id, c.product_id, c.quantity, p.title As product_title, p.price, p.stock, p.discount_percentage,
+		select c.id, c.user_id, c.product_id, c.quantity, p.title As product_title, p.price, p.stock, p.picture, p.discount_percentage,
 		case when p.discount_percentage is not null
 		and p.discount_start &lt; now()
 		and p.discount_end &gt; now()

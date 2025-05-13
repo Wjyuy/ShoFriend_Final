@@ -3,6 +3,7 @@ package com.boot.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,5 +33,19 @@ public interface ProductService {
     void decreaseStock(int productId, int quantity);
     public List<ProductDTO> getPopularProducts();
     public ProductDTO findTopDiscountProductNearExpiration();
+    public void addRecommend(int productId, int recommendCount);
 
+    List<ProductDTO> getAllProductsSorted(int limit, int offset, String sort);	// 상품 리스트 페이징&분류
+    int countAllProducts();	// 총 상품 개수
+    List<ProductDTO> getProductsByCategorySorted(int categoryId, int limit, int offset, String sort);	// 카테고리별 상품 리스트 페이징&분류
+    int countProductsByCategory(int categoryId);	// 카테고리별 총 상품 개수
+    List<ProductDTO> getLatestProducts();
+    
+    List<ProductDTO> searchProductsByCategory(int categoryId, String keyword, int limit, int offset, String sort);	// 검색시 상품 리스트 페이징&분류
+    int countSearchedProductsByCategory(int categoryId, String keyword);	// 검색시 총 상품 개수
+    List<ProductDTO> searchAllProducts(String keyword, int limit, int offset, String sort);	// 검색시 카테고리별 상품 리스트 페이징&분류
+    int countAllSearchedProducts(String keyword);	// 검색시 카테고리별 총 상품 개수
+
+    List<CategoryDTO> getAllCategories();	// 카테고리 목록
+    Map<Integer, Integer> countProductsByAllCategories();	// 카테고리 개수
 }

@@ -73,5 +73,9 @@ public class FriendServiceImpl implements FriendService {
 	    dao.deleteFriend(param);
 	}
 
-	
+	@Override
+	public List<Map<String, Object>> getFriendRecentOrders(int currentCustomerId) {
+		FriendDAO dao = sqlSession.getMapper(FriendDAO.class);
+		return dao.getFriendRecentOrders(currentCustomerId);
+	}	
 }

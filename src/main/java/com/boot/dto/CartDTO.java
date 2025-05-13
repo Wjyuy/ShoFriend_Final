@@ -15,6 +15,7 @@ public class CartDTO {
 	private int quantity;
 	private int stock;
 	private int price;
+	private String picture;
 	private int final_price;
 	private int discount_percentage;
 	

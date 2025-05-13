@@ -301,7 +301,12 @@ public class MainController {
 	        // 친구 목록 조회 (이미 구현된 친구 서비스 사용)
 	        List<CustomerDTO> myFriends = friendService.getAcceptedFriends(myId);
 	        model.addAttribute("myFriends", myFriends);
+	        
+	        //05-13카트서비스에서 카트 상품 가져오기 전체페이지 추가
+	        List<CartDTO> items = cartService.getCartItemsWithProduct(myId);
+	        model.addAttribute("items", items);
 	    }
+            
 	    
 		// 리뷰 리스트 가져오기
 		List<ReviewDTO> reviews = reviewService.getReviews(product_id);

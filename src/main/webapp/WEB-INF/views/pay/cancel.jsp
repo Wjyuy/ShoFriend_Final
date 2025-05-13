@@ -368,11 +368,12 @@
 	<!-- End Breadcrumbs -->
 	
 
-	<div class="account-login section">
+<!--	결제 취소 시작-->
+	<div class="account-card section">
 	  <div class="container">
 	    <div class="row">
 	      <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-	        <div class="card login-form">
+	        <div class="card pay-form">
 	          <div class="card-body">
 	            <div class="title">
 	              <h3>카카오페이 결제 취소</h3><br>
@@ -388,6 +389,8 @@
 	    </div>
 	  </div>
 	</div>
+	
+	<!--	결제 취소 끝-->
 
 	    <!-- Start Footer Area -->
 	    <footer class="footer">

@@ -28,6 +28,13 @@ public class InfoServiceImpl implements InfoService{
 	}
 	
 	@Override
+	public void updateCustomerAddress(HashMap<String, String> param) {
+		InfoDAO dao = sqlSession.getMapper(InfoDAO.class);
+		dao.updateCustomerAddress(param);
+	}
+
+	
+	@Override
 	public void updatePwd2(HashMap<String, String> param) {
 		InfoDAO dao = sqlSession.getMapper(InfoDAO.class);
 		dao.updatePwd2(param);

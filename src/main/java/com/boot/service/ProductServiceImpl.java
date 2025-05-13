@@ -17,9 +17,12 @@ import com.boot.dao.ProductDAO;
 import com.boot.dto.CategoryDTO;
 import com.boot.dto.ProductDTO;
 import com.boot.dto.ProductPopularity;
+
+import lombok.extern.slf4j.Slf4j;
 // 상품 출력, 상품 등록, 파일입출력(이미지, 저장날짜+UUID이용)
 // 작성일      작성자   개발내용,수정내용 
 // 25/04/10    우주연
+@Slf4j
 @Service("ProductService")
 public class ProductServiceImpl implements ProductService{
 	
@@ -72,19 +75,25 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public String modifyImage(HashMap<String, String> param, MultipartFile picture) {
+		log.info("modifyImage");
 	    if (picture.isEmpty()) {
 	        return null;
 	    }
 
 	    try {
 	    	String uploadDir = "C:\\develop\\upload\\";
-//	        String uploadDir = "C:/develop/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64/work_spring/ShoFriend/src/main/webapp/resources/images/";
 
-	        String oldFileName = param.get("picture");
-	        if (oldFileName != null && !oldFileName.isEmpty()) {
-	            File oldFile = new File(uploadDir + oldFileName);
+	    	String oldFileName = param.get("old_picture");
+	    	File oldFile = new File(uploadDir + oldFileName);
+	    	if (oldFileName != null && !oldFileName.isEmpty()) {
 	            if (oldFile.exists()) {
-	                oldFile.delete(); 
+	                if (oldFile.delete()) {
+	                    System.out.println("✅ 이미지 삭제 성공: " + oldFile.getName());
+	                } else {
+	                    System.out.println("⚠️ 이미지 삭제 실패: " + oldFile.getName());
+	                }
+	            } else {
+	                System.out.println("🚫 이미지 파일이 존재하지 않음: " + oldFile.getName());
 	            }
 	        }
 
@@ -96,7 +105,7 @@ public class ProductServiceImpl implements ProductService{
 
 	        File saveFile = new File(uploadDir + newFileName);
 	        picture.transferTo(saveFile);
-
+	        System.out.println("✅ 새로운 이미지 명: " + saveFile);
 	        return newFileName;
 
 	    } catch (Exception e) {

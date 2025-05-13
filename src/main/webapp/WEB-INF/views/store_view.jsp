@@ -5,7 +5,7 @@
 <head>
 <head>
 <meta charset="UTF-8">
-	<title>상품 등록</title>
+	<title>점포 수정</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -426,8 +426,11 @@
     </div>
     <!-- End Breadcrumbs -->
 <section class="item-details section">
-<div class ="container">
-<h2 class="text-center" style="margin-bottom: 50px; font-size: 40px;"><b>점포 수정</b></h2>
+<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="top-area">
+        <h2 class="text-center" style="margin-bottom: 50px; font-size: 40px;"><b>점포 수정</b></h2>
 		<form name="storeReg_frm2" method="post" action="store_modify">
 			<input type="hidden" name="id" value="${store_view.id}">
 <!-- 			<tr> -->
@@ -466,6 +469,9 @@
 
 		</form>
 	</div>
+         </div>
+            </div>
+            </div>
 </section>
 <!-- footer -->
 <footer class="footer">

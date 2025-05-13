@@ -84,7 +84,7 @@ public class CartController {
 		log.info("@# cart_view()");
 		
 		if (customer == null) {
-			return "redirect:login";
+			return "redirect:log/login";
 		}
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("user_id", String.valueOf(customer.getId()));

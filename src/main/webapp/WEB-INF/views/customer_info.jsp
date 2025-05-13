@@ -31,6 +31,30 @@
 			}
 		});
 	}
+	
+	function updateAddressInfo() {
+		const zipcode = $('#sample6_postcode').val();
+		const address = $('#sample6_address').val();
+		const address1 = $('#sample6_extraAddress').val();
+
+		$.ajax({
+			type: "post",
+			url: "updateCustomerAddress",
+			data: {
+				zipcode: zipcode,
+				address: address,
+				address1: address1
+			},
+			success: function(response) {
+				alert("주소 수정 완료!");
+				location.reload();
+			},
+			error: function() {
+				alert("주소 수정 실패!");
+			}
+		});
+	}
+	
 	function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -447,100 +471,81 @@
 <body>
 <!-- End Breadcrumbs -->
 
-    <!-- 본문 -->
+<!-- 본문 -->
 <body>
- <div class="account-login section">
+    <div class="account-login section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <div class="register-form">
-<!--                    <div class="card-body">-->
+                        <!--  <div class="card-body"> -->
                         <div class="title">
                             <h3>내정보 확인</h3>
                             <br>
                         </div>
 
-    <c:choose>
-        <c:when test="${not empty sessionScope.loginCustomer}">
-            <div class="form-group input-group">
-                <div class="col-sm-12">
-                    <label for="reg-fn">아이디(E-mail)</label>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.loginCustomer}">
+                            <div class="form-group input-group">
+                                <div class="col-sm-12">
+                                    <label for="reg-fn">아이디(E-mail)</label>
+                                </div>
+                                <input type="text" class="form-control form-control-sm" value="${loginCustomer.email}" readonly>
+                            </div>
+                            <!-- <div class="form-group input-group">
+                                    <div class="col-sm-12">
+                                        <label for="reg-fn">비밀번호</label><br>
+                                    </div>
+                                        <input class="form-control form-control-sm" value="${loginCustomer.password}" readonly>
+                            </div> -->
+                            <div class="form-group input-group">
+                                <div class="col-sm-12">
+                                    <label for="reg-fn">이름</label><br>
+                                </div>
+                                <input type="text" class="form-control" id="name_input" value="${loginCustomer.name}">
+                                <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo('name')" >
+                            </div>
+                            <div class="form-group input-group">
+                                <div class="col-sm-12">
+                                    <label for="reg-fn">전화번호</label><br>
+                                </div>
+                                <input type="text" class="form-control" id="phone_input" value="${loginCustomer.phone}">
+                                <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo('phone')" >
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label for="reg-fn">주소</label><br>
+                                    <div class="zip-row">
+                                        <input type="text" name="zipcode"  class="form-control" id="sample6_postcode" value="${store_view.zipcode}">
+                                        <input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-outline-secondary" value="우편번호 찾기"></div>
+                                        <input type="text" name="address"  class="form-control" id="sample6_address" value="${store_view.address}">
+                                        <input type="text" name="address1" class="form-control"  id="sample6_extraAddress" value="${store_view.address1}" >
+                                        <!-- 	address1 사용안해서 히든처리 (없으면 팝업창 안뜸) 04.10 -->
+                                        <input type="hidden" name="address2" id="sample6_detailAddress" >
+                                        <!-- <input type="button" style="margin-top: 10px;" class="btn btn-outline-secondary btn-sm" value="주소 수정" onclick="updateInfo('address')" ></td> -->
+                                        <input type="button" style="margin-top: 10px;" class="btn btn-outline-secondary btn-sm" value="주소 수정" onclick="updateAddressInfo()" ></td>
+                                    </div>
+                                </div>
+                                <div class="text-center" style="margin-top:30px;">
+                                    <button class="btn btn-primary" onclick="location.href='main'">메인으로</button>
+                                    <button class="btn btn-primary" onclick="location.href='my_page'">마이페이지</button>
+                                    <button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button>
+                                </div>
+                                <div class="text-end" style="margin-top:40px;">
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="text-center">
+                                <p>로그인이 필요합니다.</p>
+                                <a href="log/login">로그인 페이지로 이동</a>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
-                    <input type="text" class="form-control form-control-sm" value="${loginCustomer.email}" readonly>
             </div>
-                <!-- <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">비밀번호</label><br>
-                        </div>
-                            <input class="form-control form-control-sm" value="${loginCustomer.password}" readonly>
-                </div> -->
-                <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">이름</label><br>
-                        </div>
-                           <input type="text" class="form-control" id="name_input" value="${loginCustomer.name}">
-                           <input type="button" class="btn btn-outline-secondary btn-sm"  value="수정" onclick="updateInfo('name')" >
-                </div>
-                 <div class="form-group input-group">
-                        <div class="col-sm-12">
-                            <label for="reg-fn">전화번호</label><br>
-                        </div>
-                          <input type="text" class="form-control" id="phone_input" value="${loginCustomer.phone}">
-                           <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo('phone')" >
-                </div>
-                
-                <!-- <tr>
-                    <td>전화번호</td>
-                    <td>
-                     <div class="d-flex mb-3" style="gap: 8px;">
-                    <input type="text" class="form-control form-control-sm" id="phone_input" value="${loginCustomer.phone}">
-                    <input type="button"   class="btn btn-outline-secondary btn-sm" value="수정" onclick="updateInfo('phone')" ></td>
-                 </div>
-                  </td>
-                </tr> -->
-                
-                <div class="form-group">
-                    <div class="col-sm-12">
-                            <label for="reg-fn">주소</label><br>
-                     
-				<div class="zip-row">
-				<input type="text" name="zipcode"  class="form-control" id="sample6_postcode" value="${store_view.zipcode}">
-				<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-outline-secondary" value="우편번호 찾기"></div>
-				<input type="text" name="address"  class="form-control" id="sample6_address" value="${store_view.address}">
-				<input type="text" name="address1" class="form-control"  id="sample6_extraAddress" value="${store_view.address1}" >
-<!-- 				address1 사용안해서 히든처리 (없으면 팝업창 안뜸) 04.10 -->
-				<input type="hidden" name="address2" id="sample6_detailAddress" >
-				<input type="button" style="margin-top: 10px;" class="btn btn-outline-secondary btn-sm" value="주소 수정" onclick="updateInfo('address')" ></td>
-				</div>
-                </div>
-          
-
-<!--             <form action="main" method="get"> -->
-<!-- 			   	 <input type="submit" value="메인으로"> -->
-<!-- 			</form> -->
-			<div class="text-center" style="margin-top:30px;">
-			<button class="btn btn-primary" onclick="location.href='main'">메인으로</button>
-			<button class="btn btn-primary" onclick="location.href='my_page'">마이페이지</button>
-			<button class="btn btn-primary" onclick="location.href='update_pwd'">비밀번호 변경</button>
-			</div>
-						<div class="text-end" style="margin-top:40px;">
-            
-            </div>
-            </div>
-            </div>
-        </c:when>
-        <c:otherwise>
-        <div class="text-center">
-            <p>로그인이 필요합니다.</p>
-            <a href="log/login">로그인 페이지로 이동</a>
-            </div>
-        </c:otherwise>
-    </c:choose>
+        </div>
     </div>
-</div>
-</div>
-</div>
-</section>
 
    <!-- Start Footer Area -->
     <footer class="footer">

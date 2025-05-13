@@ -1,11 +1,13 @@
 package com.boot.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -182,41 +184,98 @@ public class InfoController {
 	
 
 	//25.04.10 권준우 - customer 정보 변경 메소드
+//	@RequestMapping("/updateCustomerInfo")
+//	@ResponseBody
+//	public String updateCustomerInfo(
+//			@RequestParam("name") String name, 
+//			@RequestParam("phone") String phone, 
+//			@RequestParam("address") String address, 
+//			@RequestParam("address1") String address1, 
+//			@RequestParam("zipcode") String zipcode, 
+//			HttpSession session) {
+//		log.info("@# updateCustomerInfo_start()");
+//		
+//		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+//		
+//		if (loginCustomer == null) return "fail";
+//
+//		HashMap<String, String> param = new HashMap<String, String>();
+//		param.put("id", String.valueOf(loginCustomer.getId()));
+//		param.put("name", name);
+//		param.put("phone", phone);
+//		param.put("address", address);
+//		param.put("address1", address1);
+//		param.put("zipcode", zipcode);
+//
+//		service.updateInfo(param);
+//
+//		log.info("@# updateCustomerInfo_end()");
+//		
+//		loginCustomer.setName(name);
+//		loginCustomer.setPhone(phone);
+//		loginCustomer.setAddress(address);
+//		loginCustomer.setAddress1(address1);
+//		loginCustomer.setZipcode(Integer.parseInt(zipcode));
+//		
+//		return "success";
+//	}
+	
 	@RequestMapping("/updateCustomerInfo")
 	@ResponseBody
-	public String updateCustomerInfo(
-			@RequestParam("name") String name, 
-			@RequestParam("phone") String phone, 
-			@RequestParam("address") String address, 
-			@RequestParam("address1") String address1, 
-			@RequestParam("zipcode") String zipcode, 
-			HttpSession session) {
+	public String updateCustomerInfo(@RequestParam("field") String field,
+									 @RequestParam("value") String value,
+									 HttpSession session) {
+
 		log.info("@# updateCustomerInfo_start()");
-		
+
 		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
-		
 		if (loginCustomer == null) return "fail";
 
-		HashMap<String, String> param = new HashMap<String, String>();
+//		HashMap<String, Object> param = new HashMap<>();
+		HashMap<String, String> param = new HashMap<>();
 		param.put("id", String.valueOf(loginCustomer.getId()));
-		param.put("name", name);
-		param.put("phone", phone);
-		param.put("address", address);
-		param.put("address1", address1);
-		param.put("zipcode", zipcode);
+		param.put("field", field);
+		param.put("value", value);
 
-		service.updateInfo(param);
+		service.updateInfo(param); // DAO에서 field에 따라 업데이트 되도록 구성
+
+		// 세션 갱신
+		switch (field) {
+			case "name": loginCustomer.setName(value); break;
+			case "phone": loginCustomer.setPhone(value); break;
+		}
 
 		log.info("@# updateCustomerInfo_end()");
-		
-		loginCustomer.setName(name);
-		loginCustomer.setPhone(phone);
-		loginCustomer.setAddress(address);
-		loginCustomer.setAddress1(address1);
-		loginCustomer.setZipcode(Integer.parseInt(zipcode));
-		
 		return "success";
 	}
+	
+	@PostMapping("/updateCustomerAddress")
+	@ResponseBody
+	public String updateCustomerAddress(@RequestParam("zipcode") String zipcode,
+										@RequestParam("address") String address,
+										@RequestParam("address1") String address1,
+										HttpSession session) {
+
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+		if (loginCustomer == null) return "fail";
+
+		HashMap<String, String> param = new HashMap<>();
+		param.put("id", String.valueOf(loginCustomer.getId()));
+		param.put("zipcode", zipcode);
+		param.put("address", address);
+		param.put("address1", address1);
+
+		service.updateCustomerAddress(param);
+
+		// 세션 동기화
+		loginCustomer.setZipcode(Integer.parseInt(zipcode));
+		loginCustomer.setAddress(address);
+		loginCustomer.setAddress1(address1);
+
+		return "success";
+	}
+
+
 	
 	//25.04.10 권준우 - seller 정보 변경 메소드
 	@RequestMapping("/updateSellerInfo")
@@ -225,7 +284,6 @@ public class InfoController {
 		log.info("@# updateSellerInfo_start()");
 		
 		SellerDTO loginSeller = (SellerDTO) session.getAttribute("loginSeller");
-		
 		if (loginSeller == null) return "fail";
 		
 		HashMap<String, String> param = new HashMap<String, String>();
@@ -235,17 +293,18 @@ public class InfoController {
 		
 		service.updateInfo2(param);
 		
-		log.info("@# updateSellerInfo_end()");
 		
-		// 세션 동기화
+		// 세션 갱신
 		if (field.equals("name")) {
 			loginSeller.setName(value);
 		} else if (field.equals("phone")) {
 			loginSeller.setPhone(value);
 		}
 		
+		log.info("@# updateSellerInfo_end()");
 		return "success";
 	}
+	
 	
 	
 }

@@ -5507,3 +5507,275 @@ top: 2px;
 }
 
 /*checkout 끝*/
+
+/*cart_view 쇼핑 시작*/
+/* 쇼핑카트 전체 스타일 */
+.cart-list-head {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.cart-list-title p {
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cart-single-list {
+  padding: 15px 0;
+  border-top: 1px solid #eee;
+}
+
+.cart-single-list:last-child {
+  border-bottom: 1px solid #eee;
+}
+
+.cart-single-list img {
+  max-width: 60px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.cart-single-list h5 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.cart-single-list .product-name a {
+  color: #333;
+  text-decoration: none;
+}
+
+.cart-single-list .count-input input.qty {
+  width: 60px;
+  text-align: center;
+}
+
+.subtotal {
+  font-weight: 600;
+  color: #333;
+}
+
+/* 할인율 표시 */
+.rate {
+  color: #e74c3c;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+/* 품절 텍스트 스타일 */
+.text-soldOut {
+  color: #999;
+  font-weight: bold;
+}
+
+/* 삭제 아이콘 */
+.remove-item i {
+  color: #e74c3c;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.remove-item i:hover {
+  opacity: 0.8;
+}
+
+/* 총액 영역 스타일 */
+.total-amount {
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.total-amount .right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.total-amount .right ul li {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-amount .button {
+  display: flex;
+  gap: 10px;
+}
+
+.total-amount .button button,
+.total-amount .button .btn {
+  width: 100%;
+}
+
+/*cart Total amount 시작*/
+
+.total-amount {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.total-amount .right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.total-amount .right ul li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.total-amount .right ul li span {
+  font-weight: 500;
+}
+
+.total-amount .right ul li:last-child {
+  font-weight: bold;
+  font-size: 18px;
+  color: #111;
+  border-top: 1px solid #ddd;
+  padding-top: 12px;
+}
+
+.total-amount .button {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.total-amount .button button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.total-amount .button button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.total-amount .button .btn-alt {
+  display: block;
+  text-align: center;
+  background-color: #0a0f1c;
+  color: #fff;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.total-amount .button .btn-alt:hover {
+  opacity: 0.9;
+}
+
+/*cart Total amount 끝*/
+
+/*cart summary 시작*/
+
+.cart-summary-container {
+  margin-top: 30px;
+}
+
+.cart-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: none !important; /* 테두리 제거 */
+   padding: 0;
+   margin: 0;
+  flex-direction: column;
+  max-width: 250px; /* 버튼보다 약간 넓게 */
+  background: #fff;
+ 
+}
+
+
+
+.cart-buttons button {
+  padding: 10px 20px ;
+  border: none;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.cart-buttons button:hover {
+  background-color: #ddd;
+  
+}
+
+.cart-summary .summary-box {
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.summary-total {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.summary-buttons button,
+.summary-buttons a {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.summary-buttons .btn-checkout {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.summary-buttons .btn-continue {
+  background-color: #0a0f1a;
+  color: #fff;
+  text-decoration: none;
+}
+
+/*cart summary 끝*/
+
+
+/*cart_view 쇼핑 끝*/

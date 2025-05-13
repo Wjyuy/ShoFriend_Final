@@ -451,6 +451,7 @@
 									<input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked>
 		                        </div>
 		                        <div class="col-lg-1 col-md-1 col-12">
+									<p>전체선택</p>
 		                        </div>
 		                        <div class="col-lg-3 col-md-3 col-12">
 		                            <p>상품명</p>
@@ -468,6 +469,7 @@
 		                            <p>삭제</p>
 		                        </div>
 		                    </div>
+							<hr>
 		                </div>
 		                <!-- End Cart List Title -->
 						
@@ -515,6 +517,14 @@
 													<fmt:formatNumber value="${dto.final_price*dto.quantity}" pattern="#,###" />원
 												</c:otherwise>
 											</c:choose>
+											
+											<c:if test="${!isSoldOut}">
+											   <c:set var="itemSubtotal" value="${dto.final_price * dto.quantity}" />
+											   <c:set var="itemOriginal" value="${dto.price * dto.quantity}" />
+											   <c:set var="total" value="${total + itemSubtotal}" />
+											   <c:set var="originalTotal" value="${originalTotal + itemOriginal}" />
+											 </c:if>
+											
 										</div>
 			                        </div>
 									<div class="col-lg-1 col-md-2 col-12">
@@ -524,32 +534,46 @@
 			                </div>
 						</c:forEach>
 		                <!-- End Single List list -->
+						
+						
+						
+						<div class="col-lg-3 col-md-4 col-12 cart-buttons d-flex justify-content-end">
+						  <div class="button-group d-flex gap-2">
+						    <button type="button" onclick="submitDeleteSoldOut()" class="btn-delete-soldout">품절 상품 삭제</button>
+						    <button type="submit" onclick="return validateCartSelection()" name="submitType" value="delete" class="btn-delete-selected">선택 삭제</button>
+						  </div>
+						</div>
+						
 					</div>
-		            <div class="row">
-		                <div class="col-12">
-		                    <!-- Total Amount -->
-		                    <div class="total-amount">
-		                        <div class="row">
-		                            <div class="col-lg-8 col-md-6 col-12">
-										<button type="button" onclick="submitDeleteSoldOut()">품절 상품 삭제</button>
-										<button type="submit" onclick="return validateCartSelection()" name="submitType" value="delete">선택 삭제</button>
-		                                <div class="left">
-		                                </div>
-		                            </div>
-		                            <div class="col-lg-4 col-md-6 col-12">
-		                                <div class="right">
-		                                    <ul>
-		                                        <li>합계<span id="totalAmount">0원</span></li>
-		                                    </ul>
-		                                    <div class="button">
-		                                        <button type="submit" onclick="return validateCartSelection()" name="submitType" value="order">주문하기</button>
-		                                        <a href="main" class="btn btn-alt">Continue shopping</a>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
+	<!-- end of Shopping Cart -->
+					
+				<!--Start Total Amount-->
+					<div class="cart-summary-container">
+					  <div class="row justify-content-between align-items-start">
+
+
+					    
+					    <div class="col-lg-4 col-md-6 col-12 cart-summary">
+					      <div class="summary-box">
+					        <ul class="summary-list">
+					          <li>합계 <span><fmt:formatNumber value="${originalTotal}" pattern="#,###"/>원</span></li>
+					          <li>배송비 <span>무료</span></li>
+					          <li>할인된 금액 <span><fmt:formatNumber value="${originalTotal - total}" pattern="#,###"/>원</span></li>
+					          <hr>
+					          <li class="summary-total">총 합계 <span id="totalAmount"></span></li>
+					        </ul>
+					        <div class="summary-buttons">
+					          <button type="submit" onclick="return validateCartSelection()" name="submitType" value="order" class="btn-checkout">주문하기</button>
+					          <a href="main" class="btn-continue">Continue Shopping</a>
+					        </div>
+					      </div>
+					    </div>
+
+					  </div>
+					</div>
 		                    <!--/ End Total Amount -->
+							
+							
 		                </div>
 		            </div>
 		        </div>
@@ -769,6 +793,44 @@
 		        form.submit();
 		    }
 		}
+</script>
+
+<script>
+  // 총합계 계산
+  function calculateTotal() {
+    let total = 0;
+    const items = document.querySelectorAll('.cart-single-list');
+
+    items.forEach(item => {
+      const checkbox = item.querySelector('.cartCheckbox');
+      const qtyInput = item.querySelector('.qty');
+
+      if (checkbox && checkbox.checked && !checkbox.disabled && qtyInput) {
+        const price = parseFloat(qtyInput.getAttribute('data-price')) || 0;
+        const quantity = parseInt(qtyInput.value) || 1;
+        total += price * quantity;
+      }
+    });
+
+    // 포맷팅
+    const formatted = total.toLocaleString('ko-KR') + ' 원';
+    document.getElementById('totalAmount').textContent = formatted;
+  }
+
+  // 수량 변경 or 체크박스 변경 
+  document.addEventListener('DOMContentLoaded', () => {
+    calculateTotal();
+
+    // 수량 변경
+    document.querySelectorAll('.qty').forEach(input => {
+      input.addEventListener('input', calculateTotal);
+    });
+
+    // 체크박스 변경 
+    document.querySelectorAll('.cartCheckbox').forEach(checkbox => {
+      checkbox.addEventListener('change', calculateTotal);
+    });
+  });
 </script>
 </body>
 </html>

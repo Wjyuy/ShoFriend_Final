@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
 import com.boot.dto.OrderItemDTO;
 import com.boot.dto.OrdersDTO;
@@ -62,7 +64,8 @@ public class CheckOutController {
 	        redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
 	        return "redirect:../log/login";
 	    }
-
+	    ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
 	    List<ProductDTO> products = new ArrayList<>();
 	    int totalPrice = 0;
 
@@ -279,7 +282,15 @@ public class CheckOutController {
 	    } else {
 	        model.addAttribute("error", "로그인 정보 또는 상품 정보가 없습니다.");
 	    }
+	  //2025.05.13 장바구니출력,카테고리출력
+  		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+  		model.addAttribute("categorylist", categorylist);
+          if (loginCustomer != null) {
+              int currentCustomerId = loginCustomer.getId();
+              List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+              model.addAttribute("items", items);
 
+          }
 	    return "pay/success";
 	}
 	//단품결제용 
@@ -347,12 +358,32 @@ public class CheckOutController {
     }
 
     @GetMapping("/cancel")
-    public String cancel() {
+    public String cancel(Model model,HttpSession session) {
+  	  //2025.05.13 장바구니출력,카테고리출력
+  		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+  		model.addAttribute("categorylist", categorylist);
+  		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+          if (loginCustomer != null) {
+              int currentCustomerId = loginCustomer.getId();
+              List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+              model.addAttribute("items", items);
+
+          }
         return "pay/cancel";
     }
 
     @GetMapping("/fail")
-    public String fail() {
+    public String fail(Model model,HttpSession session) {
+  	  //2025.05.13 장바구니출력,카테고리출력
+  		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+  		model.addAttribute("categorylist", categorylist);
+  		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+          if (loginCustomer != null) {
+              int currentCustomerId = loginCustomer.getId();
+              List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+              model.addAttribute("items", items);
+
+          }
         return "pay/fail";
     }
 }

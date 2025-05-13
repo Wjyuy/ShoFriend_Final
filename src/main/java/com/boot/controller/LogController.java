@@ -3,6 +3,7 @@ package com.boot.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,9 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.CartDTO;
+import com.boot.dto.CategoryDTO;
 import com.boot.dto.CustomerDTO;
+import com.boot.dto.ProductDTO;
 import com.boot.dto.SellerDTO;
+import com.boot.service.CartService;
 import com.boot.service.LogService;
+import com.boot.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,8 +58,10 @@ public class LogController {
 	
 	@Autowired
 	private LogService service;
-	
-	
+	@Autowired
+	private CartService cartService;	
+	@Autowired
+	private ProductService productService;
 //	메인 페이지 호출 메서드
 //	25.04.11 권준우 - 메인 페이지에서 상품 정보를 띄우기 위해 수정
 //	@RequestMapping("/main")
@@ -78,8 +86,19 @@ public class LogController {
 	
 	// 구매자 판매자 선택 페이지
 	@RequestMapping("/log/login")
-	public String login() {
+	public String login(Model model,HttpSession session) {
 		log.info("@# /log/login()");
+		
+		//2025.05.13 장바구니출력,카테고리출력
+		ArrayList<CategoryDTO> categorylist = productService.categorylist();
+		model.addAttribute("categorylist", categorylist);
+		CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
+        if (loginCustomer != null) {
+            int currentCustomerId = loginCustomer.getId();
+            List<CartDTO> items = cartService.getCartItemsWithProduct(currentCustomerId);
+            model.addAttribute("items", items);
+
+        }
 		return ("/log/login");
 	}
 

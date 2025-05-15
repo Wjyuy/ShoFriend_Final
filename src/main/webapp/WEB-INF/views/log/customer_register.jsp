@@ -10,7 +10,7 @@
     <title>Register - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.svg" />
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
@@ -285,7 +285,7 @@
 													<c:forEach var="item" items="${items}">
 														<li>
 									                        <div class="cart-img-head">
-									                            <a class="cart-img" href="content?id=${item.product_id}"><img
+									                            <a class="cart-img" href="/content?id=${item.product_id}"><img
 									                                    src="/display?fileName=${item.picture}" alt="${item.product_title}" onerror="this.onerror=null; this.src='assets/images/products/crack.png'"></a>
 									                        </div>
 
@@ -306,7 +306,7 @@
 									                    </span>
 		                                            </div>
 													<div class="button">
-													    <a href="cart_view" class="btn animate" >View Cart</a>
+													    <a href="../cart_view" class="btn animate" >View Cart</a>
 													</div>
 		                                        </div>
 											</c:if>
@@ -601,7 +601,7 @@
                         </div>
                         <div class="col-lg-5 col-md-6 col-12 mb-2 text-center">
                             <div class="copyright">
-                                <p>Designed and Developed by<a href="main" rel="nofollow"
+                                <p>Designed and Developed by<a href="../main" rel="nofollow"
                                         target="_blank">Shofriend</a></p>
                             </div>
                         </div>
@@ -635,7 +635,8 @@
     <script src="../assets/js/glightbox.min.js"></script>
     <script src="../assets/js/main.js"></script>
     <script type="../text/javascript">
-        //========= Hero Slider 
+        //========= Hero Slider
+		 
         tns({
             container: '.hero-slider',
             slideBy: 'page',
@@ -674,4 +675,5 @@
             }
         });
     </script>
+	</body>
 	</html>

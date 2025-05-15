@@ -105,16 +105,9 @@ public class CheckOutController {
 	
 	//단품결제용 
 //	@RequestMapping("/checkout")
-//	public String checkout(Model model,@RequestParam("product_id") int product_id,@RequestParam("quantity") int quantity,HttpSession session,RedirectAttributes redirectAttributes) {
-//		log.info("checkout()");
-//		log.info("product_id=>"+product_id);
-//		log.info("quantity=>"+quantity);
-//		
-//		CustomerDTO customer = (CustomerDTO) session.getAttribute("loginCustomer");
-//		if (customer == null) {
-//			redirectAttributes.addFlashAttribute("msg", "로그인후 이용해 주세요 😭");
-//			return "redirect:../log/login";
-//		}
+//	public String checkout(Model model,@RequestParam("product_id") 
+//		int product_id,@RequestParam("quantity") int quantity,HttpSession session,RedirectAttributes redirectAttributes) {
+	
 //	    ProductDTO product = productService.getProductById(product_id);
 //	    model.addAttribute("product", product);
 //	    model.addAttribute("quantity", quantity);
@@ -207,24 +200,16 @@ public class CheckOutController {
 //        session.setAttribute("deliveryMemo", deliveryMemo);
 //
 //        String redirectUrl = kakaoPayService.kakaoPayReady(totalAmount, itemName, quantity);
-//        log.info("redirectUrl=>" + redirectUrl);
-//        log.info("Session after /ready - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, partnerUserId: {}, zipcode: {}, address: {}, deliveryMemo: {}",
-//                 session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"), session.getAttribute("partnerUserId"),
-//                 session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
 //        return "redirect:" + redirectUrl;
 //    }
 	
 	@GetMapping("/success")
 	public String success(@RequestParam Map<String, String> params, Model model, HttpSession session) {
-	    log.info("success()");
 	    log.info("Session ID in /success: {}", session.getId());
 	    String pgToken = params.get("pg_token");
 
 	    String result = kakaoPayService.kakaoPayApprove(pgToken);
 	    model.addAttribute("result", result);
-	    log.info("Session values after kakaoPayApprove - totalPrice: {}, partnerOrderId: {}, deliveryZipcode: {}, deliveryAddress: {}, deliveryMemo: {}",
-	            session.getAttribute("totalPrice"), session.getAttribute("partnerOrderId"),
-	            session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
 
 	    CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
 	    List<Integer> productIds = (List<Integer>) session.getAttribute("productIds");
@@ -232,9 +217,6 @@ public class CheckOutController {
 	    Integer totalPrice = (Integer) session.getAttribute("totalPrice");
 
 	    if (loginCustomer != null && productIds != null && quantities != null && !productIds.isEmpty()) {
-	        log.info("Session values in /success - totalPrice: {}, partnerOrderId: {}, deliveryZipcode: {}, deliveryAddress: {}, deliveryMemo: {}, productIds: {}, quantities: {}",
-	                 totalPrice, session.getAttribute("partnerOrderId"),
-	                 session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"), productIds, quantities);
 
 	        OrdersDTO orderDTO = new OrdersDTO();
 	        orderDTO.setCustomer_id(loginCustomer.getId());
@@ -268,7 +250,6 @@ public class CheckOutController {
 	        	log.warn("삭제할 장바구니 아이템 ID가 없습니다.");
 	        }
 	        
-	        
 	        session.removeAttribute("partnerOrderId");
 	        session.removeAttribute("partnerUserId");
 	        session.removeAttribute("totalPrice");
@@ -277,7 +258,6 @@ public class CheckOutController {
 	        session.removeAttribute("deliveryZipcode");
 	        session.removeAttribute("deliveryAddress");
 	        session.removeAttribute("deliveryMemo");
-
 	        
 	    } else {
 	        model.addAttribute("error", "로그인 정보 또는 상품 정보가 없습니다.");
@@ -296,22 +276,12 @@ public class CheckOutController {
 	//단품결제용 
 //    @GetMapping("/success")
 //    public String success(@RequestParam Map<String, String> params, Model model, HttpSession session) {
-//        log.info("success()");
-//        log.info("Session ID in /success: {}", session.getId());
 //        String pgToken = params.get("pg_token");
 //
 //        String result = kakaoPayService.kakaoPayApprove(pgToken);
 //        model.addAttribute("result", result);
-//        log.info("Session values after kakaoPayApprove - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, deliveryZipcode: {}, deliveryAddress: {}, deliveryMemo: {}",
-//                session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"),
-//                session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
-//        
 //        CustomerDTO loginCustomer = (CustomerDTO) session.getAttribute("loginCustomer");
 //        if (loginCustomer != null) {
-//            log.info("Session values in /success - totalPrice: {}, quantity: {}, productId: {}, partnerOrderId: {}, deliveryZipcode: {}, deliveryAddress: {}, deliveryMemo: {}",
-//                     session.getAttribute("totalPrice"), session.getAttribute("quantity"), session.getAttribute("productId"), session.getAttribute("partnerOrderId"),
-//                     session.getAttribute("deliveryZipcode"), session.getAttribute("deliveryAddress"), session.getAttribute("deliveryMemo"));
-//
 //            OrdersDTO orderDTO = new OrdersDTO();
 //            orderDTO.setCustomer_id(loginCustomer.getId());
 //            orderDTO.setTotal_price((Integer) session.getAttribute("totalPrice"));

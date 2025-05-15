@@ -63,12 +63,10 @@ public class CheckOutServiceImpl implements CheckOutService{
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<>(params, headers);
 
         try {
-        	log.info("try1=>");
             ResponseEntity<Map> response = restTemplate.postForEntity(
                 HOST + "/v1/payment/ready", body, Map.class);
             
             this.tid = (String) response.getBody().get("tid");
-            log.info("response=>"+response);
             session.setAttribute("partnerOrderId", partnerOrderId); // partnerOrderId 세션에 저장 (선택 사항)
             session.setAttribute("partnerUserId", partnerUserId);   // partnerUserId 세션에 저장
 

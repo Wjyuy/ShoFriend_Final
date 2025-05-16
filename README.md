@@ -52,10 +52,16 @@
 </table>
 
 ### 서비스 설계단 흐름
-사용자
-![userflow](./img/userflow.png)
-친구
-![friendflow](./img/friendflow.png)
+<table>
+  <tr>
+    <td align="center">사용자</td>
+    <td align="center">친구</td>
+  </tr>
+  <tr>
+    <td><img src="./img/userflow.png" alt="사용자 흐름도" width="400"></td>
+    <td><img src="./img/friendflow.png" alt="친구 흐름도" width="400"></td>
+  </tr>
+</table>
 
 ## 🚀 주요 기능
 

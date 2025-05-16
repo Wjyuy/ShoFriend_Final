@@ -50,9 +50,6 @@
     <td><img src="./img/flow3.jpeg" alt="flow3" width="300"></td>
   </tr>
 </table>
-<!-- ![flow1](./img/flow1.jpeg)
-![flow2](./img/flow2.jpeg)
-![flow3](./img/flow3.jpeg) -->
 
 ### 서비스 설계단 흐름
 사용자
@@ -84,16 +81,15 @@
   * **🎁 친구 상품 공유:** 상품 링크 공유
 
 ## 🔗 관련 링크
-https://github.com/yuriuser126/ShoFriend_project3
   * **GitHub Repository:** 
   <br>
-  [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot) ]
+  [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot)]
   <br>
-  [[팀원 성유리-GitHub Repository URL](https://github.com/yuriuser126/ShoFriend_project3) ]
+  [[팀원 성유리-GitHub Repository URL](https://github.com/yuriuser126/ShoFriend_project3)]
   <br>
-  [[팀원 김채윤-GitHub Repository URL](https://github.com/Chaeyoon-k/pilotproject_03) ]
+  [[팀원 김채윤-GitHub Repository URL](https://github.com/Chaeyoon-k/pilotproject_03)]
   <br>
-  [[팀원 권준우-GitHub Repository URL](https://github.com/kjo5191/ShoFriend) ]
+  [[팀원 권준우-GitHub Repository URL](https://github.com/kjo5191/ShoFriend)]
   * **API 문서:** [[카카오페이 API URL](https://developers.kakaopay.com/)]
   * **API 문서:** [[카카오 API URL](https://apis.map.kakao.com/)]
   * **Jira 프로젝트:** [[Jira 프로젝트 URL](https://khproject3.atlassian.net/)]

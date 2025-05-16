@@ -1,6 +1,6 @@
 # 🛍️ 친구와 함께 쇼핑해요! SHOFRIEND - 상품 판매 플랫폼
 
-**SHOFRIEND는, Spring Boot 기반 온라인 상품 판매 플랫폼입니다!**
+**SHOFRIEND는, Spring Boot 기반 온라인 상품 판매 플랫폼**
 <br>
 
 빅데이터 기반(파이썬·자바·웹) 엘라스틱 검색엔진 개발자과정 `2025. 01. 15 ~ 2025. 07. 10`
@@ -31,6 +31,23 @@
   * **Build Tool:** Gradle
   * **Web Server:** Tomcat
   * **Communication:** Slack, Jira
+
+## 설계
+
+### DB diagram을 사용한 erd 테이블 설계
+![erd](./img/erd.png)
+
+
+### 업무 흐름도
+![flow1](./img/flow1.png)
+![flow2](./img/flow2.png)
+![flow3](./img/flow3.png)
+
+### 서비스 설계단 흐름
+사용자
+![userflow](./img/userflow.png)
+친구구
+![friendflow](./img/friendflow.png)
 
 ## 🚀 주요 기능
 
@@ -87,15 +104,20 @@
 
 ## 결과
 
-메인 화면
-![메인](./img/main.png)
-![상품](./img/product.png)
-상품 상세
-![상세](./img/content.png)
-리뷰
-![리뷰](./img/review.png)
-친구
-![메인](./img/main.png)
+  ### 메인 화면
+  ![메인](./img/main.png)
+  ![상품](./img/product.png)
+  ### 상품 상세
+  ![상세](./img/content.png)
+  ### 리뷰
+  ![리뷰](./img/review.png)
+  ### 친구
+  ![friend](./img/friend.png)
+  ![chat](./img/chat.png)
+  ### 결제
+  ![cart](./img/cart.png)
+  ![checkout](./img/checkout.png)
+  ![kakaopay](./img/kakaopay.png)
 
 ## 📜 프로젝트 후기 
 

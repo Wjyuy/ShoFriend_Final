@@ -155,3 +155,8 @@
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/2gDThXVyRGg?si=nAoLECvk8rNZ1Lvy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     
+<iframe width="560" height="315" src="http://www.youtube.com/watch?v=An_TIj0-c6k" title="Doraemon gadget ☹️☹️☹️☹️#foryou#shorts#youtubeshorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+* **시연영상 보기**
+
+<iframe width="560" height="315" src="http://www.youtube.com/watch?v=An_TIj0-c6k" title="Doraemon gadget ☹️☹️☹️☹️#foryou#shorts#youtubeshorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

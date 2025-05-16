@@ -82,13 +82,9 @@
 
 ## 🔗 관련 링크
   * **GitHub Repository:** 
-  <br>
   [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot)]
-  <br>
   [[팀원 성유리-GitHub Repository URL](https://github.com/yuriuser126/ShoFriend_project3)]
-  <br>
   [[팀원 김채윤-GitHub Repository URL](https://github.com/Chaeyoon-k/pilotproject_03)]
-  <br>
   [[팀원 권준우-GitHub Repository URL](https://github.com/kjo5191/ShoFriend)]
   * **API 문서:** [[카카오페이 API URL](https://developers.kakaopay.com/)]
   * **API 문서:** [[카카오 API URL](https://apis.map.kakao.com/)]

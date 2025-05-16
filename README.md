@@ -41,9 +41,13 @@
 ### DB diagram을 사용한 erd 테이블 설계
 ![erd](./img/erd.png)
 
-
 ### 업무 흐름도
 <table>
+  <tr>
+    <td align="center">메인</td>
+    <td align="center">마이페이지</td>
+    <td align="center">장바구니</td>
+  </tr>
   <tr>
     <td><img src="./img/flow1.jpeg" alt="flow1" width="300"></td>
     <td><img src="./img/flow2.jpeg" alt="flow2" width="300"></td>
@@ -85,17 +89,6 @@
   * **💬 친구 채팅:** 친구와 실시간 채팅 지원
   * **🎁 친구 추천 상품:** 친구가 구매한 상품기반 맞춤형 상품 추천
   * **🎁 친구 상품 공유:** 상품 링크 공유
-
-## 🔗 관련 링크
-  * **GitHub Repository:** 
-  [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot)]
-  [[팀원 성유리-GitHub Repository URL](https://github.com/yuriuser126/ShoFriend_project3)]
-  [[팀원 김채윤-GitHub Repository URL](https://github.com/Chaeyoon-k/pilotproject_03)]
-  [[팀원 권준우-GitHub Repository URL](https://github.com/kjo5191/ShoFriend)]
-  * **API 문서:** [[카카오페이 API URL](https://developers.kakaopay.com/)]
-  * **API 문서:** [[카카오 API URL](https://apis.map.kakao.com/)]
-  * **Jira 프로젝트:** [[Jira 프로젝트 URL](https://khproject3.atlassian.net/)]
-  * **Slack 채널:** [[Slack 채널 URL](https://khproject3hq.slack.com/)] 
 
 ## ⏳ 추후 구현 예정
 
@@ -143,5 +136,17 @@
   * **팀원(김채윤):** 구현하고 싶었던 기능들이 많았지만 모두 완성하지 못해 아쉽습니다. 그러나 친구와 함께 쇼핑한다는 초기 기획과 함께 일반적인 웹사이트와는 차별화된 웹페이지를 만들 수 있었습니다. 신선한 프로젝트에 참여하여 매우 뜻깊은 시간이었습니다!
   * **팀원(성유리):** 기능 구현을 이행하기에 시간이 걸려, 많이 하지 못한부분은 아쉽습니다.  전 프론트단을 디자인하는데 코드가 너무 많아져 추후 추가 기능, 프론트 쪽은 타입스크립트나 리액트사용 에 집중하고싶습니다 . 팀원들이 잘해주셔서 잘 마무리 한 것 같습니다!
 
-
-
+## 🔗 관련 링크
+  * **GitHub Repository:** 
+  [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot)]
+  [[팀원 성유리-GitHub Repository URL](https://github.com/yuriuser126/ShoFriend_project3)]
+  [[팀원 김채윤-GitHub Repository URL](https://github.com/Chaeyoon-k/pilotproject_03)]
+  [[팀원 권준우-GitHub Repository URL](https://github.com/kjo5191/ShoFriend)]
+  * **API 문서:** [[카카오페이 API URL](https://developers.kakaopay.com/)]
+  * **API 문서:** [[카카오 API URL](https://apis.map.kakao.com/)]
+  * **Jira 프로젝트:** [[Jira 프로젝트 URL](https://khproject3.atlassian.net/)]
+  * **Slack 채널:** [[Slack 채널 URL](https://khproject3hq.slack.com/)] 
+  
+  * **시연영상 보기:**
+  <iframe width="560" height="315" src="https://youtu.be/2gDThXVyRGg?si=zw4og6e75fCzlQHj" title="The CUTEST flower girl on YouTube (2019-2024)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <a href="./img/pptx.pdf" download="document.pdf">PDF 다운로드</a>

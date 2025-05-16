@@ -147,11 +147,11 @@
   * **Jira 프로젝트:** [[Jira 프로젝트 URL](https://khproject3.atlassian.net/)]
   * **Slack 채널:** [[Slack 채널 URL](https://khproject3hq.slack.com/)] 
 
-  * **발표자료 다운로드**
+  * **발표자료**
 
-  <a href="./img/pptx.pdf" download="document.pdf">PDF 다운로드</a>
+  <a href="./img/pptx.pdf" download="document.pdf">PDF 미리보기</a>
   [최신 발표 자료 다운로드 (릴리스)](https://github.com/Wjyuy/ShoFriend_Final/releases/latest)
   * **시연영상 보기**
 
-  <iframe width="560" height="315" src="https://youtu.be/2gDThXVyRGg?si=zw4og6e75fCzlQHj" title="The CUTEST flower girl on YouTube (2019-2024)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://youtu.be/1A3qlVq_iCQ?si=dJuw7zhHmcWmE4NQ" title="The CUTEST flower girl on YouTube (2019-2024)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   

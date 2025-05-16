@@ -153,6 +153,5 @@
   [최신 발표 자료 다운로드 (릴리스)](https://github.com/Wjyuy/ShoFriend_Final/releases/latest)
   * **시연영상 보기**
 
-  <iframe src="https://www.youtube.com/watch?v=2gDThXVyRGg"></iframe>
-  <iframe width="560" height="315" src="https://www.youtube.com/watch?v=2gDThXVyRGg" title="The CUTEST flower girl on YouTube (2019-2024)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/2gDThXVyRGg?si=nAoLECvk8rNZ1Lvy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    

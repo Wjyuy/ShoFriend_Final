@@ -112,6 +112,19 @@
 
   * **🛡️ 보안 기능 강화:** Spring Security, JWT (JSON Web Token) 등을 활용해 사용자 데이터, 시스템 보안강화 예정
 
+## 협업툴 자동화 활용
+
+  <table>
+    <tr>
+      <td align="center">slack</td>
+      <td align="center">jira</td>
+    </tr>
+    <tr>
+      <td><img src="./img/slack.png" alt="slack" width="400"></td>
+      <td><img src="./img/jira.png" alt="jira" width="400"></td>
+    </tr>
+  </table>
+
 ## 결과
 
   ### 메인 화면
@@ -153,5 +166,5 @@
   [최신 발표 자료 다운로드 (릴리스)](https://github.com/Wjyuy/ShoFriend_Final/releases/latest)
 
   * **시연영상 보기**
-  
+
   [![Video Label](http://img.youtube.com/vi/2gDThXVyRGg/0.jpg)](https://www.youtube.com/watch?v=2gDThXVyRGg)

@@ -1,6 +1,6 @@
-# 🛍️ 친구와 함께 쇼핑해요! SHOFRIEND - 상품 판매 플랫폼
+# 🛍️ 친구와 함께 쇼핑해요! SHOFRIEND
 
-**SHOFRIEND는, Spring Boot 기반 온라인 상품 판매 플랫폼**
+**Spring Boot 기반 온라인 상품 판매 플랫폼**
 <br>
 
 빅데이터 기반(파이썬·자바·웹) 엘라스틱 검색엔진 개발자과정 `2025. 01. 15 ~ 2025. 07. 10`
@@ -21,9 +21,13 @@
 
 - **SNS와 쇼핑몰의 강점을 결합**하여 사용자들에게는 더욱 풍부하고 즐거운 온라인 쇼핑 경험을 제공하고 판매자에게는 새로운 마케팅 및 판매 채널 제시
 
+![shofriend](./img/shofriend.png)
+
 ## 기술 구상도
 
 ![기술구상도](./img/programpic.png)
+
+  ### 사용 기술 스택
   * **Backend:** Spring Boot
   * **Database:** MySQL
   * **ORM:** MyBatis
@@ -39,14 +43,21 @@
 
 
 ### 업무 흐름도
-![flow1](./img/flow1.png)
-![flow2](./img/flow2.png)
-![flow3](./img/flow3.png)
+<table>
+  <tr>
+    <td><img src="./img/flow1.jpeg" alt="flow1" width="300"></td>
+    <td><img src="./img/flow2.jpeg" alt="flow2" width="300"></td>
+    <td><img src="./img/flow3.jpeg" alt="flow3" width="300"></td>
+  </tr>
+</table>
+<!-- ![flow1](./img/flow1.jpeg)
+![flow2](./img/flow2.jpeg)
+![flow3](./img/flow3.jpeg) -->
 
 ### 서비스 설계단 흐름
 사용자
 ![userflow](./img/userflow.png)
-친구구
+친구
 ![friendflow](./img/friendflow.png)
 
 ## 🚀 주요 기능
@@ -73,8 +84,16 @@
   * **🎁 친구 상품 공유:** 상품 링크 공유
 
 ## 🔗 관련 링크
-
-  * **GitHub Repository:** [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot) ]
+https://github.com/yuriuser126/ShoFriend_project3
+  * **GitHub Repository:** 
+  <br>
+  [[팀장 우주연-GitHub Repository URL](https://github.com/Wjyuy/Shofriend_boot) ]
+  <br>
+  [[팀원 성유리-GitHub Repository URL](https://github.com/yuriuser126/ShoFriend_project3) ]
+  <br>
+  [[팀원 김채윤-GitHub Repository URL](https://github.com/Chaeyoon-k/pilotproject_03) ]
+  <br>
+  [[팀원 권준우-GitHub Repository URL](https://github.com/kjo5191/ShoFriend) ]
   * **API 문서:** [[카카오페이 API URL](https://developers.kakaopay.com/)]
   * **API 문서:** [[카카오 API URL](https://apis.map.kakao.com/)]
   * **Jira 프로젝트:** [[Jira 프로젝트 URL](https://khproject3.atlassian.net/)]
